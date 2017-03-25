@@ -1,0 +1,110 @@
+body {
+  font: 10pt/14pt "Trebuchet MS", sans-serif;
+  color: #000033;
+  background: #69f;
+  margin: 0px; }
+
+.css-zen-garden {
+  width: 800px;
+  margin: 0 auto;
+  background: #9cf;
+  border-left: 2px dashed #fff;
+  border-right: 2px dashed #fff; }
+
+.header h1 {
+  background: transparent url(../img/trees.jpg) 0 0 no-repeat;
+  width: 800px;
+  height: 353px;
+  margin: 0; }
+
+.header h2 {
+  background: transparent url(../img/tag.gif) 0 0 no-repeat;
+  width: 244px;
+  height: 41px;
+  margin-top: -197px;
+  margin-left: 500px; }
+
+.container a {
+  font-weight: bold;
+  text-decoration: none; }
+
+.container a:link {
+  color: #F60; }
+
+.container a:visited {
+  color: #C00; }
+
+.container a:hover {
+  color: #F60;
+  text-decoration: underline; }
+
+.container .main {
+  padding: 0px 170px 0px 30px; }
+  .container .main .Ademo {
+    float: left;
+    color: #fff;
+    width: 130px;
+    padding: 5px;
+    margin-right: 15px;
+    background: #09f;
+    margin-left: -30px; }
+    .container .main .Ademo p {
+      font: bold 8pt/12pt verdana, sans-serif;
+      text-align: right;
+      margin-top: 0; }
+    .container .main .Ademo a {
+      font-weight: bold;
+      text-decoration: none; }
+    .container .main .Ademo a:link {
+      color: #003; }
+    .container .main .Ademo a:visited {
+      color: #006; }
+    .container .main .Ademo a:focus,
+    .container .main .Ademo a:hover {
+      text-decoration: underline;
+      color: #FF6600; }
+  .container .main h3 {
+    font: bold normal 12pt "Trebuchet MS", sans-serif;
+    letter-spacing: 3px;
+    margin-bottom: 2px;
+    color: #333;
+    text-align: left; }
+  .container .main p {
+    font: 10pt/16pt "Trebuchet MS", sans-serif;
+    margin-top: 0px;
+    text-align: justify; }
+
+.container footer {
+  text-align: center; }
+  .container footer a {
+    margin-right: 20px; }
+
+.container .listlink {
+  width: 150px;
+  float: right;
+  background: transparent url(../img/menu.gif) 0 0 no-repeat;
+  margin-top: -10px; }
+  .container .listlink ul {
+    margin: 0;
+    padding: 0px 10px 0px 15px; }
+    .container .listlink ul li {
+      line-height: 2.5ex;
+      background: transparent;
+      display: block;
+      padding-top: 5px;
+      margin-bottom: 5px;
+      list-style-type: none; }
+      .container .listlink ul li a:link {
+        color: #f30; }
+  .container .listlink h3 {
+    width: 130px;
+    height: 24px;
+    margin-left: 7px;
+    margin-bottom: 10px; }
+  .container .listlink h3.select {
+    margin-top: 70px;
+    background: transparent url(../img/select.gif) 0 0 no-repeat; }
+  .container .listlink h3.archives {
+    background: transparent url(../img/archives.gif) 0 0 no-repeat; }
+  .container .listlink h3.resources {
+    background: transparent url(../img/resources.gif) 0 0 no-repeat; }

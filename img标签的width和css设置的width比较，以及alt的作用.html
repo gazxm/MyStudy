@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>img标签的width和css设置的width比较，以及alt的作用</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  	body {
+  		margin: 0;
+  	}
+  	img {
+  		width: 500px;
+  	}
+  </style>
+</head>
+
+<body>
+	<article>
+		<section>
+			<h3>alt属性</h3>
+			<p>1、alt属性是考虑到不支持图像显示或者图像显示被关闭的浏览器的用户，以及视觉障碍的用户和使用屏幕阅读器的用户。当图片不显示的时候，图片的替换文字。</p>
+			<p>2、alt属性值得长度必须少于100个英文字符</p>
+			<p>3、alt属性是img标签的必须属性，如果没有特别意义的图片，可以写alt=""</p>
+			<p>4、alt属性是搜索引擎判断图片与文字是否相关的重要依据，alt属性添加到img主要的目的才是为了SEO</p>
+		</section>
+		<section>
+			<h3>title属性</h3>
+			<p>1、title属性并不是必须的。</p>
+			<p>2、title属性规定元素的额外信息，有视觉效果，当鼠标放到文字或是图片上时有文字显示。</p>
+			<p>3、title属性并不作为搜索引擎抓取图片的参考，更多倾向于用户体验的考虑。</p>
+		</section>
+	</article>
+	<p>在w3c标准中,alt是必须加的的</p>
+	<img src="img/iphone_bili.jpg" alt="我就是一张图片" width="300"/>
+	<p>这里可以看出来img的css设置了width比img直接设置了width的权重比更高</p>
+</body>
+
+</html>

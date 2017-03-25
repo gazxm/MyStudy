@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>background-size</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		/* background-size = [ <length> | <percentage> | auto ]{1,2} | cover | contain */
+		/*
+		关键字 
+		background-size: cover
+		background-size: contain
+
+		一个值: 这个值指定图片的宽度，图片的高度隐式的为auto
+		background-size: 50%
+		background-size: 3em
+		background-size: 12px
+		background-size: auto
+
+		两个值: 第一个值指定图片的宽度，第二个值指定图片的高度
+		background-size: 50% auto
+		background-size: 3em 25%
+		background-size: auto 6px
+		background-size: auto auto
+
+		逗号分隔的多个值：设置多重背景
+		background-size: auto, auto     不同于background-size: auto auto 
+		background-size: 50%, 25%, 25%
+		background-size: 6px, auto, contain
+
+		background-size: inherit
+
+		<length>
+		<length> 值，指定背景图片大小，不能为负值。
+
+		<percentage>
+		<percentage> 值，指定背景图片相对背景区（background positioning area）的百分比。背景区由background-origin设置，默认为盒模型的内容区与内边距，也可设置为只有内容区，或者还包括边框。如果attachment 为fixed，背景区为浏览器可视区（即视口），不包括滚动条。不能为负值。
+
+		auto
+		以背景图片的比例缩放背景图片。
+
+		cover
+		缩放背景图片以完全覆盖背景区，可能背景图片部分看不见。
+		
+		contain
+		缩放背景图片以完全装入背景区，可能背景区部分空白。
+		*/
+		body {
+			margin: 0;
+		}
+
+		div {
+			display: inline-block;
+			width: 240px;
+			height: 160px;
+			border: 1px solid black;
+			background: #999 url(img/iphone_bili.jpg) 0 0 no-repeat;
+		}
+
+		.background-size-contain {
+			background-size: contain;
+			background-position: center top;
+		}
+
+		.background-size-cover {
+			background-size: cover;
+		}
+	</style>
+</head>
+<body>
+	<div class="background-size-contain"></div>
+	<div class="background-size-cover"></div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ES6:let</title>
+  <script type="text/javascript"></script>
+</head>
+
+<body>
+
+</body>
+
+<script>
+	var a = 5;
+	let b = 10;
+	console.log(a, b);		//5, 10
+
+	var test = function() {
+	 	let c = 20;
+	 	a = a + c;
+	 	b = b + c;
+	};
+	test();
+
+	//console.log(a, b, c);		//c is not defined
+
+	for(var i = 1; i < 10; i++) {
+		console.log("i: " + i);
+	}
+
+	for(let j = 1; j < 20; j++) {
+		console.log("j:" + j);
+	}
+	console.log(i); // 10
+	//console.log(j);	// j is not defined
+
+	//暂时性死区
+	var tmp = 123;
+	if(1) {
+		tmp = 'abc';	//ReferenceError: tmp is not defined
+		let tmp;
+	}
+	//上面代码中，存在全局变量tmp，但是块级作用域内let又声明了一个局部变量tmp，导致后者绑定这个块级作用域，所以在let声明变量前，对tmp赋值会报错。ES6明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。总之，在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。
+
+	if(true) {
+		//TDZ开始
+		tmp = 'abc';			//	ReferenceError: tmp is not defined
+		console.log(tmp); //	ReferenceError: tmp is not defined
+
+		let tmp; // 	TDZ结束
+		console.log(tmp);	// undefined
+
+		tmp = 123;
+		console.log(tmp);	//123
+	}
+	//上面代码中，在let命令声明变量tmp之前，都属于变量tmp的'死区';同时'暂时性死区'也意味着typeof不再是一个百分之百安全的操作
+
+	console.log(typeof(zxm));  //  'undefined'
+	if(true) {
+		typeof x; //ReferenceError: x is not defined
+		let x;
+	}
+
+	//有些隐蔽的死区，例如
+	function bar(x = y, y = 2) {
+		return [x, y];
+	}
+
+	bar();	//报错，  因为x = y的时候，而y还没有声明，所以x = y的时候属于y的'死区'
+
+	function barTwo(x = 2, x = y) {
+		return [x, y];
+	}
+
+	barTwo(); //[2, 2]
+
+	// 不报错
+	var x = x;
+
+	// 报错
+	let x = x;
+	//ReferenceError: x is not defined
+</script>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>while语句</title>
+	<script>
+		/*while语句属于前测试循环语句，也就是说，在循环体内的代码被执行之前，就会对出口条件求值。因此，循环体内的代码有可能永远不会被执行。
+			while(expression) statement
+		*/
+		var i = 0,
+			j = 2;
+		while(i < 10) {
+			i += 2;
+			j *= 2;
+		}
+		console.log(i, j);	//10 64
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,3 @@
+1、http://blog.csdn.net/wangfupeng1988/article/details/46418203/ 【前端福利】用grunt搭建自动化的web前端开发环境-完整教程
+
+2、grunt主要实现自动化操作，grunt-contrib-jshint（js语法检查）、grunt-contrib-concat（js合并）、grunt-contrib-uglify（采用UglifyJS压缩js）、grunt-contrib-cssmin（Css压缩合并）、grunt-htmlhint（html语法验查）

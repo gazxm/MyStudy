@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>line-height实现居中的问题</title>
+  <script type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="">
+  <style type="text/css">
+  .zxx-title {
+    font-size: 1.6em;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .mt10 {
+    margin-top: 10px;
+  }
+
+  .mulit_line {
+    position: absolute;
+    top: 100px;
+    line-height: 300px; /*设置行高等于父元素的height*/
+    border: 1px dashed #cccccc;
+    padding-left: 5px;
+    font-size: 0;   /* 设置父元素的font-size为0，子元素中的middle-line和绝对中线对齐，不然会有几px的偏差 */
+  }
+
+  .mulit_line div {
+    font-size:12px;         /*设置子元素的font-size*/
+    display: inline-block;  /*设置子元素为inline-block:个人理解，若为block则，vertical-align不生效，若为inline,则其中两行均为line boxes，均会继承来自父元素的line-height的高度；设置成inline-block，则当成一个line boxes*/
+    *zoom: 1;
+    *display: inline;
+    line-height: 1.4em;/*重新设置line-height，让自己的匿名inline boxes继承这个line-height*/
+    vertical-align: middle;
+    background-color: #999;
+  }
+
+  .mulit_line i {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .block {
+    display: block;
+    height: 50px;
+    width: 300px;
+    background: white;
+    float: right;
+  }
+  </style>
+</head>
+
+<body>
+  <!-- http://www.zhangxinxu.com/study/200911/line-height-text-v-center.html 该网站在IE9 非兼容模式 IE8 IE7会有问题，但是我仿照写的一段DIV并没有问题，原因不详。。。-->
+  <h1 class="zxx_title">line-height与单行或多行文字的垂直居中</h1>
+  <div class="mulit_line mt10">
+    <div>这里是高度为150像素的标签内的多行文字，文字大小为12像素。<br>这里是第二行，用来测试多行的显示效果。
+    <span class="block">这里是第三行，用来测试多行的显示效果。</span>
+    </div>
+    <i class="vm dib">&nbsp;</i>
+  </div>
+</body>
+
+</html>

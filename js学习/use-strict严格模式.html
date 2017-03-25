@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>use-strict严格模式</title>
+  <!-- 
+		http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html
+  -->
+  <script>
+  	"use strict";
+  	//支持严格模式的浏览器IE10+、Firefox 4+、Safari 5.1+ 和chrome
+  	/*1、选择使用
+  				"use strict"; 这种语法(从ECMAScript3开始支持)可以向后兼容那些不支持严格模式的JavaScript引擎。支持严格模式的引擎会启动这种模式，而不支持该模式的引擎就当遇到了一个未赋值的字符串字面量，会忽略这个编译指示。
+  					如果是在全局作用域中(函数外部)给出这个编译指示，则整个脚本都将使用严格模式。也可以放在某个函数中，则仅仅函数中打开严格模式。
+			2、	变量
+					1、不允许意外创建全局变量
+							message = "Hello world! "; 
+							//在非严格模式下，即使message前面没有var关键字，即使没有将它定义为某个全局对象的属性，也能将message创建为全局变量。但在严格模式下，如果给一个没有声明的变量赋值，那代码在执行时就会抛出ReferenceError。
+					2、其次，不能对变量调用delete操作符。非严格模式允许这样操作，但会静默失败(		返回false)。
+							var color = "red";
+							delete color;
+			3、对象，一般来说，非严格模式下会静默失败的情形，在严格模式下就会抛出错误。因此在开发中使用严格模式会加大早发现错误的可能性。
+					1、为只读属性复制会抛出TypeError;
+					2、对不可配置(nonconfigurable)属性使用delete操作符会抛出TypeError;
+					3、为不可扩展的(nonextensible)的对象添加属性会抛出TypeError。
+					4、在使用对象字面量时，属性名必须唯一。
+					var person = {
+						name: "Nicholas",
+						name: "Greg"
+					}
+					这里的对象person有两个属性，都叫name。在非严格模式下，person对象的name属性值是第二个，而在严格模式下，这样的代码会导致语法错误。
+			4、函数
+					1、严格模式要求命名函数的参数必须唯一。
+						function sum(num, num) {
+							//do something
+						}
+						在非严格模式下，这个函数声明不会抛出错误。通过参数名只能访问第二个参数，要访问第一个参数必须通过arguments对象。严格模式下抛出错误
+					2、在严格模式下，arguments对象的行为也有所不同。在非严格模式下，修改命名参数的值也会反映到arguments对象中，而严格模式下这两个值完全独立的。
+						function showValue(value) {
+							value = "Foo";
+							console.log(value);					//"Foo"
+							console.log(arguments[0]);	//非严格模式："Foo"
+						}															//严格模式: "Hi"
+						showValue("Hi")
+					3、淘汰了arguments.callee和arguments.caller。在非严格模式下，这两个属性一个引用函数本身，一个引用调用函数。而在严格模式下，访问哪个属性都会抛出TypeError。
+						function factorial(num) {
+							if (num <= 1) {
+								return 1;
+							} else {
+								return num * arguments.callee(num - 1);
+							}
+						}
+						var result = factorial(5);	//非严格模式 120
+																				//严格模式 抛出TypeError。
+					4、只能在脚本的顶级和在函数内部声明函数。也就是说，在if语句中声明函数会导致语法错误
+
+					//在if语句中声明函数
+					//非严格模式：将函数提升到if语句外部
+					//严格模式：抛出语法错误
+					if(true) {
+						function doSomething() {
+							//...
+						}
+					}
+			5、eval() 在严格模式下就是它在包含上下文中不再创建变量或函数。
+					//使用eval()创建变量
+					//非严格模式: 会打印10
+					//严格模式: console.log抛出错误
+					var doSomething() {
+						eval("var x = 10");
+						console.log(x);
+					}
+					//解释：在非严格模式下，以上代码会在函数doSomething()中创建一个局部变量x，然后console.log()还是会打印出该变量的值。但在严格模式下，在doSomething()函数中调用eval()不会创建变量x，因此console.log会抛出ReferenceError,因为x没有定义。
+
+					"use strict";
+					var result = eval("var x = 10, y = 11; x+y");
+					console.log(result); //21
+			6、严格模式已经明确禁止使用eval和arguments作为标识符，也不允许读写它们的值
+					//把eval和arguments作为变量引用
+					//非严格模式: 没问题，不出错
+					//严格模式：抛出语法错误
+					var eval = 10;
+					var arguments = "Hello world!";
+					在非严格模式下，可以重写eval，也可以给arguments赋值。但在严格模式下，这样做会导致语法错误。不能讲它们作为标识符，意味着以下几种使用方式都会抛出语法错误:
+						1、使用var声明;
+						2、赋予另一个值;
+						3、尝试修改包含的值,如使用++;
+						4、用作函数名;
+						5、用作命名的函数参数;
+						6、在try-catch语句中用作例外名
+			7、抑制this
+					在非严格模式下使用函数的apply()或call()方法时，null或undefined值会被转换为全局对象。而在严格模式下，函数的this值始终是指定的值，无论指定的是什么值。
+					// 访问属性
+					// 非严格模式: 访问全局属性
+					// 严格模式: 抛出错误，因为this的值为null
+					var color = "red";
+
+					function displayColor() {
+						console.log(this.color);
+					}
+					displayColor.call(null);	//非严格模式: red  严格模式： null
+					//在非严格模式下，这意味着函数的this值是全局对象。结果就是打印出"red"。而在严格模式下，这个函数的this的值是null，因此在访问null的属性时就会抛出错误。
+			8、其他变化
+					1、抛弃了with语句。在非严格模式下的with语句能够改变解析标识符的路径(延长作用域链)，但在严格模式下，with被简化掉了。因此，在严格模式下使用with会导致语法错误。(可以参考执行环境和作用域.html)
+					2、严格模式去掉了JavaScript中的八进制字面量。(可以参考Number类型.html)
+					3、ES5也修改了严格模式下的parseInt()的行为。如今，八进制字面量在严格模式下会被当作以0开头的十进制字面量。例如：
+						var value = parseInt("010");	//10
+  	*/		
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

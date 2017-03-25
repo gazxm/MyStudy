@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>animation的steps函数</title>
+  <script type="text/javascript"></script>
+  <style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  .step_start {
+    width: 88.83333333333333px;
+    height: 54px;
+    margin: 10px auto;
+    background: url(img/steps.png) no-repeat;
+    background-position: -0 0;
+    animation: step_start .5s steps(6) both infinite;
+    -webkit-animation: step_start .5s steps(6) both infinite;
+  }
+  
+  @keyframes step_start {
+    100% {
+      background-position: -533px 0;
+    }
+  }
+  
+  @-webkit-keyframes step_start {
+    100% {
+      background-position: -533px 0;
+    }
+  }
+  /*
+		steps()函数
+  */
+  </style>
+</head>
+
+<body>
+    <div class="step_start"></div>
+  </div>
+</body>
+
+</html>

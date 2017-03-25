@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BFC</title>
+	<script type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="">
+	<!-- 
+		前端精选文摘：BFC 神奇背后的原理
+		http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html
+	-->
+
+	<!-- 
+		会生成BFC的元素：
+		1、根元素
+		2、float属性不为none
+		3、position为absolute或fixed
+		4、display为inline-block, table-cell, table-caption, flex, inline-flex
+		5、overflow不为visible
+	-->
+
+	<!-- 
+		1.BFC 全称是块级排版上下文，用于对块级元素排版，默认情况下只有根元素（body)一个块级上下文，但是如果一个块级元素 设置了float:left，overflow:hidden或position:absolute样式，就会为这个块级元素生成一个独立的块圾上下文，就像在window全局作用域内，声明了一个function就会生成 一个独立的作用域一样，新开僻的BFC像是开僻了一个新的小宇宙，使这个块圾元素内部的排版完全独立隔绝。
+		2.独立的块级上下文可以包裹浮动流，全部浮动子元素也不会引起父容器高度塌陷，也就是说包含块会把浮动元素的高度也计算在内，所以不用清除浮动来撑起高度。
+	-->
+	<style type="text/css">
+		.div-1 {
+			display: block;
+		}
+		.div-2 {
+			display: block;
+			margin: 20px 30px;
+			border: 1px solid red;
+			width: 100px;
+			line-height: 100px;
+			text-align: center;
+		}
+		span {
+			border: 1px solid black;
+			display: block;
+			margin: 0 5px;/* 然而并没有重叠啊，兄弟*/ /*	第二次修改：然而水平方向并不会重叠，垂直方向才会重叠(配合BFC和margin-collapsing(外边距塌陷)一起食用)	*/
+		}
+
+		.inline-block {
+			width: 200px;
+			height: 200px;
+			border: 1px solid red;
+			float: left;
+		}
+
+		.normal {
+			width: 200px;
+			height: 200px;
+			border: 3px solid blue;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="div-1">
+		<div class="div-2"><span>AAA</span><span>AAA</span></div><!--
+		--><div class="div-2">AAAAAA</div><!--
+		--><div class="div-2">AAAAAA</div><!--
+		--><div class="div-2">AAAAAA</div><!--
+		--><div class="div-2">AAAAAA</div>
+	</div>
+	
+	<div style="display: inline-block;">	
+		<div class="inline-block">
+		</div>
+	</div>
+
+
+	<div class="normal">
+	</div>
+</body>
+</html>

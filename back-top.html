@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>back-top</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .content {
+    width: 1200px;
+    margin: 10px auto;
+    height: 2000px;
+    background: #999;
+    text-align: right;
+  }
+  
+  .back-top {
+    /* display:block;  */
+    width: 20px;
+    text-align: center;
+    font-size: 12px;
+    position: fixed;
+    _position: absolute;
+    padding: 5px 0;
+    color: #34538b;
+    bottom: 100px;
+    text-decoration: none;
+    background: #DFF3FD;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    &nbsp;<a class="back-top" href="#">返回顶部</a>
+    <!-- 设置&nbsp目的为了做IE6/IE7的适配() -->
+  </div>
+  <script>
+  // (function() {
+  //     var h = document.documentElement.clientHeight;
+  //     var backTop = document.getElementsByClassName("back-top");
+  //     setInterval(function() {
+  //       var scoll = document.documentElement.scrollTop;
+  //       if (scoll >= h) {
+  //         backTop[0].style.opacity = 1;
+  //       }
+  //     }, 50);
+  //   })();
+  </script>
+</body>
+
+</html>

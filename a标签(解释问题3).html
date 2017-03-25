@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>a标签(同时解释问题3)</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		/*a标签设置顺序
+			a:link  		//正常，未访问过的链接
+			a:visited       //用户已访问过的链接
+			a:hover         //当用户鼠标放在链接上时
+			a:active        //链接被点击的那一刻
+
+		*/
+
+		/*
+			a:visited 的已访问过的链接在IE，chrome/Firefox上有不同的区别
+
+			在IE上： 当a指向同一个链接，也不会访问一个a标签跳转之后，所有的a标签都变成visited的样式
+			在chrome/Firefox上： 1、当a指向同一个链接，访问了一个a标签之后，所有指向这个链接的a标签都会变成visited样式
+								 2、若浏览器的缓存中有这个链接，则a标签也为visited的样式
+		*/
+		a:link {
+			color: red;
+		}
+		a:visited {
+			color: blue;
+		}
+		a:hover {
+			color: yellow;
+		}
+		a:active {
+			color: black;
+		}
+		/* a:visited:hover 在已经访问过的a链接的悬停(hover)效果*/
+	</style>
+</head>
+<body>
+	<a class="a1" href="#">AAAAA</a>	
+	<a class="a2" href="#">BBBBB</a>	
+	<a class="a3" href="#">CCCCC</a>
+	<a class="a4" href="#">DDDDD</a>
+	<a class="a5" href="#">EEEEE</a>
+	<a class="a6" href="https://www.baidu.com">FFFFF</a>
+	<a class="a7" href="https://www.taobao.com">GGGGG</a>
+	<!-- 在IE中：点击了a1, 但是a2 a3 a4 a5 a6 a7不会有改变(如果设置了visited样式) 
+		 在chrome/firefox中： 1、点击了a1; a2 a3 a4 a5的样式会有改变(如果设置了visited样式)
+		 			  2、如果你之前打开了https://www.baidu.com 那么 在进入这个网页(浏览器有缓存),则a6的样式会应用a6:visited的样式(如果设置了visited样式)
+	-->
+</body>
+</html>

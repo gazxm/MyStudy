@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>text-align和margin(0 auto)</title>
+	<script type="text/javascript"></script>
+	<!--http://www.cnblogs.com/zhwl/p/3529473.html-->
+	<style type="text/css">
+	/*text-align针对于文本，margin:0 auto针对于div*/
+		.textalign {
+			border: 1px solid black;
+			text-align: center;
+		}
+
+		.margin {
+			border: 1px solid blue;
+			width: 500px;
+			margin: 0 auto;
+		}
+
+		img {
+			width: 200px;
+		}
+
+		/*.p1, .img1, .p2, .img2 {
+			display: block;
+			margin: 0 auto;
+		}*/
+
+		.textalign .div1 {
+			display: inline;
+		}
+
+		.textalign .div2 {
+
+		}
+		/*
+		span {
+			display:block;
+		}*/
+
+		.img3 {
+			width: 200px;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="textalign">
+		<p class="p1">AAAAAA</p>
+		<h1>CCCCCC</h1>
+		<div>	<img class="img1" src="img/iphone_bili.jpg" alt="" /></div>
+	
+		<div class="div1">AAAAAA</div>
+		<div class="div2">BBBBBB</div>
+		<span>DDDDDD</span>
+	</div>
+
+	<div class="margin">
+		<p class="p2">AAAAAA</p>
+		<img class="img2" src="img/iphone_bili.jpg" alt="" />
+	</div>
+
+	<img class="img3" src="img/iphone_bili.jpg" alt="" />
+</body>
+</html>

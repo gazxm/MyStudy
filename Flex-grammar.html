@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Flex-grammar(Flexible Box 弹性布局)</title>
+	<script type="text/javascript"></script>
+	<!--Flex布局的基本语法： http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html -->
+	<!-- 兼容性: chrome 21+ opera 12.1+ firefox 22+ safari 6.1+ IE 10+ (IE10需要-ms-)-->
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		/* 采用Flex布局的元素，称为Flex容器（flex 
+				container），简称"容器"。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称"项目"。 */
+		/* 设为Flex布局以后，子元素的float、clear和vertical-align属性将失效 */
+
+		/* 主轴水平；交叉轴垂直 */
+		/* Flex容器有6个属性值：flex-direction | flex-wrap | flex-flow | justify-content | align-items | align-content;
+				flex-direction(属性决定主轴的方向【即项目的排列方向】): 
+					row(水平,起点左边)【默认】  
+					row-reverse(水平,起点右边) 
+					column(垂直,起点上边)  
+					column-reverse(垂直,起点下边);
+
+				flex-wrap(类似word-wrap,换行)：
+					nowrap(不换行)【默认】  
+					wrap(换行,第一行在上面)  
+					wrap-reverse(换行,第一行在下面);
+
+				flex-flow(是flex-direction和flex-wrap的简写形式):row nowrap【默认】;
+
+				justify-content(定义了项目在主轴【水平轴】上的对齐方式): 
+					flex-start(左对齐)【默认】  
+					flex-end(右对齐) 
+					center(居中)
+					space-between(两端对齐,项目之间的间隔都相等)
+					space-around(每个项目两侧的间隔相等。所以,项目之间的间隔比项目与边框的间隔大一倍。);
+
+				align-items(定义项目在交叉轴【垂直轴】上如何对齐): 
+					flex-start(交叉轴的起点对齐,上对齐)
+					flex-end(交叉轴的终点对齐,下对齐)
+					center(交叉轴的中点对齐,垂直居中)
+					baseline(项目的第一行文字的基线对齐)
+					stretch(项目的height未设置或者为auto,则将拉伸占满整个容器);
+
+				align-content(定义了多根轴线的对齐方式,如果项目只有一根轴线，该属性不起作用)：
+					flex-start(与交叉轴的起点对齐)
+					flex-end(与交叉轴的终点对齐)
+					center(与交叉轴的终点)
+					space-between(与交叉轴两端对齐，轴线之间的间隔平均分布)
+					space-around(每根轴线两侧的间隔都相等。所以,轴线之间的间隔比轴线与边框的间隔大一倍)
+					stretch(轴线占满整个交叉轴)【默认】;
+	 */
+	 /* 项目的属性有6个属性值:order | flex-grow | flex-shrink | flex-basis | flex | align-self; 
+					order(属性定义项目的排列顺序,数值越小,排列越靠前,默认为0)
+					flex-grow(定义项目的放大比例,默认为0,即如果存在剩余空间,也不放大)
+						如果所有项目的flex-grow属性都为1,则它们将等分剩余空间(如果有的话)。如果一个项目的flex-grow属性为2,其他项目都为1,则前者占据的剩余空间将比其他项多一倍
+					flex-shrink(定义了项目的缩小比例,默认为1,即如果空间不足,该项目将缩小)
+						如果所有项目的flex-shrink属性都为1,当空间不足时,都将等比例缩小。如果一个项目的flex-shrink属性为0,其他项目都为1,则空间不足时,前者不缩小。
+					flex-basis(定义了在分配多余空间之前,项目占据的主轴空间(main size)。浏览器根据这个属性,计算主轴是否有多余空
+						间。它的默认值为auto,即项目的本来大小。): <length> | auto (可以设置width或height属性一样的值,eg: 350px,将会占用固定空间);
+					flex(是flex-grow, flex-shrink 和 flex-basis的简写): 0 1 auto【默认值】(有两个快捷值:auto(1 1 auto),none(0 0 auto));【先设置此值】
+					align-self(允许单个项目有与其他项目不一样的对齐方式,可覆盖align-items属性。默认值为auto,表示继承父元素的align-items属性,如果没有父元素,则等同于stretch。): auto | flex-start | flex-end | center | baseline | stretch;
+
+		 */
+
+
+		 /*
+			  display: -webkit-box;  Chrome 4+, Safari 3.1, iOS Safari 3.2+ 
+			  display: -moz-box;  Firefox 17+ 
+			  display: -webkit-flex;  Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 
+			  display: -moz-flex;  Firefox 18+ 
+			  display: -ms-flexbox;  IE 10 
+			  display: flex;  Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ 
+		 */
+		.flex {
+			display: flex;
+		  display: -webkit-flex;
+			width: 800px;
+			height: 100px;
+			border: 1px solid black;
+			margin-bottom: 30px;
+		}
+
+		.inline-flex {
+			display: inline-flex; /*行内元素设置Flex*/
+			display: -webkit-inline-flex;
+			width: 800px;
+			height: 100px;
+			border: 1px solid red;
+			margin-bottom: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div class="flex">
+		
+	</div>
+	<span class="inline-flex"></span>
+</body>
+</html>

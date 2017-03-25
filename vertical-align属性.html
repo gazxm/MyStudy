@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>vertical-align属性</title>
+  <!-- http://lingyu.wang/#/post/2014/4/13/vertical-align -->
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  /*vertical-align 用来指定inline,inline-block,table-cell的垂直对齐方式
+				baseline:元素基线与父元素的基线对齐; 【各个浏览器的解释不同】
+				sub:元素基线与父元素的下标基线对齐;
+				super:元素基线与父元素的上标基线对齐;
+				text-top:元素顶端与父元素字体的顶端对齐;
+				text-bottom:元素底端与父元素字体的底端对齐;
+				middle:元素中线与父元素的小写x中线对齐;
+				<length>:元素基线超过父元素的基线指定高度。可以取负值;
+				<percentage>:同 <length> , 百分比相对于 line-height ;
+				以下两个值对于整行：
+				top:元素及其后代的顶端与整行的顶端对齐;
+				bottom:元素及其后代的底端与整行的底端对齐;
+		*/
+  
+  /*
+		父元素的baseline由第一个inline boxes的基线来决定
+		【如果元素 没有基线baseline】,则以他的外边距的下边缘为基线
+		补充：父元素的所有的线都由第一个inline boxes来决定
+		父元素的下标基线和上标基线：
+		(eg: xgG为例: x的底部为这个inline boxes的基线,g的底部为父元素的下标基线,G的顶部为父元素的上标基线)
+		父元素字体的顶端和父元素字体的底端：inline boxes的顶端和底端
+  */
+  div.fa {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 2px solid red;
+    margin-bottom: 80px;
+  }
+  
+  div {
+    display: inline-block;
+    width: 200px;
+    height: 100px;
+    border: 1px solid black;
+    font-size: 30px;
+    line-height: 30px;
+  }
+  
+  .vertical-baseline {
+    vertical-align: baseline;
+    line-height: 30px;
+  }
+  
+  .vertical-sub {
+    vertical-align: sub;
+  }
+
+  .vertical-super {
+  	vertical-align: super;
+  }
+  
+  .vertical-text-top {
+  	vertical-align: text-top;
+  }
+
+  .vertical-text-bottom {
+  	vertical-align: text-bottom;
+  }
+
+  .vertical-middle {
+  	vertical-align: middle;
+  }
+
+	.vertical-top {
+		vertical-align: top;
+	}
+
+	.vertical-bottom {
+		vertical-align: bottom;
+	}
+
+	.vertical-length {
+		vertical-align: 30px;
+	}
+
+	.vertical-length2 {
+		vertical-align: -30px;
+	}
+
+	.vertical-percentage {
+		vertical-align: 100%
+	}
+
+	.vertical-percentage2 {
+		vertical-align: -100%
+	}
+
+  span {
+    display: block;
+  }
+  </style>
+</head>
+
+<body>
+	<!-- baseline -->
+  <div class="fa">
+    <div class="vertical-baseline">
+    	<span>baseline</span>
+    </div>
+    <div class="vertical-baseline">baseline
+      <span>baseline</span>
+      <span>baseline</span>
+    </div>
+    <div class="vertical-baseline">baseline
+      <span>baseline</span>
+    </div>
+    <div class="vertical-baseline">baseline
+      <span>baseline</span>
+      <span>baseline</span>
+      <span>baseline</span>
+    </div>
+    <div class="vertical-baseline">baseline
+      <span>baseline</span>
+      <span>baseline</span>
+      <span>baseline</span>
+      <span>baseline</span>
+    </div>
+  </div>
+
+	<!-- sub -->
+  <div class="fa">
+    <div class="vertical-baseline">
+    	<span>baseline</span>
+    </div>
+    <div class="vertical-sub">sub
+      <span>sub</span>
+      <span>sub</span>
+    </div>
+    <div class="vertical-sub">sub
+      <span>sub</span>
+    </div>
+    <div class="vertical-sub">sub
+      <span>sub</span>
+      <span>sub</span>
+      <span>sub</span>
+    </div>
+    <div class="vertical-sub">sub
+      <span>sub</span>
+      <span>sub</span>
+      <span>sub</span>
+      <span>sub</span>
+    </div>
+  </div>
+
+	<!-- super -->
+  <div class="fa">
+    <div class="vertical-baseline">
+    	<span>baseline</span>
+    </div>
+    <div class="vertical-super">super
+      <span>super</span>
+      <span>super</span>
+    </div>
+    <div class="vertical-super">super
+      <span>super</span>
+    </div>
+    <div class="vertical-super">super
+      <span>super</span>
+      <span>super</span>
+      <span>super</span>
+    </div>
+    <div class="vertical-super">super
+      <span>super</span>
+      <span>super</span>
+      <span>super</span>
+      <span>super</span>
+    </div>
+  </div>
+
+	<!-- text-top -->
+  <div class="fa">
+    <div class="vertical-baseline">
+    	<span>baseline</span>
+    </div>
+    <div class="vertical-text-top">text-top
+      <span>text-top</span>
+      <span>text-top</span>
+    </div>
+    <div class="vertical-text-top">text-top
+      <span>text-top</span>
+    </div>
+    <div class="vertical-text-top">text-top
+      <span>text-top</span>
+      <span>text-top</span>
+      <span>text-top</span>
+    </div>
+    <div class="vertical-text-top">text-top
+      <span>text-top</span>
+      <span>text-top</span>
+      <span>text-top</span>
+      <span>text-top</span>
+    </div>
+  </div>
+
+	<!-- text-bottom -->
+  <div class="fa">
+    <div class="vertical-baseline">
+    	<span>baseline</span>
+    </div>
+    <div class="vertical-text-bottom">text-bottom
+      <span>text-bottom</span>
+      <span>text-bottom</span>
+    </div>
+    <div class="vertical-text-bottom">text-bottom
+      <span>text-bottom</span>
+    </div>
+    <div class="vertical-text-bottom">text-bottom
+      <span>text-bottom</span>
+      <span>text-bottom</span>
+      <span>text-bottom</span>
+    </div>
+    <div class="vertical-text-bottom">text-bottom
+      <span>text-bottom</span>
+      <span>text-bottom</span>
+      <span>text-bottom</span>
+      <span>text-bottom</span>
+    </div>
+  </div>
+
+	<!-- middle -->
+  <div class="fa">
+    <div class="vertical-baseline">
+    	<span>baseline</span>
+    </div>
+    <div class="vertical-middle">middle
+      <span>middle</span>
+      <span>middle</span>
+    </div>
+    <div class="vertical-middle">middle
+      <span>middle</span>
+    </div>
+    <div class="vertical-middle">middle
+      <span>middle</span>
+      <span>middle</span>
+      <span>middle</span>
+    </div>
+    <div class="vertical-middle">middle
+      <span>middle</span>
+      <span>middle</span>
+      <span>middle</span>
+      <span>middle</span>
+    </div>
+  </div>
+	
+	<!-- top -->
+  <div class="fa">
+    <div class="vertical-baseline">
+    	<span>baseline</span>
+    </div>
+    <div class="vertical-top">top
+      <span>top</span>
+      <span>top</span>
+    </div>
+    <div class="vertical-top">top
+      <span>top</span>
+    </div>
+    <div class="vertical-top">top
+      <span>top</span>
+      <span>top</span>
+      <span>top</span>
+    </div>
+    <div class="vertical-top">top
+      <span>top</span>
+      <span>top</span>
+      <span>top</span>
+      <span>top</span>
+    </div>
+  </div>
+
+	<!-- bottom -->
+  <div class="fa">
+    <div class="vertical-baseline">
+    	<span>baseline</span>
+    </div>
+    <div class="vertical-bottom">bottom
+      <span>bottom</span>
+      <span>bottom</span>
+    </div>
+    <div class="vertical-bottom">bottom
+      <span>bottom</span>
+    </div>
+    <div class="vertical-bottom">bottom
+      <span>bottom</span>
+      <span>bottom</span>
+      <span>bottom</span>
+    </div>
+    <div class="vertical-bottom">bottom
+      <span>bottom</span>
+      <span>bottom</span>
+      <span>bottom</span>
+      <span>bottom</span>
+    </div>
+  </div>
+
+	<!-- length -->
+  <div class="fa">
+    <div class="vertical-baseline">
+    	<span>baseline</span>
+    </div>
+    <div class="vertical-length">length:30px(上移)
+      <span>length:30px</span>
+      <span>length:30px</span>
+    </div>
+    <div class="vertical-length2">length:-30px(下移)
+      <span>length:-30px</span>
+    </div>
+    <!-- 百分比针对于line-height -->
+    <div class="vertical-percentage">percentage(100%)
+      <span>percentage(100%)</span>
+      <span>percentage(100%)</span>
+      <span>percentage(100%)</span>
+    </div>
+    <div class="vertical-percentage2">percentage(-100%)
+      <span>percentage(-100%)</span>
+      <span>percentage(-100%)</span>
+      <span>percentage(-100%)</span>
+      <span>percentage(-100%)</span>
+    </div>
+  </div>
+  
+</body>
+
+</html>

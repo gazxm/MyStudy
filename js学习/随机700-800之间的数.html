@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>随机700-800之间的数</title>
+  <script>
+  (function() {
+    var a = [],
+      b = [];
+    var flag = 0;
+    for (var j = 0; j < 100; j++) {
+      a.push(Math.floor(Math.random() * 100 + 700));
+    }
+    for (var i = 0; i < 10000000; i++) {
+      if (Math.floor(Math.random() * 100) < 5) {
+        flag++;
+      }
+    }
+    console.log(JSON.stringify(a)); //700 - 800之间的随机数
+    console.log(flag / i); //大概为5%的概率 i越大越精准
+  })();
+  </script>
+  <style></style>
+</head>
+
+<body>
+</body>
+
+</html>

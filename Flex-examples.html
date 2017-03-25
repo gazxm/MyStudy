@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Flex-examples</title>
+  <!--Flex布局的一些实例： http://www.ruanyifeng.com/blog/2015/07/flex-examples.html -->
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  [class$="flex"] {
+    display: flex;
+    width: 104px;
+    height: 104px;
+    margin: 16px;
+    padding: 6px;
+    background-color: #e7e7e7;
+    box-shadow: inset 0 5px white, inset 0 -5px #bbb, inset 5px 0 #d7d7d7, inset -5px 0 #d7d7d7;
+    border-radius: 10%;
+    object-fit: contain;
+  }
+  
+  .pip {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin: 4px;
+    background-color: #333;
+    box-shadow: inset 0 3px #111, inset 0 -3px #555;
+  }
+  
+  .first-flex {
+    justify-content: center;
+    /*水平即主轴居中*/
+    align-items: center;
+    /*垂直即交叉轴居中*/
+    align-content: center;
+    /*由于只有一跟轴线，不起作用*/
+  }
+  
+  .second-flex {
+    justify-content: space-between;
+  }
+  
+  .second-flex .pip:last-child {
+    align-self: flex-end;
+  }
+  
+  .thired-flex {
+    justify-content: space-between;
+  }
+  
+  .thired-flex .pip:nth-child(2) {
+    align-self: center;
+  }
+  
+  .thired-flex .pip:nth-child(3) {
+    align-self: flex-end;
+  }
+  
+  .fourth-flex, .sixth-1-flex, .sixth-2-flex {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /*align-content: center;*/
+    /*整体居中*/
+  }
+
+  .fourth-flex .column, .sixth-1-flex .column, .sixth-2-flex .column {
+  	display: flex;
+  	justify-content: space-between;
+  	flex-direction: column;
+  }
+  
+  .fiveth-flex {
+  	justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .fiveth-flex .column {
+  	display: flex;
+  	justify-content: space-between;
+  	flex-direction: column;
+  }
+
+  .fiveth-flex .pip {
+  	align-self: center;
+  }
+  
+  .first-flex .pip {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="first-flex">
+    <span class="pip"></span>
+  </div>
+  <div class="second-flex">
+    <span class="pip"></span>
+    <span class="pip"></span>
+  </div>
+  <div class="thired-flex">
+    <span class="pip"></span>
+    <span class="pip"></span>
+    <span class="pip"></span>
+  </div>
+  <div class="fourth-flex">
+    <div class="column">
+      <span class="pip"></span>
+      <span class="pip"></span>
+    </div>
+    <div class="column">
+      <span class="pip"></span>
+      <span class="pip"></span>
+    </div>
+  </div>
+  <div class="fiveth-flex">
+    <div class="column">
+      <span class="pip"></span>
+      <span class="pip"></span>
+    </div>
+    <span class="pip"></span>
+    <div class="column">
+      <span class="pip"></span>
+      <span class="pip"></span>
+    </div>
+  </div>
+  <div class="sixth-1-flex">
+    <div class="column">
+      <span class="pip"></span>
+      <span class="pip"></span>
+      <span class="pip"></span>
+    </div>
+    <div class="column">
+      <span class="pip"></span>
+      <span class="pip"></span>
+      <span class="pip"></span>
+    </div>
+  </div>
+  <div class="sixth-2-flex">
+    <div class="column">
+      <span class="pip"></span>
+      <span class="pip"></span>
+    </div>
+    <div class="column">
+      <span class="pip"></span>
+      <span class="pip"></span>
+    </div>
+    <div class="column">
+      <span class="pip"></span>
+      <span class="pip"></span>
+    </div>
+  </div>
+</body>
+
+</html>

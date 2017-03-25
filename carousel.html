@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>左右轮播</title>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <style type="text/css">
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .carousel-pa {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    font-size: 0;
+  }
+  
+  .carousel-ul {
+    margin: 0;
+    padding: 0;
+    width: 1800px;
+    list-style-type: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 200px;
+    background-color: #999;
+  }
+  
+  .carousel-pa .carousel-ul li {
+  	display: inline-block;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  img {
+  	width: 100%;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="carousel-pa">
+    <ul class="carousel-ul">
+      <li><img src="img/line-box1.png"/></li>
+      <li><img src="img/line-box2.png"/></li>
+      <li><img src="img/line-box3.png"/></li>
+      <li><img src="img/line-box4.png"/></li>
+      <li><img src="img/line-box5.png"/></li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+  	$(function(){
+  		var $ul = $('.carousel-ul')
+  		var $li = $('li', $ul).eq(0);
+  		var w = $li.width();
+  		var l = $('li', $ul).length;
+  		$ul.append($('li', $ul).eq(0).clone());
+  		console.log($('li', $ul).length);
+  		var i = 0;
+  		setInterval(function() {
+  			i++;
+  			if (i > l) {
+  				i = 1;
+  				$ul.css('left', 0);
+  			}
+  			$ul.animate({
+  				left: - w * i
+  			})
+  		},3000);
+  	})
+  </script>
+</body>
+
+</html>

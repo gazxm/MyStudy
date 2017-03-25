@@ -1,0 +1,7 @@
+[0120/103141:ERROR:renderer_main.cc(200)] Running without renderer sandbox
+[0120/103141:ERROR:child_discardable_shared_memory_manager.cc(266)] size: 4194304
+[0120/103142:ERROR:child_discardable_shared_memory_manager.cc(266)] size: 4194304
+[0120/104902:ERROR:renderer_main.cc(200)] Running without renderer sandbox
+[0120/104902:ERROR:child_discardable_shared_memory_manager.cc(266)] size: 4194304
+[0120/104902:ERROR:child_discardable_shared_memory_manager.cc(266)] size: 4194304
+[0120/104902:ERROR:child_discardable_shared_memory_manager.cc(266)] size: 4194304

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>inline和inline-block的空隙</title>
+    <script type="text/javascript"></script>
+    <style type="text/css">
+    /* 原因就是在浏览器在解释的时候，会把换行显示或空格分隔等都变成一个&nbsp来处理 */
+    /*  真正意义上的inline-block水平呈现的元素间，换行显示或空格分隔的情况下会有间距(inline也一样)
+
+    http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/
+			
+		所有的行内元素(待验证)，和display设置成inline和inline-block的都会有间距
+
+		处理间距的方法：
+		 */
+    div {
+		margin: 30px 20px;
+    }
+
+    span {
+        font-size: 14px;
+        background: #999;
+    }
+    
+    div > div {
+    	margin: 0;
+    	display: inline;
+    	background: #999;
+    }
+
+    .a {
+    	background: #333;
+    }
+
+    .b {
+    	opacity: 0;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <span>AAAAAA</span>
+        <span>BBBBBB</span>
+        <!-- 方法1 去掉html中的空格
+			1、<span>AAAAAA</span><
+        		span>BBBBBB</span>
+        	2、<span>AAAAAA
+        	   </span><span>BBBBBB</span>
+        	3、<span>AAAAAA</span>(这里添加<!--这个注释标签)
+        	   <span>BBBBBB</span>
+        -->
+    </div>
+    <div>
+    	<!-- 方法2 闭合标签的省略
+			1、<div>AAAAAA
+        	<div>BBBBBB</div>
+        	这样写第一个div包裹第二个div
+            2、 <div>
+                    AAAAAA
+                </div>
+                <div>
+                    BBBBBB
+                </div>
+    	 -->
+        <div>AAAAAA</div>
+        <div>BBBBBB</div>
+        <div class="a">AAAAAA
+        <div class="b">BBBBBB</div>
+        <!-- 方法三 在父节点设置font-size:0px;
+            safari需要设置letter-spacing: -N px来控制
+        eg:
+            <div style="font-size:0px;">
+                <span>AAAAAA</span>
+                <span>BBBBBB</span>
+            </div>
+        -->
+    </div>
+    </div>
+</body>
+
+</html>

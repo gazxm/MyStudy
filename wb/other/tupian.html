@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>tupian</title>
+  <script src="js/dest/jquery3.1.1.js"></script>
+  <style>
+  .popup-img .overlay {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+  }
+
+  .popup-img .content-img {
+    position: fixed;
+    max-width: 70%;
+    max-height: 80%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    z-index: 11;
+  }
+
+  .popup-img .content-img img {
+    width: 100%;
+  }
+
+  .popup-img .content-img span.close {
+    display: block;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .popup-img .content-img span.close:before,
+  .popup-img .content-img span.close:after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: #ddd;
+  }
+
+  .popup-img .content-img span.close:before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .popup-img .content-img span.close:after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  </style>
+</head>
+
+<body>
+  <button>点击查看</button>
+  <div class="popup-img">
+    <div class="overlay"></div>
+    <div class="content-img">
+      <span class="close"></span>
+      <img src="../img/1.jpg" alt="" />
+    </div>
+  </div>
+</body>
+<script>
+$(function() {
+  $('button').click(function() {
+    $('.popup-img').show();
+  });
+  $('.close, .overlay').click(function() {
+    $('.popup-img').hide();
+  });
+});
+</script>
+
+</html>

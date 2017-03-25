@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>border-image</title>
+  <!-- http://blog.sina.com.cn/s/blog_5f2389f90102vks0.html -->
+  <!-- http://www.zhangxinxu.com/wordpress/2010/01/css3-border-image/ -->
+  <script type="text/javascript"></script>
+  <!-- 
+  	border-image属性： 
+	  	border-image-source: url
+			border-image-slice: [ < number> |< percentage(top right bottom left)>]{1,4} && fill?  指定边框图像顶部、右侧、底部、左侧内偏移量；没有具体的单位，默认单位为px，相当于设置4根切割线(将img分成九宫格，中间的需要设置fill才能显示)
+			border-image-width: 宽度
+			border-image-outset： 边框图像区域超出边框的量。
+			border-image-repeat：	图像边框是否应平铺(repeated)、铺满(rounded)或拉伸(stretched)
+  -->
+
+  <!-- 
+    border-image-slice
+  	若 top + bottom > img.height 则垂直的中间部分为空白
+  	若 left + right > img.width 则水平的中间部分为空白	
+  -->
+
+  <!-- 示例的img 78px * 78px -->
+  <style type="text/css">
+	
+	div {
+		border: 15px solid transparent;
+		width: 300px;
+		padding: 10px 20px;
+		margin: 30px 0;
+	}
+
+  .round {
+    -moz-border-image: url(img/w3c_border.png) 27 27 round;
+    /* Old Firefox */
+    -webkit-border-image: url(img/w3c_border.png) 27 27 round;
+    /* Safari and Chrome */
+    -o-border-image: url(img/w3c_border.png) 27 27 round;
+    /* Opera */
+    border-image: url(img/w3c_border.png) 27 27 round;
+  }
+  .repeat {
+  	-moz-border-image: url(img/w3c_border.png) 27 27 repeat;
+    /* Old Firefox */
+    -webkit-border-image: url(img/w3c_border.png) 27 27 repeat;
+    /* Safari and Chrome */
+    -o-border-image: url(img/w3c_border.png) 27 27 repeat;
+    /* Opera */
+    border-image: url(img/w3c_border.png) 27 27 repeat;
+  }
+  .stretch {
+    -moz-border-image: url(img/w3c_border.png) 27 27 stretch;
+    /* Old Firefox */
+    -webkit-border-image: url(img/w3c_border.png) 27 27 stretch;
+    /* Safari and Chrome */
+    -o-border-image: url(img/w3c_border.png) 27 27 stretch;
+    /* Opera */
+    border-image: url(img/w3c_border.png) 27 27 stretch;
+  }
+  /*round: 平铺; repeat: 重复; stretch: 拉伸*/
+  </style>
+</head>
+
+<body>
+  <div class="round">在这里，图片平铺填充该区域</div>
+  <div class="repeat">在这里，图片重复填充该区域</div>
+  <div class="stretch">在这里，图片拉伸填充该区域</div>
+</body>
+
+</html>

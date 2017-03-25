@@ -1,0 +1,9 @@
+@font-face{
+  font-family: 'zxm';
+  src: url('../font/abc.ttf');
+  src: url('../font/abc.ttf') format('truetype');
+}
+
+h1 {
+	font-family: 'zxm';
+}

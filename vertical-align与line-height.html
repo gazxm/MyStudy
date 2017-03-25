@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vertical-align适用范围</title>
+    <script type="text/javascript"></script>
+    <style type="text/css">
+    .div-1 {
+        /* 资料：[翻译]关于Vertical-Align你需要知道的事情  https://segmentfault.com/a/1190000002668492*/
+
+        /*http://www.tuicool.com/articles/2uEbIfb white-space:nowrap 的妙用*/
+
+        /*  vertical-align属性起作用的inline 和 inline-block
+            display: table-cell;属于inline-block
+            vertical-align的默认值是baseline
+
+        */
+
+        /*  设置height是设置div的高度，line-height是设置每一行字的高度，
+			div的高度计算：
+			1、若div设置了Height，就是height + margin.height + padding.height + border的边距得到的是实际上div所占的height
+			2、若div没有设置Height，则就是line-height + margin.height + padding.height + border来计算
+			3、若div设置了背景色，margin部分是不在背景色中，但是padding在背景色中
+			4、行内距就是每一行的top距离字的边距，计算：(line-height - font-size)/2
+			5、line-height也可以垂直居中，就设置line-height为div的Height，不设置div的height，可以做到垂直居中，如下：
+         */
+        line-height: 200px;
+        margin: 30px 30px 30px 30px;
+        padding: 10px 10px 10px 10px;
+        background: #999;
+        text-align: center;
+    }
+    
+    .div-2 {
+    	display: inline-block;
+    }
+    
+    .img-1 {
+    	width:50px;
+    	vertical-align: middle;
+    }
+
+    .clearfix:after{
+    	content: " "; 
+    	display: block; 
+    	clear: both;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="div-1 clearfix">
+        <div class="div-2">
+            AAAAAAAAAAAAAAA
+        </div>
+        <img class="img-1" src="img/iphone_bili.jpg" alt="" />
+    </div>
+</body>
+
+</html>

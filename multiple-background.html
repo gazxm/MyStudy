@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>multiple-background(多重背景)</title>
+  <script type="text/javascript" src="js/link-favicon.js"></script>
+  <link rel="stylesheet" type="text/css" href="">
+  <style type="text/css">
+  .div-1 {
+    width: 800px;
+    height: 200px;
+    padding: 50px;
+    background: url(http://img.mukewang.com/54cf2365000140e600740095.jpg) 0 0 no-repeat/60px 80px, 
+    						url(http://img.mukewang.com/54cf238a0001728d00740095.jpg) 60px 0 no-repeat/60px 80px, 
+    						url(http://img.mukewang.com/54cf23b60001fd9700740096.jpg) right top no-repeat/60px 80px;
+    border: 10px dashed black;
+  }
+  .div-2 {
+  	width: 800px;
+  	height: 200px;
+		border: 1px solid black;
+
+  	background: url(http://img.mukewang.com/54cf2365000140e600740095.jpg) 0px 0px no-repeat/60px 80px, 
+    						url(http://img.mukewang.com/54cf238a0001728d00740095.jpg) 60px 0px no-repeat/60px 80px, 
+    						url(http://img.mukewang.com/54cf23b60001fd9700740096.jpg) right top no-repeat/60px 80px;
+  }
+
+  .div-3 {
+  	width: 800px;
+  	height: 200px;
+  	border: 3px solid red;
+  	margin-top: -300px;
+  	background: url(http://img.mukewang.com/54cf2365000140e600740095.jpg) 0px 0px no-repeat/60px 80px, 
+    						url(http://img.mukewang.com/54cf238a0001728d00740095.jpg) 60px 0px no-repeat/60px 80px, 
+    						url(http://img.mukewang.com/54cf23b60001fd9700740096.jpg) right top no-repeat/60px 80px;
+  }
+  </style>
+
+</head>
+
+<body>
+  <div class="div-1">
+    <div class="div-2">
+    	AAAAAA
+    </div>
+  </div>
+  <div class="div-3">
+  </div>
+</body>
+
+</html>

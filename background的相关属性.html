@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>background的相关属性</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		.background-div1 {
+			background: transparent url(img/400px-123px.jpg) no-repeat;
+			background-position: 50px 20px;
+			width: 500px;
+			height: 200px;
+			border: 1px solid black;
+		}
+		.background-div2 {
+			background: transparent url(img/400px-123px.jpg) no-repeat;
+			background-position: 10% 10%;
+			width: 500px;
+			height: 200px;
+			border: 1px solid black;
+		}
+		.background-div3 {
+			background: transparent url(img/400px-123px.jpg) no-repeat;
+			background-position: center center;
+			width: 500px;
+			height: 200px;
+			border: 1px solid black;
+		}
+		.background-div4 {
+			background: transparent url(img/400px-123px.jpg) no-repeat;
+			background-position: 50% 50%;
+			width: 500px;
+			height: 200px;
+			border: 1px solid black;
+		}
+		/* background-position: 百分比/ x y位置 /关键字(left center right, top center bottom ); */
+		/* 
+		background-position: 百分比和x y的区别是：
+		x y: 图片左上角距离div的左上角的距离；
+		百分比： 整张图片的所有像素点的距离(图片的10%, 10%的点和父元素的10%, 10%的点重合)
+
+		若是只指定了一个值,另一个值为50%;
+		*/
+		.text-div1 {
+			font-size: 12px;
+			margin-top: 10px;
+			border: 1px solid black;
+			display: inline;
+		}
+		.background-position-div {
+			background: transparent url(img/z-index1.png) no-repeat;
+			background-position: 10px 10px;
+			border: 1px solid black;
+			width: 50px;
+			height: 50px;
+			margin-top: 10px;
+		}
+	</style>
+	<!-- background: color img position repeat / size || background-size: CSS3 补充：并没有后面设置/ size这种鬼用法--> 
+	<!-- background-attachment:	规定背景图像是否固定或者随着页面的其余部分滚动。 fixed/local/scroll-->
+</head>
+<body>
+	<div class="background-div1"></div>
+	<div class="background-div2"></div>
+	<div class="background-div3"></div>
+	<div class="background-div4"></div>
+
+	<div class="text-div1">background-position裁剪</div>
+	<div class="background-position-div"></div>
+</body>
+</html>

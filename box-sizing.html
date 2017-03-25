@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>box-sizing</title><!-- 结合img/box-sizing属性区别.jpg -->
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		/*IE7并不支持;IE7以下都是怪异模式(border-box)*/
+		body {
+			font-size: 12px;	
+			text-rendering: optimizeLegibility;
+		}
+		/*box-sizing: 
+			content-box(默认值)：border和padding不计算入width之内
+			padding-box:  padding计算入width内(被抛弃，曾经FF支持过)
+			border-box:  border和padding计算入width之内，其实就是怪异模式了~*/
+			.content-box {
+				width: 300px;
+				padding: 50px;
+				border: 10px solid black;
+				margin-bottom: 100px;
+				box-sizing: content-box;
+				text-align: center;
+			}
+
+			.border-box {
+				width: 300px;
+				padding: 50px;
+				border: 10px solid black;
+				box-sizing: border-box;	/* _:在自适应的页面，设置百分比的宽度的时候比较适用，比如左div 40% 右div 60%的平铺*/
+				text-align: center;
+			}
+	</style>
+</head>
+<body>
+	<div class="content-box">width: 420px(300px + 50px *2 + 10px * 2)</div>	
+	<div class="border-box">width: 300px</div>
+</body>
+</html>

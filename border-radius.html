@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>border-radius</title>
+	<script type="text/javascript"></script>
+	<style>
+		/*1、 border-radius: 10px 15px 20px 30px / 20px 30px 10px 15px; 四个数值也是从左上角 右上角 右下角 左下角
+					水平的值 / 垂直的值
+			2、
+				border-top-left-radius: 10px 20px;  		左上角
+  			border-top-right-radius: 15px 30px;			右上角
+  			border-bottom-right-radius: 20px 10px;	右下角
+  			border-bottom-left-radius: 30px 15px;		左下角
+  		//若只设置一个值，则水平和垂直的值都是应用同一个值
+		*/
+		body {
+			margin: 0;
+		}
+		div {
+			width: 300px;
+			height: 50px;
+			background: #333;
+			border: 10px solid green;
+			border-radius: 10px;
+		}
+		/*
+			border-radius: 10px;  这里设置的元素外边框的值，而不是元素内边框的值，元素内边框的值为border-radius减去border的值，若最后的值为负数的话，则元素内边框的border-radius的值就为0。所以当border的边框的值为0的时候，内外边框的才会是同一个值(即圆心在同一个点)。
+		*/
+	</style>
+</head>
+<body>
+	<div></div>
+</body>
+</html>

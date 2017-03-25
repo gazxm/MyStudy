@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>var全局变量和局部变量</title>
+	<script type="text/javascript">
+		function test() {
+			var message = "hi";	//局部变量
+		}
+		test();
+		console.log(message);	// 错误！
+
+		function text() {
+			message = "hi";		//全局变量【严格模式下报错】
+		}
+		test();
+		console.log(message);	// hi 
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

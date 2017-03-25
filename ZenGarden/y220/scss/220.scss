@@ -1,0 +1,700 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "effra";
+  color: #333;
+  background: #e8ecf0 url(../img/denim2.png) 50% 350px no-repeat;
+  background-attachment: fixed;
+  background-position: 90% 80%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font: bold 4.2rem Helvetica, Arial, sans-serif;
+  margin: 0 0 0.5em;
+}
+
+h2 {
+  font: bold 1.8rem Helvetica, Arial, sans-serif;
+  margin: 0 0 1em;
+}
+
+h3 {
+  font: bold 1.5rem Helvetica, Arial, sans-serif;
+  margin: 0 0 1em;
+}
+
+.page-wrapper {
+  width: 90%;
+  margin: 0 auto;
+  h3 {
+    font-family: "effra";
+    color: #263358;
+    text-transform: uppercase;
+    visibility: hidden;
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+  }
+  @media screen and (min-width: 700px) {
+    h3 {
+      font-size: 1.5rem;
+      letter-spacing: 0;
+      position: absolute;
+      top: 0.75em;
+      left: 75%;
+      text-align: left;
+      width: 10em;
+    }
+  }
+  p {
+    margin: 0 0 1.5em;
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.4;
+    abbr {
+      font-size: 75%;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+    }
+  }
+  a {
+    text-decoration: none;
+    color: #a28351;
+    position: relative;
+    transition: all .25s linear;
+    -webkit-transition: all .25s linear;
+    -moz-transition: all .25s linear;
+    -o-transition: all .25s linear;
+  }
+  a:after {
+    content: "";
+    display: block;
+    background: #a28351;
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    bottom: -0.2em;
+    left: 0;
+    opacity: 0;
+    transition: all 0.25s linear;
+    -moz-transition: all 0.25s linear;
+    -webkit-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+  }
+  a:hover,
+  a:focus {
+    color: #000;
+  }
+  a:hover:after,
+  a:focus:after {
+    opacity: 1;
+    bottom: 0em;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .page-wrapper:before {
+    content: "";
+    display: block;
+    position: fixed;
+    width: 105px;
+    height: 30px;
+    left: 3%;
+    top: 154px;
+    background: transparent url(../img/czg.svg) no-repeat -184px -99px;
+  }
+}
+
+
+/*	Animation  */
+
+.intro {
+  opacity: 0;
+  animation: FADEY 1s ease-in-out forwards;
+  -webkit-opacity: 0;
+  -webkit-animation: FADEY 1s ease-in-out forwards;
+  -moz-opacity: 0;
+  -moz-animation: FADEY 1s ease-in-out forwards;
+  -o-opacity: 0;
+  -o-animation: FADEY 1s ease-in-out forwards;
+}
+
+[role="article"] {
+  opacity: 0;
+  animation: FADEY 1s ease-in-out forwards;
+  -webkit-opacity: 0;
+  -webkit-animation: FADEY 1s ease-in-out forwards;
+  -moz-opacity: 0;
+  -moz-animation: FADEY 1s ease-in-out forwards;
+  -o-opacity: 0;
+  -o-animation: FADEY 1s ease-in-out forwards;
+}
+
+.design-selection,
+.design-archives,
+.zen-resources,
+footer {
+  opacity: 0;
+  animation: FADEY 1s ease-in-out forwards;
+  -webkit-opacity: 0;
+  -webkit-animation: FADEY 1s ease-in-out forwards;
+  -moz-opacity: 0;
+  -moz-animation: FADEY 1s ease-in-out forwards;
+  -o-opacity: 0;
+  -o-animation: FADEY 1s ease-in-out forwards;
+}
+
+@keyframes FADEY {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .intro:before {
+    visibility: visible;
+    text-transform: uppercase;
+    content: "Est.2003";
+    display: block;
+    position: fixed;
+    font-size: 50rem;
+    font-weight: 900;
+    width: 100%;
+    line-height: 1;
+    transform: rotate(270deg);
+    color: rgba(0, 0, 0, 0.15);
+    height: 2em;
+    top: -0.077em;
+    right: 0;
+    bottom: 0;
+    left: -0.25em;
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    mask-image: url(../img/denim-mask2.png);
+    -webkit-mask-image: url(../img/denim-mask2.png);
+    -moz-mask-image: url(../img/denim-mask2.png);
+    -o-mask-image: url(../img/denim-mask2.png);
+  }
+}
+
+.intro {
+  [role="banner"] {
+    h1 {
+      font-family: "effra";
+      visibility: hidden;
+      padding: 1em 0 0;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: #182e4f;
+      font-size: 3.5em;
+      letter-spacing: 0.1em;
+    }
+    h1:before {
+      content: "CSS Zen Garments";
+      visibility: visible;
+      display: block;
+    }
+    @media screen and (min-width: 700px) {
+      h1:after {
+        position: absolute;
+        top: 15.7em;
+        right: 30%;
+      }
+      h2:after {
+        content: "Impeccable Quality";
+        visibility: visible;
+        display: block;
+      }
+    }
+    h1:after {
+      content: "Made Locally";
+      visibility: visible;
+      display: block;
+      color: #aaa;
+      letter-spacing: 0.5em;
+      font-size: 1.4rem;
+      font-weight: normal;
+      margin: 0.5em 0 3em;
+      color: rgba(24, 46, 79, 0.4);
+    }
+    h2 {
+      font-family: "effra";
+      display: block;
+      visibility: hidden;
+      width: 3em;
+      position: absolute;
+      font-weight: 400;
+      color: rgba(41, 78, 134, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0;
+      font-size: 1.9rem;
+      line-height: 1;
+      top: 7.85em;
+      left: 75.5%;
+    }
+  }
+  @media screen and (min-width: 700px) {
+    [role="banner"] {
+      padding: 0 30% 10em 10%;
+      padding-top: 200px;
+      padding-bottom: 3em;
+      text-align: right;
+      position: relative;
+      h1 {
+        font-size: 4.8rem;
+        letter-spacing: 0;
+        line-height: 0.8;
+      }
+    }
+  }
+  .summary {
+    font-family: "effra";
+    p {
+      text-transform: uppercase;
+      font-size: 1.8rem;
+      line-height: 1.6;
+      letter-spacing: 0.1em;
+      font-weight: 300;
+      margin: 0 0 1.5em;
+      abbr {
+        font-size: 75%;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        border: none;
+      }
+    }
+  }
+  @media screen and (min-width: 700px) {
+    .summary {
+      padding: 0 30% 10em 10%;
+      text-align: right;
+      p:nth-child(2) {
+        position: relative;
+        top: 2em;
+        visibility: hidden;
+        font-size: 1.4rem;
+        a {
+          visibility: visible;
+          background: transparent url(../img/czg.svg) no-repeat -376px -93px;
+          width: 6em;
+          height: 25px;
+          text-indent: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 7em;
+          transition: none;
+        }
+        a[href$="css"] {
+          background-position: -472px -94px;
+          right: 0;
+        }
+        a:focus,
+        a:hover {
+          background-image: none;
+          text-indent: 0%;
+        }
+        a:focus:after,
+        a:hover:after {
+          opacity: 0;
+        }
+      }
+      p:nth-child(2):before {
+        content: "";
+        display: block;
+        visibility: visible;
+        position: absolute;
+        right: 21em;
+        top: -0.25em;
+        background: transparent url(../img/czg.svg) no-repeat -159px -1px;
+        width: 6em;
+        height: 30px;
+      }
+      p:nth-child(2):after {
+        content: "";
+        display: block;
+        visibility: visible;
+        position: absolute;
+        right: 14em;
+        top: -0.25em;
+        background: transparent url(../img/czg.svg) no-repeat -277px 0;
+        width: 6em;
+        height: 30px;
+      }
+    }
+  }
+  @media screen and (min-width: 1130px) {
+  	.summary {
+  		padding-left: 25%;
+  	}
+  }
+  .preamble {
+    background: transparent url(../img/sep.png) center top no-repeat;
+    h3:after {
+      visibility: visible;
+      display: block;
+      content: "A Fashion-Forward Future";
+    }
+    @media screen and (min-width: 700px) {
+      h3:after {
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+  @media screen and (min-width: 700px) {
+    .preamble {
+      padding: 10em 30% 10em 10%;
+      text-align: right;
+      position: relative;
+      h3 {
+        top: 5.9em;
+      }
+    }
+  }
+  @media screen and (min-width: 1130px) {
+    .preamble {
+      padding-left: 25%;
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  [role="article"],
+  footer {
+    padding: 0 30% 10em 10%;
+    text-align: right;
+    position: relative;
+  }
+  footer {
+    padding-bottom: 3em;
+    margin-top: -5em;
+  }
+}
+
+@media screen and (min-width: 1130px) {
+  [role="article"] {
+    padding-left: 25%;
+  }
+}
+
+.main {
+  @media screen and (min-width: 700px) {
+    h3 {
+      top: -0.75em;
+    }
+  }
+  .explanation {
+    h3:after {
+      visibility: visible;
+      display: block;
+      content: "See Yourself in a Different Way";
+    }
+    @media screen and (min-width: 700px) {
+      h3:after {
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+  .participation {
+    h3:after {
+      visibility: visible;
+      display: block;
+      content: "Get Into a Brand New Pair";
+    }
+    @media screen and (min-width: 700px) {
+      h3:after {
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+  .benefits {
+    h3:after {
+      visibility: visible;
+      display: block;
+      content: "Look Great\2026 and Feel Great Too!";
+    }
+    @media screen and (min-width: 700px) {
+      h3:after {
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+  .requirements {
+    h3:after {
+      visibility: visible;
+      display: block;
+      content: "“One Size Fits” All Be Damned!";
+    }
+    @media screen and (min-width: 700px) {
+      h3:after {
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+  footer {
+    font-size: 1.3rem;
+    a {
+      margin-left: 1em;
+    }
+  }
+}
+
+aside {
+  ul {
+    li {
+      list-style-type: none;
+    }
+  }
+  .design-selection {
+    margin: 3em 0 0;
+    .select {
+      visibility: hidden;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #263358;
+      position: static;
+      font-weight: bold;
+      width: auto;
+    }
+    .select:after {
+      content: "Washes & Styles";
+      font-size: 1.8rem;
+      text-align: center;
+      width: 7em;
+      margin: 0 auto 2em;
+      padding: 2em 0 0;
+      background: transparent url(../img/waves.png) center top no-repeat;
+      color: #182e4f;
+      visibility: visible;
+      display: block;
+    }
+    li {
+      float: left;
+      width: 50%;
+      font-size: 1.2rem;
+      margin: 0 0 1em;
+      color: #aaa;
+    }
+    li:nth-child(5) {
+      width: 47%;
+      padding-right: 3%;
+      clear: left; //清除左浮动，让之前的形成一行，很关键！
+    }
+    @media screen and (min-width: 700px) {
+      li {
+        width: 23%;
+        margin-bottom: 3em;
+        padding-right: 2%;
+      }
+      li:nth-child(5) {
+        width: 23%;
+        clear: left;
+        padding-right: 2%;
+      }
+    }
+    @media screen and (min-width: 1130px) {
+      .select:after {
+        text-align: left;
+        background-position: 0 bottom;
+        padding: 0 0 2em;
+        margin: 0 0 2em;
+      }
+      li {
+        float: none;
+        width: 100%!important;
+        padding: 0!important;
+        margin-bottom: 2em;
+      }
+    }
+    .design-name {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin: 0 0 0.24em;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      position: relative;
+    }
+    .design-name:hover,
+    .design-name:focus {
+      font-style: italic;
+    }
+    .design-name:hover:after,
+    .design-name:focus:after {
+      opacity: 0;
+    }
+    .designer-name {
+      color: #7989a3;
+    }
+    .designer-name:hover,
+    .designer-name:focus {
+      color: #000;
+    }
+  }
+  .design-archives {
+    ul {
+      margin: 1em 0 0;
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+      li {
+        display: inline-block;
+        position: relative;
+        a {
+          display: block;
+          text-indent: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          transition: none;
+        }
+      }
+    }
+    a:focus:after,
+    a:hover:after {
+      opacity: 0;
+    }
+  }
+  .next {
+    a {
+      background: transparent url(../img/czg.svg) 10px -56px no-repeat;
+      width: 43px;
+      height: 37px;
+    }
+  }
+  .next a:hover,
+  .next a:focus {
+    background-position: 10px -138px;
+  }
+  .viewall {
+    margin-left: 1em;
+    a {
+      background: transparent url(../img/czg.svg) -56px -56px no-repeat;
+      width: 39px;
+      height: 39px;
+    }
+  }
+  .viewall a:hover,
+  .viewall a:focus {
+    background-position: -56px -138px;
+  }
+  @media screen and (min-width: 700px) {
+    .next {
+      margin-right: 2em;
+      margin-left: -0.4em;
+    }
+    .viewall {
+      margin-left: 0;
+    }
+  }
+  @media screen and (min-width: 1130px) {
+    .design-selection {
+      position: absolute;
+      left: 5%;
+      top: 30em;
+    }
+    .design-archives {
+      position: absolute;
+      left: 5%;
+      top: 95em;
+    }
+  }
+  .zen-resources {
+    a {
+      display: inline-block;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 60px;
+      height: 60px;
+      background: transparent url(../img/czg.svg) 0 0 no-repeat;
+      transition: none;
+    }
+    a:hover:after,
+    a:focus:after {
+      opacity: 0;
+    }
+    ul {
+      margin: 2em 0 4em;
+      text-align: center;
+      li {
+        margin: 0 0 1em 3em;
+        display: inline-block;
+      }
+      li:first-child {
+        margin-left: 0;
+      }
+      .view-css a {
+        background-position: -502px 12px;
+      }
+      .view-css a:focus,
+      .view-css a:hover {
+        background-position: -502px -78px;
+      }
+      .css-resources a {
+        background-position: -150px -194px;
+      }
+      .css-resources a:focus,
+      .css-resources a:hover {
+        background-position: -150px -286px;
+      }
+      .zen-faq a {
+        background-position: -265px -192px;
+      }
+      .zen-faq a:focus,
+      .zen-faq a:hover {
+        background-position: -265px -284px;
+      }
+      .zen-submit a {
+        background-position: -502px -194px;
+      }
+      .zen-submit a:focus,
+      .zen-submit a:hover {
+        background-position: -502px -286px;
+      }
+      .zen-translations a {
+        background-position: -380px -193px;
+      }
+      .zen-translations a:focus,
+      .zen-translations a:hover {
+        background-position: -380px -285px;
+      }
+    }
+    ul:before {
+      content: "";
+      height: 4px;
+      width: 80px;
+      background: #d5d9dc;
+      display: block;
+      text-align: center;
+      margin: 0 auto 2em;
+    }
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+  font-size: 0px;
+}

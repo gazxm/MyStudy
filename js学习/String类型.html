@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="">
+	<title>String类型</title>
+	<script>
+		var firstName = "Nicholas";
+		var lastName = 'Zakas';
+		console.log(firstName.length);
+
+		/*ECMAScript的字符串是不可变的,字符串一旦创建,它们的值就不能改变。
+			要改变某个变量保存的字符串,首先要销毁原来的字符串,然后再用另一个新值的字符串填充该变量。
+		var lang = "Java";
+		lang = lang + "Script";
+		1、首先创建一个能容纳10个字符的新字符串;
+		2、然后在这个字符串填充"Java"和"Script";
+		3、最后一步是销毁原来的字符串"Java"和"Script";
+
+		/*转化为字符串:
+			1、toString()方法。数值(Number),布尔值(Boolean),对象(Object)和字符串值(String)都有toString()方法。但null和undefined没有这个方法。
+			2、大多数toString()是没有参数的。但是数值的toString()方法时,可以传递一个参数：输出数值的基数。默认为十进制
+		*/
+		var num = 10;
+		console.log(typeof num.toString());	// string
+		console.log(num.toString());	// 10
+		console.log(num.toString(2));	// 1010
+		console.log(num.toString(8));	// 12
+		console.log(num.toString(10));	// 10
+		console.log(num.toString(16));	// a
+		/* 3、String()方法, 可以将null,undefined转换成字符串*/
+		var stringValue1 = 10;		// 10
+		var stringValue2 = true;	// true
+		var stringValue3 = null;	// null
+		var stringValue4;			// undefined
+		console.log(String(stringValue1), String(stringValue2), String(stringValue3), String(stringValue4));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

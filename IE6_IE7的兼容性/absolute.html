@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>IE6/IE7下的absolute的兼容性问题</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		.div1 {
+			background: #ddd;
+			width: 300px;
+			height: 300px;
+		}
+
+		.div2 {
+			color: #000;
+			position: absolute;
+			top: 200px;
+			margin-left: 100px;
+		}
+	</style>
+	<!-- 在ie6/ie7下使用absolute的时候，若不设置top,left则会按照普通文档流的解析来进行 -->
+</head>
+<body>
+	<div class="div1"></div>
+	<div class="div2">AAAAAAA</div>
+</body>
+</html>

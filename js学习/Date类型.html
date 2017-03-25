@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Date类型</title>
+  <script>
+  	/*	Date类型实在早期Java中的java.util.Date类基础上构建的。为此，Date类型使用自UTC(Coordinated Universal Time, 国际协调时间)1970年1月1日零时开始经过的毫秒数来保存日期。
+  	*/
+  	var now = new Date();	//创建一个日期对象，不传递参数的情况下，新创建的对象自动获得当前的日期和时间。如果想根据特定的日期和时间创建，需要传入毫秒数。
+  	console.log("------------Date.parse()和Date.UTC()-----------");
+  	/*Date.parse()方法解析一个表示某个日期的字符串【各个浏览器在解析方面存在很大差异】，并返回从1970-1-1 00:00:00 UTC 到该日期对象（该日期对象的UTC时间）的毫秒数
+  		显示调用：
+			Date.parse(dateString) 如果不是一个dateString，会返回NaN
+			隐式调用：
+			new Date(dateString)
+  	*/
+  	var parseDate1 = new Date(Date.parse("May 25, 2004"));	//显示调用
+  	var parseDate2 = new Date("May 25, 2004");							//隐式调用
+  	console.log(parseDate1, parseDate2);//Tue May 25 2004 00:00:00 GMT+0800 (中国标准时间) Tue May 25 2004 00:00:00 GMT+0800 (中国标准时间)
+
+  	/*Date.UTC() 语法：Date.UTC(year,month[,date[,hrs[,min[,sec[,ms]]]]]) 
+				参数：year 1900年后的某一年份
+							month 0到11之间的一个整数，表示月份 	//month和year必须
+							date  1到31之间的一个整数，表示某月当中的第几天
+							hrs 	0到23之间的一个整数，表示小时
+							min 	0到59之间的一个整数，表示分钟
+							sec		0到59之间的一个整数，表示秒
+							ms 	 	0到999 之间的一个整数，表示微秒
+  	*/
+  	var UTCDate1 = new Date(Date.UTC(2000, 0));			//显示调用
+  	var UTCDate2 = new Date(2005, 4, 5, 17, 55, 55);//隐式调用
+  	var UTCDate3 = new Date(6, 4, 5, 17, 55, 55);		
+  	//当年份的位数小于3位的时候，会自动加上1900，例如这个为1906年
+  	console.log(UTCDate1,UTCDate2,UTCDate3);//Sat Jan 01 2000 08:00:00 GMT+0800 (中国标准时间) Thu May 05 2005 17:55:55 GMT+0800 (中国标准时间) Fri May 05 1906 17:55:55 GMT+0800 (中国标准时间)
+
+  	console.log(Date.parse("May 25, 2004"),Date.UTC(2005, 4, 5, 17, 55, 55));
+  	//1085414400000 1115315755000  返回的都是毫秒数
+
+  	console.log("-----------Date.now()函数------------")
+  	//Date.now()方法返回的是调用这个方法时的日期和时间的毫秒数
+  	var start = Date.now();	//IE9+	(握草。。我测试IE8以下有用。。有毒吗？)
+
+  	setTimeout(function(){
+  		var end = Date.now();
+  		console.log(end - start);	// 5002
+  	},5000);
+
+  	//适配IE8以及更低浏览器
+  	var start_ie8 = +new Date();
+
+  	setTimeout(function(){
+  		var end = +new Date();
+  		console.log(end - start_ie8);	// 5002
+  	},5000);
+
+  	/*继承的方法
+				与其他引用类型一样，Date类型也重写了toLocaleString()、toString()和valueOf()方法;但这些方法返回的值与其他类型中的方法不同。
+					toLocaleString()方法，会按照与浏览器设置的地区相适应的格式返回日期和时间，时间格式中会包含AM或者PM，但不会包含时区信息(具体格式因浏览器而异)
+					toString()方法，则通常返回带有时区信息的日期和时间。
+					valueOf()方法，则根本不返回字符串，而是返回日期的毫秒表示。因此，可以方便使用使用比较操作符(小于或大于)来比较日期值。
+  	*/
+  	var date1 = new Date(2007, 0, 1),
+  			date2 = new Date(2007, 1, 1);
+  	console.log(date1.valueOf(), date2.valueOf());	//1167580800000 1170259200000
+  	if(date1 < date2) {	//true 隐式的调用了引用类型的valueOf方法
+  		console.log("2007年1月比2007年2月更早。");
+  	}
+
+  	/*日期格式化的方法
+				toUTCString —— 以特定于实现的格式完整的UTC日期。 推荐使用这个。
+  	*/
+  </script>
+</head>
+
+<body>
+	
+</body>
+
+</html>

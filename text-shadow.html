@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>text-shadow</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		/* 语法：text-shadow: offset-x | offset-y | blur-radius | color; 
+					<offset-x><offset-y>: 必选 x,y轴表示阴影针对于文字的偏移量;
+					blur-radius: 可选，阴影半径;
+					color: 可选，阴影颜色;
+		*/
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		.text-shadow {
+			margin: 30px 20px;
+			font-size: 16px;
+			line-height: 1.6;
+			text-shadow: 2px 2px 5px black;
+		}
+
+		.demo {
+			background: #666;
+			margin: 10px;
+			width: 440px;
+			padding: 30px;
+			font: bold 55px/100% '微软雅黑', 'Lucida Grande','Lucida Sans', Helvetica, Arial, Sans;
+			color: #fff;
+			text-transform: uppercase;
+		}
+		.demo2 {
+			text-shadow: 0 0 20px red;
+		}
+		.demo3 {
+			text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de;
+		}
+		.demo4 {
+			color: #000;
+			text-shadow: 0 1px 1px #fff;
+		}
+		.demo5 {
+			color: #ccc;
+			text-shadow: -1px -1px 0 #fff, 1px 1px 0 #333, 1px 1px 0 #444;
+		}
+		.demo6 {
+			color: transparent;
+			text-shadow: 0 0 5px #f96;
+		}
+		.demo7 {
+			color: transparent;
+			text-shadow: 0 0 6px #f96, -1px -1px #fff, 1px -1px #444;
+		}
+		.demo8 {
+			color: #566f89;
+			text-shadow: 1px 1px 0 #e4f1ff;
+		}
+		.demo9 {
+			color: #fff;
+			text-shadow: 1px 1px 0 #f96, -1px -1px 0 #f96, 0 1px 0 #f96, 0 -1px #f96;
+		}
+		.demo10 {
+			color: #fff;
+			text-shadow: 1px 1px rgba(197, 223, 248,0.8),2px 2px rgba(197, 223, 248,0.8),3px 3px rgba(197, 223, 248,0.8),4px 4px rgba(197, 223, 248,0.8),5px 5px rgba(197, 223, 248,0.8),6px 6px rgba(197, 223, 248,0.8);
+			/*text-shadow: 6px 6px rgba(197, 223, 248,0.8);*/
+		}
+		.demo11 {
+			color: #fff;
+			text-shadow: -1px -1px rgba(197, 223, 248,0.8),-2px -2px rgba(197, 223, 248,0.8),-3px -3px rgba(197, 223, 248,0.8),-4px -4px rgba(197, 223, 248,0.8),-5px -5px rgba(197, 223, 248,0.8),-6px -6px rgba(197, 223, 248,0.8);
+			/*text-shadow: 6px 6px rgba(197, 223, 248,0.8);*/
+		}
+		.demo12 {
+			color: #eee;
+			text-shadow: 5px 5px 0 #666, 7px 7px 0 #eee;
+		}
+		.demo13 {
+			color: rgba(255, 179, 140, 0.5);
+			text-shadow: 3px 3px 0 rgba(180, 255, 0, 0.5);
+		}
+	</style>
+</head>
+<body>
+	<div class="text-shadow">
+		学习 Web 开发的最佳实践
+	</div>
+	<div class="demo demo2">glow and extra glow effect</div>
+	<div class="demo demo3">neon effect</div>
+	<div class="demo demo4">apple style effect</div>
+	<div class="demo demo5">photoshop emboss effect</div>
+	<div class="demo demo6">blurytext effect</div>
+	<div class="demo demo7">emboss and blurytext</div>
+	<div class="demo demo8">inset effect</div>
+	<div class="demo demo9">stroke text</div>
+	<div class="demo demo10">3D text effect</div>
+	<div class="demo demo11">3D text effect</div>
+	<div class="demo demo12">vintage retro effect</div>
+	<div class="demo demo13">anaglyphic text effect</div>
+</body>
+</html>

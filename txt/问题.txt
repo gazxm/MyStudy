@@ -1,0 +1,10 @@
+1、text-align:0 和 margin: 0 auto 对于 box (img)
+2、box盒子 解决
+3、a a:link a:visited a:hover a:active IE上是可以的 为毛chrome会炸？ 解决
+4、单位
+
+5、line-height:150% 和 line-height:1.5 的区别是？
+6、dl, dt, dd三个标签浏览器默认margin值多少？是否有标签默认文字粗体？
+7、float为何会让外部容器高度塌陷？这是bug？
+8、vertical-align的表现为何在IE7, IE8, IE9下表现不尽相同？其中的渲染机制是？
+9、vertical-align:-2px;

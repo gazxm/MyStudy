@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>first-child和last-child选择器的问题</title>
+  <script type="text/javascript"></script>
+  <style>
+  	body {
+  		margin: 0;
+  		padding: 0;
+  	}
+  	.fa {
+  		width: 300px;
+  		height: 200px;
+  		border: 1px solid red;
+  		margin-bottom: 30px;
+  	}
+  	.fa p:first-child {
+  		color: blue;
+  	}
+  	.fa p:last-child {
+  		color: red;
+  	}
+
+  	/* 如上述的p:first-child和p:last-child选择器有两个条件，同时满足的情况下才会选中
+  			1、父元素的第一个子元素或者最后一个子元素
+  			2、这个元素为p
+  		错误理解：先选择p，然后选择所有p中的第一个或者最后一个
+      nth-child(1)和first-child一样，同时他和first-child和last-child一样，都有上述两个条件，同时满足的情况下才会选中。
+  	*/
+  </style>
+</head>
+
+<body>
+	<div class="fa">
+		<p>aaaa</p>
+		<p>bbbb</p>
+		<p>cccc</p>
+		<p>dddd</p>
+	</div>
+
+	<div class="fa">
+		<h3>h3h3h3h3h3</h3>
+		<p>aaaa</p>
+		<p>bbbb</p>
+		<p>cccc</p>
+		<p>dddd</p>
+	</div>
+
+	<div class="fa">
+		<p>aaaa</p>
+		<p>bbbb</p>
+		<p>cccc</p>
+		<p>dddd</p>
+		<h3>h3h3h3h3h3</h3>
+	</div>
+</body>
+
+</html>

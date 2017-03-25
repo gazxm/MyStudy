@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>background-origin和background-clip</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		.div-1 {
+			border: 1px solid black;
+			background-color: yellow;
+			background: url(img/iphone_bili.jpg) left top no-repeat;	
+			/*background-origin只针对于no-repeat的background-image才有效果
+					1、不是no-repeat,图片会从规定的位置绘制，其他地方会用repeat的图片绘制
+					2、backgroun-color会覆盖div所有的宽高，也可以理解为color的repeat
+			*/
+
+			/* background-origin:规定background-position属性相对于什么来定位 */
+			/* padding-box(默认值):相对于内边距框; 
+			   border-box:相对于边框盒();
+			   content-box:相对于内容框(需要除去子元素的margin,border,padding);
+			*/
+			background-origin: content-box; 
+			
+			/* background-clip:规定背景的绘制区域 */
+			/* border-box(默认值):背景被裁剪到边框盒;
+			   padding-box:背景被裁剪到内边距框(background在border上);
+			   content-box:背景被裁剪到内容框(需要除去子元素的margin,border,padding);
+			*/
+			/*兼容性：
+				IE9+,Firefox4.0+ Chrome4.0+ Safari6.0+, iOS Safari6.0+, Android Browser3.0+, Android Chrome18+
+
+				兼容方法：
+				firefox4.0以下：-moz-background-origin:padding | border; //没有content
+				IE8下background-origin默认为padding-box
+			*/
+
+			background-clip: content-box;
+
+			/*
+				background-clip：border|padding|content
+
+				该属性指定了背景在哪些区域可以显示，但与背景开始绘制的位置无关，背景的绘制的位置可以出现在不显示背景的区域，这时就相当于背景图片被不显示背景的区域裁剪了一部分一样。
+
+				background-origin：padding|border|content
+
+				该属性指定了背景从哪个区域(边框、补白或内容)开始绘制,但也仅仅能控制背景开始绘制的位置，你可以用这个属性在边框上绘制背景，但边框上的背景显不显示出来那就要由background-clip来决定了
+			*/
+			/*
+				IE9+,Firefox4.0+, Chrome4.0+, Safari6.0+,iOS Safari6.0+, Android Browser3.0+, Android Chrome18.0+
+
+				兼容方法：
+				firefox4.0以下：-moz-background-clip:padding | border; //没有content
+				IE8下background-clip默认为padding-box
+			*/
+
+			/* background-origin,background-clip顺序需要放在background-image后面(它们两个的顺序无所谓) */
+			width: 300px;
+			height: 300px;
+			padding: 50px;
+			border: 30px dashed black;
+		}
+		div {
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="div-1">
+		<div>这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1 这是文本1
+		</div>
+	</div>
+</body>
+</html>

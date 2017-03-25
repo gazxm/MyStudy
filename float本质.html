@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>float(本质)</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		body {
+			margin: 0;
+		}
+
+		.float-div {
+			width: 400px;
+		}
+
+		img {
+			float: left;
+			width: 78px;
+		}
+		p {
+			display: inline-block;
+			width: calc(100% - 78px);
+			/*clear: left;*/
+		}
+		/*
+			两种解释：
+			1、【自己的理解】：float只会让高度塌陷，而不会让宽度塌陷，但是它也自带有inline-block属性，右边div设置为display:inline-block;所以导致了这种结果
+			2、BFC： 左边float触发了一个BFC，右边display:inline-block触发了一个BFC;
+		*/
+	</style>
+</head>
+<body>
+	<div class="float-div">
+		<img src="img/w3c_border.png" alt="" />
+		<p>float(本质):文字环绕图片;float(本质):文字环绕图片;float(本质):文字环绕图片;float(本质):文字环绕图片;float(本质):文字环绕图片;float(本质):文字环绕图片;float(本质):文字环绕图片;float(本质):文字环绕图片;float(本质):文字环绕图片;float(本质):文字环绕图片;float(本质):文字环绕图片;</p>
+	</div>
+	<script type="text/javascript">
+		(function(){
+			var img = document.getElementsByTagName("img");
+			console.log(img[0].height);	// 0
+		})();
+	</script>
+</body>
+</html>

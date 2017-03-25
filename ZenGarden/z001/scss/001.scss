@@ -1,0 +1,139 @@
+body {
+    font: 9pt/17pt georgia;
+}
+
+p {
+    margin-top: 0px;
+    text-align: justify;
+}
+
+h3 {
+    font: italic normal 12pt georgia;
+    color: #7D775C;
+    margin-bottom: 0px;
+    letter-spacing: 1px;
+}
+
+li {
+    list-style: none;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+    line-height: 0px;
+    vertical-align: middle;
+}
+
+a:link {
+    text-decoration: none;
+    color: #B7A5DF;
+    font-weight: bold;
+}
+
+a:visited {
+    font-weight: bold;
+    text-decoration: none;
+    color: #D4CDDC;
+}
+
+a:hover:active {
+    text-decoration: underline;
+    color: #9685BA;
+}
+
+#css-zen-garden {
+    background: transparent url(../img/zen-bg.jpg) no-repeat top left;
+    color: #555753;
+    margin: 0px;
+    padding: 0px;
+}
+
+#container {
+    background: transparent url(../img/blossoms.jpg) no-repeat bottom right;
+    position: absolute;
+    padding: 0px 175px 0px 110px;
+    margin: 0px;
+    top: 0px;
+    left: 0px;
+}
+
+#intro {
+    min-width: 470px;
+}
+
+#pageHeader {
+    margin-bottom: 20px;
+    h1 {
+        background: transparent url(../img/h1.gif) no-repeat top left;
+        margin-top: 10px;
+        width: 219px;
+        height: 87px;
+        float: left;
+    }
+    h2 {
+        background: transparent url(../img/h2.gif) no-repeat top left;
+        margin-top: 58px;
+        margin-bottom: 40px;
+        width: 200px;
+        height: 18px;
+        float: right;
+    }
+    a {
+        font: italic normal 12pt georgia;
+    }
+}
+
+#quickSummary {
+    clear: both;
+    margin: 20px 20px 20px 10px;
+    width: 160px;
+    float: left;
+    p {
+        font: italic 10pt/22pt georgia;
+        text-align: center;
+    }
+}
+
+#preamble {
+    clear: right;
+    padding: 0px 10px 0px 10px;
+}
+
+#supportingText {
+    padding-left: 10px;
+    margin-bottom: 40px;
+}
+
+#linkList {
+    float: right;
+    #limg {
+        width: 148px;
+        height: 110px;
+        margin-top: 40px;
+    }
+    #linkList2 {
+        background: url(../img/paper-bg.jpg) top left repeat-y;
+        width: 130px;
+        padding: 10px;
+    }
+    ul {
+        margin: 0px;
+        padding: 0px;
+    }
+    h3 {
+        margin: 10px 0px 5px 0px;
+        width: 97px;
+        height: 16px;
+    }
+    h3.select {
+        background: transparent url(../img/h3.gif) top left no-repeat;
+    }
+    li {
+        background: url(../img/cr1.gif) top center no-repeat;
+        padding-top: 5px;
+        margin-bottom: 5px;
+        line-height: 2.5ex;
+    }
+}

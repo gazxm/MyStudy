@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>lookreward</title>
+  <script src="js/dest/flexible.js"></script>
+  <script src="js/dest/jquery3.1.1.js"></script>
+  <script src="js/dest/cityselect.js"></script>
+  <script src="js/dest/common.js"></script>
+  <link href="css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+	<div class="lookreward">
+		<a class="rule">了解详情</a>
+		<div class="content">
+			<h2 class="reward">恭喜13666666666<br>获得三等奖</h2>
+			<div class="open-red">
+				<p>158元<br>现金红包</p>
+			</div>
+			<h3>(抵用购车款)全国36300名</h3>
+			<p class="usage-method">长按中奖图片保存至手机，前往附近门店凭中奖图片购车兑换。<br>红包期限：即日起-2月11日 过期作废。</p>
+			<div id="shop-information">
+				<select class="prov"></select><span>省</span>
+		  	<select class="city"></select><span>市</span>
+				<div class="dist"></div>
+		  </div>
+			<div class="QRcode">扫码立刻关注</div>
+		</div>
+	</div>
+</body>
+<script>
+	$(function() {
+		$("#shop-information").citySelect({});
+	});
+</script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>使用CSS3开启GPU硬件加速提升网站动画渲染性能</title>
+  <style>
+  	/*
+  		-webkit-transform:transtion3d(0, 0, 0)或-webkit-transform:translateZ(0)这两个属性都会开启GPU硬件加速模式，从而让浏览器在渲染动画时从CPU转向GPU，其实是一个hack，-webkit-transform:transition3d和-webkit-transform:translateZ其实是为了渲染3D样式。但是我们设置了值为0后，并没有真正使用3D效果，但浏览器却因此开启了GPU硬件加速模式。
+  		PS: 在移动端的性能提升是相当显著的，但是，会大量占用浏览网页用户的系统资源，尤其是在移动端，肆无忌惮的开启GPU硬件加速会导致大量消耗设备电量，降低电池寿命等问题。
+  	*/
+		/*开启所有浏览器的GPU硬件加速，方法一：*/
+		body {
+			-webkit-transform: translateZ(0);
+			-moz-transform: translateZ(0);
+			-ms-transform: translateZ(0);
+			-o-transform: translateZ(0);
+			transform: translateZ(0);
+		}
+
+		/*方法二：*/
+		body {
+			-webkit-transform: translate3d(0, 0 ,0);
+			-moz-transform: translate3d(0, 0 ,0);
+			-ms-transform: translate3d(0, 0 ,0);
+			-o-transform: translate3d(0, 0 ,0);
+			transform: translate3d(0, 0 ,0);
+		}
+
+		/*可能导致的问题：
+				1、导致浏览器频繁闪烁或抖动
+					-webkit-backface-visibility: hidden;
+					-webkit-perspective: 1000;
+			适用的范围：
+				1、适用很多大尺寸图片(尤其是PNG24图)进行动画的页面。
+				2、页面有很多大尺寸图片并且进行了CSS缩放处理，页面可以滚动时。
+				3、使用background-size:cover设置大尺寸背景图，并且页面可以滚动时。(详见:https://coderwall.com/p/j5udlw)
+				4、编写大量DOM元素进行CSS3动画时(transition/transform/keyframes/absTop&Left)
+				5、使用很多PNG图片拼接成CSS Sprite时
+		*/
+
+		/*
+			可以通过chrome的f12中的Timeline可以查看到网页的FPS
+			问题： 好像设置了-webkit-transform: translate3d(0, 0, 0); 然而在用Timeline 进行分析的时候还是和之前没有多大的差别啊。用手机进行测试的时候，微信浏览器比外部浏览器要卡的多，也可能是我的垃圾手机。
+		*/
+  </style>
+</head>
+
+<body>
+</body>
+
+</html>

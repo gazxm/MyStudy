@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>text-align属性(着重justify)[列表元素实现两端对齐]</title>
+    <!-- text-align属性可以有效的作用于inline/inline-block水平的元素 -->
+    <script type="text/javascript"></script>
+    <style type="text/css">
+    p {
+    	/*text-align: justify;*/
+    	/*中文在IE上和FireFox有一些小问题，但是chrome完美支持了，chrome强,无敌*/
+    	padding: 20px 10px;
+    	max-width: 300px;
+    	font-size: 14px;
+    	background: #999;
+    }
+    </style>
+    <!-- text-align主要用于控制文字的对齐和显示
+		属性值：left (默认值) 把文本排列到左边
+				right
+				center
+				justify		实现两端对齐文本效果
+				inherit
+	 -->
+    <!-- 列表元素实现两端对齐 
+		1、float布局配合width属性
+	 -->
+</head>
+
+<body>
+    <p>hello word; 为了最大化组件的品质，组件的实现要讲求分工； 要想分工，需要将组件UI层东西从JS剥离出来，发挥CSS/HTML工程师的在UI处理上造诣； 想要剥离，就要求组件半封装，避开大而全的API； 所谓半封装是功能封装，UI不封装；但对于某一具体项目，组件还是完全封装的； 避开API的方法包括交给原生的HTML属性API, 以及根据项目UI场景设计API，告别无意义的生僻场景API的使用。 发挥CSS的潜力，尽量避免使用JS做一些自己为是的功能； UI组件的本质是HTML和CSS, JS只是辅助，千万不要乱了主次。</p>
+    <p>The css Zen Garden invites you to relax and meditate on the important lessons of the masters. Begin to see with clarity. Learn to use the (yet to be) time-honored techniques in new and invigorating fashion. Become one with the web.allows complete and total control over the style of a hypertext document. The only way this can be illustrated in a way that gets people excited is by demonstrating what it can truly be, once the reins are placed in the hands of those able to create beauty from structure. To date, most examples of neat tricks and hacks have been demonstrated by structurists and coders. Designers have yet to make their mark. This needs to change.</p>
+    <button id="btn">AAAA</button>
+    <script>
+ 
+    		var p = document.getElementsByTagName("p"),	
+    		    btn = document.getElementById("btn");	
+    		if(p && btn) {
+    			btn.onclick = function() {
+    				for(var a in p) {
+    					if(typeof(p[a]) == "object") {
+    						p[a].style.textAlign = "justify";
+    						/*
+    						p[a].style.letterSpacing = "-.15em";
+    						p[a].innerHTML = p[a].innerHTML.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '').split("").join(" ").replace(/\s{3}/g, " &nbsp; ");
+    						*/
+    					}
+    				}
+    			}
+    		}
+    </script>
+</body>
+</html>

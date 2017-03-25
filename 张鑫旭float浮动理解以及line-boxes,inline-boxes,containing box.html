@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>张鑫旭float浮动理解以及line-boxes,inline-boxes,containing box</title>
+    <!-- 补充: contain area, inline-boxes, line-boxes, containing box -->
+    <!-- 请配合张鑫旭CSS行高line-height.html一起饮用-->
+    <script type="text/javascript"></script>
+    <style type="text/css">
+    .btn1 {
+        display: inline-block;
+        background: url(http://www.zhangxinxu.com/study/image/sina_gray_btn.png) no-repeat left top;
+        padding-left: 3px;
+        color: #000000;
+        font-size: 12px;
+        text-decoration: none;
+    }
+    
+    .btn1 cite {
+        display: block;
+        line-height: 26px;
+        padding: 0 13px 0 10px;
+        background: url(http://www.zhangxinxu.com/study/image/sina_gray_btn.png) no-repeat right top;
+    }
+    
+    .btn2 {
+        float: left;
+        background: url(http://www.zhangxinxu.com/study/image/sina_gray_btn.png) no-repeat left top;
+        padding-left: 3px;
+        color: #000000;
+        font-size: 12px;
+        text-decoration: none;
+    }
+    
+    .btn2 cite {
+        display: block;
+        line-height: 26px;
+        padding: 0 13px 0 10px;
+        background: url(http://www.zhangxinxu.com/study/image/sina_gray_btn.png) no-repeat right top;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 浮动的本质为：1、包裹；2、破坏
+		浮动就是一个带有方位的display:inline-block属性，区别是display:inline-block为从左到右排列，而float可以从右到左排列
+	-->
+    <!-- 以下注释例子为实现宽度自适应按钮(浮动的包裹性，和display:inline-block基本一致)-->
+    <!-- 1、使用display:inline-block：-->
+
+		<a href="javascript:void(0);" class="btn1">
+    		<cite>inline-block方法</cite>
+		</a>
+
+	<!--	2、使用float：(和display:inline-block的区别就是一个是 float:left,一个是display:inline-block) -->
+        <br>
+		<a href="javascript:void(0);" class="btn2">
+	        <cite>float方法</cite>
+	    </a>
+
+
+	<!-- 浮动破坏性指：浮动破坏了正常的inline boxes-->
+
+	<!-- 以下是关于line boxes模型的介绍
+			http://www.zhangxinxu.com/wordpress/2010/01/css-float浮动的深入研究、详解及拓展一/
+		以及图片line-box1.png,line-box2.png,line-box3.png,line-box4.png,line-box5.png
+	-->
+
+	<!-- 浮动破坏了图片的inline box，产生了两个结果：一是图片无法与文字同行显示，脱离了其原来所在的line box链；二是没有了高度（无inline box -> 无line box -> 无高度）。而这些结果恰恰是文字环绕图片显示所必须的。-->
+
+	<!-- 清除浮动的方法：
+		1、在父标签最后：<div style="claer:both;"></div>
+		2、overflow + zoom方法 
+			.fix {overflow:hidden; zoom:1} (不过也是有问题的，就是这个overflow:hidden;是个小炸蛋，要是里面的元素要是想来个margin负值定位或是负的绝对定位，岂不是直接被裁掉了，所以此方法是有不小的局限性的)
+		3、after + zoom方法(建议使用这个方法，通用)
+		.fix{*zoom:1;}
+		.fix:after{display:block; content:'clear'; clear:both; line-height:0; visibility:hidden;}
+		PS：以上两条都需要，.fix{*zoom:1}主要用于清除IE6/IE7的浮动，.fix:after{}主要用于清除IE8+常用浏览器的浮动	
+	 -->
+
+	 <!-- 解释一： overflow清除浮动原理(请配合BFC一起食用)
+		  通过overflow来触发BFC,然后计算BFC的高度的时候，浮动元素也参与计算
+		  解释二：overflow和zoom可以清除浮动的原因是因为他们的"包裹性"
+		  http://www.zhangxinxu.com/wordpress/2010/01/对overflow与zoom清除浮动的一些认识/
+
+		  "包裹性":float,absolute,inline-block,overflow,zoom
+		  float,absolute,inline-block:为主动包裹
+		  overfloaw,zoom:为被动包裹
+
+          overflow清除浮动的问题：如果有弹出层的话，可能会隐藏
+	 -->
+</body>
+
+</html>

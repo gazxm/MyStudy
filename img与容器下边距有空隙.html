@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- img不止与容器下边距有空隙 配合inline和inline-block的空隙.html一起饮用-->
+	<title>img与容器下边距有空隙</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		/* 图片文字等inline元素默认是和父级元素的baseline对齐的，而baseline又和父级底边有一定距离（这个距离和 font-size，font-family 相关），所以设置 vertical-align:top/bottom/text-top/text-bottom 都可以避免这种情况出现。而且不光li，其他的block元素中包含img也会有这个现象。 */
+		div {
+			background: #000;
+			/*做法一；
+			font-size: 0px;
+			或者 line-height:5px; 
+			其实这两个都是设置足够小的行高，实际文字占据的高度的底部就会在x的上面，下面没有了高度区域支撑，自然，图片就会有容器底边贴合在一起了
+
+			设置font-size的原理是:line-height为相对单位，font-size间接控制
+			*/
+		}
+		img {
+			/*display:block;*//*做法二：*/
+			vertical-align: baseline; /*做法三： baseline是vertical-align的默认值，设置成top/bottom/text-top/text-bottom都可以*/
+			/*做法三的原理是设置vertical-align，会改变baseline的位置*/
+
+			/*PS:若display: inline-block; 还是会有缝隙，应该是有inline的特性在里面*/
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<img src="img/iphone_bili.jpg" alt=""><!--
+		--><img src="img/iphone_bili.jpg" alt="">
+	</div>
+</body>
+</html>

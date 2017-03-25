@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>text-align与absolute,fixed</title>
+  <script type="text/javascript"></script>
+  <!-- http://www.zhangxinxu.com/wordpress/2011/12/position-absolute-text-align-center/ -->
+  <!-- 结论是：text-align对absolute元素并没有任何卵用 
+          补充：text-align只对文本文档有效，margin: 0 auto 也对absolute和fixed无效
+  -->
+  <style type="text/css">
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .content {
+    width: 1200px;
+    margin: 10px auto;
+    height: 2000px;
+    background: #999;
+    text-align: right;
+  }
+  
+  .back-top {
+    /* display:block;  */
+    width: 20px;
+    text-align: center;
+    font-size: 12px;
+    position: fixed;
+    _position: absolute;
+    padding: 5px 0;
+    color: #34538b;
+    bottom: 100px;
+    text-decoration: none;
+    background: #DFF3FD;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    &nbsp;<a class="back-top" href="#">返回顶部</a>
+    <!-- 设置&nbsp;目的为了做IE6/IE7的适配(我测试IE7没问题，IE8炸了。。。) 
+			哪怕设置了display: block; IE6/IE7对fixed,absolute还是默认为inline
+    -->
+  </div>
+</body>
+
+</html>

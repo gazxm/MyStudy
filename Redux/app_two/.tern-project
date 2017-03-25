@@ -1,0 +1,17 @@
+{
+  "loadEagerly": [
+    "./src/js/**/*.js",
+    "./src/js/**/*.jsx",
+    "./node_modules/react/**/*.js",
+    "./node_modules/react-dom/**/*js"
+  ],
+  "libs": [
+    "browser",
+    "jquery"
+  ],
+  "plugins": {
+    "requirejs": {},
+    "node": {},
+    "es_modules": {}
+  }
+}

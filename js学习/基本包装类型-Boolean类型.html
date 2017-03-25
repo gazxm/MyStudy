@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>基本包装类型-Boolean类型</title>
+  <script>
+  	/* Boolean类型是与布尔值对象的引用类型。要创建Boolean对象，可以像下面这样调用Boolean构造函数并传入true或false值
+  	*/
+		var booleanObject = new Boolean(true);
+		console.log(booleanObject.valueOf(),booleanObject.toString());//基本类型值true 字符串"true"
+
+		var falseObject = new Boolean(false);
+		var result1 = falseObject && true;
+		console.log(result1);			//true		true原因就是falseObject就是一个Boolean对象。然后，将这个对象与基本类型值true构成了逻辑与表达式。而在布尔表达式中的所有对象都会被转换为true，因此falseObject对象在布尔表达式中代表的是true。结果,true&&true当然就返回了true。
+
+		var falseValue = false;
+		var result2 = falseValue && true;
+		console.log(result2);			//false
+
+		/*基本类型与引用类型的布尔值还有两个区别：
+				1、typeof操作符对基本类型返回"boolean"，对引用类型返回"object"
+				2、Boolean对象是Boolean类型的实例，所以使用instanceof操作符测试Boolean对象会返回true，而基本类型的布尔值则返回false
+		*/
+		console.log(typeof falseObject, typeof falseValue, falseObject instanceof Boolean, falseValue instanceof Boolean);	//object  boolean  true  false
+
+		//最后，建议是永远不要使用boolean对象。
+  </script>
+</head>
+
+<body>
+	
+</body>
+
+</html>

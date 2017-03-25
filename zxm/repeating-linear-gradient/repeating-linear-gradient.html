@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>repeating-linear-gradient</title>
+  <script type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="css/repeating-linear-gradient.css">
+</head>
+
+<body>
+  <div class='record-container'>
+    <img src='http://dribbble.s3.amazonaws.com/users/2009/screenshots/94101/shot_1293655299.png' />
+  </div>
+  <div class='record-container'>
+    <div class='record'></div>
+  </div>
+  <div>
+  	<div style="width: 100px; height: 100px; background: rgba(42, 41, 40, .85);"></div>
+  	<div style="width: 100px; height: 100px; background: #2a2928;"></div>
+  	<div style="width: 100px; height: 100px; background: #ada9a0"></div>
+  </div>
+  <div>
+  	<div class='repeat-linear-gradient'></div>
+  </div>
+  <!-- 使用linear-gradient和background-size实现repeat-linear-gradient 
+        这里的background-size 需要进过数学的计算，但是还是会有一定量的偏差，比起直接使用repeat-linear-gradient麻烦很多
+  -->
+  <div>
+  	<div class='linear-gradient-backgroundsize'></div>
+  </div>
+</body>
+
+</html>

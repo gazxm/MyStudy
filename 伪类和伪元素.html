@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>伪类和伪元素</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		/*	:Pseudo-classes  ::Pseudo-elements
+		伪类： :first-child 
+		伪元素	::first-letter
+		*/
+		div {
+			width: 200px;
+			height: 200px;
+			border: 1px solid black;
+		}
+		.pseudo-classes p>i:first-child {
+			color:red;
+		}
+
+		.moni-pseudo-classes .first-child {
+			color: red;
+		}
+
+		.pseudo-elements::first-letter {
+			font-style: italic;
+			font-size: 20px;
+		}
+
+		.moni-pseudo-elements span{
+			font-style: italic;
+			font-size: 20px;
+		}
+
+		/* 伪类的效果可以通过添加一个实际的类(class)来达到，而伪元素的效果则需要通过添加一个实际的元素才能达到，这也是为什么他们一个称为伪类，一个称为伪元素的原因。 */
+
+		/* :before(伪类)[IE8+] 和 ::before(伪元素)[IE9+] 其实是一样的，如果不需要兼容IE，则使用::before最好;
+	</style>
+</head>
+<body>
+	<div class="pseudo-classes">
+		<p>
+			<i class="first-child">first</i>
+			<i>second</i>
+		</p>
+	</div>
+	<div class="moni-pseudo-classes">
+		<p>
+			<i>first</i>
+			<i>second</i>
+		</p>
+	</div>
+	<div class="pseudo-elements">
+		<p>One Two Three</p>
+	</div>
+	<div class="moni-pseudo-elements">
+		<p><span>O</span>ne Two Three</p>
+	</div>
+</body>
+</html>

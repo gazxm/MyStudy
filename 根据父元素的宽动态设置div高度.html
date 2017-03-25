@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>纯CSS实现 高度自适应与宽度</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  body {
+    margin: 0;
+  }
+  
+  /* padding的百分比会根据父元素的宽度来计算自己的值，这是宽：高为2:3;  需要提前知道高度*/
+  .contain {
+    width: 20%;
+    height: 0;
+    padding-bottom: 30%;
+    background: transparent url(iphone_bili.jpg) 0 0 no-repeat;
+    background-size: contain;
+  }
+
+  .fa {
+    width: 80%;
+    height: 400px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    font-size: 0px;
+    margin:0 auto;
+  }
+
+  .child {
+    display: inline-block;
+    width: 49%;
+    height: 200px;
+    border: 1px solid red;
+    box-sizing: border-box;
+  }
+
+  .child:last-child {
+    margin-left: 2%;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="contain"></div>
+
+  <div class="fa">
+    <div class="child"></div>
+    <div class="child"></div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数function</title>
+	<script>
+		"use strict";
+		/* 语法:
+			function functionName(arg0,arg1,...argN) {
+				statements;
+			}
+
+			严格模式：
+				1、不能把函数命名为eval或arguments;
+				2、不能把参数命名为eval或arguments;
+				3、不能出现两个命名参数同名的情况。
+		*/
+
+		/*理解参数,以及不能重载的原因
+			1、ECMAScript函数不介意传递进来多少个参数，也不在乎传进来的是什么类型的参数。它会在内部用一个数组来表示。函数接受的始终是这个数组(arguments)，而并不关心数组中包含哪些参数。
+			2、arguments对象只是和数组类似(但并不是Array的实例),arguments[0],arguments[1]以此类推;arguments.length判断传递进来的参数的个数。命名的参数只提供便利，但不是必须的;
+		*/
+		var sayHi = function() {
+			console.log("Hello " + arguments[0] + "," + arguments[1]);
+		}
+		sayHi("zxm" , "gazxm");	//Hello zxm,gazxm
+		var howManyArgs = function() {
+			console.log(arguments.length);
+		}
+		howManyArgs("string", 45);	//2
+		howManyArgs();				//0
+		howManyArgs(1,2,3,4,5)		//5
+		/*
+			3、模拟重载的方法
+		*/
+		var doAdd = function() {
+			var length = arguments.length;
+			switch(length) {
+				case 0 : 
+					console.log(10);
+					break;
+				case 1 : 
+					console.log(arguments[0] + 10);
+					break;
+				case 2 : 
+					console.log(arguments[0] + arguments[1]);
+					break;
+			}
+		}
+		doAdd();			//10
+		doAdd(30);			//40
+		doAdd(20, 30);		//50
+
+		/*arguments的值永远与对应命名参数的值保持同步。
+			arguments.length是由传入的参数个数决定的，不是由定义函数时的命名参数的个数决定的。
+		*/
+		console.log("--------华丽的分割线--------");
+		var doAdd_1 = function(num1, num2) {
+			arguments[1] = 10;
+			console.log((num2 === arguments[1]));
+			console.log(num2, arguments[1], arguments[0]);
+			console.log(arguments[0] + num2);
+		}
+		doAdd_1(1, 50);
+		/*
+			对于这里的理解: 在严格模式和不严格模式有两种情况
+				1、不严格模式： num2 === arguments[1] 返回true, 改变arguments[1]的值同时会改变num2中的值，反之并不能，但是他们的内存空间仍然是独立的，只是值会同步。
+				2、严格模式： num2 === arguments[1] 返回false，修改arguments[1]中的值并不能改变num2中的值，在严格模式下，两个值和内存空间都独立开来了。
+		*/
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

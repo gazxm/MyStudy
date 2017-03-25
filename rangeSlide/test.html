@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI 滑块（Slider） - 带有固定最大值的范围</title>
+  <link rel="stylesheet" href="css/jquery-ui.min.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="jqueryui/style.css">
+  <style>
+  	p {
+  		margin-left: 100px;
+  		position: relative;
+  		height: 25px;
+  		width: 240px;
+  	}
+  	#amount {
+			position: absolute;
+			top: 0;
+			left: 0;
+  	}
+		#slider-range-max {
+			margin-left: 100px;
+			border: none;
+			background: #4bb6fa;
+			border-radius: 0;
+			height: 3px;
+			width: 240px;
+		}
+		#slider-range-max div {
+			background: #ebebeb;
+		}
+		#slider-range-max a {
+			background: #fff;
+			border: 1px solid #4bb6fa;
+			border-radius: 50%;
+			height: 13px;
+			width: 13px;
+			margin-left: -.45em;
+			outline: none;
+		}
+  </style>
+  <script>
+  $(function() {
+    $("#slider-range-max").slider({
+      range: "max",
+      min: 5,
+      max: 30,
+      value: 10,
+      slide: function(event, ui) {
+      	var left = ((ui.value - 5) / 25) * 100 - 7 + "%";
+        $("#amount").val(ui.value * 100 + "元");
+        $("#amount").css("left", left);
+      }
+    });
+    $("#amount").val($("#slider-range-max").slider("value") * 100 + "元");
+    $("#amount").css("left", ($("#slider-range-max").slider("value") - 5 ) / 25 * 100 - 7 + "%");
+  });
+  </script>
+</head>
+<body>
+
+<p>
+	<label for="amount"></label>
+	<input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+<div id="slider-range-max">
+</div>
+</body>
+</html>

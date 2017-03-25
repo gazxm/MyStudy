@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>clip</title>
+	<script type="text/javascript"></script>
+	<!-- http://www.zhangxinxu.com/wordpress/2011/04/css-clip-rect/ -->
+	<style type="text/css">
+		/*clip:rect(top right bottom left) 矩形裁剪 只能作用于设置了position:absolute/fixed元素上*/
+		.demo-div {
+			background: transparent url(img/400px-123px.jpg) 0 0 no-repeat;
+			border: 1px dotted black;
+			width: 400px;
+			height: 123px;
+		}
+
+		.clip-div {
+			position: fixed;
+			top: 300px;
+			left: 500px;
+			clip: rect(10px 300px 100px 2px) ;	/* IE6/IE7 */
+			/*clip: rect(10px, 300px, 100px, 2px)*/
+			/*
+			剪切div上边距10px 右边距 (400(width) - 300)px 下边距(123(height) - 100)px 左边距2px;
+
+			若：left >= right , top >= bottom 则元素会被完全裁剪而不可见，通过这种方式隐藏的元素是可以被屏幕阅读器(what? 意思是css去掉还能看到？ SEO?)等辅助设备识别的，从而提高了页面的可用性。
+			*/
+			background: transparent url(img/400px-123px.jpg) 0 0 no-repeat;
+			border: 1px dotted black;
+			width: 400px;
+			height: 123px;
+		}
+	</style>
+</head>
+<body>
+	<div class="demo-div"></div>
+	<div class="clip-div"></div>
+</body>
+</html>

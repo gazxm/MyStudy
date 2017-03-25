@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BFC和margin-collapsing(外边距塌陷)</title>
+    <script type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="">
+    <!-- 官方文档：https://www.w3.org/TR/CSS2/box.html#collapsing-margins -->
+    <!-- http://www.smallni.com/collapsing-margin/ -->
+    <style type="text/css">
+    /*父子元素div.class*/
+    
+    .fa_f {
+        width: 500px;
+        background: #000;
+        height: auto;
+        margin: 40px 0;
+        padding: 1px;
+    }
+    
+    .fa_c {
+    	float: right;
+        margin: 50px 0;
+        width: 100px;
+        height: 100px;
+        background: #F90;
+    }
+    
+    .test_a {
+        border: 1px solid blue;
+    }
+    /*兄弟元素div.class*/
+    
+    .br_a {
+        width: 100px;
+        height: 100px;
+        background: #000;
+        margin: 40px 0;
+    }
+    
+    .br_b {
+        margin: 50px 0;
+        width: 100px;
+        height: 100px;
+        background: #F90;
+    }
+
+	.fa_c_1 {
+		margin: 50px 0;
+        width: 100px;
+        height: 100px;
+        background: #F90;
+	}
+
+    .clearfix:after {
+    	content: "";
+		display: block;
+		clear: both;
+		line-height: 0px;
+		_zoom: 1;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 发送margin叠加的情况：1、父子元素 2、兄弟元素 -->
+    <!-- 父子元素 -->
+    <div>
+        <h3>父子元素的margin叠加</h3>
+        <div class="fa_f clearfix"> 
+        	<div class="fa_c_1">AAAAAA</div>
+            <div class="fa_c">AAAAAA</div>
+        </div>
+        <div class="test_a">
+            AAAAAA
+        </div>
+        <!-- 这里可以看到fa_f的div的margin-bottom为40px,fa_c的div的margin-bottom为50px; 最后的margin重叠为50px -->
+    </div>
+    <!-- 兄弟元素 -->
+    <div>
+        <h3>兄弟元素的margin叠加</h3>
+        <div class="br_a"></div>
+        <div class="br_b">AAAAAA</div>
+        <!-- br_a的div设置的margin-bottom为40px,br_b的div的margin-top为50px, 最后的margin重叠为50px-->
+    </div>
+    <!-- 外边距发生叠加的4个必要条件：1、2个或者多个；2、毗邻；3、垂直方向；4、普通流 
+		如果需要避免外边距叠加，破坏任意一个即可
+
+		先说一下普通流：float(浮动)，absolute(绝对定位)不是普通流；(inline-block也不可以)
+    -->
+    <!-- 毗邻：毗邻不仅仅是兄弟元素之间，也有可能在父子元素之间，元素之间的外边距叠加只有在四种情况下才能叫毗邻：
+
+	1、一个元素的margin-top和它的第一个子元素的margin-top
+		top margin of a box and top margin of its first in-flow child
+	2、普通流中一个元素的margtin-bottom和它的紧邻的兄弟元素的的margin-top
+		bottom margin of box and top margin of its next in-flow following sibling
+	3、一个元素（height为auto）的margin-bottom和它的最后一个子元素的margin-bottom
+		bottom margin of a last in-flow child and bottom margin of its parent if the parent has ‘auto’ computed height
+	4、一个没有创建BFC、没有子元素、height为0的元素自身的margin-top和margin-bottom(折叠的是元素本身)
+		top and bottom margins of a box that does not establish a new block formatting context and that has zero computed ‘min-height’, zero or ‘auto’ computed ‘height’, and no in-flow children
+
+	PS：元素之间没有被非空内容、padding、border 或 clear 分隔开；(不是满足一个，是都要满足才会有margin collapsing)
+		第一条父子元素要没有被非空内容、padding、border隔开；
+		第二条兄弟元素之间要没有被非空内容隔开；
+		第三条父子元素没之间要没有被非空内容、padding、border隔开；
+    -->
+
+    <!-- W3C官方文档：
+    1、浮动元素和其他任何元素之间不发生外边距叠加 (包括和它的子元素).
+	2、创建了BFC的元素不会和它的子元素发生外边距叠加
+	3、绝对定位元素和其他任何元素之间不发生外边距叠加(包括和它的子元素).
+	4、inline-block元素和其他任何元素之间不发生外边距叠加 (包括和它的子元素).
+	5、普通流中的块级元素的margin-bottom永远和它相邻的下一个块级元素的margin-top叠加（除非相邻的兄弟元素clear）
+	6、普通流中的块级元素（没有border-top、没有padding-top）的margin-top和它的第一个普通流中的子元素（没有clear）发生margin-top叠加
+	7、普通流中的块级元素（height为auto、min-height为0、没有border-bottom、没有padding-bottom）和它的最后一个普通流中的子元素（没有自身发生margin叠加或clear）发生margin-bottom叠加
+	8、如果一个元素的min-height为0、没有border、没有padding、高度为0或者auto、不包含子元素，那么它自身的外边距会发生叠加
+    -->
+
+    <!-- 
+		1.父子元素（分2种情况）之间发生margin叠加的条件：
+			1、父元素和第一个子元素发生margin-top叠加
+				父元素没有创建BFC
+				父元素和第一个子元素之间没有非空内容
+				父元素没有border-top
+				父元素没有padding-top
+			2、父元素和最后一个子元素发生margin-bottom叠加
+				父元素没有创建BFC
+				父元素height为auto、min-height为0
+				父元素和最后一个子元素之间没有非空内容
+				父元素没有border-bottom
+				父元素没有padding-bottom
+			2种情况都总结了，那么让他们不发生外边距叠加也就显得很容易了：
+				1、为父元素创建BFC
+				2、为父元素设置相应的padding或者border
+ 		2.兄弟元素之间发生外边距叠加的条件：
+			兄弟元素都不是float元素
+			兄弟元素都不是absolute元素
+			兄弟元素都不是inline-block元素
+		那么让它们之间不发生外边距叠加也显得很容易了啊：
+			让兄弟元素float
+			让兄弟元素absolute
+			让兄弟元素inline-block
+    -->
+</body>
+
+</html>

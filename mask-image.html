@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>mask-image</title>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <style type="text/css">
+  /*然而这个属性现在只有-webkit-支持，就是chrome*/
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .mask-bg,
+  .mask-top {
+    position: absolute;
+    width: 409px;
+    height: 158px;
+    mask-image: url(img/mask.png);
+    -webkit-mask-image: url(img/mask.png);
+  }
+  
+  .mask-bg {
+    background-image: linear-gradient(353deg, #89C027, #89C027 28%, #E96036 28%, #E96036 49%, #FEF158 49%, #FEF158 72%, #76C5EE 72%);
+    background-image: -webkit-linear-gradient(353deg, #89C027, #89C027 28%, #E96036 28%, #E96036 49%, #FEF158 49%, #FEF158 72%, #76C5EE 72%);
+    background-image: -moz-linear-gradient(353deg, #89C027, #89C027 28%, #E96036 28%, #E96036 49%, #FEF158 49%, #FEF158 72%, #76C5EE 72%);
+  }
+  
+  .mask-top {
+    background-image: linear-gradient(bottom, #EEEEEE, #EEEEEE 60%, rgba(0, 0, 0, 0) 60%);
+    background-image: -webkit-linear-gradient(bottom, #EEEEEE, #EEEEEE 60%, rgba(0, 0, 0, 0) 60%);
+    background-image: -moz-linear-gradient(bottom, #EEEEEE, #EEEEEE 60%, rgba(0, 0, 0, 0) 60%);
+    background-size: auto 300%;
+    -webkit-background-size: auto 300%;
+    -moz-background-size: auto 300%;
+    background-position: 0 -50%;
+    transition: all 10s cubic-bezier(0, 0, 0.28, 1) 1s;
+    -webkit-transition: all 10s cubic-bezier(0, 0, 0.28, 1) 1s;
+    -moz-transition: all 10s cubic-bezier(0, 0, 0.28, 1) 1s;
+    -o-transition: all 10s cubic-bezier(0, 0, 0.28, 1) 1s;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="mask-bg"></div>
+  <div class="mask-top"></div>
+  <script type="text/javascript">
+  // (function() {
+  //   setTimeout(function() {
+  //     var top = $(".mask-top");
+  //     top.css("background-position", "0 0");
+  //   }, 10);
+  // })();
+  (function(){
+  	setTimeout(function() {
+  		var top = document.getElementsByClassName("mask-top");
+  		top[0].style.backgroundPosition = "0 0";
+  	},10);
+  })();
+  </script>
+</body>
+
+</html>

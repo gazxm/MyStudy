@@ -1,0 +1,311 @@
+@import "../scss/_reset.scss";
+$browser-default-font-size: 75px !default;
+@function rem($px) {
+  @return $px / $browser-default-font-size * 1rem;
+}
+
+$bg-red: #c6000d;
+$red: #cb2e27;
+$light-yellow: #f9c046;
+$dark-yellow: #d48e22;
+$font-yellow: #f9c151;
+
+%background {
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, $dark-yellow), color-stop(50%, $light-yellow), color-stop(100%, $dark-yellow));
+}
+
+* {
+  font-family: Helvetica, "Microsoft YaHei";
+}
+
+.index {
+	width: rem(750px);
+	background: $bg-red url(../img/background-01.jpg) 0 0 no-repeat;
+	background-size: rem(750px) rem(1334px);
+}
+
+.luckdraw, .lookreward {
+	width: rem(750px);
+	background: $bg-red url(../img/background-02.jpg) 0 0 no-repeat;
+	background-size: rem(750px) rem(1334px);
+}
+
+a.rule {
+	display: block;
+	width: rem(130px);
+	line-height: rem(45px);
+	position: absolute;
+	top: rem(65px);
+	right: rem(33px);
+	color: $red;
+	font-size: rem(16px);
+	cursor: pointer;
+	text-align: center;
+	font-weight: bold;
+	@extend %background;
+	border-radius: rem(10px);
+}
+
+.index {
+	padding-top: rem(1px);
+	.content {
+		.red-package, .statement {
+			padding: 0 rem(85px) 0 rem(85px);
+		}
+		.red-package {
+			margin-top: rem(800px);
+			font-size: rem(36px);
+			line-height: rem(51.44px);
+			text-align: center;
+			font-style: italic;
+			color: $font-yellow;
+		}
+		form {
+			padding: 0 rem(130px) 0 rem(120px);
+			.input {
+				padding-top: rem(20px);
+				box-sizing: border-box;
+				span {
+					font-size: rem(31.7px);
+					font-weight: bold;
+					color: #fac046;
+				}
+				input {
+					background: $bg-red;
+					color: $font-yellow;
+					width: rem(370px);
+					line-height: rem(52px);
+					border: 1px solid #da9629;
+					border-radius: rem(10px);
+					padding-left: rem(20px);
+				}
+			}
+			h4 {
+				margin-top: rem(15px);
+				font-size: rem(19px);
+				color: $font-yellow;
+			}
+			button {
+				border: none;
+				display: block;
+				width: rem(190px);
+				margin: rem(20px) auto 0;
+				line-height: rem(73px);
+				font-size: rem(36px);
+				font-weight: bold;
+				color: #cb2e27;
+				text-align: center;
+				border-radius: rem(15px);
+				box-shadow: 2px 1px 0 #232726, 5px 5px 5px #6e0c11;
+				@extend %background;
+			}
+		}
+		.statement {
+			text-align: center;
+			margin-top: rem(15px);
+			font-size: rem(14.44px);
+			color: #fff;
+			padding-bottom: rem(10px);
+		}
+	}
+}
+
+.luckdraw {
+	padding-top: rem(1px);
+	.content {
+		color: $font-yellow;
+		.red-content {
+			width: rem(651px);
+			height: rem(670px);
+			font-size: 0;
+			background: #ffc000;
+			margin: 0 auto;
+			border: rem(6px) solid #ff0000;
+			border-radius: rem(30px);
+			box-shadow: inset 3px 3px 10px #b98b00;
+			padding: rem(30px) rem(50px);
+		}
+		i {
+			display: inline-block;
+			width: rem(125px);
+			height: rem(179px);
+			background: transparent url(../img/red-package.png) 0 0 no-repeat;
+			background-size: rem(125px) rem(179px);
+			margin: 0 rem(26px) rem(30px);
+		}
+		h2 {
+			font-size: rem(67.69px);
+			margin-top: rem(250px);
+			font-weight: bold;
+			line-height: rem(91.67px);
+			text-align: center;
+		}
+		h3, h4 {
+			padding-left: rem(60px);
+		}
+		h3 {
+			font-size: rem(30px);
+			font-weight: bold;
+			line-height: rem(41.43px);
+			margin-top: rem(55px);
+		}
+		h4 {
+			margin-top: rem(41px);
+			padding-bottom: rem(65px);
+			font-size: rem(22.48px);
+			line-height: rem(41.43px);
+		}
+		p {
+			padding-left: rem(20px);
+			font-size: rem(22.48px);
+			line-height: rem(41.43px);
+			span {
+				margin-left: rem(40px);
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+.lookreward {
+	padding-top: rem(1px);
+	.content {
+		h2 {
+			font-size: rem(50.09px);
+			font-weight: bold;
+			line-height: rem(70.64px);
+			color: $light-yellow;
+			text-align: center;
+			margin-top: rem(180px);
+		}
+		.open-red {
+			width: rem(335px);
+			height: rem(315px);
+			margin: rem(30px) auto 0;
+			position: relative;
+			background: transparent url(../img/open-red.png) 0 0 no-repeat;
+			background-size: rem(335px) rem(315px);
+			p {
+				position: absolute;
+				top: rem(50px);
+				left: rem(60px);
+				text-align: center;
+				font-size: rem(45.96px);
+				font-weight: bold;
+				line-height: rem(56.17px);
+				color: #ea3925;
+			}
+		}
+		h3 {
+			font-size: rem(30px);
+			line-height: rem(64.87px);
+			margin-top: rem(15px);
+			color: $font-yellow;
+			text-align: center;
+		}
+		p.usage-method {
+			font-size: rem(22.17px);
+			font-weight: bold;
+			line-height: rem(34.33px);
+			color: $font-yellow;
+			text-align: center;
+		}
+	}
+}
+
+.popup-rule {
+	.overlay {
+		position: fixed;
+		background: rgba(255, 255, 255, 0);
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+		.close {
+			position: fixed;
+			top: rem(50px);
+			right: rem(25px);
+			width: rem(90px);
+			line-height: rem(42px);
+			font-size: rem(16px);
+			border-radius: rem(10px);
+			text-align: center;
+			@extend %background;
+			&:before {
+				content: '';
+				display: inline-block;
+				margin-right: rem(5px);
+				width: rem(14px);
+				height: rem(16px);
+				background: transparent url(../img/close.png) 0 0 no-repeat;
+				background-size: rem(14px) rem(16px);
+			}
+		}
+	}
+	.dialog-rule {
+		position: fixed;
+		top: 20%;
+		left: rem(45px);
+		width: rem(660px);
+		height: rem(945px);
+		background: $light-yellow;
+		border-radius: rem(30px);
+		overflow-y: hidden;
+		padding: rem(36px) rem(50px) 0;
+		font-size: rem(27.74px);
+		line-height: rem(46.24px);
+		z-index: 11;
+	}
+}
+
+.popup {
+	.overlay {
+		position: fixed;
+		background: rgba(255, 255, 255, 0);
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+	}
+	.dialog {
+		position: fixed;
+		width: rem(600px);
+		height: rem(300px);
+		background: $light-yellow;
+		top: 50%;
+		left: 50%;
+		margin-left: rem(-300px);
+		margin-top: rem(-150px);
+		border-radius: rem(25px);
+		z-index: 11;
+		.close {
+			position: absolute;
+			top: rem(20px);
+			right: rem(20px);
+			width: rem(30px);
+			height: rem(30px);
+			background: transparent url(../img/close.png) 50% 0 no-repeat;
+			background-size: rem(20px) rem(22px);
+		}
+		h3.error {
+			line-height: rem(200px);
+			font-size: rem(36px);
+			color: $red;
+			text-align: center;
+		}
+		a.know {
+			display: block;
+			width: rem(190px);
+			margin: 0 auto;
+			line-height: rem(73px);
+			font-size: rem(36px);
+			font-weight: bold;
+			color: #cb2e27;
+			text-align: center;
+			border-radius: rem(15px);
+			@extend %background;
+		}
+	}
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>关系操作符</title>
+	<script>
+		/*
+			关系操作符：> , < , >= , <=; 这些操作符都会返回一个布尔值
+			1、如果两个操作数都是数值，则执行数值比较
+			2、如果两个操作数都是字符串，则比较两个字符串对于的字符编码值
+			3、如果一个操作数是数值，则将另一个操作数转换为一个数值，然后执行数值比较。
+			4、如果一个操作数是对象，则调用这个对象的valueOf()方法，用得到的结果按照前面的规则执行比较。如果对象没有valueOf()方法，则调用toString()方法，并用得到的结果根据前面的规则执行比较。
+			5、如果一个操作数是布尔值，则线将其转换为数值，然后在执行比较。
+		*/
+		var result1 = 5 > 3,	//true
+				result2 = 5 < 3;	//fasle
+		console.log(result1, result2);	
+
+		var result3 = "Brick" < "alphabet",								//true
+				result4 = "Brick".toLowerCase() < "alphabet",	//fasle
+				result5 = "23" < "3";													//true
+		/*由于上述都是两个字符串的对比，它们会对比它们的字符编码值
+				大写字母的字符编码值都小于小写字母的字符编码值;
+				2的字符编码值小于3的字符编码值
+		*/
+		console.log(result3, result4, result5);
+
+		var result6 = "a" < 3,				//false
+				result7 = "a" > 3,				//false
+				result8 = NaN > 3,				//false
+				result9 = NaN < 3,				//false
+				result10 = null < 3,			//true
+				result11 = undefined < 3,	//false
+				result12 = undefined > 3;	//false
+		console.log(result6, result7, result8, result9, result10, result11, result12);
+		// NaN,undefined 或者 字符串转换成了NaN。参与对比结果全是false;
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

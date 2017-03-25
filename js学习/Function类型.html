@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Function类型</title>
+	<script>
+		//"use strict";
+		/*在ECMAScript中，函数实际上是对象。每个函数都是Function类型的实例。而且都与其他引用类型一样具有属性和方法。由于函数是对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。
+			有三种方式声明函数：
+		*/
+		//函数声明语法定义
+		function functionEg1(num1, num2) {
+			return num1 + num2;
+		} 
+		//函数表达式定义
+		var functionEg2 = function(num1, num2) {
+			return num1 + num2;
+		}; //记得带个分号
+		//使用Function构造函数
+		var functionEg3 = new Function("num1", "num2", "return num1 + num2");	//不推荐
+		//不推荐原因:因为这种语法会导致解析两次代码(第一次是解析常规ECMAScript代码，第二次是解析传入构造函数中的字符串)，从而影响性能。不过这种语法对于理解"函数是对象，函数名是指针"的概念倒是十分直观的。
+
+		//由于函数名仅仅是指向函数的指针，因此函数名与包含对象指针的其他变量没有什么不同。
+		function functionEg4(num1, num2){
+			return num1 + num2;
+		}
+		console.log(functionEg4(10, 10));	//20
+
+		var functionEg5 = functionEg4;		
+		//functionEg5, functionEg4都指向了同一个函数,因此functionEg5()也可以被调用并返回结果。即使将functionEg4设置为null,让它与函数"断绝关系",但仍然可以正常调用因此functionEg5()。
+		console.log(functionEg5(10, 10));	//20
+
+		functionEg4 = null;
+		console.log(functionEg5(10, 10));	//20
+
+		//1、没有重载(深入理解)
+		function addSomeNumber(num) {
+			return num + 100;
+		}
+
+		function addSomeNumber(num) {
+			return num + 200;
+		}
+
+		console.log(addSomeNumber(100));	//300
+		//自己的理解:上述的两个function都会在堆内存中，第一次是让addSomeNumber这个函数名指向堆内存中的一个函数，第二次是让addSomeNumber这个函数名指向堆内存中的另一个函数，所以没有重载。
+
+		//2、函数声明和函数表达式: 
+		console.log(sum1(10, 10));	//20
+		function sum1(num1, num2) {
+			return num1 + num2;
+		}
+		//因为在代码开始执行之前，解析器就已经通过一个名为函数声明提升(function declaration hoisting)的过程，读取并将函数声明添加到执行环境中。对代码求值时，JavaScript引擎在第一遍会声明函数并将它们放到源代码树的顶部。所以，即使声明函数的代码在调用它的代码后面，JavaScript引擎也能把函数声明提升到顶部。
+
+		//console.log(sum2(10, 10));		//sum2 is not defined
+		var sum = function(num1, num2) {
+			return num1 + num2;
+		};
+		//原因在于函数位于一个初始化语句中，而不是一个函数声明。换句话说，在执行到函数所在的语句之前，变量sum中不会保存有对函数的引用;而且报错了，并不会执行下去。
+
+		console.log("-----------3、作为值的函数-------------");
+		//因为ECMAScript中的函数名本身就是变量，所以函数也可以作为值来使用。也就是说，不仅可以像传递参数一样把一个函数传递给另一个函数，而且可以将一个函数作为另一个函数的结果返回。
+		//参数为函数
+		var callSomeFunction = function(someFunction, someArgument) {
+			return someFunction(someArgument);
+		};
+
+		var add10 = function(num) {
+			return num + 10;
+		};
+
+		var getGreeting = function(name) {
+			return "Hello, " + name;
+		};
+
+		var result1 = callSomeFunction(add10, 10),
+				result2 = callSomeFunction(getGreeting, "Nicholas");
+		console.log(result1, result2); //20  "Hello, Nicholas"
+
+		//从一个函数返回另一个函数
+		var person1 = {
+			name : "zxm",
+			age : 23,
+			tel : 11111111123
+		},
+		person2 = {
+			name : "gazxm",
+			age : 20,
+			tel : 21321323123
+		},
+		person3 = {
+			name : "zzz",
+			age : 18,
+			tel : 13312345678
+		};
+		var dateEg1 = [person1, person2, person3],
+				dateEg2 = [person1, person2, person3],
+				dateEg3 = [person1, person2, person3];
+		var createComparisonFunction = function(propertyName) {
+			return function(object1, object2) {
+				var value1 = object1[propertyName],
+						value2 = object2[propertyName];
+				if (value1 < value2) {
+					return -1;
+				} else if(value1 > value2) {
+					return 1;
+				} else {
+					return 0;
+				}
+			};
+		}
+		dateEg1.sort(createComparisonFunction("name"));	//sort需要接收的是一个function
+		dateEg2.sort(createComparisonFunction("age"));
+		dateEg3.sort(createComparisonFunction("tel"));
+		console.log(JSON.stringify(dateEg1),JSON.stringify(dateEg2),JSON.stringify(dateEg3));
+		/*
+		[{"name":"gazxm","age":20,"tel":21321323123},{"name":"zxm","age":23,"tel":11111111123},{"name":"zzz","age":18,"tel":13312345678}] 
+		[{"name":"zzz","age":18,"tel":13312345678},{"name":"gazxm","age":20,"tel":21321323123},{"name":"zxm","age":23,"tel":11111111123}] 
+		[{"name":"zxm","age":23,"tel":11111111123},{"name":"zzz","age":18,"tel":13312345678},{"name":"gazxm","age":20,"tel":21321323123}]
+		*/
+
+		/*4、函数内部属性
+				1、arguments
+				2、this
+		*/
+		//1、arguments,它是一个类数组对象，包含着传入函数中的所有参数。虽然arguments的主要用途是保存函数参数，但这个对象还有一个名叫callee的属性，该属性是一个指针，指向拥有这个arguments对象的函数。
+		var factorial_error = function(num) {
+			if(num <= 1) {
+				return 1;
+			} else {
+				return num * factorial_error(num - 1);	//这个函数的执行和函数名factorial紧紧耦合
+			}
+		}
+
+		var factorial_right = function(num) {
+			if(num <= 1) {
+				return 1;
+			} else {
+//				return num * arguments.callee(num - 1);		在严格模式下会炸。。注释了
+			}
+		}
+
+		var trueFactorial_error = factorial_error,
+				trueFactorial_right = factorial_right;
+
+		console.log(trueFactorial_error(5));	//120   测试：还是可以用啊，卧槽
+		console.log(trueFactorial_right(5));	//非严格模式下120
+
+		//2、this this引用的是函数据以执行的环境对象——或者也可以说是this值(当在网页的全局作用域中调用函数时，this对象引用的就是window)
+		window.color = "red";
+		var o = {color: "blue"};
+
+		function sayColor() {
+			console.log(this.color);	
+		}
+
+		sayColor();					//非严格模式下"red"，严格模式下color会报undefined
+		o.sayColor = sayColor;
+		o.sayColor()				//"blue"
+		//牢记：函数的名字仅仅是一个包含指针的变量而已。因此，即使是在不同的环境中执行，全局的sayColor()函数和o.sayColor函数指向的仍然是同一个函数。
+		console.log("-----------caller函数------------");
+		//caller函数  在ES5中规范化了另一个函数对象的属性:caller。 这个属性中保存着调用当前函数的函数的引用，如果是在全局作用域中调用当前函数，它的值为null。
+			function outer() {
+				inner();
+			}
+
+			function inner() {
+				console.log(inner.caller);						//非严格模式下:返回的是outer()函数
+				console.log(arguments.callee.caller);	//返回的是outer()函数，耦合度更低
+			}
+
+			outer();
+			//在严格模式下caller和callee都禁用了，不能为函数的caller属性赋值，会导致错误
+			console.log("-----------5、函数属性和方法---------")
+			//ECMAScript中的函数是对象，因此函数也有属性和方法。每个函数都包含两个属性:length和prototype。1、length属性表示函数希望接收的命名参数的个数。
+				var test_a = function(name) {
+					console.log(name);
+				},
+				test_b = function(num1, num2) {
+					console.log(num1 + num2);
+				},
+				test_c = function() {
+					console.log("test_c");
+				};
+				console.log(test_a.length,test_b.length,test_c.length);		//  1  2  0
+				//2、prototype属性。对于ECMAScript中的引用类型而言，prototype是保存它们所有实例方法的真正所在。换句话说，诸如toString()和valueOf()等方法实际上都保存在prototype名下，只不过是通过各自对象的实例访问罢了。在ES5中，prototype属性是不可枚举的，因此使用for-in无法实现。
+				console.log("-----------apply()和call()----------");
+				/*每个函数都包含两个非继承而来的方法：apply()和call()。这两个方法的用途都是在特定的作用域中调用函数，实际上等于设置函数体内this对象的值。
+					1、apply()方法接收两个参数：一个是在其中运行函数的作用域，另一个是参数数组。其中第二个参数可以是Array的实例，也可以是arguments对象
+				*/
+				function sum(num1, num2) {
+					return num1 + num2;
+				}
+
+				function callSum1(num1, num2) {
+					return sum.apply(this, arguments);
+				}
+
+				function callSum2(num1, num2) {
+					return sum.apply(this, [num1, num2]);
+				}
+				console.log(callSum1(10, 10));	//20
+				console.log(callSum2(10, 10));	//20
+				//在上面这个例子中，callSum1()在执行sum()函数时传入了this作为this值(因为是在全局作用域中调用的，所以传入的就是window对象)和arguments对象。而callSum2同样也调用了sum()函数，但它传入的则是this和一个参数数组。这两个函数都会正常执行并返回正确的结果
+
+				//2、call()方法 对于call()方法而言，第一个参数是this值没有变化，变化的是其他参数都直接传递给函数。在使用call()方法时，传递给函数的参数必须列举出来。
+				function sum(num1, num2){
+					return num1 + num2;
+				}
+
+				function callSum(num1, num2){
+					return sum.call(this, num1, num2);
+				}
+
+				console.log(callSum(10, 10));	//20
+				//在使用call()方法的情况下，callSum()方法必须明确地传入每一个参数。结果与使用apply()没有什么不同，具体使用什么参数，看具体情况而定。而apply()和call()是能够扩充函数赖以运行的作用域。
+				window.color = "red";
+				var o = {color: "blue"};
+
+				function sayColor() {
+					console.log(this.color);
+				}
+
+				sayColor();							//red
+				sayColor.call(this);		//red
+				sayColor.call(window);	//red
+				sayColor.call(o);				//blue
+
+				console.log("--------ES5:bind()----------");
+				/*bind()方法的兼容性： IE9+、Firefox4+、Safari 5.1+、Opera 12+ 和chrome 
+					这个方法会创建一个函数的实例，其this值会被绑定到传给bind()函数的值。
+				*/
+				window.colorBind = "red";
+				var oBind = {color: "blue"};
+
+				function sayColorBind() {
+					console.log(this.color);
+				}
+				var objectSayColor = sayColor.bind(o);
+				objectSayColor();		//blue
+				//在这里，sayColor()调用bind()并传入对象o，创建了objectSayColor()函数。objectSayColor()函数的this值等于o，因此即使是在全局作用域中调用这个函数，也会打印出"blue"。 
+
+				//最后： 每个函数继承的toLocaleString()和toString()方法始终都返回函数的代码。返回的风格因浏览器而异。valueOf()方法同样也只返回函数代码。
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

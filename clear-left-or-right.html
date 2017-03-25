@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>clear:left and right</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		.div-left1 {
+			width: 200px;
+			height: 200px;
+			float: left;
+			border: 1px solid black;
+		}
+		.div-left2 {
+			width: 200px;
+			height: 100px;
+			float: left;
+			border: 1px solid blue;
+			clear: left;	/*clear:both也可以*/
+		}
+		p {
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div class="div-left1"></div>
+	<div class="div-left2"></div>
+	<p>而官方的说法则是“设置了clear的元素不能怎样怎样”。也就是我自己如何如何~~大家可以再次感受下……
+
+为何官方解释更好呢？难道是“己所不欲勿施于人”的缘故？哈，这个解释赞的，方便记忆。更通俗的原因是：
+
+务必记住这句话：“float是魔鬼，会影响其他相邻元素；但是clear是小白，其只会影响自身，不会对其他相邻元素造成影响！”
+
+但是，官方的解释似乎拗口，缺少点灵性。于是，我根据自己的感性认知，做了如下理解：
+
+clear语法：
+clear : none | left | right | both
+
+取值：
+none : 默认值。
+left : 左侧抗浮动
+right : 右侧抗浮动
+both : 两侧抗浮动
+
+“抗”这个拟人化的动词的发起者是设置了clear属性的元素，既形象又释义准确。
+
+实例出真知
+您可以狠狠地点击这里：clear:left/right的作用效果demo
+
+左侧抗浮动
+
+例如上图所示的clear:left作用示意：图片左浮动，化身魔鬼，要影响后面相邻的元素。一般的元素都逃不了被影响被束缚的命运。除非拥有clear技能。例如，这里clear:left左侧抗浮动，也就是，左侧的浮动根本就奈何不了我——我还是原原本本在下面显示。
+
+但是，如果图片是右浮动，则clear:left仍逃不过沦陷的命运，可以看到父级容器的高度塌陷了！
+
+单纯的clear:left就像是招潮蟹，一侧雄起，一侧不举。
+招潮蟹
+
+因此，考虑到通用性，在抗浮动的处理中，我们都是使用clear:both. 用意很明显：我不必关心你是左浮动还是右浮动，我都通通免疫。
+
+因此，我们才会有下面这段雕琢后的清除浮动通用CSS：
+
+.fix { *zoom: 1; }
+.fix:after { content: ''; display: table; clear: both; }
+下面又有问题了，貌似我们接触的clear基本上都是both值，似乎left, right值的出现就是鸡肋，没什么用。真的是这样吗？
+
+二、clear:left/right的实际用途
+clear:left/right最实际也是最常见的用途就是实现垂直环绕布局。
+
+</p>
+<div style="clear:left;">dddddddd</div>
+</body>
+</html>

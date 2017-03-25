@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css选择器</title>
+	<script type="text/javascript"></script>
+	<!-- 不断完善 -->
+	<style type="text/css">
+		/*p 和 .a 之间有一个空格，这个是选择p的子节点所有class为a*/
+		p .a {
+			text-decoration: none;
+		}
+		/*p和.p之间没有空格，表示选择是p标签而且class="p"*/
+		p.p {
+			font-size: 14px;
+		}
+		/* nth-child(): IE9+ */
+	</style>
+</head>
+<body>
+	<div>
+		<p class="p">
+			<a class="a" href="javascript:void(0)">AAAAAA</a>
+			<a class="a" href="javascript:void(0)">BBBBBB</a>
+		</p>
+	</div>
+</body>
+</html>

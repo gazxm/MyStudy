@@ -1,0 +1,88 @@
+body {
+  background: #fff url(../img/bg.jpg) 0 0 repeat-x;
+  font: 11px/15px arial, sans-serif;
+  margin: 0px;
+  color: #fff; }
+
+.css-zen-garden {
+  background: transparent url(../img/tunami2.jpg) 0 0 no-repeat;
+  width: 684px;
+  height: 1515px; }
+  .css-zen-garden a {
+    text-decoration: underline; }
+  .css-zen-garden a:link,
+  .css-zen-garden a:visited {
+    color: #e2e2e2; }
+  .css-zen-garden a:hover,
+  .css-zen-garden a:active,
+  .css-zen-garden a:focus {
+    color: #fff;
+    font-weight: bold; }
+
+.ademo,
+.road,
+.select,
+.archives,
+.resources,
+.so-what,
+.participation,
+.benefits,
+.requirements,
+footer {
+  padding: 7px;
+  margin: 5px;
+  border-left: 1px solid #aaa;
+  border-top: 1px solid #aaa;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  background-image: url(../img/transparent.gif); }
+  .ademo h3,
+  .road h3,
+  .select h3,
+  .archives h3,
+  .resources h3,
+  .so-what h3,
+  .participation h3,
+  .benefits h3,
+  .requirements h3,
+  footer h3 {
+    font-family: arial, sans-serif;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 3px 0 0 0; }
+  .ademo p,
+  .road p,
+  .select p,
+  .archives p,
+  .resources p,
+  .so-what p,
+  .participation p,
+  .benefits p,
+  .requirements p,
+  footer p {
+    margin: 6px; }
+
+.header {
+  width: 275px;
+  position: absolute;
+  left: 88px;
+  top: 902px;
+  z-index: 2; }
+  .header .select ul,
+  .header .archives ul,
+  .header .resources ul {
+    margin: 0;
+    padding: 0; }
+    .header .select ul li,
+    .header .archives ul li,
+    .header .resources ul li {
+      list-style-type: none;
+      display: inline; }
+
+.main {
+  width: 450px;
+  position: absolute;
+  left: 411px;
+  top: 535px;
+  z-index: 2; }

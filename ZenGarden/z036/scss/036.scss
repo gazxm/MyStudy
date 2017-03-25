@@ -1,0 +1,229 @@
+body {
+  font: 8pt/16pt verdana, geneva, arial, sans serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  border-top: 1px solid #230;
+  border-right: 1px solid #230;
+  position: relative;
+  width: 760px;
+  color: #000;
+  margin: 0 auto;
+  background: transparent url(../img/topbg.gif) 0 0 repeat-x;
+  vertical-align: top;
+  padding: 0 0 1px 0;
+  .header {
+    height: 285px;
+    font-size: 0px;
+    h1 {
+      display: inline-block;
+      *zoom: 1;
+      *display: inline;
+      background: transparent url(../img/centerpiece.jpg) 0 0 no-repeat;
+      width: 355px;
+      height: 201px;
+      margin-top: 20px;
+      vertical-align: top;
+    }
+    h2 {
+      font: bold 11px/14px arial, verdana, sans serif;
+      color: #fff;
+      padding: 100px 30px 2px 30px;
+      display: inline-block;
+      *zoom: 1;
+      *display: inline;
+      background: transparent url(../img/quicksumbg.gif) 0 0 no-repeat;
+      width: 272px;
+      height: 201px;
+      margin-top: 20px;
+      vertical-align: top;
+      text-align: justify;
+    }
+    h3 {
+      position: absolute;
+      padding: 0 8px;
+      margin: 0 30px;
+      top: 230px;
+      left: 0px;
+      font: 10px verdana, arial, sans serif;
+      color: #fff;
+      a:link {
+        color: #fff;
+      }
+      a:visited {
+        color: #672;
+      }
+      a:hover {
+        background: #fff;
+        color: #000;
+        text-decoration: none;
+      }
+    }
+  }
+  .main {
+    background: transparent url(../img/lbg.gif) 0 0 repeat-y;
+    font-size: 0px;
+    margin-top: -33px;
+    .listlink {
+      display: inline-block;
+      *zoom: 1;
+      *display: inline;
+      font: 8pt/16pt verdana, geneva, arial, sans serif;
+      padding: 50px 30px 0 130px;
+      width: 195px;
+      vertical-align: top;
+      background: transparent url(../img/lsh.gif) 0 0 no-repeat;
+      h3 {
+        margin: 0px;
+        width: 200px;
+        height: 37px;
+        white-space: nowrap;
+        overflow: hidden;
+        border-bottom: 1px solid #ddd;
+      }
+      h3.select {
+        background: transparent url(../img/h3select.gif) 0 0 no-repeat;
+      }
+      h3.archives {
+        background: transparent url(../img/h3archives.gif) 0 0 no-repeat;
+        margin-bottom: 20px;
+      }
+      h3.resources {
+        background: transparent url(../img/h3resources.gif) 0 0 no-repeat;
+        margin: 10px 0 20px 0;
+      }
+      ul {
+        margin: 10px 0 0 0;
+        padding: 10px 8px 10px 8px;
+        li {
+          margin: 0px;
+          padding: 0px;
+          list-style-type: none;
+          display: block;
+          line-height: 2.5ex;
+          background: transparent url(../img/bullet.gif) 0 40% no-repeat;
+          border-bottom: 1px solid #eee;
+          padding: 5px 0px 5px 25px;
+          margin: 5px 0;
+          a {
+            display: block;
+          }
+          a:link {
+            color: #230;
+            font-weight: bold;
+          }
+          a:visited {
+            color: #672;
+          }
+          a:hover {
+            color: #ABBC47;
+          }
+          a.b {
+            display: inline;
+          }
+          a.b:link {
+            font-weight: normal;
+            text-decoration: none;
+          }
+          a.b:visited {
+            color: #672;
+          }
+          a.b:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      a.c {
+        display: block;
+        line-height: 2.5ex;
+        background: transparent url(../img/bullet2.gif) 0 50% no-repeat;
+        padding: 0px 0px 0px 25px;
+        margin: 5px 0;
+      }
+      a.c:link {
+        color: #230;
+      }
+      a.c:visited {
+        color: #672;
+      }
+      a.c:hover {
+        color: #ABBC47;
+      }
+    }
+    .content {
+      display: inline-block;
+      *zoom: 1;
+      *display: inline;
+      font: 8pt/16pt verdana, geneva, arial, sans serif;
+      width: 349px;
+      border-left: 1px solid #ddd;
+      padding: 50px 25px 0 30px;
+      vertical-align: top;
+      text-align: justify;
+      background: transparent url(../img/lsh.gif) right top no-repeat;
+      background-size: 74px 145px;
+      p {
+        padding: 0 8px;
+      }
+      p.p1 {
+        width: 270px;
+      }
+      h3 {
+        border-bottom: 1px solid #ddd;
+        min-width: 200px;
+        height: 36px;
+      }
+      h3.theroad {
+        overflow: hidden;
+        white-space: nowrap;
+        width: 270px;
+        background: transparent url(../img/h3preamble.gif) 0 0 no-repeat;
+      }
+      h3.sowhat {
+        background: transparent url(../img/h3explanation.gif) 0 0 no-repeat;
+      }
+      h3.part {
+        background: transparent url(../img/h3participation.gif) 0 0 no-repeat;
+      }
+      h3.bene {
+        background: transparent url(../img/h3benefits.gif) 0 0 no-repeat;
+      }
+      h3.require {
+        background: transparent url(../img/h3requirements.gif) 0 0 no-repeat;
+      }
+      img {
+        width: 150px;
+        height: 15px;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 50px;
+        margin-top: 30px;
+      }
+    }
+  }
+  .footer {
+    position: absolute;
+    top: 230px;
+    left: 0px;
+    color: #fff;
+    font: 10px verdana, arial, sans serif;
+    margin: 0px 30px 0px 550px;
+    text-align: right;
+    a {
+      padding: 0 5px;
+    }
+    a:link {
+      color: #fff;
+    }
+    a:visited {
+      color: #672;
+    }
+    a:hover {
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+    }
+  }
+}

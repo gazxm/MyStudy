@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>link和@import引用CSS的区别</title>
+	<script type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="test.css">
+	<style type="text/css">
+		@import url(test.css);
+	</style>
+	<!-- 
+	区别1：link是XHTML标签，除了加载CSS外，还可以定义RSS等其他事务；@import属于CSS范畴，只能加载CSS。
+
+　　区别2：link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。
+
+　　区别3：link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本的浏览器不支持。
+
+　　区别4：link支持使用Javascript控制DOM去改变样式；而@import不支持。
+	-->
+	<!-- 
+	@import最优写法
+	@import的写法一般有下列几种：
+
+@import 'style.css' //Windows IE4/ NS4, Mac OS X IE5, Macintosh IE4/IE5/NS4不识别
+@import "style.css" //Windows IE4/ NS4, Macintosh IE4/NS4不识别
+@import url(style.css) //Windows NS4, Macintosh NS4不识别
+@import url('style.css') //Windows NS4, Mac OS X IE5, Macintosh IE4/IE5/NS4不识别
+@import url("style.css") //Windows NS4, Macintosh NS4不识别
+由上分析知道，@import url(style.css) 和@import url("style.css")是最优的选择，兼容的浏览器最多。从字节优化的角度来看@import url(style.css)最值得推荐。
+	-->
+</head>
+<body>
+	
+</body>
+</html>

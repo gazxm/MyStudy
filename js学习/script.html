@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>script</title>
+	<script type="text/javascript"></script>
+	<!-- script属性: 
+		async:规定异步执行脚本（仅适用于外部脚本）。【注意：1、若有两个异步脚本，那么它们的加载顺序不能保证谁前谁后，所以请确保它们互不依赖；2、异步脚本一定会在页面load事件之前执行，但是可能在DOMContentLoaded之前或者之后。】
+		defer:规定当页面已完成解析后，执行脚本（仅适用于外部脚本）。 IE7以及更早版本对嵌入的script也支持这个属性 defer="defer"
+		charset:规定在脚本中使用的字符编码（仅适用于外部脚本）。【并没有什么卵用】 
+		src:规定外部脚本的 URL。 
+		type【Html5不需要】:表示编写代码使用的脚本语言的内容类型【也成为MIME类型】
+	-->
+	<!--如果 async="async"：脚本相对于页面的其余部分异步地执行（当页面继续进行解析时，脚本将被执行）
+		如果不使用 async 且 defer="defer"：脚本将在页面完成解析时执行
+		如果既不使用 async 也不使用 defer：在浏览器继续解析页面之前，立即读取并执行脚本 
+	-->
+	<!-- 
+		在 HTML 4 中，"type" 属性是必需的，但在 HTML5 中是可选的。
+		"async" 属性是 HTML5 中的新属性。
+		HTML5 中不再支持 HTML 4.01 中的某些属性："xml:space"。
+	-->
+
+	<!-- scr标签中example.js中的.js扩展名不是必须的，因为浏览器不会检查包含Javascript的文件的扩展名，所以JSP,PHP或其他服务端的语言动态生成javascript代码成为了可能，但是请确保服务器返回正确的MIME格式 -->
+
+	<!-- 
+		<script type="text/javascript" src="example.js">
+			(function(){
+				alert('123');
+			})();
+		</script>
+		// 会忽略嵌入的javascript代码，只加载example.js
+	-->
+</head>
+<body>
+	
+</body>
+</html>

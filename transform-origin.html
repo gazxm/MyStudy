@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>transform-origin</title>
+  <script type="text/javascript"></script>
+  <style>
+  /*transform-origin CSS属性让你更改一个元素变形的原点。例如，rotate()的transform-origin是旋转的中心点(这个属性的应用原理是先用这个属性的负值translate该元素，进行变形，然后再用这个属性的值把元素的translate回去)
+		初始值: 50% 50% 0;
+		//单值语法
+			transform-origin: 2px;
+			transform-origin: bottom;
+		//双值语法  用两个数字值先水平后垂直，用一数值和一个关键字或两个关键字的时候不强求顺序
+			transform-origin: 3cm 2px;	// x-offset y-offset
+			transform-origin: 2px left;	// y-offset x-offset-keyword
+			transform-origin: left 2px; // x-offset-keyword y-offset
+			transform-origin: right top;// x-offset-keyword y-offset-keyword
+			transform-origin: top right;// y-offset-keyword x-offset-keyword
+		//三值语法
+		transform-origin: 2px 30% 10px;	// x-offset y-offset z-offset
+		transform-origin: 2px left 10px;// y-offset x-offset-keyword z-offset
+		transform-origin: left 5px -3px;// x-offset-keyword y-offset z-offset
+		transform-origin: right bottom 2cm;// x-offset-keyword y-offset-keyword z
+		transform-origin: bottom right 2cm;// y-offset-keyword x-offset-keyword z
+		*/
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		@keyframes horse {
+			0% {
+				transform: scaleX(1);
+			}
+			25% {
+				transform: scaleX(0.5);
+			}
+			75% {
+				transform: scaleX(2);
+			}
+			100% {
+				transform: scaleX(1);
+			}
+		}
+
+		.horse {
+			width: 400px;
+			height: 200px;
+			margin-left: 200px;
+			background: transparent url(img/horse.jpg);
+			-webkit-animation: horse 3s cubic-bezier(0, 0, 1, 1) infinite; 
+			animation: horse 3s cubic-bezier(0, 0, 1, 1) infinite; 
+			transform-origin: left center;		/*仅在此设置即可，不需要在每一帧都设置一次*/
+		}
+  </style>
+</head>
+
+<body>
+	<div class="horse">
+	</div>
+</body>
+
+</html>

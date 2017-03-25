@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>基本包装类型-Number类型</title>
+  <script>
+  	/*	Number是与数字值对应的引用类型。要创建Number对象，可以在调用Number构造函数时向其中传递相应的数值。
+  		var numberObject = new Number(10);
+  	与Boolean类型一样，Number类型也重写了valueOf()、toLocaleString()和toString()方法。重写后的valueOf()方法返回对象表示的基本类型的数值，另外两个方法则返回字符串形式的数值。同时，toString()方法传递一个表示基数的参数，告诉它返回几进制数值的字符串形式。
+  	*/
+  		var num = 10;
+  		console.log(num.toString());	//"10"
+  		console.log(num.toString(2));	//"1010"
+  		console.log(num.toString(8));	//"12"
+  		console.log(num.toString(10));//"10"
+  		console.log(num.toString(16));//"a"
+  	console.log("-----------toFixed(),foExponential(),toPrecision()方法--------------");
+  	//1、toFixed()四舍五入的方法，参数为保留的小数点后几位。【0到20个小数位的数值】
+  	var num1 = 10,
+  			num2 = 10.005,
+  			num3 = 12.004;
+  	console.log(num1.toFixed(2),num2.toFixed(2),num3.toFixed(2));	//"10.00" "10.01" "12.00" 
+  	console.log(typeof num1.toFixed(2), typeof num1);	//string number
+  	//IE8及其之前版本，不能正确舍入泛微{(-0.94,-0.5],[0.5,0.94)}之间的值。返回0，不是1或-1。
+  	//2、toExponential()该方法返回以指数表示法(也称e表示法)，表示的数值的字符串形式。与toFixed()一样，toExponential()也接收一个参数，而且该参数同样也是指定输出结果中的小数位数。
+  	var num4 = 100000,
+  			num5 = 945435849548;
+  	console.log(num4.toExponential(4));	//"1.0000e+5"			小数点后4位
+  	console.log(num5.toExponential(5));	//"9.45436e+11"		小数点后5位
+  	console.log(typeof num4.toExponential(4), typeof num4);	//string number
+  	/*3、toPrecision()方法 得到表示某个数值的最合适的格式
+				对一个数值来说，toPrecision()方法可能会返回固定大小(fixed)格式，也可能返回指数(exponential)格式;具体规则是看哪种格式最合适。这个方法接收一个参数，即表示数值的所有数字的位数(不包括指数部分)。
+				【可以表现1到21位小数，某些浏览器支持的范围更大，但这是典型实现的范围】
+		*/
+		var num6 = 99;
+		console.log(num6.toPrecision(1));	// "1e+2"	99用一位数表示，向上舍入为100，然后用指数表示
+		console.log(num6.toPrecision(2));	// "99"
+		console.log(num6.toPrecision(3));	// "99.0"
+		console.log(typeof num6.toPrecision(), typeof num6);	//string number
+
+		//经过上述三个函数转换之后，Number都转换成了String
+
+		/*	与Boolean对象类似，Number对象也以以后台方式为数值提供了重要的功能。但是，不要直接实例化Number对象，原因和显示创建Boolean对象一样。在使用typeof和instanceof操作符测试基本类型数值与引用类型数值时，得到的结果完全不同
+		*/
+		var numberObject =new Number(10);
+		var numberValue = 10;
+		console.log(typeof numberObject, typeof numberValue);	//object   number
+		console.log(numberObject instanceof Number, numberValue instanceof Number);  //true   false
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

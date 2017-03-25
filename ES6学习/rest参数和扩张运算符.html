@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>rest参数</title>
+	<script type="text/javascript"></script>
+</head>
+
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+<script>
+	//ES6 引入 rest 参数（形式为“...变量名”），用于获取函数的多余参数，这样就不需要使用arguments对象了。rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。
+
+	function add(...values) {
+		let sum = 0;
+		for (let val of values) {
+			console.log(val)
+			if (val instanceof Array) {
+				// 有点蛋疼，
+			} else {
+				sum += val;
+			}
+		}
+		return sum
+	}
+	console.log(add(2, 5, 6, 7, 10, [30, 40, 50]));		//	30
+
+	//console.log(add([2, 5, 6, 7, 10]));	//	30
+
+	//rest 参数中的变量代表一个数组，所以数组特有的方法都可以用于这个变量。下面是一个利用 rest 参数改写数组push方法的例子。
+
+	function push(array, ...items) {
+		items.forEach((item) => {
+			array.push(item);
+		});
+	}
+
+	var a = [];
+	push(a, 1, 2, 3, 8);
+	console.log(a);			//[1, 2, 3, 8]
+
+	//ES5
+	console.log(Math.max.apply(null, [14, 3, 77]));		//	77
+
+	//ES6
+	console.log(Math.max(...[14, 3, 77]));						//	77
+
+	console.log(new Date(...[2015, 1, 1]));		//Sun Feb 01 2015 00:00:00 GMT+0800 (中国标准时间)
+
+	//扩展运算符的应用：1、合并数组
+	var arr1 = ['a', 'b'];
+	var arr2 = ['c'];
+	var arr3 = ['d', 'e'];
+	//ES5的合并数组
+	arr1.concat(arr2, arr3);	// [ 'a', 'b', 'c', 'd', 'e' ]
+	//ES6的合并数组
+	[...arr1, ...arr2, ...arr3];	// [ 'a', 'b', 'c', 'd', 'e' ]
+
+	//	2、与解构赋值结合
+	const [first, ...rest] = [1, 2, 3, 4, 5];
+	console.log(first, rest);	//	1,	[2, 3, 4, 5]
+	
+	const [first1, ...rest1] = [];
+	console.log(first1, rest1);		// undefined, []
+
+	const [first2, ...rest2] = ['foo'];
+	console.log(first2, rest2);		//	'foo',	[]
+
+	//如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错。
+	//const [...butLast, last] = [1, 2, 3, 4, 5];
+	// 报错
+
+	//const [first, ...middle, last] = [1, 2, 3, 4, 5];
+	// 报错
+
+	//	3、函数的返回值：JavaScript的函数只能返回一个值，如果需要返回多个值，只能返回数组或对象。扩展运算符提供了解决这个问题的一种变通方法。
+
+	//	4、字符串	：扩展运算符还可以将字符串转为真正的数组。
+	console.log([...'hello']);	//["h", "e", "l", "l", "o"]
+
+	//	5、实现了Iterator接口的对象	: 任何Iterator接口的对象，都可以用扩展运算符转为真正的数组。
+	var nodeList = document.querySelectorAll('div');
+	var array = [...nodeList];
+	console.log(array);				//[div, div, div]
+	
+</script>
+
+</html>

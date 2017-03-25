@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>section和article标签</title>
+  <script type="text/javascript"></script>
+  <style type="text/css"></style>
+  <!-- http://www.studyofnet.com/news/331.html -->
+</head>
+
+<body>
+	<article>
+		<section>
+			<h3>section和article标签介绍</h3>
+			<p>
+				<pre style="display: inline;"> &ltsection&gt</pre>标签定义文档中的节（section、区段）。比如章节、页眉、页脚或文档中的其他部分。section元素标签用来表现普通的文档内容或应用区块。一个section通常由内容及其标题组成，但section元素标签并非一个普通的容器元素；当一个容器需要被直接定义样式或通过脚本定义行为时，推荐使用div元素而非section。
+			</p>
+			<p>&ltarticle&gt元素表示文档、页面、应用或网站中的独立结构，其意在成为可独立分配的或可复用的结构，如在发布中，它可能是论坛帖子、杂志或新闻文章、博客、用户提交的评论、交互式组件，或者其他独立的内容项目。</p>
+		</section>
+		<section>
+			<h3>一、section标签实例</h3>
+			<pre>
+				&lt!doctype html&gt
+				&ltarticle&gt
+					&lth1&gtWeb编程语言比较&lt/h1&gt
+					&ltp&gtweb编程语言常用的有asp,asp.net,php,jsp...&lt/p&gt
+					&ltsection&gt
+						&lth2&gtasp&lt/h2&gt
+						&ltp&gtasp全称Active Server Page&lt/p&gt
+					&lt/section&gt
+					&ltsection&gt
+						&lth2&gtasp.net&lt/h2&gt
+						&ltp&gtasp的颠覆版本&lt/p&gt
+					&lt/section&gt
+					&ltsection&gt
+						&lth2&gtphp&lt/h2&gt
+						&ltp&gt草根动态语言，免费，强大&lt/p&gt
+					&lt/section&gt	
+				&lt/article&gt
+			</pre>
+		</section>
+		<section>
+			<h3>二、article与section的异同</h3>
+			<p>section和article可以互相嵌套，也就是说他们没有上下级关系，section可以包含article，article也可以包含section。<br>感觉上使用都差不多，都可以有h1,h2,h3,都有一个主体，那应该怎么来区分它们的不同？其实很简单，只要从字面上理解它们就可以足够了：<br>
+				1、article是文章，文章就是一段完整的独立的内容。<br>
+				2、section就是块，某种意义上可以理解为div，但是比div的意思更加明确一点。</p>
+		</section>
+		<section>
+			<h3>三、section和div的异同</h3>
+			<p>1、section和div都可以对内容进行分块，但是section是进行有意义的分块，无意义的分块应该由div来做，例如用作设置样式的页面容器。<br>
+			2、section内部必须有标题，标题也代表了section的意义所在。</p>
+		</section>
+		<section>
+			<h3>四、使用&ltsection&gt标签需要注意的地方</h3>
+			<p>1、不要将&ltsection&gt作为用来设置或行为的“钩子”容器，那是&ltdiv&gt的工作。<br>
+				 2、如果&ltarticle&gt、&ltaside&gt或&ltnav&gt更符合情况，不要使用&ltsection&gt
+				 3、不要为没有标题的内容区块使用&ltsection&gt。
+			</p>
+		</section>
+	</article>	
+</body>
+
+</html>

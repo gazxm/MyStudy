@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>::selection伪类</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		/* ::selection选择器匹配被用户选取的部分 
+			只有一小部分CSS属性可以用于 ::selection 选择器： color, background-color, cursor, outline, text-decoration, text-emphasis-color和text-shadow(IE10+)。要特别注意的是，background-image 会如同其他属性一样被忽略。
+
+		*/
+		body {
+			margin: 0px;
+			padding: 0px;
+		}
+
+		p {
+			color: blue;
+			background-color: #999;
+			text-decoration: none;
+			text-shadow: 2px 2px 5px #333;
+		}
+
+		::selection {
+			color: gold;
+			background-color: white;
+			text-decoration: underline;
+			text-shadow: 2px 2px 5px red;
+		}
+	</style>
+</head>
+<body>
+	<p>只有Gecko 引擎需要加前缀（-moz） 。因为CSS解析规则要求在匹配到一个无效的伪元素时要丢弃整个规则，两个分开的规则必须写成 ::-moz-selection, ::selection {...}。这个规则在非Gecko浏览器中会因为无效而被丢弃。</p>
+</body>
+</html>

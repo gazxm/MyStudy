@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>border-radius</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		/*
+			border-radius：[ <length> | <percentage> ]{1,4} [ / [ <length> | <percentage> ]{1,4} ]?
+			<length>：用长度值设置对象的圆角半径长度。不允许负值
+			<percentage>：用百分比设置对象的圆角半径长度。不允许负值
+		*/
+		div {
+			margin-bottom: 20px;
+		}
+		.radius1 {
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			border-radius: 10px;
+		}
+		.radius2 {
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			border-radius: 5px 10px 15px 20px;	/*顺时针，从左上角开始*/
+		}
+		.radius3 {
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			border-radius: 50%;
+		}
+		.radius4 {
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			border-radius:26px 106px 162px 32px/200px 80px 178px 10px;  
+			/*前面4个值为水平方向的值，后面4个位垂直方向的值*/
+		}
+		/*兼容性：
+		IE9+,Firefox4+,Chrome5+,Safari5+,Opera01.5+,iOS Safari4+,Android Browser2.2+ ,Android Chrome18+
+		低版本的chrome:-webkit-border-radius:10px;
+		低版本的firefox:-moz-border-radius:10px;
+		IE6/7/8:引入ie-css3兼容文件,不支持除了黑色(#000)以外的其他颜色	(讲道理，并没有什么用)
+		http://www.zhangxinxu.com/wordpress/2010/04/%E8%AE%A9ie6ie7ie8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81css3%E5%B1%9E%E6%80%A7/
+		*/
+	</style>
+</head>
+<body>
+	<div class="radius1"></div>
+	<div class="radius2"></div>
+	<div class="radius3"></div>
+	<div class="radius4"></div>
+</body>
+</html>

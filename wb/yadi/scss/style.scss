@@ -1,0 +1,615 @@
+@import "../scss/_reset.scss";
+$browser-default-font-size: 75px !default;
+@function rem($px) {
+  @return $px / $browser-default-font-size * 1rem;
+}
+
+$bg-red: #c6000d;
+$red: #cb2e27;
+$light-yellow: #f9c046;
+$dark-yellow: #d48e22;
+$font-yellow: #f9c151;
+
+%background {
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, $dark-yellow), color-stop(50%, $light-yellow), color-stop(100%, $dark-yellow));
+}
+
+* {
+  font-family: Helvetica, "Microsoft YaHei";
+}
+
+@keyframes in {
+	0% {
+		transform: translateX(100%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
+}
+
+@-webkit-keyframes in {
+	0% {
+		-webkit-transform: translateX(100%);
+	}
+	100% {
+		-webkit-transform: translateX(0%);
+	}
+}
+
+@keyframes out {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+@-webkit-keyframes out {
+	0% {
+		-webkit-transform: translateX(0%);
+	}
+	100% {
+		-webkit-transform: translateX(-100%);
+	}
+}
+
+@keyframes scale {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(0);
+	}
+}
+
+@-webkit-keyframes scale {
+	0% {
+		-webkit-transform: scale(1);
+	}
+	100% {
+		-webkit-transform: scale(0);
+	}
+}
+
+@keyframes opacity {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes opacity {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes carIn {
+	0% {
+		transform: rotate(0deg);
+	}
+	25% {
+		transform: rotate(-1.5deg);
+	}
+	50% {
+		transform: rotate(-2.5deg);
+	}
+	75% {
+		transform: rotate(-1.5deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
+@-webkit-keyframes carIn {
+	0% {
+		transform: rotate(0deg);
+	}
+	25% {
+		transform: rotate(-1.5deg);
+	}
+	50% {
+		transform: rotate(-2.5deg);
+	}
+	75% {
+		transform: rotate(-1.5deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
+a.rule {
+	display: block;
+	width: rem(130px);
+	line-height: rem(45px);
+	position: absolute;
+	top: rem(65px);
+	right: rem(33px);
+	color: $red;
+	font-size: rem(16px);
+	cursor: pointer;
+	text-align: center;
+	font-weight: bold;
+	@extend %background;
+	border-radius: rem(10px);
+}
+
+.logo {
+	position: absolute;
+	top: rem(45px);
+	left: rem(25px);
+	width: rem(186px);
+	height: rem(65px);
+	background: transparent url(../img/logo.png) 0 0 no-repeat;
+	background-size: rem(186px) rem(65px);
+}
+
+.loading-content {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: rem(750px);
+	height: 100%;
+	background: transparent url(../img/background-01.jpg) 0 0 no-repeat;
+	background-size: rem(750px) rem(1334px);
+	z-index: 100;
+	.car {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: rem(362px);
+		height: rem(345px);
+		margin-left: rem(-181px);
+		margin-top: rem(-220px);
+		background: transparent url(../img/car.png) 0 0 no-repeat;
+		background-size: rem(362px) rem(345px);
+	}
+	.loading {
+		position: absolute;
+		top: 65%;
+		left: 18%;
+	}
+	.loading-animation {
+		display: inline-block;
+		width: 0;
+		height: rem(36.66px);
+		background: $light-yellow;
+		vertical-align: middle;
+	}
+	span {
+		font-size: rem(36.66px);
+		color: $light-yellow;
+		vertical-align: top;
+	}
+	span.loading-number {
+		margin-left: rem(20px);
+	}
+}
+
+.index {
+	padding-top: rem(1px);
+	width: rem(750px);
+	height: rem(1334px);
+	position: relative;
+	background: $bg-red url(../img/background-02.jpg) 0 0 no-repeat;
+	background-size: rem(750px) rem(1334px);
+	.index-content {
+		img {
+			display: block;
+			width: rem(668px);
+			margin: rem(50px) auto 0;
+			height: rem(633px);
+		}
+		h1 {
+			width: rem(626px);
+			margin: 0 auto;
+			height: rem(92px);
+			background: transparent url(../img/h1.png) 0 0 no-repeat;
+			background-size: rem(626px) rem(92px);
+		}
+		.red-package, .statement {
+			padding: 0 rem(85px) 0 rem(85px);
+		}
+		.red-package {
+			font-size: rem(36px);
+			line-height: rem(51.44px);
+			text-align: center;
+			font-style: italic;
+			color: $font-yellow;
+		}
+		form {
+			padding: 0 rem(130px) 0 rem(120px);
+			.input {
+				padding-top: rem(20px);
+				box-sizing: border-box;
+				span {
+					font-size: rem(31.7px);
+					font-weight: bold;
+					color: #fac046;
+				}
+				input {
+					background: transparent;
+					color: $font-yellow;
+					width: rem(370px);
+					line-height: rem(52px);
+					border: 1px solid #da9629;
+					border-radius: rem(10px);
+					padding-left: rem(20px);
+				}
+			}
+			h4 {
+				margin-top: rem(15px);
+				font-size: rem(19px);
+				color: $font-yellow;
+			}
+			button {
+				border: none;
+				display: block;
+				width: rem(235px);
+				margin: rem(20px) auto 0;
+				line-height: rem(73px);
+				font-size: rem(36px);
+				font-weight: bold;
+				color: #cb2e27;
+				text-align: center;
+				border-radius: rem(15px);
+				box-shadow: 2px 1px 0 #232726, 5px 5px 5px #6e0c11;
+				@extend %background;
+			}
+		}
+		.statement {
+			text-align: center;
+			margin-top: rem(15px);
+			font-size: rem(14.44px);
+			color: #fff;
+			padding-bottom: rem(10px);
+		}
+	}
+
+	.luckdraw-content {
+		color: $font-yellow;
+		.red-content {
+			width: rem(651px);
+			height: rem(670px);
+			font-size: 0;
+			background: #ffc000;
+			margin: 0 auto;
+			border: rem(6px) solid #ff0000;
+			border-radius: rem(30px);
+			box-shadow: inset 3px 3px 10px #b98b00;
+			padding: rem(30px) rem(50px);
+		}
+		i {
+			display: inline-block;
+			width: rem(125px);
+			height: rem(179px);
+			background: transparent url(../img/red-package.png) 0 0 no-repeat;
+			background-size: rem(125px) rem(179px);
+			margin: 0 rem(26px) rem(30px);
+		}
+		h2 {
+			font-size: rem(67.69px);
+			margin-top: rem(250px);
+			font-weight: bold;
+			line-height: rem(91.67px);
+			text-align: center;
+		}
+		h3, h4 {
+			padding-left: rem(60px);
+		}
+		h3 {
+			font-size: rem(30px);
+			font-weight: bold;
+			line-height: rem(41.43px);
+			margin-top: rem(55px);
+		}
+		h4 {
+			margin-top: rem(41px);
+			padding-bottom: rem(65px);
+			font-size: rem(22.48px);
+			line-height: rem(41.43px);
+		}
+		p {
+			padding-left: rem(20px);
+			font-size: rem(22.48px);
+			line-height: rem(41.43px);
+			span {
+				margin-left: rem(40px);
+				font-weight: bold;
+			}
+		}
+	}
+
+	.lookreward-content {
+		h2 {
+			font-size: rem(50.09px);
+			font-weight: bold;
+			line-height: rem(70.64px);
+			color: $light-yellow;
+			text-align: center;
+			margin-top: rem(180px);
+			.phone {
+				color: $light-yellow;
+				text-decoration: none;
+			}
+		}
+		.open-red {
+			width: rem(335px);
+			height: rem(315px);
+			margin: 0 auto;
+			position: relative;
+			background: transparent url(../img/open-red.png) 0 0 no-repeat;
+			background-size: rem(335px) rem(315px);
+			p {
+				position: absolute;
+				top: rem(50px);
+				left: rem(60px);
+				text-align: center;
+				font-size: rem(45.96px);
+				font-weight: bold;
+				line-height: rem(56.17px);
+				color: #ea3925;
+			}
+		}
+		h3 {
+			font-size: rem(30px);
+			line-height: rem(64.87px);
+			color: $font-yellow;
+			text-align: center;
+		}
+		p.usage-method {
+			font-size: rem(22.17px);
+			font-weight: bold;
+			line-height: rem(34.33px);
+			color: $font-yellow;
+			text-align: center;
+		}
+		#shop-information {
+			text-align: center;
+			margin-top: rem(15px);
+			line-height: rem(46px);
+			height: rem(46px);
+			display: block;
+			position: relative;
+			select {
+				display: inline-block;
+				background: $light-yellow;
+				width: rem(273px);
+				line-height: rem(46px);
+				height: rem(46px);
+				border-radius: rem(10px);
+				padding-left: rem(70px);
+				font-size: rem(28px);
+				border: none;
+				text-align: center;
+				vertical-align: top;
+			}
+			span {
+				font-size: rem(33.17px);
+				margin-left: rem(10px);
+				color: $font-yellow;
+				vertical-align: top;
+			}
+		}
+		.content {
+			width: rem(640px);
+			height: rem(220px);
+			margin: rem(20px) auto 0;
+			border-radius: rem(15px);
+			background: $light-yellow;
+			h5 {
+				padding: rem(25px) rem(35px);
+				font-size: rem(27.65px);
+				font-weight: bold;
+				line-height: rem(40px);
+				text-align: left;
+				color: black;
+			}
+		}
+		.dist {
+			text-align: left;
+			position: absolute;
+			left: rem(90px);
+			height: rem(140px);
+			width: rem(580px);
+			top: rem(140px);
+			overflow-y: scroll;
+			.h2 {
+				font-size: rem(28px);
+				font-weight: bold;
+				color: $red;
+				padding: rem(10px) 0;
+			}
+		}
+		.QRcode {
+			margin-top: rem(258px);
+			p {
+				background: transparent url(../img/QRcode.jpg) 50% 0 no-repeat;
+				background-size: rem(202px) rem(203px);
+				padding-top: rem(210px);
+				padding-bottom: rem(5px);
+				font-size: rem(27.74px);
+				color: $light-yellow;
+				text-align: center;
+			}
+		}
+	}
+}
+
+.in {
+	-webkit-animation: in .6s ease-in-out 1 forwards;
+	animation: in .6s ease-in-out 1 forwards;
+}
+
+.out {
+	-webkit-animation: out .6s ease-in-out 1 forwards;
+	animation: out .6s ease-in-out 1 forwards;
+}
+
+.scale {
+	-webkit-animation: scale .5s ease-in-out 1 forwards;
+	animation: scale .5s ease-in-out 1 forwards;
+}
+
+.opacity {
+	-webkit-animation: opacity 2s ease-in-out 1 forwards;
+	animation: opacity 2s ease-in-out 1 forwards;
+}
+
+.car-in {
+	-webkit-animation: carIn 1.5s cubic-bezier(0, 0.42, 0.58, 1) infinite forwards;
+	animation: carIn 1.5s cubic-bezier(0, 0.42, 0.58, 1) infinite forwards;
+	-webkit-transform-origin: 30% 100%;
+	transform-origin: 30% 100%;
+}
+
+.popup-rule {
+	.overlay {
+		position: fixed;
+		background: rgba(0, 0, 0, 0.5);
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+		.close {
+			position: fixed;
+			top: rem(50px);
+			right: rem(25px);
+			width: rem(90px);
+			line-height: rem(42px);
+			font-size: rem(16px);
+			border-radius: rem(10px);
+			text-align: center;
+			@extend %background;
+			&:before {
+				content: '';
+				display: inline-block;
+				margin-right: rem(5px);
+				width: rem(14px);
+				height: rem(16px);
+				background: transparent url(../img/close.png) 0 0 no-repeat;
+				background-size: rem(14px) rem(16px);
+			}
+		}
+	}
+	.dialog-rule {
+		position: fixed;
+		top: 20%;
+		left: rem(45px);
+		width: rem(660px);
+		height: rem(945px);
+		background: $light-yellow;
+		border-radius: rem(30px);
+		overflow-y: hidden;
+		padding: rem(50px) rem(50px) rem(50px);
+		font-size: rem(27.74px);
+		line-height: rem(46.24px);
+		overflow-y: scroll;
+		z-index: 11;
+		h2 {
+			text-align: center;
+			font-size: rem(36px);
+			font-weight: bold;
+		}
+		h3 {
+			font-size: rem(26px);
+		}
+		p {
+			font-size: rem(26px);
+			text-indent: 2em;
+		}
+		p.more-indent {
+			text-indent: 3em;
+		}
+	}
+}
+
+.popup {
+	.overlay {
+		position: fixed;
+		background: rgba(0, 0, 0, 0.5);
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+	}
+	.dialog {
+		position: fixed;
+		width: rem(600px);
+		height: rem(300px);
+		background: $light-yellow;
+		top: 50%;
+		left: 50%;
+		margin-left: rem(-300px);
+		margin-top: rem(-150px);
+		border-radius: rem(25px);
+		z-index: 11;
+		.close {
+			position: absolute;
+			top: rem(20px);
+			right: rem(20px);
+			width: rem(30px);
+			height: rem(30px);
+			background: transparent url(../img/close.png) 50% 0 no-repeat;
+			background-size: rem(20px) rem(22px);
+		}
+		h3.error {
+			height: rem(200px);
+			font-size: rem(36px);
+			line-height: rem(48px);
+			padding-top: rem(76px);
+			color: $red;
+			text-align: center;
+		}
+		a.know {
+			display: block;
+			width: rem(190px);
+			margin: 0 auto;
+			line-height: rem(73px);
+			font-size: rem(36px);
+			font-weight: bold;
+			color: #cb2e27;
+			text-align: center;
+			border-radius: rem(15px);
+			@extend %background;
+		}
+	}
+}
+
+.popup-spin {
+  .overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+		background: rgba(0, 0, 0, 0.5);
+    z-index: 12;
+  }
+  .spin {
+    position: fixed;
+    left: 64%;
+    top: 58%;
+    color: #fff;
+    float: left;
+    width: rem(220px);
+    height: rem(220px);
+    margin-left: rem(-110px);
+    margin-top: rem(-110px);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-transform: translate3d(0, 0, 0);
+    z-index: 13;
+  }
+}

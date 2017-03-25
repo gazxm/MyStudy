@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>text-redering</title>
+	<script type="text/javascript"></script>
+	<!-- 		text-rendering: auto | optimizeSpeed | optimizeLegibility | geometricPrecision | inherit -->
+	<!-- 默认值：auto  适用于：文本元素  继承性：yes  -->
+	<!-- 
+			auto: 
+			当绘制文本时，浏览器会进行智能识别，何时应该从速度、清晰度和几何精度方 面进行优化。关于各浏览器对该属性解释的差别，参见下面的兼容性表格。 
+
+			optimizeSpeed： 
+			当绘制文本时，浏览器会着重渲染速度，而不是清晰度和几何精度。该属性值不 能用于字距调整和连字。Gecko默认开启该属性，Firefox 是默认20px以下开启该属性。 
+
+			optimizeLegibility： 
+			当绘制文本时，浏览器会侧重文本的可读性（清晰度），而不是渲染速度和几何 精度。该属性值可以用于字距调整和连字。 
+			使用CSS 3的@font-face来渲染文字的情况越来越多，易读性开始被关注和重视。尤其是小号的文字。由于目前还没有CSS属性控制显示在线字体的微妙细节，Safari 5,Chrome和Webkit系列浏览器支持text-rendering启用kerning 和 ligatures。 
+			Gecko 和WebKit 浏览器处理这个属性的方式很不一样。前者默认启用这个特性， 而后者，你需要将其设置为optimizeLegibility。Firefox默认20px以上字体文本会开启该属性。 
+
+			geometricPrecision： 
+			当绘制文本时，浏览器会着重几何精度，而不是清晰度和渲染速度。字体的某些 方面，比如字间距并不是按照线性比例进行渲染的，因此该属性可以使得设置为 这些字体的文本看起来很整洁。 
+	
+	-->
+
+	<!-- 对body应用optimizeLegibility保证整个html文档的易读性，但可能出现文字连写的效果，对元素应用class='foo'可以避免出现文字连写现象 -->
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>user-select</title>
+  <script type="text/javascript"></script>
+  <style>
+  /*
+		user-select 有四个值
+			none: 元素内的文字及其子元素将不会被选中;
+			text: 用户可以选中文字;
+			all: 在一个HTML编辑器中，当双击子元素或者上下文时，那么包含该子元素的最顶层元素也会被选中;
+			element: 火狐和IE中有效，可以选择文本，但选择范围受元素边界的约束;
+  */
+  .test {
+    padding: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    background: #eee;
+  }
+  </style>
+</head>
+
+<body>
+	<h3>user-select用来设置或检索是否允许用户选中文本</h3>
+	<p>IE6-9不支持该属性，但支持使用标签属性 onselectstart="return false;" 来达到 user-select:none 的效果；Safari和Chrome也支持该标签属性；<br>
+	直到Opera12.5仍然不支持该属性，但和IE6-9一样，也支持使用私有的标签属性 unselectable="on" 来达到 user-select:none 的效果；unselectable 的另一个值是 off；<br>
+	除Chrome和Safari外，在其它浏览器中，如果将文本设置为 -ms-user-select:none;，则用户将无法在该文本块中开始选择文本。不过，如果用户在页面的其他区域开始选择文本，则用户仍然可以继续选择将文本设置为 -ms-user-select:none; 的区域文本；<br>
+	对应的脚本特性为userSelect。</p>
+  <div class="test" onselectstart="return false;" unselectable="on">选择我试试，你会发现怎么也选择不到我，哈哈哈哈</div>
+
+  <p>user-select属性设置为了text,但是由于onselectstart="return false;"  在chrome和safari中还是不能选中文本</p>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+body {
+  font: 12px/13px courier, monospace;
+  color: #000;
+  margin: 0px; }
+
+.css-zen-garden {
+  background: #fff url(../img/bloodlust.gif) 0 50px no-repeat;
+  background-attachment: scroll; }
+  .css-zen-garden a {
+    font-weight: bold;
+    text-decoration: underline; }
+  .css-zen-garden a:link,
+  .css-zen-garden a:visited {
+    color: #FF4F3E; }
+  .css-zen-garden a:hover {
+    color: black; }
+
+.header p {
+  font: 9px verdana, sans-serif;
+  text-align: left;
+  line-height: 24px;
+  margin: 32px 0px 0px 25px; }
+
+.main {
+  padding-left: 200px; }
+  .main .main-header h1 {
+    background: transparent url(../img/h1.gif) 0 0 no-repeat;
+    width: 461px;
+    height: 116px;
+    margin: -26px 0 0 105px; }
+  .main .main-header h2 {
+    background: transparent url(../img/h2.gif) 0 0 no-repeat;
+    width: 253px;
+    height: 34px;
+    margin: 19px 0 0 16px; }
+  .main .main-header .p1 {
+    font: 400 18px/16px 'arial black', sans-serif;
+    text-align: right;
+    width: 340px;
+    float: left;
+    margin: 41px 20px 20px 0px; }
+  .main .main-header h3 {
+    font: bold 18px courier, monospace;
+    letter-spacing: 1px;
+    margin-bottom: 0px;
+    clear: left; }
+  .main .main-header .p2 {
+    font: 18px courier, monospace;
+    line-height: 5ex;
+    text-align: justify; }
+  .main .main-header .right {
+    float: right;
+    width: 170px;
+    text-align: right;
+    position: relative;
+    top: -129px;
+    margin-top: 50px;
+    height: 550px; }
+    .main .main-header .right h3 {
+      font: bold 12pt/10pt 'trebuchet ms', sans-serif;
+      text-align: right; }
+    .main .main-header .right p {
+      font: bold 10pt/11pt arial, sans-serif;
+      text-align: right; }
+  .main .content {
+    text-align: justify; }
+    .main .content .p1 {
+      font: 11px/16px courier, monospace;
+      width: 220px;
+      float: left;
+      margin-right: 10px; }
+    .main .content .participation h3 {
+      margin: 0;
+      background: transparent url(../img/h3.gif) 0 0 no-repeat;
+      width: 174px;
+      height: 66px;
+      float: left; }
+    .main .content .participation p {
+      font: 12px/13px courier, monospace;
+      text-align: justify; }
+    .main .content .participation p:nth-child(2):first-line {
+      font: 16px 'arial black', sans-serif; }
+    .main .content .participation p:nth-child(3) {
+      line-height: 16px;
+      text-align: right;
+      float: left;
+      width: 200px;
+      margin: 0px 5px 15px 0px; }
+    .main .content .participation p:nth-child(4) {
+      font-family: arial, sans-serif; }
+    .main .content .benefits h3 {
+      margin: 0;
+      background: transparent url(../img/h4.gif) 0 0 no-repeat;
+      width: 107px;
+      height: 26px;
+      float: left; }
+    .main .content .requirement h3 {
+      margin-bottom: 0;
+      font: bold 18px 'arial black', sans-serif;
+      letter-spacing: 1px;
+      float: right;
+      clear: left; }
+    .main .content .requirement .p1 {
+      font: bold 11px/16px trebuchet ms, sans-serif;
+      clear: left;
+      float: left;
+      width: 300px;
+      margin-right: 10px; }
+    .main .content .requirement .p3 {
+      font: 12px/11px arial, sans-serif; }
+
+.listlink {
+  font: 12px courier, monospace;
+  position: absolute;
+  top: 115px;
+  left: 20px;
+  padding: 10px;
+  width: 130px; }
+  .listlink h3 {
+    font: bold 14px courier, monospace;
+    letter-spacing: 1px;
+    margin-bottom: 0px; }
+  .listlink ul {
+    margin: 0;
+    padding: 0; }
+    .listlink ul li {
+      list-style-type: none;
+      line-height: 2.5ex;
+      padding-top: 5px;
+      margin-bottom: 5px; }

@@ -1,0 +1,28 @@
+1、arguments对象，和数组有什么区别		arguments在全局环境中是没有的。
+
+2、{}对象字面量, new Object 的区别 好像还有一个var a = new function(){}; var obj = new a(); 之间的区别
+
+3、null作为基本数据类型，用typeof检测为object，为什么？引用类型的值？
+
+4、参数传递的时候对象也是值传递，是内存中的值传递过去了吗？引用对象复制的时候，复制的是引用还是内存中的值？
+
+5、Function instanceof Object 返回true的具体原因
+
+6、严格模式中禁用with语句的原因
+
+7、当数组的索引超出了数组的长度的时候，是先改变数组的长度，还是先添加数组这一项在计算其长度。原理是？
+
+8、Array.isArray()出现的原因，instanceof操作符的问题，它假定单一的全局执行环境？为什么在两个以上不同的全局执行环境(两个框架),不能使用instanceof？
+
+9、在数组的sort的compare函数中，会调用sort数组的每个数组项的toString()转型方法吗？
+	解答: 并不会，会把原始的数组保存的每一项的类型传入compare方法中。
+
+10、reverse()和sort方法的返回值会新建一个数组还是对原数组进行操作的？
+
+11、严格模式"use strict"为什么要禁用arguments.callee和arguments.caller,理由是？
+
+12、JavaScript中一个最大的安全问题，也是最容易让人迷茫的地方，就是在某些情况下如何抑制this的值。这句话如何去理解。
+
+13、在Function类型.html中的第141行。。。为什么？
+
+14、bind()函数的优点。 = =在22章。卧槽

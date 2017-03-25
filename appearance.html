@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>appearance</title>
+  <script type="text/javascript"></script>
+  <!-- http://www.css88.com/book/css/webkit/visual/appearance.htm -->
+  <!-- http://www.w3cplus.com/css3/changing-appearance-of-element-with-css3.html -->
+  <style type="text/css">
+  /* 使用“appearance”属性，来改变任何元素的浏览器默认风格，简单的说，你可以使用“appearance”属性将“段落p”渲染成button的风格，也可以渲染成“输入框”、“选择框”等效果 */
+
+  /*改变的只是其浏览器渲染的方式，并不会改变Html结构*/
+  body {
+    margin: 0;
+  }
+  
+  label {
+    font-size: 50px;
+    position: relative;
+  }
+  
+  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /*只有这三个*/
+    /*
+      可以解决android4.3及其以下的input的checkbox的无法设置width,height的问题;
+      这里是将input的渲染成一个div的风格,所以可以设置width,height
+    */
+    background-color: #999;
+    display: block;
+    width: 200px;
+    height: 200px;
+  }
+
+  input:checked {
+  	background-color: red;
+  }
+  </style>
+</head>
+
+<body>
+  <form>
+    <input id="checkbox" name="" type="checkbox" value="" />
+    <label>appearance</label>
+  </form>
+</body>
+
+</html>

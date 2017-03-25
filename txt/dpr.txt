@@ -1,0 +1,44 @@
+1、设备像素（Device Pixels）:设备屏幕的物理像素，单位是 px ，比如iPhone6的 750x1334px
+
+2、分辨率（Resolution）也是一个物理概念，含义要看对谁；对于屏幕，分辨率一般表示屏幕上显示的物理像素总和。比如，我们说iPhone6屏幕分辨率是750x1334px；对于图像，概念等同于图像尺寸、图像大小、像素尺寸等等。比如，我们说 20x20px 的icon
+
+3、CSS像素
+CSS像素（CSS Pixels）：是Web编程的概念，指的是CSS样式代码中使用的逻辑像素
+
+所以，1个CSS像素在不同设备上可能对应不同的物理像素数，这个比值是设备的属性（Device Pixel Ratio，设备像素比）
+
+在CSS规范中，长度单位可以分为绝对单位和相对单位。 px 是一个相对单位，相对的是设备像素（Device Pixels）。比如iPhone5使用的是Retina视网膜屏幕，用 2x2 的Device Pixel代表 1x1 的CSS Pixel，所以设备像素数为 640x1136px ，而CSS逻辑像素数为 320x568px
+
+4、设备像素比缩写为DPR或者DPPX 
+设备像素比表示1个CSS像素（宽度）等于几个物理像素（宽度）：
+
+DPR = 物理像素数 / 逻辑像素数
+比如 dpr=2 时，1个CSS像素由4个物理像素点组成，见上面对CSS像素的解释
+
+P.S：DPR不是单位，而是一个属性名，比如在浏览器中通过 window.devicePixelRatio 获取屏幕的DPR
+
+window.devicePixelRatio是设备上物理像素和设备独立像素(device-independent pixels (dips))的比例。
+
+这里的“设备独立像素”，指的就是逻辑像素，即CSS像素，也是一个属性名
+
+	name					Diagonal		Resolution 		DPI 	DPR(DPPX)
+iphone 6 plus : 	5.5				1080 * 1980 	401		2.46
+iphone 6:
+iphone 5:
+iphone 4,4s:
+ipad mini retina:
+ipad 3:
+ipad retina:
+ipad air:
+ipad mini:
+iphone 1,3G,3GS:
+ipad 1,2:
+
+
+5、像素密度
+像素密度也叫显示密度或者屏幕密度，缩写为DPI(Dots Per Inch)或者PPI(Pixel Per Inch)，含义相同
+
+像素密度很容易算出来，比如iPhone6的：
+
+// 屏幕对角线的像素尺寸 / 物理尺寸（inch）
+Math.sqrt(750*750 + 1334*1334) / 4.7 = 326ppi

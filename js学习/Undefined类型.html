@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Undefined类型</title>
+    <script type="text/javascript">
+    //Undefined只有undefined一个值
+    (function() {
+        "use strict";
+        var a;
+        var b = undefined;
+        console.log(a);
+        console.log(b);
+        //console.log(c);	// c is not defined 
+
+        console.log(typeof a);
+        console.log(typeof b);
+        console.log(typeof c);	//然而并不会报错。 未声明C
+    })();
+    </script>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+</body>
+
+</html>

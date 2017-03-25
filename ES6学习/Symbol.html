@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Symbol</title>
+	<script type="text/javascript"></script>
+</head>
+
+<body>
+</body>
+<script>
+	let s = Symbol();
+	console.log(typeof s);	//symbol
+	
+	var s1 = Symbol('foo'),
+			s2 = Symbol('bar');
+	console.log(s1, s2);		//Symbol(foo) Symbol(bar)
+	console.log(s1.toString(), s2.toString());	//'Symbol(foo)' 'Symbol(bar)'
+	//上面代码中，s1和s2是两个Symbol值。如果不加参数，它们在控制台的输出都是Symbol()，不利于区分。有了参数以后，就等于为它们加上了描述，输出的时候就能够分清，到底是哪一个值。
+	
+	//如果Symbol的参数是一个对象，就会调用该对象的toString方法，将其转换为字符串，然后才生成一个Symbol值
+
+	const obj = {
+		toString() {
+			return 'abc';
+		}
+	};
+	const sym = Symbol(obj);
+	console.log(sym);	//	Symbol(abc)
+	
+	//	没有参数的情况
+	var s1 = Symbol();
+	var s2 = Symbol();
+	console.log(s1 === s2);	//	false
+	
+	var s3 = Symbol('foo');
+	var s4 = Symbol('foo');
+	console.log(s1 === s2);	//	false
+	//上面代码中，s1,s2,s3,s4都是Symbol函数的返回值，而且参数相同，但是它们是不相等的。
+
+	//Symbol值不能与其他类型的值进行运算，会报错。
+	var sym2 = Symbol('My symbol');
+	//'your symbol is' + sym2;	//Cannot convert a Symbol value to a string
+	//`your symbol is ${sym}`		//Cannot convert a Symbol value to a string
+
+	//但是，Symbol值可以显示转为字符串
+	var sym3 = Symbol('My symbol');
+	console.log(String(sym3));		//Symbol(My symbol)
+	console.log(sym3.toString());	//Symbol(My symbol)
+
+	//另外，Symbol值也可以转为布尔值，但是不能转为数值
+	var sym4 = Symbol();
+	console.log(Boolean(sym4), !sym4);
+
+	if(sym4) {
+		console.log(11);
+	}
+
+	//Number(sym4);	//Cannot convert a Symbol value to a number
+</script>
+
+</html>

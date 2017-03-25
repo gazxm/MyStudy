@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS选择器的优先级计算</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		
+	/*说法一：选择器的优先级关系到元素应用哪个样式。在CSS2.1的规范中是这样描述的：
+	1.如果声明来自于“style”属性，而不是带有选择器的规则，则记为 1，否则记为 0 (= a)（HTML元素的style属性也是样式规则，因为这些样式规则没有选择器，因此记为a=1,b=0,c=0,d=0）
+	2.计算选择器中 ID 属性的个数 (= b)
+	3.计算选择器中其他属性(类、属性选择器)和伪类的个数 (= c)
+	4.计算选择器中元素名称和伪元素的个数 (= d)*/
+
+	/*说法二：行间样式，加1,0,0,0.
+ 	ID选择器的特殊性值，加0,1,0,0。
+ 	类选择器、属性选择器或伪类，加0,0,1,0。
+ 	元素和伪元素，加0,0,0,1。
+ 	通配选择器*对特殊性没有贡献，即0,0,0,0。
+ 	最后比较特殊的一个标志!important（权重），它没有特殊性值，但它的优先级是最高的，为了方便记忆，可以认为它的特殊性值为1,0,0,0,0。*/
+
+	/*同级之间才有可对比性，b无论多大还是小于a*/
+
+	/*
+		1、Never 永远不要在全站范围的 css 上使用 !important
+		2、Only 只在需要覆盖全站或外部 css（例如引用的 ExtJs 或者YUI ）的特定页面中使用  !important
+		3、Never 永远不要在你的插件中使用 !important
+		4、Always 要优化考虑使用样式规则的优先级来解决问题而不是 !important
+	*/
+	p {
+		color: blue;	/* 0,0,0,0,1 */
+	}
+	#p1 {
+		color: yellow;	/* 0,0,1,0,0 */
+	}
+	.p1 {
+		color: red;	/* 0,0,0,1,0 */
+	}
+	#p2 {
+		color: yellow!important; /* 1,0,1,0,0 */
+	}
+	.p2 {
+		color: red!important;	/* 1,0,0,1,0 */
+	}
+	* {
+		color: black;	/* 0,0,0,0,0 */
+		/*color: black!important; 1,0,0,0,0*/ 
+	}
+	</style>
+</head>
+<body>
+	<!--<p id="p1" class="p1" style="color: #ddd;">AAAAAA</p>  颜色:#ddd --> 
+	<!--<p id="p1" class="p1" >AAAAAA</p> 颜色：yellow-->
+	<!--<p class="p1">AAAAAA</p> 颜色：red-->
+	<!--<p>AAAAAA</p> 颜色：blue-->
+	<!--<div>AAAAAA</div> 颜色：black-->
+	<!-- <p id="p2" class="p2" style="color: #ddd;">BBBBBB</p> 颜色：yellow-->
+</body>
+</html>

@@ -1,0 +1,2359 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="description" content="绝对定位布局的替代实现方案（京东商城示例） » 张鑫旭-鑫空间-鑫生活">
+    <meta name="description" content="张鑫旭web前端学习实例页面">
+    <meta name="keywords" content="张鑫旭, 张鑫旭-鑫空间-鑫生活, web前端, css, jQuery, javascript, demo页面">
+    <meta name="author" content="张鑫旭, zhangxixnu">
+    <title>绝对定位布局的替代实现方案（京东商城示例） » 张鑫旭-鑫空间-鑫生活</title>
+    <style type="text/css">
+    html,
+    body,
+    div,
+    span,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    em,
+    font,
+    img,
+    ins,
+    small,
+    strong,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend {
+        margin: 0;
+        padding: 0
+    }
+    
+    ol,
+    ul {
+        list-style: none outside none
+    }
+    
+    :focus {
+        outline: 0 none
+    }
+    
+    a img {
+        border: 0 none
+    }
+    
+    img {
+        vertical-align: middle
+    }
+    
+    table {
+        empty-cells: show
+    }
+    
+    ins {
+        text-decoration: none
+    }
+    
+    del {
+        text-decoration: line-through
+    }
+    
+    em {
+        font-style: normal
+    }
+    
+    .fl {
+        float: left
+    }
+    
+    .fr {
+        float: right
+    }
+    
+    .fn {
+        float: none
+    }
+    
+    .al {
+        text-align: left
+    }
+    
+    .ac {
+        text-align: center
+    }
+    
+    .ar {
+        text-align: right
+    }
+    
+    .clr {
+        clear: both;
+        display: block;
+        font-size: 0;
+        height: 0;
+        line-height: 0;
+        overflow: hidden
+    }
+    
+    .clearfix:after {
+        clear: both;
+        content: ".";
+        display: block;
+        height: 0;
+        visibility: hidden
+    }
+    
+    .clearfix {
+        display: inline-table
+    }
+    
+    .clearfix {
+        display: block
+    }
+    
+    * + html .clearfix {
+        min-height: 1%
+    }
+    
+    .overflow {
+        overflow: hidden
+    }
+    
+    .form label,
+    .form input,
+    .form select,
+    .form textarea,
+    .form button,
+    .form .label {
+        float: left;
+        font-size: 12px
+    }
+    
+    .block {
+        cursor: pointer;
+        display: block;
+        overflow: hidden
+    }
+    
+    .hide {
+        display: none
+    }
+    
+    .invisible {
+        visibility: hidden
+    }
+    
+    .tab {
+        overflow: hidden
+    }
+    
+    .tab li,
+    .tab a,
+    .tab-item {
+        cursor: pointer;
+        float: left;
+        text-align: center
+    }
+    
+    .m,
+    .mt,
+    .mc,
+    .mb {
+        overflow: hidden
+    }
+    
+    .mt .extra {
+        float: right
+    }
+    
+    .m {
+        margin-bottom: 10px
+    }
+    
+    .btn-img {
+        border: 0 none;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+        text-align: center
+    }
+    
+    .btn-text {
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+        text-align: center
+    }
+    
+    body {
+        background: none repeat scroll 0 0 #FFFFFF;
+        color: #333333;
+        font-family: "宋体", Arial, Lucida, Verdana, Helvetica, sans-serif;
+        font-size: 12px;
+        line-height: 150%
+    }
+    
+    h1 {
+        font-family: Arial, Lucida, Verdana, "宋体", Helvetica, sans-serif;
+        font-size: 20px
+    }
+    
+    h2 {
+        font-size: 14px
+    }
+    
+    h3 {
+        font-size: 14px
+    }
+    
+    h4 {
+        font-size: 12px
+    }
+    
+    h5 {
+        font-size: 12px
+    }
+    
+    h6 {
+        font-size: 12px
+    }
+    
+    a:link,
+    a:visited {
+        color: #333333;
+        text-decoration: none
+    }
+    
+    a:hover {
+        color: #CC0000;
+        text-decoration: underline
+    }
+    
+    a:active {
+        color: #990000
+    }
+    
+    .w {
+        margin: 0 auto;
+        width: 980px
+    }
+    
+    .left {
+        float: left;
+        margin-right: 6px;
+        width: 211px
+    }
+    
+    .right {
+        float: right;
+        width: 211px
+    }
+    
+    .middle {
+        float: left;
+        width: 546px
+    }
+    
+    .right-extra {
+        float: right;
+        width: 763px
+    }
+    
+    #shortcut {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_shortcut.gif) repeat-x scroll 0 -134px #EFEFEF;
+        height: 30px;
+        width: 100%
+    }
+    
+    #shortcut ul {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_shortcut.gif) repeat-x scroll 0 -134px transparent;
+        float: right;
+        height: 30px;
+        position: relative;
+        z-index: 11
+    }
+    
+    #shortcut li {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_shortcut.gif) no-repeat scroll -260px -100px transparent;
+        color: #ACACAC;
+        float: left;
+        font-family: "宋体";
+        height: 26px;
+        line-height: 26px;
+        padding: 2px 10px
+    }
+    
+    #shortcut .fore1 {
+        background: none repeat scroll 0 0 transparent
+    }
+    
+    #shortcut .link-regist {
+        color: #FF6600
+    }
+    
+    #shortcut .fore2 {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_shortcut.gif) no-repeat scroll -130px -165px transparent;
+        padding-left: 50px
+    }
+    
+    #shortcut .sub {
+        padding: 0;
+        width: 80px
+    }
+    
+    #shortcut li dl {
+        overflow: hidden;
+        padding: 0 6px
+    }
+    
+    #shortcut li dt {
+        height: 26px;
+        overflow: hidden;
+        padding: 2px 0 2px 8px
+    }
+    
+    #shortcut li dt b {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_shortcut.gif) no-repeat scroll -210px -25px transparent;
+        float: right;
+        height: 3px;
+        margin: 12px 0 10px 2px;
+        width: 5px
+    }
+    
+    #shortcut li dd {
+        display: none;
+        line-height: 20px;
+        padding-left: 8px
+    }
+    
+    #shortcut li:hover dl,
+    #shortcut .hover dl {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border-color: #CCCCCC;
+        border-style: solid;
+        border-width: 0 1px 1px;
+        padding: 0 5px
+    }
+    
+    #shortcut li:hover dd,
+    #shortcut .hover dd {
+        display: block
+    }
+    
+    #shortcut li:hover b,
+    #shortcut .hover b {
+        background-position: -220px -25px
+    }
+    
+    #header {
+        background-image: url(http://misc.360buyimg.com/201007/skin/christmas/i/bg980.jpg);
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        margin-bottom: 7px
+    }
+    
+    #logo {
+        float: left;
+        margin-right: 10px;
+        padding: 4px 10px 0;
+        position: relative
+    }
+    
+    #logo .swf {
+        height: 54px;
+        left: 16px;
+        position: absolute;
+        top: 0;
+        width: 200px
+    }
+    
+    #nav {
+        float: left;
+        margin-bottom: -3px;
+        overflow: hidden;
+        padding-top: 35px;
+        position: relative;
+        z-index: 10
+    }
+    
+    #nav a {
+        float: left;
+        font-size: 14px;
+        font-weight: bold;
+        height: 27px;
+        line-height: 29px;
+        text-align: center;
+        text-decoration: none
+    }
+    
+    #nav .curr,
+    #nav-index,
+    #nav-extra,
+    #nav-extra ul {
+        background-image: url(http://misc.360buyimg.com/201007/skin/df/i/bg_nav_0715.jpg);
+        background-repeat: no-repeat;
+        float: left;
+        height: 27px;
+        padding: 0 0 2px
+    }
+    
+    #nav .curr,
+    #nav-index,
+    #nav-extra {
+        margin-right: 2px
+    }
+    
+    #nav .curr {
+        background-position: -216px -233px;
+        width: 87px
+    }
+    
+    #nav .curr a {
+        color: #FFFFFF;
+        width: 87px
+    }
+    
+    #nav-index {
+        background-color: #CC0C0C;
+        background-position: -216px -200px;
+        width: 57px
+    }
+    
+    #nav-index a {
+        width: 57px
+    }
+    
+    #index #nav-index {
+        background-position: -216px -167px
+    }
+    
+    #index #nav-index a {
+        color: #FFFFFF
+    }
+    
+    #nav-extra {
+        background-color: #CC0C0C;
+        background-position: 0 -82px;
+        height: 29px;
+        padding-bottom: 0;
+        padding-left: 4px;
+        position: relative
+    }
+    
+    #nav-extra ul {
+        background-position: right -272px;
+        float: left;
+        padding: 0 4px 2px 0
+    }
+    
+    #nav-extra li {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_nav_0715.jpg) no-repeat scroll -333px -210px transparent;
+        float: left
+    }
+    
+    #nav-extra .fore {
+        background: none repeat scroll 0 0 transparent
+    }
+    
+    #nav-extra .sub {
+        position: relative
+    }
+    
+    #nav-extra .sub b {
+        display: none
+    }
+    
+    #nav-extra .corner {
+        background-position: -277px -82px;
+        height: 27px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 8px
+    }
+    
+    #nav-extra a {
+        color: #993300;
+        height: 27px;
+        line-height: 27px;
+        padding: 0 12px
+    }
+    
+    #o-search {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_nav_0715.jpg) repeat-x scroll 0 -115px #CC0C0C;
+        height: 50px
+    }
+    
+    #search {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_nav_0715.jpg) no-repeat scroll 0 0 transparent;
+        float: left;
+        height: 29px;
+        margin: 11px 10px 0 0;
+        padding: 1px 0 1px 1px;
+        width: 257px
+    }
+    
+    #i-search {
+        float: left;
+        font-family: arial;
+        position: relative;
+        width: 182px;
+        z-index: 6
+    }
+    
+    #tie {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #990005;
+        left: -1px;
+        overflow: hidden;
+        position: absolute;
+        top: 29px;
+        width: 182px
+    }
+    
+    #tie li {
+        cursor: pointer;
+        float: left;
+        overflow: hidden;
+        padding: 1px 2px;
+        width: 178px
+    }
+    
+    #tie li:hover {
+        background: none repeat scroll 0 0 #FFFF99
+    }
+    
+    #tie div {
+        float: left;
+        overflow: hidden;
+        width: 120px
+    }
+    
+    #tie span {
+        color: #CC0000;
+        float: right;
+        font-size: 11px
+    }
+    
+    #tie .close {
+        border-top: 1px solid #EFEFEF;
+        text-align: right
+    }
+    
+    #key {
+        background: none repeat scroll 0 0 transparent;
+        border: 0 none;
+        color: #999999;
+        font-size: 14px;
+        height: 15px;
+        line-height: 15px;
+        padding: 8px 5px 6px 24px;
+        width: 152px
+    }
+    
+    #btn-search {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_nav_0715.jpg) no-repeat scroll -258px -1px transparent;
+        border: 0 none;
+        color: #CC0033;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        height: 29px;
+        margin: 0;
+        padding: 0;
+        width: 75px
+    }
+    
+    #hotwords {
+        color: #FFCCCC;
+        float: left;
+        height: 20px;
+        line-height: 20px;
+        margin-top: 17px;
+        overflow: hidden;
+        padding-right: 5px;
+        width: 266px
+    }
+    
+    #hotwords a {
+        color: #FFCCCC;
+        float: left;
+        margin-right: 10px;
+        white-space: nowrap
+    }
+    
+    #hotwords strong {
+        float: left
+    }
+    
+    #mycart {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_nav_0715.jpg) no-repeat scroll -108px -31px transparent;
+        float: right;
+        height: 26px;
+        line-height: 28px;
+        padding: 11px 8px 11px 0;
+        width: 218px
+    }
+    
+    #mycart li {
+        float: left;
+        text-align: center
+    }
+    
+    #mycart .fore1 {
+        padding: 0 25px 0 34px;
+        position: relative;
+        width: 89px;
+        z-index: 20
+    }
+    
+    #mycart .fore1 b {
+        color: #066FC9;
+        padding: 0 4px
+    }
+    
+    #mycart .fore2 {
+        padding-right: 14px;
+        width: 54px
+    }
+    
+    #mycart .fore2 a {
+        color: #FFFFFF
+    }
+    
+    #o-mycart-list {
+        left: -144px;
+        padding-top: 10px;
+        position: absolute;
+        top: 20px;
+        width: 368px
+    }
+    
+    #mycart-list {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 3px solid #FCD410;
+        padding: 0 5px 5px;
+        text-align: left;
+        width: 354px
+    }
+    
+    #mycart-list dl {
+        height: 60px;
+        overflow: hidden
+    }
+    
+    #mycart-list strong {
+        color: #FF2400
+    }
+    
+    #mycart-list .p-img {
+        float: left;
+        margin-right: 6px;
+        width: 50px
+    }
+    
+    #mycart-list .p-name {
+        float: left;
+        height: 40px;
+        line-height: 20px;
+        margin-top: 10px;
+        width: 200px
+    }
+    
+    #mycart-list .extra {
+        float: right;
+        height: 40px;
+        line-height: 20px;
+        margin-top: 10px;
+        text-align: right;
+        width: 90px
+    }
+    
+    #mycart-list .extra a {
+        color: #999999
+    }
+    
+    #mycart-list .total {
+        text-align: right
+    }
+    
+    #btn-savetocart,
+    #btn-payforgoods {
+        background-image: url(http://misc.360buyimg.com/201007/skin/df/i/bg_nav_0715.jpg);
+        background-repeat: no-repeat;
+        height: 21px;
+        line-height: 21px;
+        text-align: center
+    }
+    
+    #btn-savetocart {
+        background-position: 0 -54px;
+        float: left;
+        width: 72px
+    }
+    
+    #btn-payforgoods {
+        background-position: 0 -32px;
+        color: #FFFFFF;
+        float: right;
+        width: 91px
+    }
+    
+    .allsort {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_nav_0715.jpg) no-repeat scroll 0 -166px transparent;
+        float: left;
+        height: 50px;
+        margin-right: 4px;
+        position: relative;
+        width: 211px;
+        z-index: 11
+    }
+    
+    .allsort .mt {
+        cursor: pointer;
+        height: 24px;
+        line-height: 24px;
+        padding: 14px 12px 12px 16px
+    }
+    
+    .allsort .mt strong {
+        color: #663300;
+        float: left;
+        font-size: 14px
+    }
+    
+    #o-search .allsort .mt a {
+        color: #663300
+    }
+    
+    .allsort .mt .extra {
+        display: none
+    }
+    
+    .allsort .mc {
+        -moz-border-radius: 0 0 5px 5px;
+        background: none repeat scroll 0 0 #FEF8EF;
+        border-color: #C40000;
+        border-style: solid;
+        border-width: 0 1px 1px;
+        overflow: visible;
+        padding: 0 3px;
+        position: absolute;
+        top: 45px;
+        width: 203px
+    }
+    
+    .allsort .item {
+        border-top: 1px solid #FDE6D2;
+        height: 32px;
+        width: 203px
+    }
+    
+    .allsort .fore {
+        border-top: medium none
+    }
+    
+    .allsort span {
+        display: block;
+        position: relative;
+        width: 203px;
+        z-index: 1
+    }
+    
+    .allsort h3 {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_nav_0715.jpg) no-repeat scroll -318px -240px transparent;
+        border-color: #FEF8EF;
+        border-style: solid;
+        border-width: 1px 0 1px 1px;
+        font-weight: normal;
+        height: 30px;
+        padding-left: 20px;
+        width: 140px
+    }
+    
+    .allsort h3 a:link,
+    .allsort h3 a:visited {
+        color: #333333;
+        display: block;
+        height: 30px;
+        line-height: 30px
+    }
+    
+    .allsort h3 a:hover,
+    .allsort h3 a:active {
+        color: #1B578A
+    }
+    
+    .allsort s {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_nav_0715.jpg) no-repeat scroll -274px -216px transparent;
+        display: block;
+        height: 13px;
+        left: 182px;
+        position: absolute;
+        top: 10px;
+        width: 13px
+    }
+    
+    .allsort .item .i-mc {
+        background: none repeat scroll 0 0 #FFF9EF;
+        border: 1px solid #CC3300;
+        display: none;
+        left: 163px;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        width: 658px
+    }
+    
+    .allsort .item dt {
+        color: #CC0000;
+        font-weight: bold;
+        padding: 3px 6px 0 0
+    }
+    
+    .allsort .item dd {
+        overflow: hidden;
+        padding: 3px 0 0
+    }
+    
+    .allsort .subitem {
+        float: left;
+        min-height: 370px;
+        padding: 0 4px 0 8px;
+        width: 464px
+    }
+    
+    .allsort .subitem dl {
+        border-top: 1px solid #FFEFD7;
+        overflow: hidden;
+        padding: 6px 0
+    }
+    
+    .allsort .subitem .fore {
+        border-top: medium none
+    }
+    
+    .allsort .subitem dt {
+        float: left;
+        line-height: 22px;
+        text-align: right;
+        width: 54px
+    }
+    
+    .allsort .subitem dd {
+        float: left;
+        width: 402px
+    }
+    
+    .allsort .subitem em {
+        border-left: 1px solid #CCCCCC;
+        float: left;
+        height: 14px;
+        line-height: 14px;
+        margin: 4px 0;
+        padding: 0 8px
+    }
+    
+    #o-search .allsort .subitem dt a {
+        color: #CC0000;
+        text-decoration: underline
+    }
+    
+    #o-search .allsort .subitem dd a {
+        white-space: nowrap
+    }
+    
+    .allsort .fr {
+        background: none repeat scroll 0 0 #FFFFFF;
+        margin-bottom: -2000px;
+        padding-bottom: 2010px;
+        width: 176px
+    }
+    
+    .allsort .fr dl {
+        padding-bottom: 0
+    }
+    
+    #o-search .allsort .fr a {
+        color: #666666
+    }
+    
+    .allsort .brands {
+        padding: 6px 8px;
+        width: 160px
+    }
+    
+    .allsort .brands em {
+        float: left;
+        width: 80px
+    }
+    
+    .allsort .brands dd {
+        line-height: 20px;
+        padding-top: 6px
+    }
+    
+    .allsort .promotion {
+        padding: 6px 8px;
+        width: 160px
+    }
+    
+    .allsort .promotion dd {
+        line-height: 20px;
+        padding-top: 6px
+    }
+    
+    .allsort .mc .extra {
+        background: none repeat scroll 0 0 #FDF1DE;
+        border-top: 1px solid #FDE6D2;
+        padding: 7px 8px
+    }
+    
+    #o-search .allsort .mc .extra a {
+        color: #CC0000
+    }
+    
+    .allsorthover {
+        background-position: 0 -166px
+    }
+    
+    .allsorthover .mt .extra {
+        background-position: -274px -190px
+    }
+    
+    .allsorthover .mc {
+        display: block
+    }
+    
+    .allsort .hover span {
+        width: 160px;
+        z-index: 13
+    }
+    
+    .allsort .hover h3 {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_nav_0715.jpg) no-repeat scroll -318px -172px #FFF9EF;
+        border-color: #CC3300;
+        border-style: solid;
+        border-width: 1px 0 1px 1px;
+        font-weight: bold;
+        overflow: hidden
+    }
+    
+    .allsort .hover s {
+        display: none
+    }
+    
+    .allsort .hover .i-mc {
+        display: block;
+        z-index: 12
+    }
+    
+    .allsort .close {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) repeat scroll -154px -105px transparent;
+        cursor: pointer;
+        height: 19px;
+        left: 632px;
+        position: absolute;
+        top: 6px;
+        width: 19px;
+        z-index: 14
+    }
+    
+    #festival em {
+        padding-left: 30px;
+        position: relative
+    }
+    
+    #festival b {
+        background-image: url(http://misc.360buyimg.com/201007/skin/df/i/bg_festival.gif);
+        background-repeat: no-repeat;
+        display: block;
+        height: 22px;
+        left: 4px;
+        position: absolute;
+        top: -3px;
+        width: 22px
+    }
+    
+    #festival .moon {
+        background-position: 0 0
+    }
+    
+    #festival .crab {
+        background-position: -22px 0
+    }
+    
+    #service {
+        border: 1px solid #E6E6E6;
+        margin-bottom: 10px;
+        overflow: hidden;
+        padding: 20px 20px 10px
+    }
+    
+    #service dl {
+        float: left;
+        padding-left: 20px;
+        width: 165px
+    }
+    
+    #service dt {
+        overflow: hidden
+    }
+    
+    #service dd {
+        padding: 5px 0 20px
+    }
+    
+    #service dt b {
+        background-image: url(http://misc.360buyimg.com/201007/skin/df/i/bg_shortcut.gif);
+        background-repeat: no-repeat;
+        float: left;
+        height: 31px;
+        margin-right: 6px
+    }
+    
+    #service dt strong {
+        border-bottom: 1px solid #E5E5E5;
+        display: block;
+        padding: 8px 0 2px
+    }
+    
+    #service .fore1 {
+        padding-left: 10px
+    }
+    
+    #service .fore1 b {
+        background-position: 0 -100px;
+        width: 25px
+    }
+    
+    #service .fore1 dd {
+        padding-left: 18px
+    }
+    
+    #service .fore2 b {
+        background-position: -30px -100px;
+        width: 37px
+    }
+    
+    #service .fore2 dd {
+        padding-left: 30px
+    }
+    
+    #service .fore3 b {
+        background-position: -70px -100px;
+        width: 39px
+    }
+    
+    #service .fore3 dd {
+        padding-left: 34px
+    }
+    
+    #service .fore4 b {
+        background-position: -110px -100px;
+        width: 31px
+    }
+    
+    #service .fore4 dd {
+        padding-left: 27px
+    }
+    
+    #service .fore5 {
+        width: 180px
+    }
+    
+    #service .fore5 b {
+        background-position: -140px -100px;
+        width: 36px
+    }
+    
+    #service .fore5 dd {
+        overflow: hidden;
+        padding-left: 31px
+    }
+    
+    #service ul {
+        background: none repeat scroll 0 0 #F7F7F7;
+        border: 1px solid #EDEDED;
+        overflow: hidden;
+        padding: 15px 2px
+    }
+    
+    #service li {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_shortcut.gif) no-repeat scroll -260px 0 transparent;
+        float: left;
+        height: 25px;
+        padding: 0 11px
+    }
+    
+    #service li.fore {
+        background: none repeat scroll 0 0 transparent
+    }
+    
+    #service li a:link,
+    #service li a:visited {
+        background-image: url(http://misc.360buyimg.com/201007/skin/df/i/bg_shortcut.gif);
+        background-repeat: no-repeat;
+        display: block;
+        font-size: 0;
+        height: 25px;
+        line-height: 100px;
+        overflow: hidden
+    }
+    
+    #service .blink1 {
+        background-position: 0 0;
+        width: 174px
+    }
+    
+    #service .blink2 {
+        background-position: 0 -25px;
+        width: 196px
+    }
+    
+    #service .blink3 {
+        background-position: 0 -50px;
+        width: 202px
+    }
+    
+    #service .blink4 {
+        background-position: 0 -75px;
+        width: 262px
+    }
+    
+    #footer {
+        padding-bottom: 30px;
+        text-align: center
+    }
+    
+    #footer .flinks a,
+    #footer .flinks span {
+        margin: 0 10px
+    }
+    
+    #footer .flinks span a {
+        margin: 0
+    }
+    
+    #footer .copyright {
+        font-family: arial;
+        margin: 10px 0
+    }
+    
+    #footer .ilinks a {
+        margin: 0 5px
+    }
+    
+    .list-h {
+        overflow: hidden
+    }
+    
+    .list-h li,
+    .list-h dl {
+        float: left
+    }
+    
+    .list-h del {
+        color: #999999;
+        margin-right: 10px
+    }
+    
+    .p-img,
+    .p-name,
+    .p-price,
+    .p-market {
+        overflow: hidden
+    }
+    
+    .p-img {
+        margin: 5px 0
+    }
+    
+    .p-name {
+        height: 3em
+    }
+    
+    .p-price {
+        color: #999999
+    }
+    
+    .p-price strong {
+        color: #FF6600
+    }
+    
+    .p-market strong {
+        color: #FF6600
+    }
+    
+    .iloading {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/loading.gif) no-repeat scroll 0 center transparent;
+        color: #999999;
+        height: 30px;
+        line-height: 30px;
+        margin: 0 auto;
+        padding-left: 22px;
+        width: 140px
+    }
+    
+    .norecode {
+        color: #999999
+    }
+    
+    .da211x90 {
+        background: none repeat scroll 0 0 #F5F5F5;
+        height: 90px;
+        width: 211px
+    }
+    
+    .da0x90 {
+        background: none repeat scroll 0 0 #F5F5F5;
+        height: 90px
+    }
+    
+    #madding .mt {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) repeat-x scroll 0 -128px #E6E6E6;
+        height: 28px;
+        overflow: visible;
+        position: relative
+    }
+    
+    #madding h2 {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll 0 -100px transparent;
+        color: #FFFFFF;
+        float: left;
+        height: 28px;
+        line-height: 28px;
+        padding: 0 10px;
+        width: 121px
+    }
+    
+    #madding h2 span {
+        color: #FFA9A9;
+        font-family: arial;
+        font-size: 11px;
+        font-weight: normal;
+        margin-left: 4px
+    }
+    
+    #madding .tab {
+        position: absolute;
+        right: 5px;
+        top: 4px
+    }
+    
+    #madding .tab li {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_plist2.gif) no-repeat scroll -120px -152px transparent;
+        font-family: arial;
+        height: 20px;
+        line-height: 20px;
+        margin-right: 4px;
+        text-align: center;
+        width: 20px
+    }
+    
+    #madding .tab li.curr {
+        background-position: -98px -152px;
+        color: #FFFFFF;
+        font-weight: bold;
+        padding-bottom: 8px
+    }
+    
+    #madding .mt .extra {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll -191px -156px transparent;
+        float: right;
+        height: 28px;
+        width: 20px
+    }
+    
+    #madding-1 {
+        border-bottom: 1px solid #E2EBF4;
+        padding-bottom: 10px
+    }
+    
+    #madding-1 dl {
+        padding: 0 10px;
+        text-align: center;
+        width: 162px
+    }
+    
+    #madding-1 dt {
+        height: 130px;
+        position: relative
+    }
+    
+    #madding-1 .p-price {
+        background: none repeat scroll 0 0 #FF3333;
+        bottom: 10px;
+        color: #FFFFFF;
+        font-family: arial;
+        font-weight: bold;
+        height: 14px;
+        line-height: 14px;
+        padding: 2px 5px;
+        position: absolute;
+        right: 20px
+    }
+    
+    .madding-2 {
+        height: 70px
+    }
+    
+    .madding-2 li {
+        overflow: hidden;
+        padding: 10px 8px;
+        width: 166px
+    }
+    
+    .madding-2 li img {
+        float: left;
+        margin-right: 8px
+    }
+    
+    .madding-2 li div {
+        cursor: pointer;
+        height: 32px;
+        line-height: 16px;
+        margin: 9px 0;
+        overflow: hidden
+    }
+    
+    .madding-3 {
+        background: none repeat scroll 0 0 #F3F8FC;
+        border-bottom: 1px solid #E2EBF4;
+        padding: 10px 0
+    }
+    
+    .madding-3 li {
+        height: 20px;
+        line-height: 20px;
+        overflow: hidden;
+        padding: 0 8px;
+        width: 166px
+    }
+    
+    #newpros .mt {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) repeat-x scroll 0 -128px #E6E6E6;
+        height: 28px
+    }
+    
+    #newpros h2 {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll 0 -100px transparent;
+        color: #FFFFFF;
+        float: left;
+        height: 28px;
+        line-height: 28px;
+        padding: 0 10px;
+        width: 121px
+    }
+    
+    #newpros h2 span {
+        color: #FFA9A9;
+        font-family: arial;
+        font-size: 11px;
+        font-weight: normal;
+        margin-left: 4px
+    }
+    
+    #newpros .mt .extra {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll right -156px transparent;
+        float: right;
+        height: 28px;
+        line-height: 28px;
+        padding-right: 10px;
+        text-align: right;
+        width: 100px
+    }
+    
+    #newpros .mt .extra a:link,
+    #newpros .mt .extra a:visited {
+        color: #999999
+    }
+    
+    #newpros .mc {
+        height: 164px;
+        overflow: hidden;
+        position: relative;
+        width: 546px
+    }
+    
+    #newpros .mc ul {
+        overflow: hidden;
+        width: 546px
+    }
+    
+    #newpros li {
+        height: 164px;
+        padding: 0 10px;
+        text-align: center;
+        width: 162px
+    }
+    
+    #newpros .p-img {
+        height: 100px
+    }
+    
+    #brand {
+        margin-top: 394px;
+        overflow: visible;
+        position: relative;
+        z-index: 2
+    }
+    
+    #brand .mt {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll 0 -30px #E6E6E6;
+        height: 24px;
+        line-height: 24px;
+        overflow: visible;
+        padding: 3px 8px
+    }
+    
+    #brand h2 {
+        float: left
+    }
+    
+    #brand .mt .extra {
+        float: right
+    }
+    
+    #brand .mc {
+        border-color: #E6E6E6;
+        border-style: solid;
+        border-width: 0 1px 1px
+    }
+    
+    #brand ul {
+        overflow: hidden;
+        padding: 0 0 8px 8px;
+        width: 201px
+    }
+    
+    #brand li {
+        border: 1px solid #EFEFEF;
+        float: left;
+        height: 31px;
+        margin: 8px 8px 0 0;
+        overflow: hidden;
+        padding: 1px;
+        width: 88px
+    }
+    
+    #brand li img {
+        height: 31px;
+        width: 88px
+    }
+    
+    #brand .mc .extra {
+        padding: 5px 8px;
+        text-align: right
+    }
+    
+    #brand .mc .extra a {
+        color: #005AA0
+    }
+    
+    #ibrand {
+        position: absolute;
+        right: 10px;
+        top: 3px
+    }
+    
+    #ibrand div {
+        display: none;
+        left: -14px;
+        position: absolute;
+        top: 0;
+        z-index: 12
+    }
+    
+    #ibrand dl,
+    #ibrand dt,
+    #ibrand dd {
+        background-image: url(http://misc.360buyimg.com/201007/skin/df/i/shadow20100415.gif);
+        background-repeat: no-repeat;
+        width: 315px
+    }
+    
+    #ibrand dl {
+        background-position: left bottom
+    }
+    
+    #ibrand dt {
+        background-position: right -36px;
+        height: 6px;
+        margin-left: 1px;
+        overflow: hidden;
+        padding: 0 4px 0 15px;
+        position: relative
+    }
+    
+    #ibrand dd {
+        background-position: right bottom;
+        margin-left: 15px;
+        overflow: hidden;
+        padding: 0 5px 10px 0;
+        position: relative
+    }
+    
+    #ibrand dd em {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/shadow20100415.gif) no-repeat scroll -489px -2px transparent;
+        float: left;
+        height: 20px;
+        line-height: 20px;
+        overflow: hidden;
+        padding: 0 5px 0 10px;
+        width: 90px
+    }
+    
+    #ibrand:hover div,
+    #brand .hover div {
+        display: block
+    }
+    
+    #slide {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/loading.gif) no-repeat scroll center 52px #F5F5F5;
+        height: 120px;
+        margin-bottom: 8px;
+        overflow: hidden;
+        position: relative;
+        width: 546px
+    }
+    
+    #slide ul {
+        height: 120px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 546px
+    }
+    
+    #slide li {
+        float: left;
+        height: 120px;
+        overflow: hidden;
+        width: 546px
+    }
+    
+    #slide div {
+        bottom: 4px;
+        float: right;
+        height: 20px;
+        overflow: hidden;
+        position: absolute;
+        right: 4px
+    }
+    
+    #slide span {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D00000;
+        cursor: pointer;
+        float: left;
+        font-family: arial;
+        height: 14px;
+        line-height: 14px;
+        margin: 2px;
+        text-align: center;
+        width: 14px
+    }
+    
+    #slide .curr {
+        background: none repeat scroll 0 0 #FF0000;
+        border: 1px solid #D00000;
+        height: 18px;
+        line-height: 18px;
+        margin: 0 2px;
+        width: 18px
+    }
+    
+    #slide span a:link,
+    #slide span a:visited {
+        color: #D00000;
+        font-size: 11px;
+        text-decoration: none
+    }
+    
+    #slide .curr a:link,
+    #slide .curr a:visited {
+        color: #FFFFFF;
+        font-size: 12px;
+        font-weight: bold
+    }
+    
+    #report .mt {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll 0 -30px #E6E6E6;
+        height: 24px;
+        line-height: 24px;
+        padding: 3px 8px
+    }
+    
+    #report h2 {
+        float: left
+    }
+    
+    #report .mt a:link,
+    #report .mt a:visited {
+        color: #999999
+    }
+    
+    #report .mt .extra {
+        float: right
+    }
+    
+    #report .mc {
+        border-color: #E6E6E6;
+        border-style: solid;
+        border-width: 0 1px 1px
+    }
+    
+    #report ul {
+        padding: 6px
+    }
+    
+    #report li {
+        height: 24px;
+        line-height: 24px;
+        overflow: hidden
+    }
+    
+    #auction .mt {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll 0 -30px #E6E6E6;
+        height: 24px;
+        line-height: 24px;
+        padding: 3px 8px
+    }
+    
+    #auction h2 {
+        float: left
+    }
+    
+    #auction .extra a {
+        color: #999999
+    }
+    
+    #auction .mc {
+        border-color: #E6E6E6;
+        border-style: solid;
+        border-width: 0 1px 1px;
+        width: 209px
+    }
+    
+    #auction ul {
+        padding: 0 6px 6px
+    }
+    
+    #auction li {
+        height: 24px;
+        line-height: 24px;
+        overflow: hidden
+    }
+    
+    #auction .fore {
+        border-bottom: 1px solid #EFEFEF;
+        height: 60px;
+        line-height: 1.5em;
+        margin-bottom: 6px;
+        overflow: hidden;
+        padding: 6px 0
+    }
+    
+    #auction .fore .p-img {
+        float: left;
+        margin-right: 5px
+    }
+    
+    #auction .p-img {
+        height: 50px
+    }
+    
+    #auction .p-name {
+        margin-top: 2px
+    }
+    
+    #auction .p-price {
+        height: 18px;
+        margin-top: 2px
+    }
+    
+    #special {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) repeat-x scroll 0 -128px #E6E6E6;
+        height: 28px;
+        margin-bottom: 10px
+    }
+    
+    #special h2 {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll 0 -100px transparent;
+        color: #FFFFFF;
+        float: left;
+        height: 28px;
+        line-height: 28px;
+        padding: 0 8px;
+        width: 121px
+    }
+    
+    #special h2 span {
+        color: #FFA9A9;
+        font-family: arial;
+        font-size: 11px;
+        font-weight: normal;
+        margin-left: 4px
+    }
+    
+    #special .extra {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll right -156px transparent;
+        float: right;
+        height: 28px;
+        line-height: 28px;
+        padding-right: 10px;
+        text-align: right;
+        width: 100px
+    }
+    
+    #special .extra a:link,
+    #special .extra a:visited {
+        color: #999999
+    }
+    
+    .special .mt {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) repeat-x scroll 0 -214px #E6E6E6;
+        height: 30px;
+        line-height: 30px
+    }
+    
+    .special .mt h2 {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll 0 -184px transparent;
+        color: #CC0000;
+        float: left;
+        height: 30px;
+        padding-left: 8px
+    }
+    
+    .special .mt .extra {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll right -244px transparent;
+        float: right;
+        height: 30px;
+        width: 20px
+    }
+    
+    .special .mc {
+        border-color: #E6E6E6;
+        border-style: solid;
+        border-width: 0 1px 1px;
+        padding: 0 0 0 1px;
+        width: 543px
+    }
+    
+    .special li {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) repeat-x scroll 0 -597px transparent;
+        height: 179px;
+        padding: 0 10px 5px;
+        text-align: center;
+        width: 161px
+    }
+    
+    .special .fore {
+        background: none repeat scroll 0 0 transparent
+    }
+    
+    .special .p-img {
+        height: 100px
+    }
+    
+    .special .p-name {
+        margin-bottom: 5px
+    }
+    
+    .limitbuy .mt {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) repeat-x scroll 0 -60px #E6E6E6;
+        height: 24px;
+        line-height: 24px;
+        padding: 3px 8px
+    }
+    
+    .limitbuy .mt h2 {
+        color: #CC0000;
+        float: left;
+        height: 30px
+    }
+    
+    .limitbuy .mc {
+        border-color: #E6E6E6;
+        border-style: solid;
+        border-width: 0 1px 1px;
+        padding-bottom: 6px
+    }
+    
+    .limitbuy .clock {
+        text-align: center
+    }
+    
+    .limitbuy .clock b {
+        color: #CC0000;
+        font-family: arial;
+        font-size: 20px;
+        padding: 0 3px
+    }
+    
+    .limitbuy li {
+        padding: 0 10px;
+        text-align: center
+    }
+    
+    .limitbuy .p-img {
+        height: 100px;
+        margin: 3px 0;
+        position: relative;
+        width: 189px
+    }
+    
+    .limitbuy .p-market {
+        display: none
+    }
+    
+    .rank .mt {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) repeat-x scroll 0 -60px #E6E6E6;
+        height: 24px;
+        line-height: 24px;
+        padding: 3px 8px
+    }
+    
+    .rank .mt h2 {
+        color: #CC0000;
+        height: 30px
+    }
+    
+    .rank .mc {
+        border-color: #E6E6E6;
+        border-style: solid;
+        border-width: 0 1px 1px;
+        padding: 0 1px
+    }
+    
+    .rank .tab {
+        height: 19px;
+        overflow: hidden;
+        padding: 6px 2px 0
+    }
+    
+    .rank .tab li {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll 0 -274px transparent;
+        color: #999999;
+        height: 17px;
+        line-height: 17px;
+        margin: 0 2px;
+        padding-top: 2px;
+        text-align: center;
+        width: 62px
+    }
+    
+    .rank .tab .curr {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll -62px -274px transparent;
+        color: #CC0000
+    }
+    
+    .rank .tab .curr a:link,
+    .rank .tab .curr a:visited {
+        color: #CC0000
+    }
+    
+    .rank .tabcon li {
+        border-top: 1px solid #EFEFEF;
+        float: left;
+        height: 22px;
+        line-height: 22px;
+        overflow: hidden;
+        padding: 6px 5px;
+        width: 197px
+    }
+    
+    .rank .tabcon span {
+        color: #CC0000;
+        float: left;
+        font-family: arial;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 0 8px 0 4px
+    }
+    
+    .rank .tabcon .p-name {
+        float: left;
+        height: 22px;
+        overflow: hidden;
+        width: 176px
+    }
+    
+    .rank .tabcon .fore {
+        border-top: 1px solid #CC0000;
+        height: 56px;
+        padding: 10px 5px
+    }
+    
+    .rank .tabcon .fore .p-img {
+        float: left;
+        height: 50px;
+        margin-right: 5px
+    }
+    
+    .rank .tabcon .fore .p-name {
+        height: 3em;
+        line-height: 1.5em;
+        width: 120px
+    }
+    
+    .rank .tabcon .fore .p-price {
+        float: left;
+        height: 18px;
+        line-height: 18px;
+        margin-top: 2px
+    }
+    
+    #comment .mt {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll 0 -30px #E6E6E6;
+        height: 24px;
+        line-height: 24px;
+        padding: 3px 8px
+    }
+    
+    #comment .mc {
+        border-color: #E6E6E6;
+        border-style: solid;
+        border-width: 0 1px 1px
+    }
+    
+    #comment ul {
+        padding: 0 8px
+    }
+    
+    #comment li {
+        border-top: 1px solid #EFEFEF;
+        overflow: hidden;
+        padding: 6px 0
+    }
+    
+    #comment .fore {
+        border-top: 0 none
+    }
+    
+    #comment h5 {
+        color: #FE9900
+    }
+    
+    #comment h5 a {
+        color: #005BA0;
+        font-weight: normal
+    }
+    
+    #comment .content {
+        overflow: hidden
+    }
+    
+    #comment .content img {
+        float: left;
+        margin: 0 8px 1px 0
+    }
+    
+    #comment .ammount {
+        color: #12A000;
+        float: left
+    }
+    
+    #comment .user {
+        color: #005BA0;
+        float: right
+    }
+    
+    #comment .user a {
+        color: #005BA0
+    }
+    
+    #vote .mt {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll 0 -30px #E6E6E6;
+        height: 24px;
+        line-height: 24px;
+        padding: 3px 8px
+    }
+    
+    #vote .mc {
+        border-color: #E6E6E6;
+        border-style: solid;
+        border-width: 0 1px 1px;
+        padding: 8px
+    }
+    
+    #vote .btns {
+        overflow: hidden;
+        padding-left: 40px
+    }
+    
+    #vote .btn-submit,
+    #vote .btn-view {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_hotsale.gif) no-repeat scroll 0 -632px transparent;
+        float: left;
+        height: 22px;
+        line-height: 22px;
+        margin-right: 5px;
+        text-align: center;
+        width: 50px
+    }
+    
+    #vote .btn-submit {
+        border: 0 none;
+        font-size: 12px
+    }
+    
+    #vote .btn-view {
+        line-height: 26px;
+        overflow: hidden;
+        text-decoration: none
+    }
+    
+    #jdzone {
+        border: 1px solid #E6E6E6;
+        overflow: visible
+    }
+    
+    #jdzone .mt {
+        padding: 5px 8px
+    }
+    
+    #jdzone .mc {
+        overflow: visible
+    }
+    
+    #jdzone .mc .img {
+        background: url(http://misc.360buyimg.com/201007/skin/df/i/bg_tit_home.gif) no-repeat scroll 10px -300px #FFFFFF;
+        height: 198px;
+        margin: 4px auto 0;
+        width: 200px
+    }
+    
+    #jdzone .mc .content {
+        margin-top: -202px;
+        overflow: hidden;
+        padding: 0 0 0 8px;
+        position: relative;
+        width: 201px
+    }
+    
+    #jdzone span {
+        float: left;
+        height: 20px;
+        line-height: 20px;
+        margin-right: 10px;
+        padding: 1px 0;
+        text-align: center;
+        width: 30px
+    }
+    
+    #jdzone span a {
+        color: #005AB0
+    }
+    
+    #jdzone .l3 {
+        width: 45px
+    }
+    
+    #jdzone .mb {
+        padding: 5px 8px
+    }
+    
+    .pi1,
+    .pi2,
+    .pi3,
+    .pi4,
+    .pi5,
+    .pi6,
+    .pi7,
+    .pi8,
+    .pi9,
+    .pi10 {
+        background-image: url(http://misc.360buyimg.com/201007/skin/df/i/icon_promotion.gif);
+        background-repeat: no-repeat;
+        height: 60px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 54px
+    }
+    
+    .pi1 {
+        background-position: 0 0
+    }
+    
+    .pi2 {
+        background-position: -54px 0
+    }
+    
+    .pi3 {
+        background-position: -108px 0
+    }
+    
+    .pi4 {
+        background-position: 0 -60px
+    }
+    
+    .pi5 {
+        background-position: -54px -60px
+    }
+    
+    .pi6 {
+        background-position: -108px -60px
+    }
+    
+    .pi7 {
+        background-position: 0 -120px
+    }
+    
+    .pi8 {
+        background-position: -54px -120px
+    }
+    
+    .pi9 {
+        background-position: -162px 0
+    }
+    
+    .pi10 {
+        background-position: -162px -60px
+    }
+    
+    .w {
+        width: 1200px
+    }
+    
+    .middle {
+        width: 766px
+    }
+    
+    .right-extra {
+        width: 983px
+    }
+    
+    #header {
+        background-image: url(http://misc.360buyimg.com/201007/skin/christmas/i/bg1200.jpg)
+    }
+    
+    #search {
+        padding: 1px;
+        width: 332px
+    }
+    
+    #i-search {
+        width: 257px
+    }
+    
+    #tie {
+        width: 257px
+    }
+    
+    #tie li {
+        width: 252px
+    }
+    
+    #key {
+        width: 228px
+    }
+    
+    #btn-search {
+        background: none repeat scroll 0 0 transparent
+    }
+    
+    #hotwords {
+        width: 410px
+    }
+    
+    #service dl {
+        padding-left: 39px;
+        width: 192px
+    }
+    
+    #service .fore1 {
+        padding-left: 20px
+    }
+    
+    #service .fore5 {
+        width: 200px
+    }
+    
+    #service ul {
+        padding: 15px
+    }
+    
+    #service li {
+        padding: 0 36px
+    }
+    
+    #madding-1 dl {
+        width: 235px
+    }
+    
+    #madding-1 .p-price {
+        right: 50px
+    }
+    
+    .madding-2 li,
+    .madding-3 li {
+        width: 239px
+    }
+    
+    #newpros .mc {
+        width: 766px
+    }
+    
+    #newpros .mc ul {
+        width: 766px
+    }
+    
+    #newpros li {
+        width: 235px
+    }
+    
+    #slide {
+        width: 766px
+    }
+    
+    #slide ul {
+        width: 766px
+    }
+    
+    #slide li {
+        width: 766px
+    }
+    
+    .special .mc {
+        width: 763px
+    }
+    
+    .special li {
+        width: 234px
+    }
+    
+    #street-recomm .brands {
+        width: 758px
+    }
+    
+    #street-recomm .brands span {
+        width: 126px
+    }
+    </style>
+    <style>
+    .mt,
+    .mc {
+        _zoom: 1;
+    }
+    
+    .new-price-x {
+        margin: -28px 0 0 74px;
+    }
+    
+    .new-price {
+        display: inline-block;
+        background: #FF3333;
+        color: #fff;
+        font-family: arial;
+        font-weight: bold;
+        line-height: 14px;
+        padding: 2px 5px;
+    }
+    </style>
+    <style type="text/css"></style>
+</head>
+
+<body>
+    <div class="w">
+        <p>&nbsp;</p>
+        <div id="newpros">
+            <div class="mt">
+                <h2>absolute实现</h2></div>
+        </div>
+        <div id="madding-1" class="mc list-h">
+            <div class="tabcon list-h">
+                <dl>
+                    <dt class="p-img">
+                        <a href="##"><img width="130" height="130" src="http://img10.360buyimg.com/n3/834/11752677-6197-4ffa-b4c0-e66d02640bad.jpg"></a>
+                        <div class="p-price">￥999.00</div>
+                    </dt>
+                    <dd class="p-name">
+                        <a href="##">LG  GD580  3G手机 300万像素 999返100元券！</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <div id="newpros">
+            <div class="mt">
+                <h2>margin实现</h2></div>
+        </div>
+        <div id="madding-1" class="mc list-h">
+            <div class="tabcon list-h">
+                <dl>
+                    <dt class="p-img">
+                        <a href="##"><img width="130" height="130" src="http://img10.360buyimg.com/n3/834/11752677-6197-4ffa-b4c0-e66d02640bad.jpg"></a>
+                        <div class="new-price-x"><span class="new-price">￥999.00</span></div>
+                    </dt>
+                    <dd class="p-name">
+                        <a href="##">LG  GD580  3G手机 300万像素 999返100元券！</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <button id="btnWidth">改变宽度</button>
+        <button id="btnRelative">父标签static</button>
+    </div>
+    <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+    <script>
+    var oDl = document.getElementsByTagName("dl"),
+        lDl = oDl.length,
+        oDt = document.getElementsByTagName("dt"),
+        lDt = oDt.length;
+
+    document.getElementById("btnWidth").onclick = function() {
+        for (var i = 0; i < lDl; i += 1) {
+            oDl[i].style.width = "470px";
+        }
+    };
+    document.getElementById("btnRelative").onclick = function() {
+        for (var i = 0; i < lDt; i += 1) {
+            oDt[i].style.position = "static";
+        }
+    };
+    </script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-11205167-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+
+</html>

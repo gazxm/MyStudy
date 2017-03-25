@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css子选择器</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		div {
+			color: red;
+		}
+		div>p{
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div>
+	<!-- 据说有问题。。。在IE7若父子元素存在html注释，则有问题 -->
+				<!-- dd aaaaaa--><p>AAAAAAAAAAAA</p>	
+				<!-- dd aaaaaa--><p>AAAAAAAAAAAA</p>
+				<!-- dd aaaaaa--><p>AAAAAAAAAAAA</p>
+	</div>
+</body>
+</html>

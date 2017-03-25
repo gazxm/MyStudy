@@ -1,0 +1,671 @@
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+  background: transparent; }
+
+article, aside, figure, footer, header, nav, section, details, summary {
+  display: block; }
+
+/* Handle box-sizing while better addressing child elements:
+   http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+html {
+  box-sizing: border-box; }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; }
+
+/* consider resetting the default cursor: https://gist.github.com/murtaugh/5247154 */
+/* Responsive images and other embedded objects */
+/* if you don't have full control over `img` tags (if you have to overcome attributes), consider adding height: auto */
+img,
+object,
+embed {
+  max-width: 100%; }
+
+/*
+   Note: keeping IMG here will cause problems if you're using foreground images as sprites.
+In fact, it *will* cause problems with Google Maps' controls at small size.
+If this is the case for you, try uncommenting the following:
+#map img {
+max-width: none;
+}
+*/
+/* force a vertical scrollbar to prevent a jumpy page */
+html {
+  overflow-y: scroll; }
+
+/* we use a lot of ULs that aren't bulleted.
+you'll have to restore the bullets within content,
+which is fine because they're probably customized anyway */
+ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none; }
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
+del {
+  text-decoration: line-through; }
+
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted #000;
+  cursor: help; }
+
+/* tables still need cellspacing="0" in the markup */
+table {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+th {
+  font-weight: bold;
+  vertical-align: bottom; }
+
+td {
+  font-weight: normal;
+  vertical-align: top; }
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0; }
+
+input, select {
+  vertical-align: middle; }
+
+pre {
+  white-space: pre;
+  /* CSS2 */
+  white-space: pre-wrap;
+  /* CSS 2.1 */
+  white-space: pre-line;
+  /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word;
+  /* IE */ }
+
+input[type="radio"] {
+  vertical-align: text-bottom; }
+
+input[type="checkbox"] {
+  vertical-align: bottom; }
+
+.ie7 input[type="checkbox"] {
+  vertical-align: baseline; }
+
+.ie6 input {
+  vertical-align: text-bottom; }
+
+select, input, textarea {
+  font: 99% sans-serif; }
+
+table {
+  font-size: inherit;
+  font: 100%; }
+
+small {
+  font-size: 85%; }
+
+strong {
+  font-weight: bold; }
+
+td, td img {
+  vertical-align: top; }
+
+/* Make sure sup and sub don't mess with your line-heights http://gist.github.com/413930 */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+/* standardize any monospaced elements */
+pre, code, kbd, samp {
+  font-family: monospace, sans-serif; }
+
+/* hand cursor on clickable elements */
+.clickable,
+label,
+input[type=button],
+input[type=submit],
+input[type=file],
+button {
+  cursor: pointer; }
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea {
+  margin: 0; }
+
+/* make buttons play nice in IE */
+button,
+input[type=button] {
+  width: auto;
+  overflow: visible; }
+
+/* scale images in IE7 more attractively */
+.ie7 img {
+  -ms-interpolation-mode: bicubic; }
+
+/* prevent BG image flicker upon hover
+   (commented out as usage is rare, and the filter syntax messes with some pre-processors)
+.ie6 html {filter: expression(document.execCommand("BackgroundImageCache", false, true));}
+*/
+/* let's clear some floats */
+.clearfix:after {
+  content: " ";
+  display: block;
+  clear: both; }
+
+a.rule, .index .index-content form button, .popup-rule .overlay .close, .popup .dialog a.know {
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #d48e22), color-stop(50%, #f9c046), color-stop(100%, #d48e22)); }
+
+* {
+  font-family: Helvetica, "Microsoft YaHei"; }
+
+@keyframes in {
+  0% {
+    transform: translateX(100%); }
+  100% {
+    transform: translateX(0%); } }
+
+@-webkit-keyframes in {
+  0% {
+    -webkit-transform: translateX(100%); }
+  100% {
+    -webkit-transform: translateX(0%); } }
+
+@keyframes out {
+  0% {
+    transform: translateX(0%); }
+  100% {
+    transform: translateX(-100%); } }
+
+@-webkit-keyframes out {
+  0% {
+    -webkit-transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(-100%); } }
+
+@keyframes scale {
+  0% {
+    transform: scale(1); }
+  100% {
+    transform: scale(0); } }
+
+@-webkit-keyframes scale {
+  0% {
+    -webkit-transform: scale(1); }
+  100% {
+    -webkit-transform: scale(0); } }
+
+@keyframes opacity {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
+@-webkit-keyframes opacity {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
+@keyframes carIn {
+  0% {
+    transform: rotate(0deg); }
+  25% {
+    transform: rotate(-1.5deg); }
+  50% {
+    transform: rotate(-2.5deg); }
+  75% {
+    transform: rotate(-1.5deg); }
+  100% {
+    transform: rotate(0deg); } }
+
+@-webkit-keyframes carIn {
+  0% {
+    transform: rotate(0deg); }
+  25% {
+    transform: rotate(-1.5deg); }
+  50% {
+    transform: rotate(-2.5deg); }
+  75% {
+    transform: rotate(-1.5deg); }
+  100% {
+    transform: rotate(0deg); } }
+
+a.rule {
+  display: block;
+  width: 1.7333333333rem;
+  line-height: 0.6rem;
+  position: absolute;
+  top: 0.8666666667rem;
+  right: 0.44rem;
+  color: #cb2e27;
+  font-size: 0.2133333333rem;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 0.1333333333rem; }
+
+.logo {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.3333333333rem;
+  width: 2.48rem;
+  height: 0.8666666667rem;
+  background: transparent url(../img/logo.png) 0 0 no-repeat;
+  background-size: 2.48rem 0.8666666667rem; }
+
+.loading-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10rem;
+  height: 100%;
+  background: transparent url(../img/background-01.jpg) 0 0 no-repeat;
+  background-size: 10rem 17.7866666667rem;
+  z-index: 100; }
+  .loading-content .car {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4.8266666667rem;
+    height: 4.6rem;
+    margin-left: -2.4133333333rem;
+    margin-top: -2.9333333333rem;
+    background: transparent url(../img/car.png) 0 0 no-repeat;
+    background-size: 4.8266666667rem 4.6rem; }
+  .loading-content .loading {
+    position: absolute;
+    top: 65%;
+    left: 18%; }
+  .loading-content .loading-animation {
+    display: inline-block;
+    width: 0;
+    height: 0.4888rem;
+    background: #f9c046;
+    vertical-align: middle; }
+  .loading-content span {
+    font-size: 0.4888rem;
+    color: #f9c046;
+    vertical-align: top; }
+  .loading-content span.loading-number {
+    margin-left: 0.2666666667rem; }
+
+.index {
+  padding-top: 0.0133333333rem;
+  width: 10rem;
+  height: 17.7866666667rem;
+  position: relative;
+  background: #c6000d url(../img/background-02.jpg) 0 0 no-repeat;
+  background-size: 10rem 17.7866666667rem; }
+  .index .index-content img {
+    display: block;
+    width: 8.9066666667rem;
+    margin: 0.6666666667rem auto 0;
+    height: 8.44rem; }
+  .index .index-content h1 {
+    width: 8.3466666667rem;
+    margin: 0 auto;
+    height: 1.2266666667rem;
+    background: transparent url(../img/h1.png) 0 0 no-repeat;
+    background-size: 8.3466666667rem 1.2266666667rem; }
+  .index .index-content .red-package, .index .index-content .statement {
+    padding: 0 1.1333333333rem 0 1.1333333333rem; }
+  .index .index-content .red-package {
+    font-size: 0.48rem;
+    line-height: 0.6858666667rem;
+    text-align: center;
+    font-style: italic;
+    color: #f9c151; }
+  .index .index-content form {
+    padding: 0 1.7333333333rem 0 1.6rem; }
+    .index .index-content form .input {
+      padding-top: 0.2666666667rem;
+      box-sizing: border-box; }
+      .index .index-content form .input span {
+        font-size: 0.4226666667rem;
+        font-weight: bold;
+        color: #fac046; }
+      .index .index-content form .input input {
+        background: transparent;
+        color: #f9c151;
+        width: 4.9333333333rem;
+        line-height: 0.6933333333rem;
+        border: 1px solid #da9629;
+        border-radius: 0.1333333333rem;
+        padding-left: 0.2666666667rem; }
+    .index .index-content form h4 {
+      margin-top: 0.2rem;
+      font-size: 0.2533333333rem;
+      color: #f9c151; }
+    .index .index-content form button {
+      border: none;
+      display: block;
+      width: 3.1333333333rem;
+      margin: 0.2666666667rem auto 0;
+      line-height: 0.9733333333rem;
+      font-size: 0.48rem;
+      font-weight: bold;
+      color: #cb2e27;
+      text-align: center;
+      border-radius: 0.2rem;
+      box-shadow: 2px 1px 0 #232726, 5px 5px 5px #6e0c11; }
+  .index .index-content .statement {
+    text-align: center;
+    margin-top: 0.2rem;
+    font-size: 0.1925333333rem;
+    color: #fff;
+    padding-bottom: 0.1333333333rem; }
+  .index .luckdraw-content {
+    color: #f9c151; }
+    .index .luckdraw-content .red-content {
+      width: 8.68rem;
+      height: 8.9333333333rem;
+      font-size: 0;
+      background: #ffc000;
+      margin: 0 auto;
+      border: 0.08rem solid #ff0000;
+      border-radius: 0.4rem;
+      box-shadow: inset 3px 3px 10px #b98b00;
+      padding: 0.4rem 0.6666666667rem; }
+    .index .luckdraw-content i {
+      display: inline-block;
+      width: 1.6666666667rem;
+      height: 2.3866666667rem;
+      background: transparent url(../img/red-package.png) 0 0 no-repeat;
+      background-size: 1.6666666667rem 2.3866666667rem;
+      margin: 0 0.3466666667rem 0.4rem; }
+    .index .luckdraw-content h2 {
+      font-size: 0.9025333333rem;
+      margin-top: 3.3333333333rem;
+      font-weight: bold;
+      line-height: 1.2222666667rem;
+      text-align: center; }
+    .index .luckdraw-content h3, .index .luckdraw-content h4 {
+      padding-left: 0.8rem; }
+    .index .luckdraw-content h3 {
+      font-size: 0.4rem;
+      font-weight: bold;
+      line-height: 0.5524rem;
+      margin-top: 0.7333333333rem; }
+    .index .luckdraw-content h4 {
+      margin-top: 0.5466666667rem;
+      padding-bottom: 0.8666666667rem;
+      font-size: 0.2997333333rem;
+      line-height: 0.5524rem; }
+    .index .luckdraw-content p {
+      padding-left: 0.2666666667rem;
+      font-size: 0.2997333333rem;
+      line-height: 0.5524rem; }
+      .index .luckdraw-content p span {
+        margin-left: 0.5333333333rem;
+        font-weight: bold; }
+  .index .lookreward-content h2 {
+    font-size: 0.6678666667rem;
+    font-weight: bold;
+    line-height: 0.9418666667rem;
+    color: #f9c046;
+    text-align: center;
+    margin-top: 2.4rem; }
+    .index .lookreward-content h2 .phone {
+      color: #f9c046;
+      text-decoration: none; }
+  .index .lookreward-content .open-red {
+    width: 4.4666666667rem;
+    height: 4.2rem;
+    margin: 0 auto;
+    position: relative;
+    background: transparent url(../img/open-red.png) 0 0 no-repeat;
+    background-size: 4.4666666667rem 4.2rem; }
+    .index .lookreward-content .open-red p {
+      position: absolute;
+      top: 0.6666666667rem;
+      left: 0.8rem;
+      text-align: center;
+      font-size: 0.6128rem;
+      font-weight: bold;
+      line-height: 0.7489333333rem;
+      color: #ea3925; }
+  .index .lookreward-content h3 {
+    font-size: 0.4rem;
+    line-height: 0.8649333333rem;
+    color: #f9c151;
+    text-align: center; }
+  .index .lookreward-content p.usage-method {
+    font-size: 0.2956rem;
+    font-weight: bold;
+    line-height: 0.4577333333rem;
+    color: #f9c151;
+    text-align: center; }
+  .index .lookreward-content #shop-information {
+    text-align: center;
+    margin-top: 0.2rem;
+    line-height: 0.6133333333rem;
+    height: 0.6133333333rem;
+    display: block;
+    position: relative; }
+    .index .lookreward-content #shop-information select {
+      display: inline-block;
+      background: #f9c046;
+      width: 3.64rem;
+      line-height: 0.6133333333rem;
+      height: 0.6133333333rem;
+      border-radius: 0.1333333333rem;
+      padding-left: 0.9333333333rem;
+      font-size: 0.3733333333rem;
+      border: none;
+      text-align: center;
+      vertical-align: top; }
+    .index .lookreward-content #shop-information span {
+      font-size: 0.4422666667rem;
+      margin-left: 0.1333333333rem;
+      color: #f9c151;
+      vertical-align: top; }
+  .index .lookreward-content .content {
+    width: 8.5333333333rem;
+    height: 2.9333333333rem;
+    margin: 0.2666666667rem auto 0;
+    border-radius: 0.2rem;
+    background: #f9c046; }
+    .index .lookreward-content .content h5 {
+      padding: 0.3333333333rem 0.4666666667rem;
+      font-size: 0.3686666667rem;
+      font-weight: bold;
+      line-height: 0.5333333333rem;
+      text-align: left;
+      color: black; }
+  .index .lookreward-content .dist {
+    text-align: left;
+    position: absolute;
+    left: 1.2rem;
+    height: 1.8666666667rem;
+    width: 7.7333333333rem;
+    top: 1.8666666667rem;
+    overflow-y: scroll; }
+    .index .lookreward-content .dist .h2 {
+      font-size: 0.3733333333rem;
+      font-weight: bold;
+      color: #cb2e27;
+      padding: 0.1333333333rem 0; }
+  .index .lookreward-content .QRcode {
+    margin-top: 3.44rem; }
+    .index .lookreward-content .QRcode p {
+      background: transparent url(../img/QRcode.jpg) 50% 0 no-repeat;
+      background-size: 2.6933333333rem 2.7066666667rem;
+      padding-top: 2.8rem;
+      padding-bottom: 0.0666666667rem;
+      font-size: 0.3698666667rem;
+      color: #f9c046;
+      text-align: center; }
+
+.in {
+  -webkit-animation: in .6s ease-in-out 1 forwards;
+  animation: in .6s ease-in-out 1 forwards; }
+
+.out {
+  -webkit-animation: out .6s ease-in-out 1 forwards;
+  animation: out .6s ease-in-out 1 forwards; }
+
+.scale {
+  -webkit-animation: scale .5s ease-in-out 1 forwards;
+  animation: scale .5s ease-in-out 1 forwards; }
+
+.opacity {
+  -webkit-animation: opacity 2s ease-in-out 1 forwards;
+  animation: opacity 2s ease-in-out 1 forwards; }
+
+.car-in {
+  -webkit-animation: carIn 1.5s cubic-bezier(0, 0.42, 0.58, 1) infinite forwards;
+  animation: carIn 1.5s cubic-bezier(0, 0.42, 0.58, 1) infinite forwards;
+  -webkit-transform-origin: 30% 100%;
+  transform-origin: 30% 100%; }
+
+.popup-rule .overlay {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10; }
+  .popup-rule .overlay .close {
+    position: fixed;
+    top: 0.6666666667rem;
+    right: 0.3333333333rem;
+    width: 1.2rem;
+    line-height: 0.56rem;
+    font-size: 0.2133333333rem;
+    border-radius: 0.1333333333rem;
+    text-align: center; }
+    .popup-rule .overlay .close:before {
+      content: '';
+      display: inline-block;
+      margin-right: 0.0666666667rem;
+      width: 0.1866666667rem;
+      height: 0.2133333333rem;
+      background: transparent url(../img/close.png) 0 0 no-repeat;
+      background-size: 0.1866666667rem 0.2133333333rem; }
+
+.popup-rule .dialog-rule {
+  position: fixed;
+  top: 20%;
+  left: 0.6rem;
+  width: 8.8rem;
+  height: 12.6rem;
+  background: #f9c046;
+  border-radius: 0.4rem;
+  overflow-y: hidden;
+  padding: 0.6666666667rem 0.6666666667rem 0.6666666667rem;
+  font-size: 0.3698666667rem;
+  line-height: 0.6165333333rem;
+  overflow-y: scroll;
+  z-index: 11; }
+  .popup-rule .dialog-rule h2 {
+    text-align: center;
+    font-size: 0.48rem;
+    font-weight: bold; }
+  .popup-rule .dialog-rule h3 {
+    font-size: 0.3466666667rem; }
+  .popup-rule .dialog-rule p {
+    font-size: 0.3466666667rem;
+    text-indent: 2em; }
+  .popup-rule .dialog-rule p.more-indent {
+    text-indent: 3em; }
+
+.popup .overlay {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10; }
+
+.popup .dialog {
+  position: fixed;
+  width: 8rem;
+  height: 4rem;
+  background: #f9c046;
+  top: 50%;
+  left: 50%;
+  margin-left: -4rem;
+  margin-top: -2rem;
+  border-radius: 0.3333333333rem;
+  z-index: 11; }
+  .popup .dialog .close {
+    position: absolute;
+    top: 0.2666666667rem;
+    right: 0.2666666667rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    background: transparent url(../img/close.png) 50% 0 no-repeat;
+    background-size: 0.2666666667rem 0.2933333333rem; }
+  .popup .dialog h3.error {
+    height: 2.6666666667rem;
+    font-size: 0.48rem;
+    line-height: 0.64rem;
+    padding-top: 1.0133333333rem;
+    color: #cb2e27;
+    text-align: center; }
+  .popup .dialog a.know {
+    display: block;
+    width: 2.5333333333rem;
+    margin: 0 auto;
+    line-height: 0.9733333333rem;
+    font-size: 0.48rem;
+    font-weight: bold;
+    color: #cb2e27;
+    text-align: center;
+    border-radius: 0.2rem; }
+
+.popup-spin .overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 12; }
+
+.popup-spin .spin {
+  position: fixed;
+  left: 64%;
+  top: 58%;
+  color: #fff;
+  float: left;
+  width: 2.9333333333rem;
+  height: 2.9333333333rem;
+  margin-left: -1.4666666667rem;
+  margin-top: -1.4666666667rem;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-transform: translate3d(0, 0, 0);
+  z-index: 13; }

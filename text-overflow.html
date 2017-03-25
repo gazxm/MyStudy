@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>text-overflow</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  /* 语法: text-overflow：clip【剪切】 | ellipsis【三个点代替】 | <string> */
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  div {
+    width: 200px;
+    height: 18px;
+    line-height: 18px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    white-space: nowrap;
+    /*需要配合这个一起使用*/
+  }
+  .clip {
+  	text-overflow: clip;
+  }
+
+  .ellipsis {
+  	text-overflow: ellipsis;
+  }
+
+  .string {
+  	text-overflow: "string";
+  }
+  </style>
+</head>
+
+<body>
+  <div class="clip">
+    clip:这是一个div,这是一个div.
+  </div>
+  <div class="ellipsis">
+    ellipsis:这是一个div,这是一个div.
+  </div>
+  <div class="string">
+    &lt;string&gt;:这是一个div,这是一个div.
+  </div>
+</body>
+
+</html>

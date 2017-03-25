@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>letter-space和word-space</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		div {
+			width: 400px;
+			border: 1px solid red;
+		}
+		.letter-spacing {
+			letter-spacing: 10px;
+		}
+		.word-spacing {
+			word-spacing: 10px;
+		}
+  </style>
+  <!-- letter-space是字符间的间距，word-space是单词间的间距 -->
+  <!-- 中文好像没有单词间的间距这么一说 -->
+</head>
+
+<body>
+  <div class="letter-spacing">
+    对于用户来说超出信息会被省略，不然会呈现成锯齿状的排列方式(可以注释查看)； 但是使用inline-block不会有这种情况
+  </div>
+  <div class="word-spacing">
+    对于用户来说超出信息会被省略，不然会呈现成锯齿状的排列方式(可以注释查看)； 但是使用inline-block不会有这种情况,inline-block inline-block inline-block inline-block
+  </div>
+</body>
+
+</html>

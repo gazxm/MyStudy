@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>padding和margin的百分比问题</title>
+	<script type="text/javascript"></script>
+	<style>
+		.father {
+			width: 500px;
+			height: 300px;
+			border: 1px solid red;
+		}
+
+		.children {
+			width: 100px;
+			height: 50px;
+			border: 1px solid black;
+			padding: 10% 10%;
+			margin: 20% 20%;
+		}
+		/*
+			可用看到padding的上下左右的边距均为50px，margin的上下左右边距均为100px
+			则padding和margin的如果设置为百分比，则都是根据父元素的宽度来计算的
+		*/
+	</style>
+</head>
+
+<body>
+	<div class='father'>
+		<div class='children'>children</div>
+	</div>	
+</body>
+
+</html>

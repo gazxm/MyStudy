@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>基本包装类型</title>
+  <script>
+  	/*为了便于操作基本类型值，ECMAScript还提供了3个特殊的引用类型: Boolean、Number和String。这	些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。      
+  		实际上，每当读取一个基本类型值的时候，后台就会创建一个队员的基本包装类型的对象，从而让我们能够调用一些方法来操作这些数据。
+
+  		var s1 = "some text";
+  		var s2 = s1.substring(2);
+  		这个例子中的变量s1包含一个字符串，字符串当然是基本类型值。而下一行调用了s1的substring()方法，并将返回的结果保存在了s2中。从逻辑上来说，基本类型值不是对象，因而它们不应该有方法(但是它们确实有方法)。其实，为了让我们实现这种直观的操作，后台会进行如下操作。
+  			1、创建String类型的一个实例;
+  			2、在实例上调用指定的方法;
+  			3、销毁这个实例。
+  			如下代码：	
+  			var s1 = new String("some text");
+  			var s2 = s1.substring(2);
+  			s1 = null;
+  			经过如上处理之后，基本的字符串值就变得跟对象一样了。而且，上面这三个步骤也分别适用于Boolean和Number类型对于的布尔值和数字值。
+		*/
+		/*	引用类型和基本包装类型的主要区别：对象的生存期。
+					1、引用类型： 使用new操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中。
+					2、自动创建的基本包装类型的对象：则只存在于一行代码的执行瞬间，然后立即被销毁。这意味着我们不能再运行时为基本类型值添加属性和方法。
+					var s1 = "some text";
+					s1.color = "red";
+					console.log(s1.color);	//undefined
+
+					在此，第二行代码试图为字符串s1添加一个color属性。但是，当第三行代码在此访问s1时，其color属性不见了。问题的原因就是第二行创建的String对象在执行第三行代码时已经被销毁了。然而第三行代码又创建自己的String对象，而该对象并没有color属性。
+		*/
+
+		/*	当然，可以显示地调用Boolean、Number和String来创建基本包装类型的对象。不过，应该在绝对必要的情况下这样做(原因：会让人分不清自己是在处理基本类型还是引用类型的值)。
+		*/
+		var str = new String("some text"),
+				num = new Number(2),
+				flag = new Boolean(true);
+		console.log(str, num, flag);	
+		/*String {0: "s", 1: "o", 2: "m", 3: "e", 4: " ", 5: "t", 6: "e", 7: "x", 8: "t", length: 9, [[PrimitiveValue]]: "some text"} 
+		Number {[[PrimitiveValue]]: 2} 
+		Boolean {[[PrimitiveValue]]: true}
+		*/
+		console.log(typeof str, typeof num, typeof flag);	//object object object 包装之后返回true
+		console.log(str instanceof String, num instanceof Number, flag instanceof Boolean);
+		//true true true
+
+		var obj_str = new Object("some text"),
+				obj_num = new Object(222),
+				obj_boolean = new Object(true);
+		console.log(obj_str, obj_num, obj_boolean);	//如上
+		console.log(typeof obj_str, typeof obj_num, typeof obj_boolean);//object object object
+		console.log(obj_str instanceof String, obj_num instanceof Number, obj_boolean instanceof Boolean);	//true true true
+
+		var value = "25";
+		var number = Number(value),
+				number_obj = new Number(value);
+		console.log(typeof number, typeof number_obj, number_obj instanceof Number);	
+		//number   object   true
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

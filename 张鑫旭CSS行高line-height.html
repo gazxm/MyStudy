@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>张鑫旭CSS行高line-height理解</title>
+	<!-- http://www.zhangxinxu.com/wordpress/2009/11/css行高line-height的一些深入理解及应用/-->
+	<script type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="">
+	<style type="text/css">
+	    /* line-height设置的是line-boxes的高度
+            对于非替代行内元素,line-height用于计算line-box的高度。
+            对于替代行内元素，如button,input,img元素,line-height对其没有影响；
+     */
+		.div-1{
+			font-size: 20px;
+			line-height: 50px;
+			height: 30px;
+			border: 1px solid #333;
+			margin-bottom: 50px;
+		}
+
+		.div-2{
+			font-size: 20px;
+			line-height: 0px;
+			border: 1px solid #999;
+		}
+	</style>
+</head>
+<body>
+	<!-- 当div不设置height的时候,撑开div高度的不是font-size,而是line-height -->
+	<div class="div-1">测试：line-height:20px;font-size:0px</div>
+	<div class="div-2">测试：line-height:0px;font-size:20px</div>
+</body>
+</html>

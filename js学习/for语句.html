@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>for语句</title>
+	<script>
+		//前测试循环语句
+		var count = 10;
+		for(var i = 0; i < count; i++){
+			console.log(i);
+		}
+
+		var j;
+		for(j = 0; j < count; j++) {
+			console.log(j);//由于不存在块级作用域，因此循环内部的变量的效果是一样的
+		}
+
+		var z = 0;
+		while(z < count) {
+			console.log(z);
+			z++;
+		}
+
+		var x = 0;
+		for(; x < count;) {	//这里的for循环和while是一样的
+			console.log(x);
+			x++;
+		}
+		//使用for循环做不到的，while循环同样做不到
+
+		for(;;) {	//无限循环
+			//dosomething();
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

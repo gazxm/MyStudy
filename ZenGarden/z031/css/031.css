@@ -1,0 +1,113 @@
+body {
+  margin: 0;
+  padding: 0;
+  color: #888; }
+
+.CssZenGarden-body {
+  background: transparent url(../img/bg_tree.gif) 0 0 repeat-x; }
+
+.container {
+  width: 732px;
+  margin: 0 auto; }
+  .container h1 {
+    margin: 0;
+    padding: 0;
+    background: transparent url(../img/nutitle.gif) 0 0 no-repeat;
+    width: 684px;
+    height: 200px; }
+  .container a {
+    display: block;
+    font-family: Verdana, Arial, Sans-serif;
+    font-size: 90%; }
+  .container a:link,
+  .container a:visited {
+    color: #090;
+    background-color: transparent;
+    font-weight: bold;
+    text-decoration: none; }
+  .container a:hover {
+    color: #663;
+    background-color: transparent;
+    text-decoration: underline; }
+  .container a.c {
+    font-size: 90%;
+    display: inline;
+    font-family: Georgia, Serif;
+    font-weight: normal;
+    text-transform: lowercase; }
+
+.linklist {
+  display: inline-block;
+  vertical-align: top;
+  width: 190px; }
+  .linklist h3 {
+    margin: 0px;
+    height: 41px; }
+    .linklist h3 span {
+      display: none; }
+  .linklist h3.select {
+    background: transparent url(../img/select.gif) 0 0 no-repeat; }
+  .linklist h3.archives {
+    background: transparent url(../img/archives.gif) 0 0 no-repeat; }
+  .linklist h3.resources {
+    background: transparent url(../img/resources.gif) 0 0 no-repeat; }
+  .linklist ul {
+    margin: 0;
+    padding: 0;
+    font-size: 90%; }
+    .linklist ul li {
+      list-style-type: none;
+      line-height: 1em;
+      margin: 0 0 .5em; }
+
+.main {
+  display: inline-block;
+  vertical-align: top;
+  width: 400px; }
+  .main a {
+    display: inline; }
+  .main h3 {
+    margin: 0px;
+    padding: 0px;
+    height: 73px; }
+    .main h3 span {
+      display: none; }
+  .main h3.trte {
+    background: transparent url(../img/road.gif) 0 0 no-repeat; }
+  .main h3.supp {
+    background: transparent url(../img/what.gif) 0 0 no-repeat; }
+  .main h3.part {
+    background: transparent url(../img/road.gif) 0 0 no-repeat; }
+  .main h3.bene {
+    background: transparent url(../img/road.gif) 0 0 no-repeat; }
+  .main h3.requirements {
+    background: transparent url(../img/road.gif) 0 0 no-repeat; }
+  .main p {
+    line-height: 1.5em; }
+  .main p.p1 {
+    line-height: 1.2em;
+    width: 350px; }
+  .main .footer {
+    background: #D9D98B;
+    color: #fff;
+    padding: 10px 20px;
+    border-top: 1px solid #363;
+    font: 85% Verdana, Arial, Sans-serif;
+    text-align: center; }
+
+.rightlist {
+  display: inline-block;
+  vertical-align: top;
+  width: 120px; }
+  .rightlist a {
+    display: inline;
+    text-transform: uppercase; }
+  .rightlist p {
+    text-align: center; }
+  .rightlist p.p1 {
+    text-align: right;
+    font-size: 80%; }
+  .rightlist p.p2 {
+    margin: 0;
+    padding: 0 0 90px 0;
+    background: transparent url(../img/barrow.gif) 55% bottom no-repeat; }

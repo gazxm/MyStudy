@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>相等操作符</title>
+	<script>
+		/* 相等操作符：相等( == )和不相等( != )会先转换(强制转型)在比较
+									 全等( === )和不全等( !== )仅比较而不转换
+		*/
+		/*
+			1、相等和不相等：
+					1、如果有一个操作数是布尔值，则在比较之前先将其转换为数值(false->0,true->1)
+					2、如果有一个操作数为字符串，另一个操作数是数值，在比较相等性之前先将字符串转换为数值;
+					3、如果一个操作数是对象，另一个操作数不是，则调用对象的valueOf()方法，用得到的基本类型值按照前面的规则进行比较
+					4、null和undefined：
+						a、null和undefined是相等的
+						b、要比较相等性之前，不能将null和undefined转换成其他任何值。
+					5、NaN不和任何数相等，包括自己
+					6、如果两个操作数都是对象，则比较它们是不是同一个对象。如果两个操作数都指向同一个对象，则相等操作符返回true;否则，返回false;
+		*/
+		var result1 = (null == undefined),		//true
+				result2 = ("NaN" == NaN),					//false
+				result3 = (5 == NaN),							//false
+				result4 = (NaN == NaN),						//fasle
+				result5 = (NaN != NaN),						//true
+				result6 = (false == 0),						//true
+				result7 = (true == 1),						//true
+				result8 = (true == 2),						//fasle
+				result9 = (undefined == 0),				//fasle
+				result10 = (null == 0),						//fasle
+				result11 = ("5" == 5);						//true
+		console.log(result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11);
+
+		//两个对象比较
+		var array_1 = [1, 2, 3, 4],
+				array_2 = [1, 2, 3, 4],
+				array_3 = array_1;
+		var result_1 = (array_1 == array_2),		//false  有相同的值并不是同一个对象，而是引用堆内存的同一块才是同一个对象。
+				result_2 = (array_1 === array_2),		//fasle
+				result_3 = (array_1 == array_3),		//true
+				result_4 = (array_1 === array_3);		//true
+		console.log(result_1, result_2, result_3, result_4);
+		/*
+			2、全等和不全等：
+				全等是不经过转换就相等的情况下返回true;
+		*/
+		var r1 = ("55" === 55),		//fasle
+				r2 = ("55" !== 55),		//true
+				r3 = (null === undefined);	//false
+		console.log(r1, r2, r3);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

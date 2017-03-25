@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>clip-path</title>
+  <script type="text/javascript"></script>
+  <style>
+		.clip-wrap {
+			text-align: center;
+		}
+		.element {
+		  -webkit-clip-path: polygon(0 100%, 0 0, 100% 0, 80% 100%);
+		  clip-path: polygon(0 100%, 0 0, 100% 0, 80% 100%);
+		  -webkit-clip-path: url("#clip-shape"); /* required for Webkit/Blink browsers if you're using only inline SVG clipping paths, but not CSS clip-path */
+		  clip-path: url("#clip-shape");
+		}
+		/*
+			clip-path 会把border也裁剪掉 
+		*/
+  </style>
+</head>
+
+<body>
+	<div class="clip-wrap">
+		<img src="http://karenmenezes.com/shapes-polygon/clip-demo.jpg" alt="demo-clip-css" class="element" width="150" height="150"/>
+	</div>
+	<svg class="clip-svg" width="0" height="0">
+		<defs>
+			<clipPath id="clip-shape" clipPathUnits="objectBoundingBox">
+				<polygon points="0 1, 0 0, 1 0, 0.5 1" />
+			</clipPath>
+		</defs>
+	</svg>
+
+	<div>
+		
+	</div>
+</body>
+
+</html>

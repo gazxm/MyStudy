@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>执行环境(execution context)和作用域</title>
+	<script>
+		"use strict";
+		/*
+			执行环境(execution context)是JavaScript中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。
+				每个执行环境都有一个与之关联的变量对象(variable object),环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。
+			全局执行环境是最外围的一个执行环境。在Web浏览器中，全局执行环境：window对象，因此所有全局变量和函数都是作为window对象的属性和方法创建的。
+				某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。(全局执行环境知道应用程序退出——例如关闭网页或浏览器—时才会被销毁)
+			执行环境的类型总共只有两种： 全局和局部(函数)
+		*/
+		/*
+			1、作用域链: 当代码在一个环境中执行时，会创建变量对象的一个作用域链(scope chain)
+					用途：保证对执行环境有权访问的所有变量和函数的有序访问。
+		*/
+		var color1 = "blue";
+		var test = "t";
+		var changeColor = function() {
+			if(color1 === "blue") {	//会在作用域链中搜索标识符color，在window变量对象找到
+				color1 = "red";
+			} else {
+				color1 = "blue";
+			}
+			var test = "b";	//定义一个局部变量
+			test = "a";			//在作用域链中找标识符test，在changeColor变量对象找到
+		}
+		changeColor();
+		console.log("Color is now:" + color1);	//Color is now: red
+		console.log(test);	// t
+
+		var color_blue = "blue";
+
+		var changeColor1 = function() {
+			var anotherColor = "red";
+			var swapColors = function() {
+				var tempColor = anotherColor;
+				anotherColor = color_blue;
+				color_blue = tempColor;
+				//这里可以访问 color_blue, anotherColor, tempColor
+				console.log(color_blue, anotherColor, tempColor);		//red blue red
+			}
+			swapColors();
+			//这里可以访问color_blue, anotherColor
+		}
+		changeColor1();
+		//这里只能访问color_blue
+
+		/*  2、延长作用域链:执行某些语句的时候可以在作用域链的前段临时增加一个变量对象，该变量对象会在代码执行后被移除。
+				1、try-catch语句的catch块;
+				2、with语句
+		*/
+
+		var buildUrl = function() {
+			var qs = "?degub=true";
+/*
+			with(location) {
+				var url = href + qs;
+			}
+
+			return url;*/
+		}
+		console.log(buildUrl());
+
+		/*	3、没有块级作用域，在其他类C的语言中，由花括号封闭的代码块都有自己的作用域(如果用ECMAScript的话来讲，就是它们自己的执行环境)
+		*/
+		console.log("---------分割线----------");
+		if (true) {
+			var color = "blue";
+		}
+		console.log(color);	//color_blue
+		/*
+			这里是在一个if语句中定义了变量color。如果是在C、C++或Java中，color会在if语句执行完毕后被销毁。但在JavaScript中，if语句中的变量声明会将变量添加到当前的执行环境(在这里是全局环境window)中。for语句尤其注意！
+		*/
+		for(var i = 0; i < 10; i++) {
+
+		}
+		console.log(i);	//10
+
+		/*	4、变量的声明
+					使用var声明的变量会自动被添加到最接近的环境中。在函数内部，最接近的环境就是函数的局部环境;在with语句中，最接近的环境就是函数环境。如果初始化变量时没有使用var声明，该变量会自动被添加到全局变量。
+		*/
+		console.log("---------再分一哈----------");
+		var add1 = function(num1, num2) {
+			var sum = num1 + num2;
+			return sum;
+		}
+		console.log(add(10, 20));	//30
+		console.log(sum);					// 报错
+
+		var add2 = function(num1, num2) {
+			sum1 = num1 + num2;	//全局变量
+			return sum1;
+		}
+		console.log(add(10, 20));	// 30
+		console.log(sum1);				// 30
+
+		/*	5、查询标识符
+					当在某个环节中为了读取或写入而引用一个标识符时，必须通过搜索来确定该标识符实际代表什么。
+					搜索过程从作用域链的前端开始，向上逐级查询与给定名字匹配的标识符。如果在局部环境中查找到了该标识符，搜索过程停止，变量就绪。如果在局部环境中没有找到该变量名，则继续沿作用域链向上搜索。整个搜索过程一直追溯到全局环境的变量对象。如果在全局环境中也没有找到这个标识符，则意味着该变量尚未声明。
+		*/
+
+		/*
+			总结: 1、执行环境有全局执行环境(也称为全局环境)和函数执行环境之分;
+						2、每次进入一个新执行环境，都会创建一个用于搜索变量和函数的作用域链;
+						3、函数的局部环境不仅有权访问函数作用域中的变量，而且有权访问其包含(父)环境，乃至全局环境;
+						4、全局环境只能访问在全局环境中定义的变量和函数，而不能直接访问局部环境中的任何数据;
+						5、变量的执行环节有助于确定应该合适释放内存;
+		*/
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

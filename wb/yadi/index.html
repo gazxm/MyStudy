@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name = "format-detection" content = "telephone=no">
+  <title>雅迪 更高端的电动车</title>
+  <script src="js/dest/flexible.js"></script>
+  <script src="js/dest/jquery3.1.1.js"></script>
+  <script src="js/dest/cityselect.js"></script>
+  <script src="js/dest/spin.js"></script>
+  <script src="js/dest/index.js"></script>
+  <link href="css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+	<div class="index">
+		<a class="rule">了解详情</a>
+		<div class="logo"></div>
+		<div class="loading-content">
+			<div class="car car-in"></div>
+			<div class="loading">
+				<div class="loading-animation"></div>
+				<span class="loading-number"></span>
+			</div>
+		</div>
+		<div class="index-content" style="display: none;">
+			<img src="img/huge.png" alt="" />
+			<h1></h1>
+			<p class="red-package">十万个红包来袭，千元大奖等你抽，<br>更有机会返还购车款！<p>
+			<form>
+				<div class="input"><span>姓名：</span><input name="" type="name" value="" /></div>
+				<div class="input"><span>电话：</span><input name="" type="tel" value="" /></div>
+				<h4>（请如实填写信息，提交后立刻参与抽奖）</h4>
+				<button type="button">立即提交</button>
+			</form>
+			<p class="statement">特别声明：抽奖红包需到店购车后方可使用，<br>
+			您的个人信息仅用于雅迪公司核实情况，不作他用。<br>如同意请提交。</p>
+		</div>
+
+		<div class="luckdraw-content" style="display: none;">
+			<h2>立刻抽取 现金红包</h2>
+			<div class="red-content">
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+			</div>
+			<h3>抽红包使用说明：</h3>
+			<p><span>一等奖：</span>返还购车款(最高返4999元)<span>二等奖：</span>1000元<br><span>三等奖：</span>158元<span>四等奖：</span>88元<span>五等奖：</span>58元</p>
+			<h4>活动规则点击右上角了解详情</h4>
+		</div>
+
+		<div class="lookreward-content" style="display: none;">
+			<h2 class="reward"><span class="phone"></span></h2>
+			<div class="open-red">
+				<p><span class="red-number"></span>元<br>现金红包</p>
+			</div>
+			<h3>(抵用购车款)全国<span class="people-number"></span>名</h3>
+			<p class="usage-method">长按中奖图片保存至手机，前往附近门店凭中奖图片购车兑换。<br>红包期限：即日起-2月11日 过期作废。</p>
+			<div id="shop-information">
+				<select class="prov"></select><span>省</span>
+	  		<select class="city"></select><span>市</span>
+	  		<div class="content">
+	  			<h5>网点信息</h5>
+	  		</div>
+				<div class="dist"></div>
+		  	</div>
+			<div class="QRcode">
+				<p>扫码立刻关注</p>
+			</div>
+		</div>
+
+		<div class="popup" style="display: none;">
+			<div class="overlay"></div>
+			<div class="dialog">
+				<div class="close"></div>
+				<h3 class="error"></h3>
+				<a class="know">我知道了</a>
+			</div>
+		</div>
+
+		<div class="popup-rule" style="display: none;">
+			<div class="overlay">
+				<div class="close">关闭</div>
+			</div>
+			<div class="dialog-rule">
+				<h2>活动规则</h2>
+				<p>2017年1月19日至2017年2月11日，雅迪电动车开展“新年抽红包，抢雅迪电动车”活动，100%中奖。现就活动规则说明如下：</p>
+				<h3>一、奖项设置：100%中奖，获奖名额一共96000名，先买先得，送完为止。</h3>
+				<p>一等奖：全额返还购车款 （最高金额4999元）全国100名</p>
+				<p>二等奖：1000元现金红包（或抵用购车款）全国2000名</p>
+				<p>三等奖：158元现金红包（或抵用购车款）全国36300名</p>
+				<p>四等奖：88元现金红包 （或抵用购车款）全国48000名</p>
+				<p>五等奖：58元现金红包（或抵用购车款）全国9600名</p>
+				<h3>二、参与方式：</h3>
+				<p>1、在网络活动中提交个人信息，个人信息需如实填写，以便到店兑换时核实个人信息。</p>
+				<p>2、抽取红包，保存中奖图片至手机，到雅迪活动门店录入个人信息，门店工作人员将核实中奖图片和手机号码，核实无误购车后抵扣现金。</p>
+				<h3>三、活动时间：1月19日0:00—2月11日24:00</h3>
+				<p class="more-indent">（以活动网站计算机系统的时间为准）。</p>
+				<h3>四、活动地址：全国范围内指定的雅迪门店</h3>
+				<h3>五、注意事项及活动声明</h3>
+				<p>1、主办单位：雅迪科技集团有限公司（以下简称主办方）。</p>
+				<p>2、本活动仅为活动期间购车顾客提供抽奖机会，一个用户活动期间只允许使用一次购车现金红包，红包不累加，不得转让。</p>
+				<p>3、本活动严禁抽取红包、使用红包作弊现象，一经发现，主办方有权取消其中奖资格。</p>
+				<p>4、本活动所产生的红包只能在雅迪电动车门店购车时兑换、抵用，不购车者主办方不予支付现金和物品。</p>
+				<p>5、顾客在线上参与活动获得红包后不能再次参与门店的“摇一摇抢红包”活动，线上线下红包不能累加、重复使用。</p>
+				<p>6、主办单位负责保管系统收录的用户信息，是为了方便服务顾客，严格保守用户信息，不作他用。</p>
+				<p> 7、关于一等奖的补充说明。根据国家有关法律规定，抽奖式的有奖销售，金额不得超过5000元，如果您购买的车型超过5000元且摇中一等奖时，我们最高返您4999元，您还需补交超额部分。例如，购车款6000元，我们最多返您4999元，您还需补交1001元差额。</p>
+				<p>8、线下活动以各家门店发布的活动海报为准。 </p>
+				<p>9、用户参与本活动，所发生的上网费、手机流量费用由用户自理。</p>
+				<p>10、凡参与本次活动的消费者即视为同意本规则所述的各项规定。</p>
+				<p>11、本次活动最终解释权在法律允许范围内归雅迪科技集团有限公司所有。</p>
+			</div>
+		</div>
+		<div class="popup-spin" style="display: none;">
+      <div class="overlay"></div>
+      <div class="spin" id="preview"></div>
+    </div>
+	</div>
+</body>
+</html>

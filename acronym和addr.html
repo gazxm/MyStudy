@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>acronym和addr</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		acronym[title] {
+			border-bottom: 1px dotted blue;
+		}
+
+		acronym[title]:hover, acronym[title]:focus {
+			cursor: help;
+		}
+	</style>
+</head>
+<body>
+	<acronym title="Cascading Style Sheets">CSS</acronym>
+	<abbr title="Cascading Style Sheets">CSS</abbr>
+	<!-- 
+		acronym 不适用于html5页面 html5页面中有abbr标签来代替acronym
+		这两个标签的主要作用就是 当你鼠标移动到CSS上面时，会有title里面的提示
+	-->
+	<p>The term <acronym title="self-contained underwater breathing apparatus">SCUBA</acronym> is an acronym rather than an abbreviation as it is pronounced as a word.</p>
+</body>
+</html>

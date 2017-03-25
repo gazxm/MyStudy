@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组的filter</title>
+	<script type="text/javascript"></script>
+	<style>
+		
+	</style>
+</head>
+
+<body>	
+</body>
+<script>
+	var a = ['7', '14', '28']
+	a.filter(function(v, i, a) {
+		console.log(v, i, a);	//v 为数组每一项的值，i 为数组的索引，a 为本数组
+		for(var m in a) {
+			if(v == a[m]) {
+				return
+			}
+		}
+		return v;
+	})
+</script>
+
+</html>

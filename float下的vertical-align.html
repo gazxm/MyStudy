@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- https://segmentfault.com/a/1190000005155084 -->
+  <meta charset="UTF-8">
+  <title>float下的vertical-align理解</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  /*  当float和vertical-align同时设置的时候，会按照float来进行设置，即vertical-align失效，
+        float会让元素的顶端对齐
+     */
+  
+  .parent {
+    width: 100%;
+    height: 200px;
+    background: #ddd;
+  }
+  
+  div.left {
+    display: inline-block;
+    width: 200px;
+    height: 100px;
+    background: #333;
+    color: #fff;
+    vertical-align: middle;
+  }
+  
+  div.right {
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    background: #000;
+    color: #fff;
+    vertical-align: middle;
+  }
+  
+  span {
+    display: block;
+  }
+  
+  .clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="parent">
+    <div class="left">aaasdf</div>
+    <div style="display: inline-block;">
+      <span>aaaa</span>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,151 @@
+// @import "../scss/reset.scss";
+#css-zen-garden {
+  margin: 0;
+  padding: 0;
+  color: #888;
+  background: transparent url(../img/bg_tree.gif) 0 0 repeat-x;
+}
+
+#container {
+  width: 732px;
+  margin: 0 auto;
+  position: relative;
+  background: transparent url(../img/nutitle.gif) 0 0 no-repeat;
+  h3 {
+    margin: 0;
+    padding: 0;
+    span {
+      display: none;
+    }
+  }
+  a:link,
+  a:visited {
+    color: #090;
+    background-color: transparent;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #663;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  a.c {
+    font-size: 90%;
+    display: inline;
+    font-family: Georgia, Serif;
+    font-weight: normal;
+    text-transform: lowercase;
+  }
+}
+
+#pageHeader {
+  height: 200px;
+  span {
+    display: none;
+  }
+  overflow: hidden;   /*创建一个BFC*/
+}
+
+#quickSummary {
+  float: right;
+  margin-right: 0px;
+  width: 120px;
+  p.p1 {
+    font-size: 80%;
+    text-align: right;
+  }
+  p.p2 {
+    padding-bottom: 90px;
+    text-align: center;
+    background: transparent url(../img/barrow.gif) 55% bottom no-repeat;
+  }
+}
+
+#preamble {
+  width: 350px;
+  padding-left: 190px;
+  h3 {
+    height: 73px;
+    background: transparent url(../img/road.gif) 0 0 no-repeat;
+  }
+  p {
+    line-height: 1.2em;
+  }
+}
+
+#supportingText {
+  width: 400px;
+  padding-left: 190px;
+  p {
+    line-height: 1.5em;
+  }
+  h3 {
+    height: 73px;
+  }
+  #explanation {
+    h3 {
+      background: transparent url(../img/what.gif) 0 0 no-repeat;
+    }
+  }
+  #participation {
+    h3 {
+      background: transparent url(../img/participation.gif) 0 0 no-repeat;
+    }
+  }
+  #benefits {
+    h3 {
+      background: transparent url(../img/benefits.gif) 0 0 no-repeat;
+    }
+  }
+  #requirements {
+    h3 {
+      background: transparent url(../img/requirements.gif) 0 0 no-repeat;
+    }
+  }
+}
+
+#footer {
+  background: #D9D98B;
+  color: #fff;
+  padding: 10px 20px;
+  border-top: 1px solid #363;
+  font: 85% Verdana, Arial, Sans-serif;
+  text-align: center;
+}
+
+#linkList {
+  position: absolute;
+  left: 0px;
+  top: 200px;
+  width: 190px;
+  a {
+    display: block;
+    font-family: Verdana, Arial, Sans-serif;
+    font-size: 90%;
+  }
+  h3 {
+    height: 31px;
+  }
+  h3.select {
+    background: transparent url(../img/select.gif) 0 0 no-repeat;
+  }
+  h3.archives {
+    background: transparent url(../img/archives.gif) 0 0 no-repeat;
+  }
+  h3.resources {
+    background: transparent url(../img/resources.gif) 0 0 no-repeat;
+  }
+  ul {
+    margin: 1em 0 1em;
+    padding: 0;
+    font-size: 90%;
+    list-style: none;
+    text-align: left;
+    li {
+      margin: 0 0 .5em;
+      line-height: 1em;
+      list-style-type: none;
+    }
+  }
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+  body {
+    background-color: rgba(0, 0, 30, 1);
+  }
+  
+  .box1 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="box1">
+    <canvas id="fireworks" width="1274" height="670"></canvas>
+  </div>
+  <script type="text/javascript">
+  var cxt;
+  var particles = [];
+  init();
+
+  function init() {
+
+    cxt = document.getElementById("fireworks").getContext("2d");
+    document.getElementById("fireworks").addEventListener("click", click);
+    setInterval(update, 1000 / 60);
+  }
+
+  function update() {
+    if (Math.random() < 0.1) {
+      if (Math.random() < 1) {
+        x = Math.random() * 1274;
+        y = Math.random() * 670;
+        explode(x, y, randomColor());
+        explode(x, y, randomColor());
+      } else
+        explode(Math.random() * 1274, Math.random() * 670, randomColor());
+      document.getElementById("em").play();
+    }
+
+    cxt.clearRect(0, 0, 1274, 670);
+    for (var i = particles.length - 1; i >= 0; i--) {
+      var p = particles[i];
+      p.vx *= p.deceleration;
+      p.vy *= p.deceleration;
+      p.vy += p.gravity;
+      p.x += p.vx; //速度是随机的，粒子开始的位置不同，结束位置不同
+      p.y += p.vy;
+      p.energy *= p.deceleration;
+      p.a = Math.atan2(p.vy, p.vx);
+      p.tx = p.x + p.length * Math.cos(p.a);
+      p.ty = p.y + p.length * Math.sin(p.a);
+
+      if (p.energy < 0.05) {
+        particles.splice(i, 1); //删除particles[i]
+      } else {
+        cxt.beginPath();
+        cxt.strokeStyle = p.color;
+        cxt.moveTo(p.x, p.y);
+        cxt.lineTo(p.tx, p.ty);
+        cxt.lineWidth = 2;
+        cxt.stroke();
+        cxt.closePath();
+      }
+    }
+  }
+
+  function explode(x, y, color) {
+    var c = 800;
+    while (c-- > 0) {
+      var p = {};
+      p.energy = Math.random() * 2;
+      var angle = Math.random() * Math.PI * 2;
+      var v = Math.random() * 20;
+      p.vx = Math.cos(angle) * v;
+      p.vy = Math.sin(angle) * v;
+      p.x = x;
+      p.y = y;
+      p.color = color;
+      p.deceleration = 0.95; //减速度
+      p.gravity = 0.05; //重力
+      p.length = (2 / p.energy > 4) ? (2 / p.energy) : 4; //粒子长度      
+      particles.push(p); //粒子放进数组中
+    }
+  }
+
+  function randomColor() {
+    var r, g, b, a;
+    r = Math.floor(Math.random() * 255);
+    g = Math.floor(Math.random() * 255);
+    b = Math.floor(Math.random() * 255);
+    return "rgb(" + r + "," + g + "," + b + ")";
+  }
+
+  function click(e) {
+    var x = e.offsetX;
+    var y = e.offsetY;
+    if (Math.random() < 1) {
+      explode(x, y, randomColor());
+      explode(x, y, randomColor());
+    } else
+      explode(x, y, randomColor());
+    document.getElementById("em").play();
+  }
+  </script>
+  <audio id="em" src="music/fireworks.mp3">
+  </audio>
+</body>
+
+</html>

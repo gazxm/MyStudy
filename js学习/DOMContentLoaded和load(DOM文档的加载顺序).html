@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DOMContentLoaded和load的区别(DOM文档的加载顺序)</title>
+    <script type="text/javascript">
+    window.onload = function() {
+        console.log("load");	//后打印
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log("DOMContentLoaded");	//先打印
+    });
+    </script>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <div class="dom">DOM文档的加载步骤为：
+        <p>1、解析HTML结构</p>
+        <p>2、加载外部脚本和样式表文件</p>
+        <p>3、解析并执行脚本代码</p>
+        <P>4、DOM树构建完成。//DOMContentLoaded</P>
+        <p>5、加载图片等外部文件</p>
+        <p>6、页面加载完毕。//load</p>
+    </div>
+</body>
+
+</html>

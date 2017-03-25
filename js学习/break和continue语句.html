@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>break和continue语句</title>
+	<script>
+		/*break和continue语句用于在循环中精确地控制代码的执行。
+			1、break语句会立即退出循环，强制继续执行循环后面的语句;
+			2、continue语句也会立即退出循环，但退出循环后从继续执行接下来的循环
+		*/
+		var count = 10,
+			num1 = 0;
+		for(var i = 1; i < count; i++) {
+			if(i % 5 == 0) {
+				break;
+			}
+			num1++;
+		}
+		console.log(num1);		//4
+
+		var num2 = 0;
+		for(var j = 1; j < count; j++) {
+			if(j % 5 == 0) {
+				continue;
+			}
+			num2++;
+		}
+		console.log(num2);		//8
+
+		//以下是配合label来使用
+		var num3 = 0;
+
+		outermost1:
+		for(var z = 0; z < count; z++){
+			for(var x = 0; x < count; x++) {
+				if(z == 5&&x ==5){
+					break outermost1; //当z为5,x为5的时候跳出循环，不在执行循环内部的。即55
+				}
+				num3++;
+			}
+		}
+		console.log(num3);	//55
+
+		var num4 = 0;
+		outermost2:
+		for(var c = 0; c < count; c++){
+			for(var v = 0; v < count; v++) {
+				if(c == 5&&v ==5){
+					continue outermost2;//当c为5,v为5的时候跳出循环,执行c为6的循环，少了5次
+				}
+				num4++;
+			}
+		}
+		console.log(num4);	//95
+		//使用label语句的时候，一定要使用描述性的标签，同时不要嵌套过多的循环
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

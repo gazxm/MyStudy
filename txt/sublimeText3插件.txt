@@ -1,0 +1,23 @@
+1、emmet http://www.iteye.com/news/27580
+
+2、Brackethighlighter 高亮插件
+
+3、CSS Format css格式化
+
+4、JSHint js语法检测
+
+5、Side Bar 左侧菜单栏更多选项
+
+6、cssrem https://github.com/flashlizi/cssrem css转换rem单位(ps:有两种方法，一种是利用插件，另外一种是自己用sass,less写一个rem函数) 将clone的包放入preferences -> Browse Packages 中 重启sublime Text 3
+
+7、JS Format js格式化
+
+8、使用Sublime Text 3的HTML-CSS-JS Prettify插件格式化代码	https://segmentfault.com/a/1190000000666502 需要配置node.exe的路径
+
+9、SublimeLinter插件，SublimetLinter-csshint和SublintLinter-jshint是针对于css和js的语法检测
+先按照SublimeLinter插件，在安装SublimetLinter-csshint和SublintLinter-jshint，需要针对于package Settings -> SublimeLinter -> Settings - User 
+需要配置node.exe路径
+
+10、package control 包的管理
+
+11、删除插件 remove package

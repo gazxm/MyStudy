@@ -1,0 +1,36 @@
+.custom-list .am-list-body {
+  >div:not(:last-child){
+    border-bottom: 1PX solid $line;
+    .am-list-line:after{
+      display:none;
+    }
+  }
+  .am-list-item.am-input-item:after{
+    display:none;
+  }
+  .am-list-item .am-input-control input {
+    line-height: 1.5;
+  }
+  .am-list-item .am-list-line{
+    .am-list-content{
+      color: $h1;
+    }
+    .am-list-extra{
+      color: $h3;
+    }
+  }
+  .succeed .am-list-line .am-list-extra{
+    color: $font-blue;
+  }
+  .fail .am-list-line .am-list-extra{
+    color: $warning;
+  }
+}
+.custom-button {
+  padding:30px;
+  .am-button-primary{
+    background:$main;
+    border-radius:60px;
+    border:none;
+  }
+}

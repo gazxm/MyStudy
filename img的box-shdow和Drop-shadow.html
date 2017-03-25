@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>img的box-shadow和Drop-shadow</title>
+	<script type="text/javascript"></script>
+	<style>
+		/*单独对img标签使用box-shadow(inset)是无效的，而box-shadow(默认值)是有效的*/
+		body {
+			margin: 0;
+		}
+		
+		/*body顶部增加一个阴影*/
+		body:before {
+			content: '';
+			position: fixed;
+			top: -10px;
+			left: 0;
+			width: 100%;
+			height: 10px;
+			z-index: 999;
+			box-shadow: 0 0 10px rgba(125,255,125,0.8);
+		}
+
+		img {
+			width: 400px;
+			height: 200px;
+		}
+		img.outset {
+			margin: 30px;
+			box-shadow: 0 0 10px red;
+		}	/*阴影在边框外是OK的*/
+		img.inset {
+			margin: 30px;
+			box-shadow: inset 0 0 10px red;
+		} /*阴影在边框内则无法显示*/
+
+		.method-one {
+			width: 400px;
+			height: 200px;
+			margin: 30px;
+			position: relative;
+			box-shadow: inset 0 0 10px red;
+		}
+		.method-one img {
+			position: absolute;
+			z-index: -1;
+		}
+
+		.method-two {
+			width: 400px;
+			height: 200px;
+			margin: 30px;
+			position: relative;
+		}
+		.method-two:before {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			box-shadow: inset 0 0 5px 1px red;
+		}
+		.drop-shadow {
+			width: 300px;
+			height: 150px;
+			position: relative;
+			background: #ccc;
+		}
+		.drop-shadow:before,
+		.drop-shadow:after {
+			content: '';
+			position: absolute;
+			z-index: -1;
+			bottom: 15px;
+			left: 10px;
+			width: 50%;
+			max-width: 150px;
+			height: 20%;
+	    -webkit-box-shadow: 0 15px 10px rgba(125,125,125,0.8);
+	    -moz-box-shadow: 0 15px 10px rgba(125,125,125,0.8);
+	    box-shadow: 0 15px 10px rgba(125,125,125,0.8);
+      -webkit-transform: rotate(-3deg);
+		  -moz-transform: rotate(-3deg);
+		  -o-transform: rotate(-3deg);
+		  transform: rotate(-3deg);
+		}
+		.drop-shadow:after {
+			right: 10px;
+			left: auto;
+			-webkit-transform: rotate(3deg);
+		  -moz-transform: rotate(3deg);
+		  -o-transform: rotate(3deg);
+		  transform: rotate(3deg);
+		}
+	</style>
+</head>
+<body>
+	<img class="outset" src="img/horse.jpg"/>
+	<img class="inset" src="img/horse.jpg"/>
+	<!-- 方法1 -->
+	<div class="method-one">
+		<img src="img/horse.jpg"/>
+	</div>
+	<!-- 方法2 -->
+	<div class="method-two">
+		<img src="img/horse.jpg"/>
+	</div>
+	<!-- 方法3 将img的图片通过jquery转换成div,backgorund的格式显示 -->
+	<!-- drop-shadow -->
+	<div class="drop-shadow">
+	</div>
+</body>
+</html>

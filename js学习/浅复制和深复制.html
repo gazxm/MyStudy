@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>浅拷贝和深拷贝</title>
+	<script type="text/javascript"></script>
+</head>
+
+<body>	
+</body>
+
+<script>
+	var obj = { a:1, arr:[2, 3], obj: {"m": 100}};
+	var shadowObj = shadowCopy(obj);
+
+	function shadowCopy(src) {	// 浅拷贝
+	  var dst = {};
+	  for (var prop in src) {
+	    if (src.hasOwnProperty(prop)) {
+	      dst[prop] = src[prop];
+	    }
+	  }
+	  return dst;
+	}
+
+	function deepCopy(p, c) {
+		var c = c || {};
+		for(var i in p) {
+			if (typeof p[i] === 'object') {
+　　　	c[i] = (p[i].constructor === Array) ? [] : {};
+　　　　deepCopy(p[i], c[i]);		// 深拷贝就是递归调用浅拷贝
+　　	} else {
+　　　　c[i] = p[i];
+　　　}
+　　}
+　　return c;
+	}
+
+	var deep = deepCopy(obj);
+
+	shadowObj.arr[1] = 5;
+	shadowObj.a = 5	
+	deep.arr[0] = 10;
+	deep.obj.m = 300;
+	
+	console.log(JSON.stringify(obj));				//	{"a":1,"arr":[2,5],"obj":{"m":100}}
+	console.log(JSON.stringify(shadowObj));	//	{"a":5,"arr":[2,5],"obj":{"m":100}}
+	//浅拷贝：值不会有影响，但是由于对象和数组都是存的地址，所以改变一个会同时改变另外一个
+
+	console.log(JSON.stringify(deep));			//	{"a":1,"arr":[10,3],"obj":{"m":300}}
+	//深拷贝：可以看到arr里面的第一项设为10，并没有对其他的有所改变，然后第二项也为3，没有受到影响
+</script>
+
+</html>

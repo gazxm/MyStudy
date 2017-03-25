@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>index</title>
+  <script src="js/dest/flexible.js"></script>
+  <script src="js/dest/jquery3.1.1.js"></script>
+  <script src="js/dest/common.js"></script>
+  <link href="css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+	<div class="index">
+		<a class="rule">了解详情</a>
+		<div class="content">
+			<p class="red-package">十万个红包来袭，千元大奖等你抽，<br>更有机会返还购车款！<p>
+			<form>
+				<div class="input"><span>姓名：</span><input name="" type="name" value="" /></div>
+				<div class="input"><span>电话：</span><input name="" type="tel" value="" /></div>
+				<h4>（请如实填写信息，提交后立刻参与抽奖）</h4>
+				<button>立即提交</button>
+			</form>
+			<p class="statement">特别声明：抽奖红包需到店购车后方可使用，<br>
+			您的个人信息仅用于雅迪公司核实情况，不作他用。<br>如同意请提交。</p>
+		</div>
+
+		<div class="popup" style="display: none;">
+			<div class="overlay"></div>
+			<div class="dialog">
+				<div class="close"></div>
+				<h3 class="error"></h3>
+				<a class="know">我知道了</a>
+			</div>
+		</div>
+
+		<div class="popup-rule" style="display: none;">
+			<div class="overlay">
+				<div class="close">关闭</div>
+			</div>
+			<div class="dialog-rule">
+				<p>我是规则我是规则我是规则我是规则我是规则我是规则我是规则我是规则我是规则我是规则</p>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	$(function() {
+		$('button').click(function() {
+			var name = $("input[type='name']").val();
+					phone = $("input[type='tel']").val();
+			if(name == '') {
+				$(".error").html("请输入您的姓名!");
+				$(".popup").show();
+        return false;
+			}
+			if(!(/^1[34578]\d{9}$/.test(phone))){
+				$(".error").html("请正确输入手机号码!");
+				$(".popup").show();
+        return false;
+    	}
+		});
+	});
+</script>
+</html>

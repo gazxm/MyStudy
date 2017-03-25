@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>block inline inline-block</title>
+    <script type="text/javascript"></script>
+    <style type="text/css">
+    body {
+    	margin: 0px;
+    }
+    .top {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        color: red;
+    }
+    
+    .inline {
+        display: inline;
+        background: #333;
+        /*
+			width: 100px; 
+			height: 100px;
+			margin-top: 100px;
+			margin-bottom: 100px;
+			无效属性
+			*/
+        /*margin-left: 10px;
+        margin-right: 10px;*/
+    }
+    
+    .block {
+        display: block;
+    }
+    
+    .inline-block-div {
+        height: 400px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    .inline-block {
+        display: inline-block;
+        background: #333;
+        
+        /*margin: 20px 10px;
+        padding: 20px 10px;*/
+
+    }
+    </style>
+</head>
+
+<body>
+    <!-- display默认值是inline-->
+    <div class="top">inline</div>
+    <p>display:inline inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。 inline元素设置width,height属性无效。 inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。</p>
+    <div>
+	    <div class="inline">aaaaaaa</div>
+	    <div class="inline">bbbbbbb</div>
+	</div>
+    <div class="top">block</div>
+    <p> display:block block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。 block元素可以设置width,height属性。块级元素即使设置了宽度,仍然是独占一行。 block元素可以设置margin和padding属性。
+    </p>
+    <div class="block">ccccccc</div>
+    <div class="block">ddddddd</div>
+    <div class="top">inline-block</div>
+    <p>简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</p>
+    <div class="inline-block-div">
+        <div class="inline-block">eeeeee</div>
+        <div class="inline-block">ffffff</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IIFE(自执行函数)</title>
+    <script type="text/javascript">
+    // IIFE(自执行函数，并不会在DOMContentLoaded之后。。。)
+    (function() {
+        var div = document.getElementsByClassName("div");
+        console.log("1:" + JSON.stringify(div));
+        console.log(div);	//空值
+    })();
+    </script>
+</head>
+
+<body>
+	<div class="div"></div>
+	<script type="text/javascript">
+    (function() {
+        var div = document.getElementsByClassName("div");
+        console.log("2:" + JSON.stringify(div));
+        console.log(div);	//[div.div]
+    })();
+    </script>
+</body>
+
+</html>

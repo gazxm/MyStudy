@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>word-wrap</title>
+  <script type="text/javascript"></script>
+  <style>
+  	/*
+			word-wrap: normal | break-word;
+			word-break: normal | break-all | keep-all;
+  	*/
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		div {
+			width: 300px;
+			height: auto;
+			border: 1px solid black;
+			margin-top: 10px;
+		}
+		div.word-wrap {
+			word-wrap: break-word;
+		}
+		div.word-break-break-all {
+			word-break: break-all;
+		}
+  </style>
+</head>
+
+<body>
+	<div>longwordlongwordlongwordlongwordlongwordlongwordlongwordlongwordlongwordlongword</div>
+	<div>阿里的积分卡里就发的卡房间爱离开的积分卡到了房间爱离开的房间爱看了附近的说了句</div>
+	<div class="word-wrap">
+		word-wrap:This is a longwordlongwordlongwordlongwordlongwordlongwordlongwordlongwordlongwordlongwordlongword
+	</div>
+	<div class="word-break-break-all">
+		word-break-break-all:This is a longwordlongwordlongwordlongwordlongwordlongwordlongwordlongwordlongwordlongwordlongword
+	</div>
+	<div class="word-break-keep-all">
+		word-break-keep-all:This is a longwordlongwordlongwordlongwordlongwordlongwordlongwordlongwordlongwordlongwordlongword
+	</div>
+</body>
+
+</html>

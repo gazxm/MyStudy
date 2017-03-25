@@ -1,0 +1,113 @@
+@charset "UTF-8";
+#css-zen-garden {
+  margin: 0;
+  padding: 0;
+  color: #888;
+  background: transparent url(../img/bg_tree.gif) 0 0 repeat-x; }
+
+#container {
+  width: 732px;
+  margin: 0 auto;
+  position: relative;
+  background: transparent url(../img/nutitle.gif) 0 0 no-repeat; }
+  #container h3 {
+    margin: 0;
+    padding: 0; }
+    #container h3 span {
+      display: none; }
+  #container a:link,
+  #container a:visited {
+    color: #090;
+    background-color: transparent;
+    font-weight: bold;
+    text-decoration: none; }
+  #container a:hover {
+    color: #663;
+    background-color: transparent;
+    text-decoration: underline; }
+  #container a.c {
+    font-size: 90%;
+    display: inline;
+    font-family: Georgia, Serif;
+    font-weight: normal;
+    text-transform: lowercase; }
+
+#pageHeader {
+  height: 200px;
+  overflow: hidden;
+  /*创建一个BFC*/ }
+  #pageHeader span {
+    display: none; }
+
+#quickSummary {
+  float: right;
+  margin-right: 0px;
+  width: 120px; }
+  #quickSummary p.p1 {
+    font-size: 80%;
+    text-align: right; }
+  #quickSummary p.p2 {
+    padding-bottom: 90px;
+    text-align: center;
+    background: transparent url(../img/barrow.gif) 55% bottom no-repeat; }
+
+#preamble {
+  width: 350px;
+  padding-left: 190px; }
+  #preamble h3 {
+    height: 73px;
+    background: transparent url(../img/road.gif) 0 0 no-repeat; }
+  #preamble p {
+    line-height: 1.2em; }
+
+#supportingText {
+  width: 400px;
+  padding-left: 190px; }
+  #supportingText p {
+    line-height: 1.5em; }
+  #supportingText h3 {
+    height: 73px; }
+  #supportingText #explanation h3 {
+    background: transparent url(../img/what.gif) 0 0 no-repeat; }
+  #supportingText #participation h3 {
+    background: transparent url(../img/participation.gif) 0 0 no-repeat; }
+  #supportingText #benefits h3 {
+    background: transparent url(../img/benefits.gif) 0 0 no-repeat; }
+  #supportingText #requirements h3 {
+    background: transparent url(../img/requirements.gif) 0 0 no-repeat; }
+
+#footer {
+  background: #D9D98B;
+  color: #fff;
+  padding: 10px 20px;
+  border-top: 1px solid #363;
+  font: 85% Verdana, Arial, Sans-serif;
+  text-align: center; }
+
+#linkList {
+  position: absolute;
+  left: 0px;
+  top: 200px;
+  width: 190px; }
+  #linkList a {
+    display: block;
+    font-family: Verdana, Arial, Sans-serif;
+    font-size: 90%; }
+  #linkList h3 {
+    height: 31px; }
+  #linkList h3.select {
+    background: transparent url(../img/select.gif) 0 0 no-repeat; }
+  #linkList h3.archives {
+    background: transparent url(../img/archives.gif) 0 0 no-repeat; }
+  #linkList h3.resources {
+    background: transparent url(../img/resources.gif) 0 0 no-repeat; }
+  #linkList ul {
+    margin: 1em 0 1em;
+    padding: 0;
+    font-size: 90%;
+    list-style: none;
+    text-align: left; }
+    #linkList ul li {
+      margin: 0 0 .5em;
+      line-height: 1em;
+      list-style-type: none; }

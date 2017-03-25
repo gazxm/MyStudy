@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>border的渐变色</title>
+	<script type="text/javascript"></script>
+	<style>
+		body {
+			margin: 0;
+			background: transparent url(img/background.jpg) 0 0 repeat;
+		}
+		p.border {
+			width: 300px;
+			line-height: 50px;
+			margin: 30px auto 0;
+			color: white;
+			border: 3px solid red;
+    	border-image: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #01fcff), color-stop(100%, #fd02f3)) 3 3;
+    	background-color: #999;
+    	border-radius: 30px;
+    	text-align: center;
+		}
+
+		p.background {
+			width: 400px;
+			line-height: 50px;
+			margin: 30px auto 0;
+			text-align: center;
+			background: linear-gradient(45deg, #01fcff 0%, #fd02f3 100%);
+			border-radius: 30px;
+			position: relative;
+		}
+		p.background:before {
+			content: '';
+			display: block;
+			width: 394px;
+			height: 44px;
+			position: absolute;
+			background: transparent url(img/background.jpg) 0 0 no-repeat;
+			border-radius: 30px;
+			top: 3px;
+			left: 3px;
+			z-index: 2;
+		}
+		span {
+			position: relative;
+			z-index: 3;
+		}
+		/*
+			渐变是加在了border-image上,同时会覆盖border设置过的颜色。具体的border-image属性请查看border-image.html
+			所以设置了border-radius对设置了border-image的border会失效，仅仅表现为content-area会应用border-radius这个属性
+		*/
+
+		/*
+			如果要做成应用了border-radius的border-image，只能通过bakckground去模拟，如下:
+			同时也有一个小BUG，背景色你无法设置成透明的
+			补充：但是，你可以设置背景和大背景是同一个。。就感觉是透明的了
+		*/
+
+	</style>
+</head>
+<body>
+	<p class="border">border的渐变色</p>
+	<p class="background"><span>background实现border的渐变色</span></p>
+</body>
+</html>
+

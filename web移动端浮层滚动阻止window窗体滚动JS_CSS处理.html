@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>web移动端浮层滚动阻止window窗体滚动JS_CSS处理</title>
+  <script src="js/jquery3.1.1.js"></script>
+  <style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		.noscroll, .noscroll body {
+			overflow: hidden;
+		}
+
+		.noscroll body {
+			position: relative;
+		}
+		
+		.button {
+			background: #bbb;
+			border-radius: 10px;
+			height: 200px;
+			margin: 20px auto;
+			width: 200px;
+		}
+
+		.content {
+			border: 1px solid red;
+			height: 300px;
+			margin-top: 30px;
+		}
+
+		.overlay {
+			background: rgb(0, 0, 0);
+			background: rgba(0, 0, 0, 0.7);
+			height: 100%;
+			left: 0;
+			position: fixed;
+			top: 0;
+			width: 100%;
+			z-index: 1;
+		}
+
+		.dialog {
+			background: #fff;
+			height: 400px;
+			left: 50%;
+			overflow-y: scroll;
+			position: fixed;
+			top: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			width: 500px;
+			z-index: 2;
+		}
+
+		.dialog .content {
+			border: 1px solid black;
+			height: 100px;
+			width: 300px;
+			margin-top: 20px;
+		}
+  </style>
+</head>
+
+<body>
+	<div class="button">点我一哈</div>
+	<div class="content">我就是撑高度的</div>
+	<div class="content">我就是撑高度的</div>
+	<div class="content">我就是撑高度的</div>
+	<div class="content">我就是撑高度的</div>
+	<div class="content">我就是撑高度的</div>
+	<div class="content">我就是撑高度的</div>
+	<div class="content">我就是撑高度的</div>
+	<div class="content">我就是撑高度的</div>
+	<div class="content">我就是撑高度的</div>
+	<div class="content">我就是撑高度的</div>
+	<div class="content">我就是撑高度的</div>
+	<div class="content">我就是撑高度的</div>
+	<div class="popup" style="display: none;">
+		<div class="overlay"></div>
+		<div class="dialog">
+			<p class="content">我也是一个撑高度的</p>
+			<p class="content">我也是一个撑高度的</p>
+			<p class="content">我也是一个撑高度的</p>
+			<p class="content">我也是一个撑高度的</p>
+			<p class="content">我也是一个撑高度的</p>
+			<p class="content">我也是一个撑高度的</p>
+			<p class="content">我也是一个撑高度的</p>
+			<p class="content">我也是一个撑高度的</p>
+		</div>
+	</div>
+</body>
+
+<script>
+	(function($) {
+		$(".button").click(function() {
+			$(".popup").show();
+			$('html').addClass('noscroll');
+		});
+		$(".overlay").click(function() {
+			$(".popup").hide();
+			$('html').removeClass('noscroll');
+		});
+	})(jQuery);
+</script>
+
+</html>

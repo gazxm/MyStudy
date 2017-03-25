@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-dpr="1">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>danmu</title>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <style>
+  .mask {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    background: #fff;
+    opacity: 1;
+    z-index: 1;
+    margin-top: 300px;
+  }
+  .mask div {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+    line-height: 40px;
+    z-index: 40;
+  }
+
+  </style>
+</head>
+
+<body>
+  <div class="mask"></div>
+</body>
+<script>
+$(function() {
+	var unique = function(arr){
+	 var res = [];
+	 var o = {};
+	 for(var i = 0; i < arr.length; i++){
+	  if(!o[arr[i]]){
+	   res.push(arr[i]);
+	   o[arr[i]] = 1;
+	  }
+	 }
+	 return res;
+	};
+
+	setInterval(function(){
+		var arr = ["恭喜用户1****获得1000元邀请奖励","恭喜用户2****获得1000元邀请奖励","恭喜用户3****获得1000元邀请奖励","恭喜用户4****获得1000元邀请奖励","恭喜用户5****获得1000元邀请奖励","恭喜用户6****获得1000元邀请奖励","恭喜用户7****获得1000元邀请奖励","恭喜用户8****获得1000元邀请奖励","恭喜用户9****获得1000元邀请奖励","恭喜用户10****获得1000元邀请奖励","恭喜用户11****获得1000元邀请奖励","恭喜用户12****获得1000元邀请奖励","恭喜用户13****获得1000元邀请奖励","恭喜用户14****获得1000元邀请奖励","恭喜用户15****获得1000元邀请奖励","恭喜用户16****获得1000元邀请奖励","恭喜用户17****获得1000元邀请奖励","恭喜用户18****获得1000元邀请奖励","恭喜用户19****获得1000元邀请奖励","恭喜用户20****获得1000元邀请奖励","恭喜用户21****获得1000元邀请奖励","恭喜用户22****获得1000元邀请奖励","恭喜用户23****获得1000元邀请奖励","恭喜用户24****获得1000元邀请奖励","我感觉我要拿到2万多，你们要赞助点人吗？","邀请达人快来教教宝宝","厉害了我的哥，有人拿了1000元","没有人让我邀，蓝瘦香菇","邀请不到人，宝宝不开心","分我点人啊，我的快到100了","Word天，邀请这么多","原来我的朋友圈都是土豪，不差钱"],
+				arr_2 = [],
+				arr_3 = [];
+		var length = Math.round(Math.random()*8) + 1;
+		if(length < 5) {
+			length = 6;
+		}
+		var _label = null;
+
+		for(var i = 0; i < length; i++) {
+			var random = Math.round(Math.random()*31);
+			arr_2[i] = arr[random];
+		}
+		arr_3 = unique(arr_2);
+		for(var j in arr_3) {
+			_lable = $("<div style='right:20px;top:0px;opacity:1;font-size: 14px'>" + arr_3[j] + "</div>");
+			$(".mask").append(_lable.show());
+		}
+	  init_barrage(arr_3.length);
+	},3000);
+
+
+	function init_barrage(length) {
+	  var _top = 0;
+	  $(".mask div").show().each(function(i,d) {
+	  	if($(d).is(':animated')) return;
+	    var _left = $(window).width();
+	    var _height = $('.mask').height()-$(this).height()/2;
+	    var a = (_height/length);
+	    _top += a;
+	    if(_top > _height) {
+	    	_top = a;
+	    }
+	    $(this).css({
+	      left: _left,
+	      top: _top - a,
+	      color: getRandomColor()
+	    });
+
+	    var time = 7500;
+	    if ($(this).index()) {
+	      time = (Math.round(Math.random()) + 7)*1000 - Math.random()*800;
+	    }
+	    $(this).animate({
+	      left: "-" + _left*1.2 + "px"
+	    }, time, function() {
+	      $(this).remove();
+	    });
+	  });
+	}
+	
+	function getRandomColor() {
+	  return '#' + (function(h) {
+	    return new Array(7 - h.length).join("0") + h;
+	  })((Math.random() * 0x1000000 << 0).toString(16));
+	}
+});
+</script>
+
+</html>

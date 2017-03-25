@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>absolute,relative,fixed定位的细节</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  .relative-div {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: 5px solid black;
+    margin-bottom: 200px;
+  }
+  
+  .doc {
+    width: 200px;
+    height: 200px;
+    border: 3px solid blue;
+  }
+  
+  .absolute-div1 {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border: 3px solid red;
+    margin-top: 100px;
+  }
+  
+  .absolute-div2 {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border: 3px solid yellow;
+  }
+  
+  .absolute-div3 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 10px;
+    left: 10px;
+    border: 1px solid green;
+  }
+  
+  .relative-div1 {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    right: 20px;
+    border: 1px solid pink;
+  }
+  
+	.relative-div2 {
+		position: relative;
+		width: 300px;
+		height: 300px;
+		border: 10px double black;
+	}
+
+  .fixed-div1 {
+    position: fixed;
+    width: 250px;
+    height: 250px;
+    top: 50px;
+    right: 50px;
+    border: 5px solid black;
+  }
+
+  .fixed-div2 {
+    position: fixed;
+    width: 250px;
+    height: 250px;
+    top: 250px;
+    right: 250px;
+    border: 5px solid black;
+  }
+  /*
+			1、absolute定位，若不设置top right bottom left 则会按照文本流的位置在它所在的位置，但是其本身还是从文本流中去除(就是一个普通元素) fixed也和absolute一样。
+
+      补充： 若position设置了absolute, display属性的同时没有设置top right bottom left的时候，display: inline则内联，display: block则换行;
+
+			2、absolute定位，其top right bottom left 会按照祖先元素position:relative/absolute(_:触发BFC导致的? 补充解答：应该不是。因为position:relative并不会触发BFC)/fixed的0 0开始计算
+			3、relative定位、会按照文本流的位置在它所在的位置,其top right bottom left 相当于原先的position的下移，左移，上移，右移;
+			4、fixed的div在html的任何位置，都是根据根元素定位，top right bottom left类似于absolute,fixed也会脱离文档流
+		*/
+  </style>
+</head>
+
+<body>
+  <div class="relative-div">
+    <div class="doc"></div>
+    <div class="absolute-div1">
+    </div>
+    <div class="absolute-div2">
+    </div>
+  </div>
+
+  <div class="relative-div">
+    <div class="doc"></div>
+    <div class="absolute-div1">
+      <div class="absolute-div3"></div>
+      <div class="relative-div1"></div>
+    </div>
+  </div>
+
+  <div class="relative-div2">
+    <div class="fixed-div1">
+      <div class="doc"></div>
+      <div class="fixed-div2">
+        <div class="absolute-div3"></div>
+        <div class="relative-div1"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute-div2">
+    <div class="fixed-div1">
+      <div class="doc"></div>
+      <div class="fixed-div2">
+        <div class="absolute-div3"></div>
+        <div class="relative-div1"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

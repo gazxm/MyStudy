@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>animation及@keyframes</title>
+  <!-- IE10及其以上，以及现代浏览器 -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <style type="text/css">
+  /*	https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation	*/
+  /*初始值
+				animation-name: none
+				animation-duration: 0s
+				animation-timing-function: ease
+				animation-delay: 0s
+				animation-iteration-count: 1
+				animation-direction: normal
+				animation-fill-mode: none
+				animation-play-state: running
+			语法：Formal syntax: <single-animation-name> || <time> || <timing-function> || <time> || <single-animation-iteration-count> || <single-animation-direction> || <single-animation-fill-mode> || <single-animation-play-state>
+
+			where
+			<single-animation-name> = none | IDENT
+
+			<single-animation-timing-function> = (类似于transition-timing-function)
+
+			<single-animation-iteration-count> = infinite(循环) | <number>
+      number也可以为小数，比如若设置为2.3，则就是执行两次动画之后，在执行到关键帧的30%停止
+      number不能为负数
+
+			<single-animation-direction> = normal(正常) | reverse(反向) | alternate(动画在奇数次（1、3、5...）正向播放，在偶数次（2、4、6...）反向播放。) | alternate-reverse(动画在奇数次（1、3、5...）反向播放，在偶数次（2、4、6...）正向播放。)
+
+			<single-animation-fill-mode> = none | forwards | backwards | both
+			none 动画执行前后不改变任何样式;
+			forwards 目标保持动画最后一帧的样式，最后一帧是哪个取决于animation-direction和 animation-iteration-count;
+			backwards 动画采用相应第一帧的样式，保持 animation-delay
+			both 动画将会执行 forwards 和 backwards 执行的动作。
+
+			<single-animation-play-state> = running | paused
+      running 当前动画正在运行
+      paused  当前动画以被停止
+
+			animation-name	规定需要绑定到选择器的 keyframe 名称。。
+			animation-duration	规定完成动画所花费的时间，以秒或毫秒计。
+			animation-timing-function	规定动画的速度曲线。
+			animation-delay	规定在动画开始之前的延迟。
+			animation-iteration-count	规定动画应该播放的次数。
+			animation-direction	规定是否应该轮流反向播放动画。
+			animation-fill-mode 指定在动画执行之前和之后如何给动画的目标应用样式
+		 */
+
+  /*animation从一个状态向另一个状态过渡是平滑过渡。而使用steps()函数可以分布过渡*/
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  div.animation-rotate3d {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    background: red;
+    border-radius: 50%;
+  }
+
+  /*.animation-translate {
+  	position: absolute;
+    animation: zx 3s cubic-bezier(0, 0, 0.2, 1) infinite alternate;
+    -webkit-animation: zx 3s cubic-bezier(0, 0, 0.2, 1) infinite alternate;
+  }*/
+
+  .animation-rotate3d {
+    animation: zxm 1.5s cubic-bezier(0, 0, 0.2, 1) infinite alternate;
+    -webkit-animation: zxm 1.5s cubic-bezier(0, 0, 0.2, 1) infinite alternate;
+  }
+
+  @keyframes zxm {
+    0% {
+      width: 100px;
+      height: 100px;
+      background: red;
+      transform: rotate3d(0, 0, 0, 0deg);
+    }
+    100% {
+      width: 100px;
+      height: 100px;
+      background: blue;
+      transform: rotate3d(0, 1, 0, 360deg);
+    }
+  }
+
+  -webkit-@keyframes zxm {
+    0% {
+      width: 100px;
+      height: 100px;
+      background: red;
+      transform: rotate3d(0, 0, 0, 0deg);
+    }
+    100% {
+      width: 300px;
+      height: 300px;
+      background: blue;
+      transform: rotate3d(1, 1, 1, 360deg);
+    }
+  }
+
+  @keyframes zx {
+    0% {
+      transform: translate(0px, 0px);
+    }
+    100% {
+      transform: translate(300px, 300px);
+    }
+  }
+
+  -webkit-@keyframes zx {
+    0% {
+      transform: translate(0px, 0px);
+    }
+    100% {
+      transform: translate(300px, 300px);
+    }
+  }
+
+  @keyframes spin {
+    from {
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(335deg);
+      -moz-transform: rotate(335deg);
+      -ms-transform: rotate(335deg);
+      -o-transform: rotate(335deg);
+      transform: rotate(335deg);
+    }
+  }
+
+  .spin-forwards {
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    animation: spin 8s 1 forwards cubic-bezier(0, 0, 1, 1);
+  }
+
+@keyframes img-cubic-bezier {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(500%);
+  }
+}
+
+@keyframes img-hover {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*animation-play-state属性的测试*/
+  div.in {
+    width: 81.5px;
+    height: 106px;
+    position: absolute;
+    top: -300px;
+    left: 500px;
+    animation: img-cubic-bezier 3s cubic-bezier(0.83,0.97,0.05,1.44) forwards;
+  }
+  img {
+    width: 81.5px;
+    height: 106px;
+  }
+  img.rotate {
+    animation: img-hover 3s linear infinite paused;
+  }
+  img:hover {
+    animation-play-state: running;
+  }
+  /*通过cubic-bezier可以实现动画过度,然后回缩的一个效果,很关键*/
+
+
+  @keyframes bottomIn {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0%);
+    }
+  }
+  .fixed-bottom {
+    height: 50px;
+    width: 100%;
+    background: rgba(0, 0, 0, .8);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    animation: bottomIn 1s linear;
+  }
+  </style>
+  <!-- @keyframes(关键帧)
+		语法：@keyframes animationname {keyframes-selector {css-styles;}}
+				1、animationname:动画名字
+				2、keyframes-selector: 0% - 100% (from  to)[建议使用0% - 100%]
+				3、css-styles：一个或多个的合法的css样式
+
+    其中在关键帧中出现的!important会被忽略
+	 -->
+</head>
+
+<body>
+  <div class="animation-translate">
+    <div class="animation-rotate3d"></div>
+  </div>
+  <div class="spin-forwards">
+  </div>
+  <div class="in">
+    <img src="img/point.png" />
+  </div>
+  <div class="fixed-bottom">
+  </div>
+</body>
+<script>
+  $(function(){
+    $img = $("img");
+    $img.hover(function(){
+      $img.addClass("rotate");
+    });
+
+    $fixedBottom = $('.fixed-bottom');
+    setTimeout(function() {
+      $fixedBottom.css('display', 'none');
+    },200);
+  });
+</script>
+</html>

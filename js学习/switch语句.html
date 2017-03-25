@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>switch语句</title>
+    <script>
+    //switch语句与if语句的关系最为密切。
+    /* 语法: switch(expression) {
+    			case value: statement
+    						break;
+    			case value: statement
+    						break;
+    			case value: statement
+    						break;
+    			case value: statement
+    						break;
+    				default: statement
+    		}
+    */
+    var i = 35;
+    switch (i) {
+        case 25:
+        case 35:
+            console.log("25 or 35");
+            break;
+        case 45:
+            console.log("45");
+            break;
+        default:
+            console.log("Other");
+    } // 25 or 35
+    //ECMAScript中的switch语句中使用任何数据类型(在很多其他语言中只能使用数值)，无论是字符串，还是对象都没有问题。其次，每个case的值不一样是常量，可以是变量，甚至是表达式。
+    switch ("hello world") {
+        case "hello" + " world": 				//注意这里有一个空格
+            console.log("Greeting was found");	//Greeting was found
+            break;
+        case "goodbye":
+            console.log("Closing was found");
+            break;
+        default:
+            console.log("Unexpected message was found");
+    }
+
+    var num = 25;
+    switch (true) {
+        case num < 0:
+            console.log("Less than 0");
+            break;
+        case num >= 0 && num <= 10:
+        	console.log("Between 0 and 10");
+        	break;
+        case num > 10 && num <= 20:
+        	console.log("Between 10 and 20");
+        	break;
+        default:
+        	console.log("More than 20");	//More than 20
+    }
+    //这个例子首先在switch语句外面声明了变量num。而之所以给switch语句传递表达式true，是因为每个case值都可以返回一个布尔值。这样，每个case按照顺序被求值，直到找到匹配的值或者遇到default语句为止。
+    //switch在比较值时使用的是全等操作符，因此不会发生类型转换(eg：字符串"10"不全等于数值10)
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

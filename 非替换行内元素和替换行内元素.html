@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>非替换行内元素和替换行内元素</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		div {
+			margin-left: 10px;
+			outline: 1px solid red;
+			height: 100px;
+		}
+		/*非替换行内元素*/
+		a {
+			outline: 1px solid black;
+		}
+		span {
+			outline: 1px solid black;
+		}
+		
+		/*替换行内元素*/
+		/*form表单的控件, img , button , HTML5的video等*/
+		button {
+			width: 100px;
+			height: 100px;
+			outline: 1px solid black;
+		}
+		img {
+			width: 100px;
+			height: 100px;
+			outline: 1px solid black;
+			vertical-align: middle;
+		}
+		input {
+			width: 100px;
+			height: 100px;
+			outline: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<a class="a" href="javascript:void(0)">a</a>
+		<span class="span">span</span>
+		xxx
+		<button class="button">button</button>
+		xxx
+		<img class="img" src="img/iphone_bili.jpg">
+		xxx
+		<input type="text" name="name" placeholder="name....">
+	</div>
+</body>
+</html>

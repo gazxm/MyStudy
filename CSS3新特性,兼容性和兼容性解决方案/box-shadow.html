@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>box-shadow</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		/*box-shadow：none|[inset? && [<offset-x><offset-y><blur-radius>?<spread-radius>?<color>?]]#
+				inset：设置对象的阴影类型为内阴影。该值为空时，则对象的阴影类型为外阴影
+				<offset-x>: 这是第一个 length值设置水平偏移量，如果是负值则阴影位于元素左边。
+				<offset-y>: 这是第二个 length值设置垂直偏移量，如果是负值则阴影位于元素上面。
+				<blur-radius>:这是第三个 length值。值越大，糊糊面积越大，阴影就越大越淡。 不能为负值。默认为0，此时阴影边缘锐利。
+				<color>：设置对象的阴影的颜色。
+		*/
+		div {
+			width: 100px;
+			height: 100px;
+			border: 1px solid black;
+			margin-bottom: 30px;
+		}
+		.shadow1 {
+			box-shadow: 10px 10px 5px #888;
+			/*filter: progid:DXImageTransform.Microsoft.Shadow(color=#888888, direction=180, strength=10);/*IE8*/
+			/*filter: progid:DXImageTransform.Microsoft.Shadow(color=#888888, direction=180, strength=10);/*IE6/IE7*/
+			/*direction=0：垂直向上 90：水平向左 180：垂直向下 270：水平向左 strength为宽度，会当做div的width*/
+			/*针对于所有的边框都会有 垂直向下方向的投影*/
+
+			filter:progid:dXImageTransform.Microsoft.DropShadow(color=#888888,offX=5,offY=5,positives=true);/*IE8*/
+			*filter:progid:dXImageTransform.Microsoft.DropShadow(color=#888888,offX=1,offY=1,positives=true);/*IE6/IE7*/
+			/*按照border: 1px 来投影一个x轴右移5px，y轴下移1px的1px的border投影*/
+		}
+		.shadow2 {
+			box-shadow: 3px 3px green, -1em 0 0.4em gold;
+		}
+
+		/*兼容性：IE9.0+,Firefox4.0+,Chrome10.0+,Safari5.1+,Opera10.5+,iOS Safari5.0+,Android Browser4.0+,Android Chrome18.0+
+			兼容方法：低版本的chrome:-webkit-box-shadow:10px 10px 5px #888;
+									低版本的firefox:-moz-box-shadow:10px 10px 5px #888;
+		*/
+	</style>
+</head>
+<body>
+	<div class="shadow1"></div>
+	<div class="shadow2"></div>
+</body>
+</html>

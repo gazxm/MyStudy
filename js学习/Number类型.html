@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Number类型</title>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			//'use strict';
+			//十进制
+			var intNum = 55; //整数
+			//八进制
+			var octalNum1 = 070;	
+			var octalNum2 = 079;	
+			var octalNum3 = 08;	
+			//八进制字面量在严格模式下无效，会报错
+			//十六进制
+			var hexNum1 = 0xA;
+			var hexNum2 = 0x1f;
+			console.log(intNum,octalNum1,octalNum2,octalNum3,hexNum1,hexNum2);
+
+			//1、浮点数值
+			var floatNum1 = 1.1;
+			var floatNum2 = .1;	//有效，不推荐
+
+			var floatNum3 = 1.0;	// 解析为整数1
+			var floatNum4 = 10.;	// 小数点后面没有数字,解析为10
+
+			var floatNum5 = 3.125e7; //等于31250000;
+			var a = 0.1;
+			var b = 0.2;
+			console.log(a+b);	//0.300000004..大致是这个数字,反正不是0.3 因为会有精度丢失
+			var c = 1.1;
+			console.log(b+c);
+
+			//2、数值范围
+			console.log(Number.MIN_VALUE);	//最小值	
+			console.log(Number.MAX_VALUE);	//最大值
+			//超出范围的
+			console.log(- Number.MAX_VALUE - Number.MAX_VALUE); //-Infinity
+			console.log(Number.MAX_VALUE + Number.MAX_VALUE);	//Infinity
+			// Infinity 无法参与下次计算
+			console.log(isFinite(Number.MAX_VALUE + Number.MAX_VALUE));	//false 超出了范围的会 return false
+
+			//3、NaN
+			console.log(30 / 0); // NaN
+			console.log(NaN == NaN);	//false;
+			console.log(NaN === NaN);	//false;
+
+			//isNaN会先将参数转换成数值,不能转化的返回true
+			console.log(isNaN(NaN));	//true
+			console.log(isNaN(10));		//fasle
+			console.log(isNaN("10"));	//fasle
+			console.log(isNaN(true));	//fasle
+			console.log(isNaN("blue"));	//true
+
+			//4、数值转换
+			//Number(),parseInt(),parseFloat()
+			//Number()用于任何数据类型,parseInt()和parseFloat()专门用于字符串
+			/*Number(): 
+			1、如果是Boolean值,true和false将分别被转换成1和0;
+			2、如果是数字值,只是简单的传入和返回
+			3、如果是null值,返回0
+			4、如果是undefined,返回NaN
+			5、如果是字符串,遵循下列规则
+				a、如果字符串值包含数字(包括前面带正号或负号的情况),则将其转换成十进制数值,"1"=>1,"123"=>123,而"011"=>11(前面的0省略)
+				b、如果字符串中包含有效的浮点格式,如"1.1",则将其转换成对应的浮点数值(忽略前面的0)
+				c、如果字符串包含有效的十六进制格式,例如"0xf",则将其转换为相同大小的十进制整数值;
+				d、如果字符串是空的(不包含任何字符),则将其转换为0;
+				e、如果字符串中包含除上述格式之外的字符,则将其转换成NaN
+			6、如果是对象,则调用对象的valueOf()方法,然后依照前面的规则转换返回的值。如果转换的结果是NaN,则调用对象的toString()方法,然后再次依照前面的规则转换返回的字符串。*/
+			var num1 = Number("hello");		// NaN
+			var num2 = Number("");			// 0
+			var num3 = Number("000011");	// 11
+			var num4 = Number(true);		//1
+			var num5 = Number("1234blue");	//NaN
+			var num6 = Number("blue1234");	//NaN
+			console.log(num1,num2,num3,num4,num5,num6);
+			/*parseInt(string, radix): 第二个是进制
+				1、第一个字符需要是数字字符或者负号,会忽略字符串前面的空格
+				2、空字符串返回NaN
+				3、解析到不为数字的字符串为止
+				4、忽略前面0
+			*/
+			var int1 = parseInt("1234blue");	// 1234
+			var int2 = parseInt("");			// NaN
+			var int3 = parseInt("blue1234");	// NaN
+			var int4 = parseInt("0xA");			// 10
+			var int5 = parseInt(22.5);			// 22  小数点.并不是数字
+			var int6 = parseInt("070");			// 70 es3: 会按8进制  es5: 10进制,忽略前面0
+			var int7 = parseInt(70);			// 70
+			var int8 = parseInt("0xf");			// 15
+			console.log(int1, int2, int3, int4, int5, int6, int7, int8);
+
+			var int9 = parseInt("10", 2);	//2
+			var int10 = parseInt("10", 8);	//8
+			var int11 = parseInt("10", 10);	//10
+			var int12 = parseInt("10", 16);	//16
+			console.log(int9, int10, int11, int12);	//在使用的时候尽量指明第二个参数
+
+			/*parseFloat() 和 parseInt()类似 
+				1、第一个字符必须是数字字符,负号或者小数点
+				2、忽略前面0
+				3、空字符串返回NaN
+				4、第二个小数点不解析
+				5、十六进制的字符串返回0
+			*/
+			var float1 = parseFloat("1234blue");	//1234
+			var float2 = parseFloat("");			//NaN
+			var float3 = parseFloat("blue1234");	//NaN
+			var float4 = parseFloat("0xA");			//0
+			var float5 = parseFloat("22.5");		//22.5
+			var float6 = parseFloat("22.34.5");		//22.34
+			var float7 = parseFloat("0908.5");		//908.5
+			var float8 = parseFloat("3.125e7")		//31250000
+			console.log(float1, float2, float3, float4, float5, float6, float7, float8);
+
+			
+});
+	</script>
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	
+</body>
+</html>

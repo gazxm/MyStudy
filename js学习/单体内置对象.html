@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单体内置对象</title>
+	<script>
+		/*	Global(全局)对象，不属于任何其他对象的属性和方法，最终都是它的属性和方法。
+				事实上没有全局变量和全局函数: 所有在全局作用域中定义的属性和函数，都是Global对象的属性。诸如isNaN()、isFinite()、parseInt()以及parseFloat(),实际上全都是Global对象的方法。
+		*/
+
+		console.log("---------1、URI编码方法--------");
+		//encodeURI()和encodeURIComponent()方法可以对URI(Uniform Resource Identifiers, 通用资源标识符)进行编码。
+		var uri = "http://www.wrox.com/illegal value.htm#start";
+		console.log(encodeURI(uri),encodeURIComponent(uri));
+		//http://www.wrox.com/illegal%20value.htm#start ,  http%3A%2F%2Fwww.wrox.com%2Fillegal%20value.htm%23start
+
+		//decodeURI(),decodeURIComponent()方法  反编码的
+		console.log("---------2、eval()方法---------");
+		//
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>IE8/IE7/IE6的hack</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  .ie6_7_8 {
+    color: blue;
+    /*所有浏览器*/
+
+    color: red\9;	/*WHY IE9 是红色？*/
+    /*IE8以及以下版本浏览器*/
+
+    *color: green;
+    /*IE7及其以下版本浏览器*/
+
+    _color: purple;
+    /*IE6浏览器*/
+  }
+  </style>
+</head>
+	
+<body>
+	<div class="ie6_7_8">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+</body>
+
+</html>

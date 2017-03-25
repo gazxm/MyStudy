@@ -1,0 +1,147 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  color: #000;
+  background: #f1f8f3 url(../img/gradSky.jpg) repeat-x; }
+
+.css-zen-garden {
+  width: 760px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative; }
+  .css-zen-garden a {
+    text-decoration: none; }
+  .css-zen-garden a:link {
+    color: #49f; }
+  .css-zen-garden a:visited {
+    color: #fa5; }
+  .css-zen-garden a:hover,
+  .css-zen-garden a:active,
+  .css-zen-garden a:focus {
+    color: #f00; }
+
+.header {
+  font: italic 11px/150% Georgia, Times, "Times New Roman", serif;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 310px;
+  color: #888; }
+  .header h1 {
+    background: transparent url(../img/introGarden.gif) 0 0 no-repeat;
+    width: 115px;
+    height: 12px;
+    margin-top: 28px; }
+  .header h2 {
+    background: transparent url(../img/introBeauty.gif) 0 0 no-repeat;
+    width: 195px;
+    height: 73px;
+    margin-top: 80px; }
+  .header .p1 {
+    margin: 5px 0px 55px 4px;
+    color: #fa0;
+    line-height: 160%;
+    background-color: transparent; }
+  .header .p2 {
+    margin: 0 150px 0 4px;
+    padding: 5px 25px 5px 10px;
+    background: transparent url(../img/gradGreen.jpg) repeat-y;
+    border-left: 1px solid #a7d9a8;
+    line-height: 130%; }
+    .header .p2 a:link,
+    .header .p2 a:visited {
+      color: #348633; }
+    .header .p2 a:hover,
+    .header .p2 a:active,
+    .header .p2 a:focus {
+      color: #f00; }
+  .header .the-road {
+    margin-right: 140px;
+    margin-left: 4px;
+    padding: 20px 0 0 15px;
+    border-left: 1px solid #a7d9a8; }
+    .header .the-road h3 {
+      background: transparent url(../img/introEnlightenment.gif) 0 0 no-repeat;
+      width: 138px;
+      height: 37px;
+      margin: 0; }
+
+.main {
+  width: 690px;
+  padding: 430px 0 40px 0;
+  font: 13px/140% Georgia, Times, "Times New Roman", serif;
+  color: #888;
+  background: transparent url(../img/textBack.jpg) no-repeat 0 40px; }
+  .main .content-1 {
+    margin: 0 125px 0px 221px; }
+    .main .content-1 p {
+      margin-bottom: 10px; }
+    .main .content-1 h3 {
+      margin-top: 25px;
+      margin-bottom: 6px;
+      width: 206px;
+      height: 21px; }
+    .main .content-1 .so-what {
+      background: transparent url(../img/textAbout.gif) 0 0 no-repeat; }
+    .main .content-1 .participation {
+      background: transparent url(../img/textParticipation.gif) 0 0 no-repeat; }
+    .main .content-1 .benefits {
+      background: transparent url(../img/textBenefits.gif) 0 0 no-repeat;
+      height: 21px; }
+  .main .content-2 {
+    margin: 30px 0 0 221px;
+    padding: 0;
+    border-left: 1px solid #a7d9a8;
+    font: italic 11px/150% Georgia, Times, "Times New Roman", serif;
+    color: #888; }
+    .main .content-2 h3 {
+      margin: 0 0 13px 0;
+      background: transparent url(../img/textRequirements.jpg) 0 0 no-repeat;
+      width: 175px;
+      height: 25px; }
+    .main .content-2 p {
+      margin: 9px 0 0 15px; }
+    .main .content-2 footer {
+      margin-top: 15px;
+      padding: 4px 0 4px 15px;
+      background: transparent url(../img/gradGreen.jpg) 0 0 repeat-y; }
+      .main .content-2 footer a:link,
+      .main .content-2 footer a:visited {
+        color: #348633; }
+      .main .content-2 footer a:hover,
+      .main .content-2 footer a:active,
+      .main .content-2 footer a:focus {
+        color: #f00; }
+
+.listlink {
+  border-left: 1px solid #8bf;
+  font: italic 11px/130% Georgia, Times, "Times New Roman", serif;
+  color: #999;
+  background: transparent url(../img/linksBack.jpg) 0 0 no-repeat;
+  position: absolute;
+  top: 40px;
+  left: 585px;
+  width: 235px; }
+  .listlink h3 {
+    margin: 25px 0 8px 0;
+    width: 175px;
+    height: 25px; }
+  .listlink .select {
+    background: transparent url(../img/linksSelect.gif) 0 0 no-repeat;
+    width: 118px;
+    height: 73px;
+    margin: 240px 0 10px 14px; }
+  .listlink .archives {
+    background: transparent url(../img/linksArchives.jpg) 0 0 no-repeat; }
+  .listlink .resources {
+    background: transparent url(../img/linksResources.jpg) 0 0 no-repeat; }
+  .listlink ul {
+    margin: 0;
+    padding: 0;
+    margin-left: 15px; }
+    .listlink ul li {
+      list-style-type: none;
+      margin-top: 5px; }
+  .listlink ul:nth-child(2) {
+    margin-bottom: 50px; }

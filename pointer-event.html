@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>pointer-events</title>
+  <script type="text/javascript"></script>
+  <!-- http://www.zhangxinxu.com/wordpress/2011/12/css3-pointer-events-none-javascript/ -->
+  <style type="text/css">
+  	/*
+  		pointer-events(这个属性主要针对于SVG，除了auto和none属性，其他基本都是针对于SVG)
+			pointer-events:  auto | none | visiblePainted | visibleFill | visibleStroke | visible | painted | fill | stroke | all | inherit
+
+			auto: 与pointer-events属性未指定时的表现效果相同，对于SVG内容来说，该值与visiblePainted效果相同;
+
+			none: 元素永远不会成为鼠标事件的target。但是，当其后代元素的pointer-events属性指定其他值时，鼠标事件可以指向后代元素，在这种情况下，鼠标事件将在捕获或冒泡阶段触发父元素的事件侦听器;
+  	*/
+		body {
+			margin: 30px;
+			padding: 0;
+		}
+		a {
+			display: block;
+			text-decoration: none;
+		}
+		div.content {
+			width: 200px;
+			height: 100px;
+			position: relative;
+			border: 1px solid black;
+			margin-bottom: 30px;
+		}
+		div.content a {
+			color: black;	
+		}
+		div.overlay {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;	
+			left: 0;
+			background: #fff;
+			opacity: 0.8;
+		}
+		div.pointer-events {
+			pointer-events: none;
+		}
+  </style>
+</head>
+
+<body>
+	pointer-events:none 若元素应用了改属性，链接和点击的鼠标事件都不会触发
+	<p>
+		<a href="#" style="pointer-events: auto;">pointer-events: auto;</a>
+		<a href="#" style="pointer-events: none;">pointer-events: none;</a>
+	</p>
+	<p>可以看到后面的那个连接是没有cursor:pointer属性的，但是键盘还是可以通过tab键focus设置了pointer-events: none;的a标签</p>
+	<p>
+		<a style="pointer-events: auto;">pointer-events: auto; & without href</a>
+		<a style="pointer-events: none;">pointer-events: none; & without href</a>
+	</p>
+	<p>没有href就相当于一个普通的标签了啊。。鼠标和键盘都无法获取。那还设置个毛线的pointer-events: none;啊。。</p>
+	<p>pointer-events: none;有另外一个很重要的特性：穿透性  见下例</p>
+
+	<p>这里面的连接无法点击，pointer-events: auto;</p>
+	<div class="content">
+		<div class="overlay"></div>
+		<a href="#">我就是一个a标签，快来点我吧！</a>
+	</div>
+
+	<p>这里面的连接可以点击，pointer-events: none;</p>
+	<div class="content">
+		<div class="overlay pointer-events"></div>
+		<a href="#">我就是一个a标签，快来点我吧！</a>
+	</div>
+</body>
+<script>
+//浏览器支持的JS判断
+	var supportsPointerEvents = (function(){
+	  var dummy = document.createElement('_');
+	  if(!('pointerEvents' in dummy.style)) {
+	  	alert("不支持");
+			return false;
+	  } 
+	  dummy.style.pointerEvents = 'auto';
+	  dummy.style.pointerEvents = 'x';
+	  document.body.appendChild(dummy);
+	  var r = getComputedStyle(dummy).pointerEvents === 'auto';
+	  document.body.removeChild(dummy);
+	  return r;
+	})();
+</script>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>background-image的transition</title>
+	<script type="text/javascript"></script>
+	<!-- 本质上来说变化的是background-image这个div的opacity和z-index，和background-image并没有什么卵关系 -->
+	<style type="text/css">
+		div {
+			width: 400px;
+			height: 200px;
+			position: relative;
+			margin-bottom: 10px;
+		}
+		div > div {
+			position: absolute;
+			width: 400px;
+			height: 200px;
+			transition: all 4s ease, z-index 1ms;
+			-webkit-transition: all 4s ease, z-index 1ms;
+			-moz-transition: all 4s ease, z-index 1ms;
+			-ms-transition: all 4s ease, z-index 1ms;
+			-o-transition: all 4s ease, z-index 1ms;
+		}
+
+		.img1 {
+			background-image: url(img/dog.jpg);
+			filter: alpha(opacity=100);
+			opacity: 1;
+			z-index: 2;
+		}
+		.img2 {
+			background-image: url(img/horse.jpg);
+			filter: alpha(opacity=0);
+			opacity: 0;
+			z-index: 1;
+		}
+		div:hover > div.img1 {
+			filter: alpha(opacity=0);
+			opacity: 0;
+			z-index: 1;
+		}
+		div:hover > div.img2 {
+			filter: alpha(opacity=100);
+			opacity: 1;
+			z-index: 2;
+		}
+
+		/* 方法2： */
+		.hover-image-div {
+			display: block;
+			width: 400px;
+			height: 200px;
+			position: relative;
+			border: 1px solid red;
+			margin-bottom: 10px;
+		}
+
+		.hover-image:after {
+			content: "";
+			opacity: 0;
+			width: inherit;
+			height: inherit;
+			position: absolute;
+			background: transparent url(img/horse.jpg) 0 0 no-repeat;
+			top: 0;
+			left: 0;
+			transition: opacity 1s ease-in-out;
+			-webkit-transition: opacity 1s ease-in-out;
+			-moz-transition: opacity 1s ease-in-out;
+			-o-transition: opacity 1s ease-in-out;
+		}
+
+		.hover-image:hover::after {
+			opacity: 1;
+		}
+
+/*基本也是第二种方法，没用伪元素*/
+		.dog-image-div {
+			display: block;
+			width: 400px;
+			height: 200px;
+			border: 1px solid red;
+		}
+		
+		.dog-image {
+			background: transparent url(img/dog.jpg) 0 0 no-repeat;
+			transition: opacity 1s ease-in-out;
+			-webkit-transition: opacity 1s ease-in-out;
+			-moz-transition: opacity 1s ease-in-out;
+			-o-transition: opacity 1s ease-in-out;
+			opacity: 0;
+		}
+
+		.dog-image:hover {
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<!-- 方法1： -->
+	<div class="background-image-div">
+		<div class="img1"></div>
+		<div class="img2"></div>
+	</div>
+
+	<!-- 方法2： -->
+	<div class="hover-image-div">
+		<div class="hover-image"></div>
+	</div>
+
+	<!-- 方法2： -->
+	<div class="dog-image-div">
+		<div class="dog-image"></div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Boolean类型</title>
+    <script type="text/javascript">
+    // Boolean有两个字面值: true和false 【区分大小写】
+    document.addEventListener("DOMContentLoaded", function() {
+        "use strict";
+        var messageDiv = document.getElementById("message");
+        var message = "hello world";
+        var messageAsBoolean = Boolean(message);
+        messageDiv.innerHTML = messageAsBoolean; //true
+    });
+    </script>
+</head>
+
+<body>
+    <div id="message"></div>
+    <div> </div>
+</body>
+
+</html>

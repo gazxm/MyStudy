@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>outline和border</title>
+	<script type="text/javascript"></script>
+	<!-- http://www.zhangxinxu.com/wordpress/2010/01/%E9%A1%B5%E9%9D%A2%E5%8F%AF%E7%94%A8%E6%80%A7%E4%B9%8Boutline%E8%BD%AE%E5%BB%93%E5%A4%96%E6%A1%86%E7%9A%84%E4%B8%80%E4%BA%9B%E7%A0%94%E7%A9%B6/ -->
+	<style type="text/css">
+		div {
+			padding: 10px 5px;
+			margin: 5px;
+			width: 100px;
+		}
+		.border {
+			border: 3px solid black;
+		}
+		.outline {
+			outline: 3px double black;
+		}
+		/*border和outline的区别：
+				border算width,height
+				outline不算width,height,不占据页面空间,也不一定是矩形
+		*/
+		/*IE8以下不支持*/
+		/*a标签直接设置outline: none/0;会让键盘用户的tab键无法正常显示选中的框(因为outline的消失)
+				a:hover, a:active{
+					outline: none;
+				};
+				代替： 
+				a {
+					outline: none;
+				}
+		*/
+	</style>
+</head>
+<body>
+	<div class="border">border</div>
+	<div class="outline">outline</div>
+</body>
+</html>

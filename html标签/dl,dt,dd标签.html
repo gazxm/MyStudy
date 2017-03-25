@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>dl,dt,dd标签</title>
+ 	<script type="text/javascript"></script>
+ 	<style type="text/css">
+ 		dt:after {
+ 			content: ":";
+ 		}
+ 		dt, dd {
+ 			display: inline-block;
+ 			margin-left: 40px;
+ 		}
+ 		dd {
+ 			margin: 0;
+ 		}
+ 	</style>
+</head>
+
+<body>
+	<p>&ltdl&gt是一个包含术语定义以及描述的列表，通常用于展示词汇表或者元数据 (键-值对列表)。</p>
+	<p>&ltdt&gt元素用于在一个定义列表中声明一个术语。该元素仅能作为&ltdl&gt 的子元素出现。通常在该元素后面会跟着&ltdd&gt元素， 然而，多个连续出现的&ltdt&gt元素都将由出现在它们后面的第一个&ltdd&gt元素定义。</p>
+	<p>&ltdd&gt用来指明一个描述列表(&ltdl&gt)元素中一个术语的描述。这个元素只能作为描述列表元素的子元素出现，并且必须跟着一个&ltdt&gt元素。</p>
+
+	<p>单条术语与描述</p>
+	<dl>
+		<dt>Firefox</dt>
+		<dd>A free, open source, cross-platform, graphical web browser developed by the Mozilla Corporation and hundreds of volunteers.</dd>
+	</dl>
+	<p>多条术语，单条描述</p>
+	<dl>
+		<dt>Firefox</dt>
+		<dt>Mozilla Firefox</dt>
+		<dt>Fx</dt>
+		<dd>A free, open source, cross-platform, graphical web browser developed by the Mozilla Corporation and hundreds of volunteers.</dd>	
+	</dl>
+	<p>单条术语，多条描述</p>
+	<dl>
+		<dt>Firefox</dt>
+		<dd>A free, open source, cross-platform, graphical web browser
+      developed by the Mozilla Corporation and hundreds of volunteers.</dd>
+    <dd>The Red Panda also known as the Lesser Panda, Wah, Bear Cat or Firefox,
+      is a mostly herbivorous mammal, slightly larger than a domestic cat
+      (60 cm long).</dd>
+	</dl>
+	<p>多条术语，多条描述(例如元数据)</p>
+	<dl>
+    <dt>Name</dt>    
+    <dd>Godzilla</dd>
+    <dt>Born</dt>
+    <dd>1952</dd>
+    <dt>Birthplace</dt>
+    <dd>Japan</dd>
+    <dt>Color</dt>
+    <dd>Green</dd>
+	</dl>
+</body>
+
+</html>

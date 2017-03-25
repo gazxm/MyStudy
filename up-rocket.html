@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>up-rocket</title>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <style type="text/css">
+  .div1 {
+    width: 300px;
+    height: 500px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+  }
+  
+  #rocket-to-top {
+    background: url(img/o_rocket_button_up.png) no-repeat scroll 0 0 transparent;
+    cursor: default;
+    display: none;
+    height: 250px;
+    margin: -125px 0 0;
+    overflow: hidden;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    top: 90%;
+    width: 149px;
+    z-index: 11;
+  }
+  
+  #rocket-to-top div {
+    left: 0;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 149px;
+  }
+  
+  .level-2 {
+    background: url(img/o_rocket_button_up.png) no-repeat scroll -149px 0 transparent;
+    display: none;
+    height: 250px;
+    opacity: 0;
+    z-index: 1;
+  }
+  
+  .level-3 {
+    background: none repeat scroll 0 0 transparent;
+    cursor: pointer;
+    display: block;
+    height: 150px;
+    z-index: 2;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="div1"></div>
+  <div class="div1"></div>
+  <div class="div1"></div>
+  <div class="div1"></div>
+  <div class="div1"></div>
+  <div class="div1"></div>
+  <div class="div1"></div>
+  <div class="div1"></div>
+  <div class="div1"></div>
+  <div id="rocket-to-top" style="display: none; background-position: 0px 0px; margin-top: -125px;">
+    <div class="level-2" style="display: none; opacity: 0;"></div>
+    <div class="level-3"></div>
+  </div>
+  <script>
+  $(function() {
+    var e = $("#rocket-to-top"),
+      i = true;
+    $(window).scroll(function() {
+        var t = $(document).scrollTop();
+        t == 0 ? e.css("background-position") == "0px 0px" ? e.fadeOut("slow") : i && (i = !1, $(".level-2").css("opacity", 1), e.delay(100).animate({
+            marginTop: "-1000px"
+          },
+          "normal",
+          function() {
+            e.css({
+                "margin-top": "-125px",
+                display: "none"
+              }),
+              i = !0
+          })) : e.fadeIn("slow")
+      }),
+      e.hover(function() {
+          $(".level-2").css("display", "block").stop().animate({
+            opacity: 1
+          });
+        },
+        function() {
+          $(".level-2").stop().animate({
+            opacity: 0
+          });
+          setTimeout(function() {
+            $(".level-2").css("display", "none");
+          }, 300);
+        }),
+      $(".level-3").click(function() {
+        function t() {
+          var t = e.css("background-position");
+          if (e.css("display") == "none" || i == false) {
+            clearInterval(n),
+              e.css("background-position", "0px 0px");
+            return
+          }
+          switch (t) {
+            case "0px 0px":
+              e.css("background-position", "-298px 0px");
+              break;
+            case "-298px 0px":
+              e.css("background-position", "-447px 0px");
+              break;
+            case "-447px 0px":
+              e.css("background-position", "-596px 0px");
+              break;
+            case "-596px 0px":
+              e.css("background-position", "-745px 0px");
+              break;
+            case "-745px 0px":
+              e.css("background-position", "-298px 0px");
+          }
+        }
+        if (!i) return;
+        n = setInterval(t, 50),
+          $("html,body").animate({
+            scrollTop: 0
+          }, "slow");
+      });
+  });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>box-shadow(阴影)</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  /* 兼容性: IE9+ ; */
+  /* 正规语法: none | [inset? && [ <offset-x> <offset-y> <blur-radius>? <spread-radius>? <color>? ] ]#
+				inset: 默认阴影在边框外, inset：阴影在边框内 ;
+				<offset-x><offset-y>: length值 用来设置阴影的偏移量,两者都为0，表示阴影位于元素后面;
+				<blur-radius>: length值 值越大,模糊面积越大,阴影就越大越淡。不能为负值,默认为0,此时阴影边缘锐利;
+				<spread-radius>: length值 取正值时,阴影扩大；取负值时,阴影收缩。默认为0,此时阴影与元素同样大;
+				<color>: 不指定通常为浏览器默认值,safari为透明;
+		*/
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  div {
+    background: #999;
+    border: 1px solid black;
+    height: 100px;
+    margin-bottom: 10px;
+    width: 300px;
+  }
+  
+  .box-shadow-1 {   
+    -webkit-box-shadow: 60px -16px teal;
+    -moz-box-shadow: 60px -16px teal;
+    box-shadow: 60px -16px teal;
+  }
+  
+  .box-shadow-2 {
+    -webkit-box-shadow: 10px 5px 5px black;
+    -moz-box-shadow: 10px 5px 5px black;
+    box-shadow: 10px 5px 5px black;
+  }
+  
+  .box-shadow-3 {
+    -webkit-box-shadow: 3px 3px red, -1em 0 0.4em olive;
+    -moz-box-shadow: 3px 3px red, -1em 0 0.4em olive;
+    box-shadow: 3px 3px red, -1em 0 0.4em olive;    
+  }
+  
+  .box-shadow-4 {
+    -webkit-box-shadow: inset 5em 1em gold;
+    -moz-box-shadow: inset 5em 1em gold;
+    box-shadow: inset 5em 1em gold;
+  }
+  
+  .box-shadow-5 {
+    -webkit-box-shadow: 0 0 1em gold;
+    -moz-box-shadow: 0 0 1em gold;
+    box-shadow: 0 0 1em gold;
+  }
+  
+  .box-shadow-6 {
+    -webkit-box-shadow: inset 0 0 1em gold;
+    -moz-box-shadow: inset 0 0 1em gold;
+    box-shadow: inset 0 0 1em gold;
+  }
+  
+  .box-shadow-7 {  
+    -webkit-box-shadow: 0 0 10px black, 0 0 20px gold, 0 0 30px red;
+    -moz-box-shadow: 0 0 10px black, 0 0 20px gold, 0 0 30px red;
+    box-shadow: 0 0 10px black, 0 0 20px gold, 0 0 30px red;
+    margin-top: 30px;
+  }
+
+  /*顺序：边框>内阴影>背景图片>背景颜色>外阴影*/
+  /*最先写的border-shadow在最上面*/
+
+  .box-shadow-8 {
+    background: repeating-linear-gradient(90deg, #6b4c1e, #6b4c1e 1px, #e1ba75 0, #e1ba75 2px, transparent 0, transparent 4px ) 25% 50% /* left */, repeating-linear-gradient(90deg, #6b4c1e, #6b4c1e 1px, #e1ba75 0, #e1ba75 2px, transparent 0, transparent 4px ) 75% 50% /* right */, linear-gradient(0deg, #eb730d, #e4a814); 
+    background-repeat: no-repeat; 
+    background-size: 10px 10px, 10px 10px, 100% 100%;
+    border: none; 
+    border-radius: 10px;
+    box-shadow: inset 0 5px 0 0 #f8dc92, 0 0 0 5px #daa546, 0 0 0 10px #6e6605;   
+    height: 50px; 
+    margin: 30px; 
+    width: 150px;      
+  }
+
+  .inner {
+    background-color: red;
+    -webkit-box-shadow: 50px 50px 3px blue;
+    -moz-box-shadow: 50px 50px 3px blue;
+    box-shadow: 50px 50px 3px blue;
+    height: 60px;
+    width: 60px;
+  }
+
+  .outer {
+    border: 1px solid red;
+    height: 100px;
+    width: 100px;
+  }
+
+  </style>
+</head>
+
+<body>
+  <div class="box-shadow-1"></div>
+  <div class="box-shadow-2"></div>
+  <div class="box-shadow-3"></div>
+  <div class="box-shadow-4"></div>
+  <div class="box-shadow-5"></div>
+  <div class="box-shadow-6"></div>
+  <div class="outer">
+    <div class="inner"></div>
+  </div>
+  <div class="box-shadow-7"></div>
+  <!-- 
+    box-shadow实现外边框，复杂按钮
+  -->
+  <div class="box-shadow-8"></div>
+</body>
+	
+</html>

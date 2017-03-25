@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>rgba(HSLA)和opacity的透明度区别</title>
+  <script type="text/javascript"></script>
+  <style>
+		li.opacity, li.rgba {
+			float: left;
+			width: 50px;
+			height: 50px;
+		}
+		li.opacity1 {
+			background: rgb(255, 255, 0);
+			opacity: 1;
+		}
+		li.opacity2 {
+			background: rgb(255, 255, 0);
+			opacity: 0.8;
+		}
+		li.opacity3 {
+			background: rgb(255, 255, 0);
+			opacity: 0.6;
+		}
+		li.opacity4 {
+			background: rgb(255, 255, 0);
+			opacity: 0.4;
+		}
+		li.opacity5 {
+			background: rgb(255, 255, 0);
+			opacity: 0.2;
+		}
+		li.opacity6 {
+			background: rgb(255, 255, 0);
+			opacity: 0;
+		}
+		li.rgba1 {
+			background: rgba(255, 255, 0, 1);
+		}
+		li.rgba2 {
+			background: rgba(255, 255, 0, 0.8);
+		}
+		li.rgba3 {
+			background: rgba(255, 255, 0, 0.6);
+		}
+		li.rgba4 {
+			background: rgba(255, 255, 0, 0.4);
+		}
+		li.rgba5 {
+			background: rgba(255, 255, 0, 0.2);
+		}
+		li.rgba6 {
+			background: rgba(255, 255, 0, 0);
+		}
+		li {
+			list-style-type: none;
+		}
+  </style>
+</head>
+
+<body>
+	<li class="opacity opacity1">1</li>
+	<li class="opacity opacity2">2</li>
+	<li class="opacity opacity3">3</li>
+	<li class="opacity opacity4">4</li>
+	<li class="opacity opacity5">5</li>
+	<li class="opacity opacity6">6</li>
+	<li class="rgba rgba1">1</li>
+	<li class="rgba rgba2">2</li>
+	<li class="rgba rgba3">3</li>
+	<li class="rgba rgba4">4</li>
+	<li class="rgba rgba5">5</li>
+	<li class="rgba rgba6">6</li>
+	<p>opacity会让父元素中所有的子元素均有透明度，然而rgba只会让父元素本身有透明度，而子元素还仍然是不透明的</p>
+</body>
+
+</html>

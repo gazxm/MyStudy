@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>居中的几种方式</title>
+    <script type="text/javascript"></script>
+    <!--  -->
+    <style>
+    .div1 {
+        margin-left: auto;
+        margin-right: auto;
+        width: 600px;
+    }
+    
+    .img1 {
+        display: block;
+        margin: 0 auto;
+        width: 300px;
+        /* margin: 0 auto*/
+        /* PS：1、margin : 0 auto 可以替代 margin-left: auto; 和 margin-right: auto;
+				   2、只针对于块元素有用，行内元素需要转换成block才可以使用；
+				   3、只能做水平居中；
+				   4、需要设置div的宽度，auto才能够根据宽度来进行自适应。
+				   5、声明DOCTYPE
+				   6、margin: auto 也是只设置左右边距，并不会设置上下边距，是不规范的写法;
+			*/
+        /*  text-align: center;
+				这种方法会应用到作为容器的元素上，不仅仅是作用到文本上
+
+				一般两种方式会一起使用，让居中效果得到最大限度的跨浏览器支持
+			*/
+    }
+    
+    .div2 {
+        position: relative;
+        /* 这里设置成相对定位，则里面的绝对定位的起始位置不会从浏览器的左上角开始，而是从父节点的左上角开始*/
+        width: 1000px;
+        height: 800px;
+        margin: auto;
+    }
+    
+    .img2 {
+        position: absolute;
+        width: 600px;
+        top: 50%;
+        left: 50%;
+        margin-left: -300px;
+        margin-top: -252px;
+        /*  
+				使用margin-left实现水平居中；margin-top实现垂直居中
+				最广泛的浏览器支持
+				在计算负边距的时候需要注意：内边距和边框都要计算在容器中
+			*/
+    }
+
+    .div3 {
+    	line-height: 300px;
+    	text-align: center;
+    	background: #999;
+    	font-size: 0px;		/*设置content-area为0 中心线位置和绝对中心线位置在一条线上，若不设置，中心线位置为"X"字符的中心位置，比起绝对中心线位置偏下一点*/
+    }
+
+    .img3 {
+    	vertical-align: middle;		/*	若不设置,则图片居中，图片底部和baseline保持在一条线上，baseline线和"X"字符的底在一条线上。	*/
+    	width: 50px;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 第一种方法使用margin: 0 auto-->
+    <div class="div1">
+        <img class="img1" src="img/iphone_bili.jpg" alt="" />
+    </div>
+    <!-- 第二种方法使用text-align: center;-->
+    <!-- 第三种方法使用margin:0 auto;和text-align: center;-->
+    <!-- 第四种方法负外边距解决方案 -->
+    <div class="div2">
+        <img src="img/iphone_bili.jpg" alt="" class="img2">
+    </div>
+    <!-- 使用line-height也可以实现垂直居中,利用的行高的垂直居中性-->
+    <div class="div3">
+        <img src="img/iphone_bili.jpg" alt="" class="img3">
+    </div>
+</body>
+
+</html>

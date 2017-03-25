@@ -1,0 +1,183 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  color: #000;
+  background: #f1f8f3 url(../img/gradSky.jpg) repeat-x;
+}
+
+.css-zen-garden {
+  width: 760px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative;
+  a {
+    text-decoration: none;
+  }
+  a:link {
+    color: #49f;
+  }
+  a:visited {
+    color: #fa5;
+  }
+  a:hover,
+  a:active,
+  a:focus {
+    color: #f00;
+  }
+}
+
+.header {
+  font: italic 11px/150% Georgia, Times, "Times New Roman", serif;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 310px;
+  color: #888;
+  h1 {
+    background: transparent url(../img/introGarden.gif) 0 0 no-repeat;
+    width: 115px;
+    height: 12px;
+    margin-top: 28px;
+  }
+  h2 {
+    background: transparent url(../img/introBeauty.gif) 0 0 no-repeat;
+    width: 195px;
+    height: 73px;
+    margin-top: 80px;
+  }
+  .p1 {
+    margin: 5px 0px 55px 4px;
+    color: #fa0;
+    line-height: 160%;
+    background-color: transparent;
+  }
+  .p2 {
+    margin: 0 150px 0 4px;
+    padding: 5px 25px 5px 10px;
+    background: transparent url(../img/gradGreen.jpg) repeat-y;
+    border-left: 1px solid #a7d9a8;
+    line-height: 130%;
+    a:link,
+    a:visited {
+      color: #348633;
+    }
+    a:hover,
+    a:active,
+    a:focus {
+      color: #f00;
+    }
+  }
+  .the-road {
+    margin-right: 140px;
+    margin-left: 4px;
+    padding: 20px 0 0 15px;
+    border-left: 1px solid #a7d9a8;
+    h3 {
+      background: transparent url(../img/introEnlightenment.gif) 0 0 no-repeat;
+      width: 138px;
+      height: 37px;
+      margin: 0;
+    }
+  }
+}
+
+.main {
+  width: 690px;
+  padding: 430px 0 40px 0;
+  font: 13px/140% Georgia, Times, "Times New Roman", serif;
+  color: #888;
+  background: transparent url(../img/textBack.jpg) no-repeat 0 40px;
+  .content-1 {
+    margin: 0 125px 0px 221px;
+    p {
+      margin-bottom: 10px;
+    }
+    h3 {
+      margin-top: 25px;
+      margin-bottom: 6px;
+      width: 206px;
+      height: 21px;
+    }
+    .so-what {
+      background: transparent url(../img/textAbout.gif) 0 0 no-repeat;
+    }
+    .participation {
+      background: transparent url(../img/textParticipation.gif) 0 0 no-repeat;
+    }
+    .benefits {
+      background: transparent url(../img/textBenefits.gif) 0 0 no-repeat;
+      height: 21px;
+    }
+  }
+  .content-2 {
+    margin: 30px 0 0 221px;
+    padding: 0;
+    border-left: 1px solid #a7d9a8;
+    font: italic 11px/150% Georgia, Times, "Times New Roman", serif;
+    color: #888;
+    h3 {
+      margin: 0 0 13px 0;
+      background: transparent url(../img/textRequirements.jpg) 0 0 no-repeat;
+      width: 175px;
+      height: 25px;
+    }
+    p {
+      margin: 9px 0 0 15px;
+    }
+    footer {
+      margin-top: 15px;
+      padding: 4px 0 4px 15px;
+      background: transparent url(../img/gradGreen.jpg) 0 0 repeat-y;
+      a:link,
+      a:visited {
+        color: #348633;
+      }
+      a:hover,
+      a:active,
+      a:focus {
+        color: #f00;
+      }
+    }
+  }
+}
+
+.listlink {
+  border-left: 1px solid #8bf;
+  font: italic 11px/130% Georgia, Times, "Times New Roman", serif;
+  color: #999;
+  background: transparent url(../img/linksBack.jpg) 0 0 no-repeat;
+  position: absolute;
+  top: 40px;
+  left: 585px;
+  width: 235px;
+  h3 {
+    margin: 25px 0 8px 0;
+    width: 175px;
+    height: 25px;
+  }
+  .select {
+    background: transparent url(../img/linksSelect.gif) 0 0 no-repeat;
+    width: 118px;
+    height: 73px;
+    margin: 240px 0 10px 14px;
+  }
+  .archives {
+    background: transparent url(../img/linksArchives.jpg) 0 0 no-repeat;
+  }
+  .resources {
+    background: transparent url(../img/linksResources.jpg) 0 0 no-repeat;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    margin-left: 15px;
+    li {
+      list-style-type: none;
+      margin-top: 5px;
+    }
+  }
+  ul:nth-child(2) {
+    margin-bottom: 50px;
+  }
+}

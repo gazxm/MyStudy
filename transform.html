@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>transform</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+
+  /*transform使用多个值的时候不能使用逗号分隔开，直接使用空格分隔开即可*/
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  div {
+    width: 200px;
+    height: 100px;
+    background: red;
+    margin-bottom: 10px;
+    transition: all 3s linear;
+  }
+  
+  .transform-translate {
+    transform: translate(0px, 0px);
+  }
+  
+  .transform-translate:hover {
+    background: blue;
+    transform: translate(10px, 10px);
+  }
+  
+  .transform-translate3d {
+    transform: translate3d(0px, 0px, 0px);
+  }
+  
+  .transform-translate3d:hover {
+    background: blue;
+    transform: translate3d(100px, 100px, 100px);
+  }
+  
+	.transform-scale {
+		transform: scale(1, 1);
+	}
+
+	.transform-scale:hover {
+		background: blue;
+		transform: scale(3, 3);
+	}
+
+	.transform-scale3d {
+		transform: scale3d(1, 1, 1);
+	}
+
+	.transform-scale3d:hover {
+		background: blue;
+		transform: scale3d(3, 3, 3);
+	}
+
+  .transform-rotate {
+    transform: rotate(0deg);
+  }
+  
+  .transform-rotate:hover {
+    background: blue;
+    transform: rotate(360deg);
+  }
+  
+  .transform-rotate3d {
+    transform: rotate3d(0, 0, 0, 0deg);
+  }
+  
+  .transform-rotate3d:hover {
+    background: blue;
+    transform: rotate3d(1, 1, 1, 360deg);
+  }
+
+  .transform-skew {
+  	transform: skew(0deg, 0deg);
+  }
+
+  .transform-skew:hover {
+  	background: blue;
+  	transform: skew(180deg, 180deg);
+  }
+
+  .transform-skewx {
+    transform: skewX(0deg);
+  }
+
+  .transform-skewx:hover {
+    transform: skewX(180deg);
+  }
+
+  .transform-skewy {
+    transform: skewY(0deg);
+  }
+
+  .transform-skewy:hover {
+    transform: skewY(180deg);
+  }
+
+	/*w3c是配合rotateX使用的 看不出来效果。。。还未理解
+			http://www.zhangxinxu.com/wordpress/2012/09/css3-3d-transform-perspective-animate-transition/
+	*/
+  .transform-perspective {
+  	transform: perspective(0);
+  }
+
+  .transform-perspective:hover {
+  	background: blue;
+  	transform: perspective(500);
+  }
+  /*transform兼容
+			http://wnworld.com/archives/170.html
+  */
+  </style>
+</head>
+
+<body>
+  <!-- 移动 -->
+  <div class="transform-translate">translate</div>
+  <div class="transform-translate3d">translate3d</div>
+  <!-- 缩放 -->
+  <div class="transform-scale">scale</div>
+  <div class="transform-scale3d">scale3d</div>
+  <!-- 旋转 -->
+  <div class="transform-rotate">rotate</div>
+  <div class="transform-rotate3d">rotate3d</div>
+  <!-- 倾斜 -->
+  <div class="transform-skew">skew</div>
+
+  <div class="transform-skewx">skewx</div>
+  <div class="transform-skewy">skewy</div>
+
+  <div class="transform-perspective">perspective</div>
+  <div class="transform-matrix">matrix(...)</div>
+  <div class="transform-matrix3d">matrix3d(...)</div>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>meta标签大全</title>
+  <script type="text/javascript"></script>
+</head>
+
+<body>
+	<article>
+		<section>
+			<h3>charset="UTF-8"</h3>
+			<p>声明文档使用的字符编码</p>
+		</section>
+		<section>
+			<h3>keywords,description</h3>
+			<p>页面的关键字和描述，是写给搜索引擎看的，关键字可以有多个，用','隔开</p>
+		</section>
+		<section>
+			<h3>Content-Type</h3>
+			<p> <pre>&lmeta http-equiv="Content-Type" content content="text/html; charset=gb2312" /&gt</pre>告诉浏览器当前访问的资源类型</p>
+		</section>
+		<section>
+			<h3>refresh</h3>
+			<p>重定向，或者刷新本页面(下示例5秒后会跳转到: http://blog.csdn.net)
+				<pre>&ltmeta http-equiv="refresh" content="5;url="http://blog.csdn.net" /&gt</pre>
+				10秒钟会刷新本页面，即content里面不加url链接
+				<pre>&ltmeta http-equiv="refresh" content="10" /&gt</pre>
+			</p>
+		</section>
+		<section>
+			<h3>full-screen</h3>
+			<p>全屏显示网页(部分移动端浏览器的专有属性)</p>
+			<pre>&ltmeta name="full-screen" content="yes" /&gt</pre>
+		</section>
+		<section>
+			<h3>browsermode</h3>
+			<p>浏览器模式-强制坚屏显示(部分移动端浏览器的专有属性)</p>
+			<pre>&ltmeta name="browsermode" content="application"/&gt</pre>
+		</section>
+		<section>
+			<h3>format-detection</h3>
+			<p>数据格式验证渲染：<br>
+				<b>telephone：</b>而iPhone会自动把你这个文字加链接样式、并且点击这个数字还会自动拨号！默认开启<br>
+				<b>email：</b>浏览器会识别邮箱并加样式，点击可以调用系统默认邮件应用给该地址发邮件，默认开启<br><b>address:</b>adress=yes就开启了点击地址直接跳转至地图的功能，默认开启
+				<pre>&ltmeta content="telephone=no" name="format-detection" /&gt<br>&ltmeta content="telephone=no,email=no,adress=no" name="format-detection" /&gt
+				</pre>
+			</p>
+		</section>
+		<section>
+			<h3>x5-orientation</h3>
+			<p>QQ浏览器强制竖屏</p>
+			<pre>&ltmeta name="x5-orientation" content="portrait"&gt</pre>
+		</section>
+		<section>
+			<h3>x5-fullscreen</h3>
+			<p>QQ浏览器强制全屏</p>
+			<pre>&ltmeta name="x5-fullscreen" content="true"&gt</pre>
+		</section>
+		<section>
+			<h3>x5-page-mode</h3>
+			<p>QQ浏览器应用模式</p>
+			<pre>&ltmeta name="x5-page-mode" content="app"/&gt</pre>
+		</section>
+		<section>
+			<h3>X-UA-Compatible</h3>
+			<p>IE的兼容模式:以IE的哪个版本去渲染页面（IE=8：以IE8的模式去渲染页面，IE=Edge:以最新版本的IE去渲染页面，当然这个最新指的是你系统装的最高版本的IE）</p>
+			<pre>&ltmeta http-equiv="X-UA-Compatible" content="IE=8" /&gt<br>&ltmeta http-equiv="X-UA-Compatible" content="IE=Edge" /&gt
+			</pre>
+		</section>
+		<section>
+			<h3>renderer</h3>
+			<p>这貌似是360浏览器专用，兼容360的利器啊，，360默认是用IE7去渲染页面的，不管你的系统装了多高版本的IE,这种行为真是业界毒瘤啊。</p>
+			<pre>&ltmeta name="renderer" content="webkit" /&gt//默认webkit内核<br>&ltmeta name="renderer" content="ie-comp" /&gt//默认IE兼容模式<br>&ltmeta name="renderer" content="ie-stand" /&gt//默认IE标准模式</pre>
+		</section>
+		<section>
+			<h3>author(作者)</h3>
+			<p>说明：标注网页的作者</p>
+			<pre>&ltmeta name="author" content="zxm@hotmail.com" /&gt</pre>
+		</section>
+		<section>
+			<h3>IOS:apple-mobile-web-app-capable</h3>
+			<p>这meta的作用就是删除默认的苹果工具栏和菜单栏。content有两个值”yes”和”no”,当我们需要显示工具栏和菜单栏时，这个行meta就不用加了，默认就是显示。</p>
+			<pre>&ltmeta name="apple-mobile-web-app-capable" content="yes" /&gt</pre>
+		</section>
+		<section>
+			<h3>IOS:apple-mobile-web-app-status-bar-style</h3>
+			<p>只有在 "apple-mobile-web-app-capable" content="yes" 时生效;content参数释义：default 默认值，网页内容从状态栏底部开始 black 状态栏背景是黑色，网页内容从状态栏底部开始 black-translucent 状态栏背景是黑色半透明，网页内容充满整个屏幕，顶部会被状态栏遮挡
+			</p>
+		</section>
+	</article>
+</body>
+
+</html>

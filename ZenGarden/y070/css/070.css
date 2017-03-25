@@ -1,0 +1,144 @@
+body {
+  font-style: normal;
+  font-weight: normal;
+  font-size: small;
+  font-family: Georgia, "Times New Roman", Times, serif; }
+
+#css-zen-garden {
+  margin: 0;
+  padding: 0;
+  background: transparent url(../img/BGTile.jpg) 0 0;
+  position: relative;
+  width: 780px;
+  margin: 0 auto; }
+
+#container {
+  background: transparent url(../img/ContentBG.gif) 0 0;
+  border-bottom: 1px solid black; }
+  #container a:link {
+    padding: 0 0 1px 0;
+    text-decoration: none;
+    color: #CC3300;
+    background: transparent url(../img/underline.gif) bottom left repeat-x; }
+  #container a:visited {
+    padding: 0 0 2px 0;
+    text-decoration: none;
+    color: #666;
+    background: transparent url(../img/underline.gif) bottom left repeat-x; }
+  #container a:hover {
+    text-decoration: none;
+    color: #FF0000;
+    background: none; }
+  #container #intro {
+    position: relative; }
+    #container #intro #pageHeader span {
+      display: none; }
+    #container #intro #pageHeader h1 {
+      margin: 0;
+      background: transparent url(../img/CSZenLogo.gif) 0 0 no-repeat;
+      height: 444px; }
+    #container #intro #quickSummary {
+      position: absolute;
+      font-size: x-small;
+      left: 38px;
+      top: 515px;
+      width: 250px;
+      z-index: 5;
+      text-align: right;
+      letter-spacing: 2px; }
+    #container #intro #preamble {
+      position: absolute;
+      top: 15px;
+      left: 410px;
+      width: 405px;
+      letter-spacing: 2px;
+      font-style: italic;
+      font-size: x-small;
+      background: url(../img/RoadToEnlightmentBG_2.gif) left bottom no-repeat; }
+      #container #intro #preamble h3 {
+        margin: 0;
+        padding: 0; }
+        #container #intro #preamble h3 span {
+          display: none; }
+      #container #intro #preamble p {
+        padding: 8px 70px 0px 70px;
+        margin: 0; }
+      #container #intro #preamble p.p1 {
+        background: transparent url(../img/RoadToEnlightmentBG_1.gif) 0 0 no-repeat; }
+      #container #intro #preamble p.p3 {
+        padding-bottom: 20px; }
+  #container #supportingText div {
+    margin: 40px 0px 0px 30px; }
+    #container #supportingText div h3 span {
+      display: none; }
+    #container #supportingText div p {
+      margin: 0px 50px 0px 280px;
+      text-align: justify; }
+  #container #supportingText div#explanation {
+    background: transparent url(../img/SoWhatIsThisAbout.gif) 0 0 no-repeat; }
+  #container #supportingText div#participation {
+    margin-left: 150px;
+    background: transparent url(../img/Participation.gif) 0 0 no-repeat; }
+    #container #supportingText div#participation p {
+      margin-left: 160px; }
+  #container #supportingText div#benefits {
+    margin-left: 195px;
+    background: transparent url(../img/Benefits.gif) 0 0 no-repeat; }
+    #container #supportingText div#benefits p {
+      margin-left: 115px; }
+  #container #supportingText div#requirements {
+    margin-left: 140px;
+    background: transparent url(../img/Requirements.gif) 0 0 no-repeat; }
+    #container #supportingText div#requirements p {
+      margin-left: 170px; }
+    #container #supportingText div#requirements p.p5 {
+      padding-top: 30px;
+      font-size: 10px; }
+  #container #supportingText #footer {
+    margin-left: 130px;
+    margin-top: -15px;
+    font-size: x-small; }
+  #container #linkList {
+    width: 729px;
+    font-size: xx-small;
+    background: transparent url(../img/NavBG.gif) left bottom no-repeat;
+    margin: 40px auto; }
+    #container #linkList h3 {
+      margin: 0;
+      padding: 0; }
+      #container #linkList h3 span {
+        display: none; }
+    #container #linkList li {
+      display: inline;
+      list-style-type: none; }
+    #container #linkList li:after {
+      content: url(../img/Bullet.gif);
+      padding-left: 3px;
+      padding-right: 3px;
+      display: inline; }
+    #container #linkList #linkList2 {
+      background: transparent url(../img/NavBG_top.gif) 0 0 no-repeat;
+      padding: 5px; }
+      #container #linkList #linkList2 ul {
+        display: block;
+        padding: 0px 60px 0px 140px;
+        margin: 0;
+        line-height: 20px; }
+      #container #linkList #linkList2 #lselect {
+        background: transparent url(../img/SelectADesign.gif) 20px 10px no-repeat; }
+      #container #linkList #linkList2 #larchives {
+        margin: 10px 0 10px 20px;
+        padding: 8px 0;
+        background: transparent url(../img/Archive.gif) 0 0 no-repeat; }
+      #container #linkList #linkList2 #lresources {
+        margin: 10px 0 10px 20px;
+        padding: 8px 0;
+        background: transparent url(../img/Resources.gif) 0 0 no-repeat; }
+
+#extraDiv1 {
+  position: absolute;
+  background: transparent url(../img/Dragon.gif) 0 0 no-repeat;
+  left: -17px;
+  bottom: 17px;
+  width: 96px;
+  height: 206px; }

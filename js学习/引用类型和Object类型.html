@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>引用类型和Object类型</title>
+	<script>
+		/*	引用类型：引用类型的值(对象)是引用类型的一个实例。在ECMAScript中，引用类型是一种数据结构，用于将数据和功能组织在一起。它也常被称为类，但这种称呼并不妥当。尽管ECMAScript从技术上讲是一门面向对象的语言，但它并不具备传统的面向对象语言所支持的类和接口等基本结构。引用类型有时候也被称为对象定义，因为它们描述的是一类对象所具有的属性和方法。
+		*/
+		/*
+			Object类型: 创建Object实例的两种方式：
+		*/
+		var personObj1 = new Object();
+		personObj1.name = "zxm";
+		personObj1.age = 23;
+
+		var personObj2 = {	//左边的花括号表示对象字面量的开始，因为它出现在了表达式上下文(expression context)中。ECMAScript中的表达式上下文指的是能够返回一个值(表达式)。赋值操作符表示后面是一个值，所以左花括号在这里表示一个表达式的开始。同样的花括号，如果出现在一个语句上下文(statement context)中，if语句，表示一个语句块的开始。
+			name : "zxm",
+			age : 23
+		}	//这种方式不会调用Object构造函数
+
+		var personObj3 = {
+			"name" : "zxm",
+			"age" : "23",
+			5 : true	//5 转换为字符串
+		}	
+		console.log(personObj1, personObj2, personObj3)
+
+		console.log("-----------分割线------------");
+		var displayInfo = function(args) {
+			var output = "";
+			if(typeof args.name === "string") {
+				output += "Name:" + args.name + "\n";
+			}
+
+			if(typeof args.age === "number") {
+				output += "Age: " + args.age + "\n";
+			}
+
+			console.log(output);
+		}
+
+		displayInfo({
+			name : "zxm",
+			age : 23
+		});							//Name:zxm \n Age:23
+
+		displayInfo({
+			name : "zxm"
+		});							//Name:zxm
+
+/*	console.log(typeof (typeof 1));								//string
+		console.log(typeof (typeof "abc"));						//string
+		console.log(typeof (typeof null));						//string
+		console.log(typeof (typeof undefined));				//string
+		console.log(typeof (typeof true));						//string
+		console.log(typeof (typeof {name: "111"}));		//string
+		//typeof 返回的值全都是string
+*/
+		//访问对象的属性的两种方法：1、点表示法;2、方括号表示法
+		var personObj4 = {	
+			"first Name" : "z",		//这种里面带空格的，只能用方括号表示法
+			"last Name" : "xm",
+			age : 23
+		}
+		console.log(personObj4["first Name"], personObj4["last Name"], personObj4["age"], personObj4.age);	//z xm 23 23
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

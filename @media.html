@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>@media(媒体查询)</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  /*IE9及其以上，现代浏览器*/
+  /*http://www.tuicool.com/articles/FFn632q*/
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  /*
+			min-width: 1200px; 表示最小1200px 表示大于等于;
+			max-width: 1200px; 表示最大1200px 表示小于等于;
+			书写顺序：min-width: 从小往大写;max-width: 从大往小写;
+		*/
+  
+  div {
+    width: 800px;
+    margin: 0 auto;
+    height: 300px;
+    border: 1px solid red;
+    transition: width 1s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+/* min-width */  
+/*  @media screen and (min-width: 200px) {
+    .media {
+      width: 100px;
+    }
+  }
+  
+  @media screen and (min-width: 400px) {
+    .media {
+      width: 200px;
+    }
+  }
+  
+  @media screen and (min-width: 600px) {
+    .media {
+      width: 300px;
+    }
+  }
+  
+  @media screen and (min-width: 800px) {
+    .media {
+      width: 400px;
+    }
+  }
+  
+  @media screen and (min-width: 1000px) {
+    .media {
+      width: 500px;
+    }
+  }
+  
+  @media screen and (min-width: 1200px) {
+    .media {
+      width: 600px;
+    }
+  }
+*/
+
+/* max-width */
+	@media screen and (max-width: 1200px) {
+		.media {
+			width: 600px;
+		}
+	}
+	@media screen and (max-width: 1000px) {
+		.media {
+			width: 500px;
+		}
+	}
+	@media screen and (max-width: 800px) {
+		.media {
+			width: 400px;
+		}
+	}
+	@media screen and (max-width: 600px) {
+		.media {
+			width: 300px;
+		}
+	}
+	@media screen and (max-width: 400px) {
+		.media {
+			width: 200px;
+		}
+	}
+	@media screen and (max-width: 200px) {
+		.media {
+			width: 100px;
+		}
+	}
+  </style>
+</head>
+
+<body>
+  <div class="media"></div>
+</body>
+
+</html>

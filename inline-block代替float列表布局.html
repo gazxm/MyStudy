@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>inline-block代替float列表布局</title>
+    <script type="text/javascript"></script>
+    <style type="text/css">
+    .content {
+        width: 200px;
+    }
+    
+    .content ul a.li-a2{
+    	color: #6eafd5;
+    }
+
+    a {
+        text-decoration: none;
+        color: #666;
+        text-align: center;
+        font-size: 14px;
+    }
+    
+    ul {
+        padding: 0px;
+    }
+    
+    .content ul a {
+        display: block;
+        font-size：12px;
+        color: #0082CB;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    .float-a {
+        float: right;
+        font-size: 12px;
+    }
+    
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+        line-height: 0px;
+        vertical-align: middle;
+    }
+
+/*以下是float和inline-block的区别：
+	1、float会设置高度height:15px;然后overflow:hidden;(超出高度的部分省略)，对于用户来说超出信息会被省略，不然会呈现成锯齿状的排列方式(可以注释查看)；
+	但是使用inline-block不会有这种情况
+*/
+    .float-div ul a {
+    	height: 15px;
+    	overflow: hidden;
+    }
+
+    .float-div li {
+        float: left;
+        width: 52px;
+        padding: 3px 5px ;
+    }
+
+	.inline-block-div li {
+		display: inline-block;
+		width: 52px;
+		padding: 3px 5px;
+		vertical-align: top;	/*以topline为基线对齐*/
+		text-align: center;
+	}
+
+/*inline-block*/
+	.inline-block-div ul {
+		font-size: 0px;
+	}
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="float-div clearfix">
+            <a href="">人气用户推荐(原浮动布局)</a>
+            <ul class="clearfix">
+                <li>
+                    <img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">黄硕</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                	<img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">大大的放弃我刚刚	</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                    <img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">黄硕</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                	<img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">大大的放弃我刚刚	</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                    <img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">黄硕</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                	<img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">大大的放弃我刚刚	</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                    <img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">黄硕</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                	<img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">大大的放弃我刚刚	</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                    <img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">黄硕</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+            </ul>
+            <a class="float-a" href="">更多<em>>></em></a>
+        </div>
+        <div class="inline-block-div">
+            <a href="">人气用户推荐(新inline-block布局)</a>
+            <ul>
+                <li>
+                    <img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">黄硕</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                	<img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">大大的放弃我刚刚	</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                    <img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">黄硕</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                	<img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">大大的放弃我刚刚	</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                    <img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">黄硕</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                	<img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">大大的放弃我刚刚	</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                    <img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">黄硕</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                	<img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">大大的放弃我刚刚	</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+                <li>
+                    <img src="http://tp1.sinaimg.cn/1602431704/50/1286764877/0" alt="" />
+                    <a href="">黄硕</a>
+                    <a class="li-a2" href="">关注她</a>
+                </li>
+            </ul>
+            <a class="float-a" href="">更多<em>>></em></a>
+        </div>
+    </div>
+</body>
+
+</html>

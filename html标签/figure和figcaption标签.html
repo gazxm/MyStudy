@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>figure和figcaption标签</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  	
+  </style>
+</head>
+
+<body>
+	<article>
+		<section>
+			<h3>figure元素</h3>
+			<p>figure元素代表一段独立的内容, 经常与说明(caption)figcaption配合使用, 并且作为一个独立的引用单元。当它属于主体(main flow)时，它的位置独立于主体。这个标签经常是在主文中引用的图片，插图，表格，代码段等等，当这部分转移到附录中或者其他页面时不会影响到主体。</p>
+		</section>
+		<section>
+			<h3>figcaption元素</h3>
+			<p>figcaption元素 是与其相关联的图片的说明/标题，用与描述其父节点figure元素里的其他数据。这意味着figcaption在figure 块里是第一个或最后一个。同时Figcaption 元素是可选的；如果没有该元素，这个父节点的图片只是会没有说明/标题。</p>
+		</section>
+	</article>
+	<h2>插入图片和图片说明</h2>
+	<figure>
+		<img src="https://developer.cdn.mozilla.net/media/img/mdn-logo-sm.png" alt="An awesome picture" />
+	</figure>
+	<figure>
+	  <img src="https://developer.cdn.mozilla.net/media/img/mdn-logo-sm.png" alt="An awesome picture">	
+	  <figcaption>Fig1. MDN Logo</figcaption>
+	</figure>
+	<h2>插入代码段</h2>
+	<figure>
+	  <figcaption>Get browser details using navigator</figcaption>
+		  <pre>
+				function NavigatorExample() {
+				  var txt;
+				  txt = "Browser CodeName: " + navigator.appCodeName;
+				  txt+= "Browser Name: " + navigator.appName;
+				  txt+= "Browser Version: " + navigator.appVersion ;
+				  txt+= "Cookies Enabled: " + navigator.cookieEnabled;
+				  txt+= "Platform: " + navigator.platform;
+				  txt+= "User-agent header: " + navigator.userAgent;
+				}            
+		  </pre>
+	</figure>
+	<h2>Example3</h2>
+	<figure>
+		<figcaption><cite>Edsger Dijkstra :-<</cite></figcaption>
+		<p>"If debugging is the process of removing software bugs,<br> then programming must be the process of putting them in"</p>
+	</figure>
+	<h2>其他用法</h2>
+	<p>figure标签可以用来为一首诗添加格式</p>
+	<figure>
+		<p>
+		  Depression is running through my head,<br>
+		  These thoughts make me think of death,<br>
+		  A darkness which blanks my mind,<br>
+		  A walk through the graveyard, what can I find?....
+		</p>
+		<figcaption><cite>Depression</cite>. By: Darren Harris</figcaption>
+	</figure>
+</body>
+
+</html>

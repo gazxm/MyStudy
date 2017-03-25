@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>absolute定位与float浮动</title>
+    <script></script>
+    <!--
+        absolute和float都有两个特性：包裹性和破坏性
+        1、包裹性可以理解为display:inline-block(宽度自适应)
+        2、破坏性：absolute只会是父容器的高度塌陷,并不会使父元素宽度塌陷；float不清除会让父元素的宽高都塌陷
+        补充： float也只是让父元素的高度塌陷,并不会让宽度塌陷,上面说法错误了。
+
+        若想重构高质量的页面，少用绝对定位布局
+    -->
+    <style type="text/css">
+    div {
+        padding: 20px;
+        margin: 10px 0 0 10px;
+        background-color: #f0f3f9;
+    }
+
+    img {
+        width: 500px;
+    }
+
+    div.div {
+        background-color: red;
+        vertical-align: middle;
+        /*
+			float:left 会使容器inline-block化;
+			absolute只会是父容器的高度塌陷，并不会使父元素宽度塌陷，
+	    */
+    }
+
+    .abs {
+        position: absolute;
+    }
+
+    .div-2 {
+        background: blue;
+        width: 500px;
+        height: 500px;
+    }
+
+    .clearfix {
+        *zoom: 1;
+    }
+    .clearfix:after {
+    	content: "";
+    	clear: both;
+    	display: block;
+        line-height: 0;
+        visibility: hidden;
+    }
+    </style>
+</head>
+
+<body class="clearfix">
+    <div class="div" >
+        <img src="img/iphone_bili.jpg" alt="" style="float: none;"/>
+        <p>图片无absolute</p>
+    </div>
+     <!--<div>
+        <img class="abs" src="img/iphone_bili.jpg" alt="" />
+        <p>图片absolute后</p>-->
+    </div>
+    <!-- <div class="div-2"></div> -->
+</body>
+
+</html>

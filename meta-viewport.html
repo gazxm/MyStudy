@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>viewport</title>
+	<!-- http://www.cnblogs.com/2050/p/3877280.html -->
+	<!-- 
+		1、layout viewport: 浏览器默认的viewport,可以通过document.documentElement.clientWidth来获取
+		2、visual viewport: 浏览器可视区域的大小, window.innerWidth来获取
+		3、ideal viewport: 移动设备的viewport
+
+		content的值：
+		1、width: 设置layout viewport  的宽度，为一个正整数，或字符串"width-device"
+		2、initial-scale: 设置页面的初始缩放值，为一个数字，可以带小数
+		3、minimum-scale: 允许用户的最小缩放值，为一个数字，可以带小数
+		4、maximum-scale: 允许用户的最大缩放值，为一个数字，可以带小数
+		5、height: 设置layout viewport  的高度，这个属性对我们并不重要，很少使用
+		6、user-scalable: 是否允许用户进行缩放，值为"no"或"yes", no 代表不允许，yes代表允许
+	-->
+
+	<!-- 
+		<meta name="viewport" content="width=device-width">
+		设置默认的layout viewport等于移动设备的屏幕宽度。
+		BUG:在iphone,ipad上,无论竖屏还是横屏都是竖屏时候的ideal viewport的宽度
+
+		<meta name="viewport" content="initial-scale=1">
+		不对当前页面进行缩放，这里的缩放是针对于ideal viewport进行缩放
+		BUG:windows phone 的IE上无论竖屏还是横屏都是竖屏时候的ideal viewport的宽度
+
+		所以<meta name="viewport" content="width=device-width, initial-scale=1">
+		一起使用。
+
+		若：<meta name="viewport" content="width=400, initial-scale=1">浏览器会取它们两个中较大的值。eg: ideal viewport为320的时候,取的是400; ideal viewport为480的时候,取的是480
+	-->
+</head>
+<body>
+	
+</body>
+</html>

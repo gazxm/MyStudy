@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>font的渐变色</title>
+	<script type="text/javascript"></script>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		div {
+			padding: 10px;
+		}
+		p {
+			font-size: 16px;
+			width: 200px;
+			line-height: 60px;
+			text-align: center;
+			color: #fff;
+    	-webkit-text-fill-color: transparent;
+      background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #01fcff), color-stop(100%, #fd02f3));
+			-webkit-background-clip: text;	/*这个属性必须要在background后面*/
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<p>font的渐变色</p>
+	</div>
+</body>
+</html>

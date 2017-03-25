@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>css滤镜</title>
+<style>
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.filter	{
+	background: #fff;
+	width:100%;
+	/*-ms-filter:	"progid:DXImageTransform.Microsoft.Shadow(color=#CCCCCC,direction=180,strength=6)";*/
+
+	/*低于Internet Explorer 版本8*/
+	/*需要配合background一起使用，否则该滤镜会失效*/
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=#999999, direction=0, strength=5)
+			progid:DXImageTransform.Microsoft.Shadow(color=#999999, direction=90, strength=5)
+			progid:DXImageTransform.Microsoft.Shadow(color=#999999, direction=180, strength=5)
+			progid:DXImageTransform.Microsoft.Shadow(color=#999999, direction=270, strength=5);
+	/*会占用5px的位置，color是滤镜的颜色，direction是滤镜的方向，0为12点方向，strength为滤镜的在direction方向的大小，这里为5px;*/
+
+	/*从Firefox3.5+不再支持私有属性-moz-opacity了，在Mozilla 1.7 (Firefox 0.9)之前FF都是使用这个私有属性的，Firefox 0.9-Firefox3同时支持-moz-opacity和opacity这两个属性，现在回想起刚入职场不久那时候，正好是Firefox升级到3.5之后，一些做好的页面透明效果突然没有了，如今已经CSS3铺天盖地，概叹时光荏苒啊。
+
+	IE9+才开始支持CSS3 opacity，而对IE6-IE8我们习惯使用filter滤镜属性来进行实现。IE4-IE9都支持滤镜写法progid:DXImageTransform.Microsoft.Alpha(Opacity=xx).
+
+	IE8又引入了特殊的-ms-filter，IE认为这种写法是对旧写法的一次更正，更符合规范，这个写法的属性值只是多了一对引号，效果同前。不过，这种写法的寿命也不长，到IE10对filter与-ms-filter都已经不再支持。
+
+	Safari 1.2之前的版本，是基于khtml的浏览器内核，1.2版发布后，不再支持-khtml-opacity的写法，-khtml-opacity也随之成为历史。
+
+	Konqueror从未支持过-khtml-opacity，从4.0版本开始已经支持opacity。
+
+	除IE外，目前主流浏览器 Opera 9.0+，Safari  1.2(WebKit 125) +，chrome等等都支持opacity这个透明度属性。*/
+	
+	/*
+	IE4.0以上版本，支持以下14种滤镜：
+
+	滤镜名    说明
+
+	Alpha     让HTML元件呈现出透明的渐进效果
+	Blur     让HTML元件产生风吹模糊的效果
+	Chroma     让图像中的某一颜色变成透明色
+	DropShadow     让HTML元件有一个下落式的阴影
+	FlipH     让HTML元件水平翻转
+	FlipV     让HTML元件垂直翻转
+	Glow     在元件的周围产生光晕而模糊的效果
+	Gray     把一个彩色的图片变成黑白色
+	Invert     产生图片的照片底片的效果
+	Light     在HTML元件上放置一个光影
+	Mask     利用另一个HTML元件在另一个元件上产生图像的遮罩
+	Shadow     产生一个比较立体的阴影
+	Wave     让HTML元件产生水平或是垂直方向上的波浪变形
+	XRay     产生HTML元件的轮廓，就像是照X光一样
+	*/
+
+	/*-ms-filter和filter的区别是 -ms-filter 的属性必须使用""包裹起来 */
+}
+
+
+/*body{ filter:shadow(color='#999999',direction=180,Strenth=1)}*/
+
+/*.drop-shadow {
+    filter: drop-shadow(5px 5px 10px black);
+}*/
+
+</style>
+</head>
+<body>
+	<div class="filter"><font color="#CC33C2">adfasfsdafd</font><br />
+<br />
+</div>
+</body>
+</html>

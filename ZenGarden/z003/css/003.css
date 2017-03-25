@@ -1,0 +1,107 @@
+body {
+  font: 11px/15px georgia, serif;
+  margin: 0px;
+  color: #fff;
+  background: #748A98 url(../img/bg2.gif) 0 0 repeat-y;
+  text-align: center; }
+
+.container {
+  background: #849AA9 url(../img/bg1.gif) top left repeat-y;
+  text-align: left;
+  width: 750px;
+  margin: 0px auto; }
+
+.header {
+  background: transparent url(../img/h1.jpg) 0 0 no-repeat;
+  width: 750px;
+  height: 152px;
+  margin: 0 auto; }
+  .header p {
+    font: 11px/12px georgia;
+    padding: 15px 30px 0px 350px;
+    margin: 0;
+    letter-spacing: -0.9px;
+    color: #758C9B;
+    line-height: 1.2em; }
+    .header p span {
+      display: block;
+      font: bold 11px georgia;
+      letter-spacing: -1px;
+      color: #fff; }
+    .header p a:nth-child(odd) {
+      margin-right: 5px; }
+    .header p a {
+      text-decoration: none;
+      color: #fff; }
+    .header p a:hover {
+      color: #D1E9FC;
+      text-decoration: underline; }
+
+.main-header {
+  text-align: center;
+  margin-top: -32px; }
+  .main-header h3 {
+    display: inline-block;
+    width: 214px;
+    height: 258px; }
+  .main-header h3.background-one {
+    background: transparent url(../img/panel1.jpg) 0 0 no-repeat; }
+  .main-header h3.background-two {
+    background: transparent url(../img/panel2.jpg) 0 0 no-repeat;
+    margin-left: 20px; }
+  .main-header h3.background-three {
+    background: transparent url(../img/panel3.jpg) 0 0 no-repeat;
+    margin-left: 20px; }
+
+.content {
+  padding: 20px 33px 0px 33px; }
+  .content h3 {
+    margin: 0;
+    text-transform: lowercase; }
+  .content a {
+    font-weight: bold;
+    text-decoration: underline; }
+  .content a:link {
+    color: #A7D3F6; }
+  .content a:visited {
+    color: #D1E9FC; }
+  .content a:hover {
+    color: #fff; }
+  .content .content-left {
+    display: inline-block;
+    background: transparent url(../img/tag.gif) 40% 100% no-repeat;
+    background-size: 114px 46px;
+    width: 210px;
+    padding-bottom: 70px;
+    vertical-align: top; }
+    .content .content-left p {
+      margin-top: 0;
+      font: italic 12px/20px georgia, serif; }
+      .content .content-left p abbr {
+        border-bottom: dotted 1px #fff;
+        margin: 0 5px; }
+  .content .content-right {
+    display: inline-block;
+    width: 440px;
+    vertical-align: top;
+    padding-left: 25px; }
+    .content .content-right p {
+      font: 11px/15px georgia, serif;
+      text-align: justify;
+      margin-top: 0; }
+      .content .content-right p abbr {
+        border-bottom: dotted 1px #fff; }
+  .content footer {
+    text-align: right;
+    padding-right: 5px; }
+    .content footer a {
+      padding: 6px;
+      margin-left: 20px; }
+    .content footer a:hover {
+      color: #7E868D;
+      background-color: #fff; }
+  .content .bottom {
+    padding-left: 220px; }
+    .content .bottom span {
+      font: bold 14px georgia, serif;
+      display: block; }

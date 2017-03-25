@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-dpr="2">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=no">
+	<title>-webkit-scrollbar</title>
+	<!-- http://lmh2072005.iteye.com/blog/1189828 -->
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		div {
+			width: 500px;
+			height: 500px;
+			overflow-y: scroll;
+		}
+		/*::-webkit-scrollbar {
+			display: none;
+		};*/
+		::-webkit-scrollbar {
+	    width: 12px;
+		}
+		::-webkit-scrollbar-track {
+	    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); 
+	    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); 
+	    -webkit-border-radius: 10px;
+	    border-radius: 10px;
+	    border:1px solid #666666
+		}
+		::-webkit-scrollbar-thumb {
+	    -webkit-border-radius: 10px;	
+	    border-radius: 10px;
+	    background: rgba(255, 0, 0, 0.8); 
+	    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); 
+	    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); 
+		}
+		::-webkit-scrollbar-thumb:window-inactive {
+			background: rgba(255, 0, 0, 0.4); 
+		}
+	</style>
+</head>
+<body>
+<div>
+使用Clip-Path的实例
+
+注意：这篇文章中的所有demo都是使用CSSclip-path，但是在html中添加了内联SVG，类名为clip-svg，简单地用于把SVG的width和height都设置为0。你也可以选择删除这个类，然后直接在SVG标签中设置width和height属性。
+
+实例一：按照不同的多边形形状裁剪图像
+
+如果你需要快速定义一个多边形，它必须是一个由直线组成并闭合的2D图形。
+
+多边形是没有曲线的，而且必须闭合，并由三条以上的直线组成。历史上一些著名的多边形有三角形、四边形、五边形和六边形。星形也是多边形，因为多边形的边界可以相互交叉。
+
+注意：这个demo中的图像是响应式的。通过使用ol的响应式图像方案img { max-width: 100%; height: auto; }，并让CSS和SVG自适应clipping path，这样我们就可以自由地让多边形放大或缩小~
+
+这个demo是了解绘图坐标来制作多边形图形的练习。我在下面的demo中加入了几个你可以在自己的设计中使用的图形。把鼠标移上去，你就可以看到原始图像的宽高比。
+
+没有什么比Clippy更强大，这是一个由Bennett Feely制作的GUI工具，用于创建可视化图形。Clippy上的所有图形都提供了百分比坐标，还有自定义多边形的选项。你可以使用Clippy来生成用于裁剪的图形，然后在它们的基础上创建你自己的SVG，因为SVG有更好的浏览器支持。
+使用Clip-Path的实例
+
+注意：这篇文章中的所有demo都是使用CSSclip-path，但是在html中添加了内联SVG，类名为clip-svg，简单地用于把SVG的width和height都设置为0。你也可以选择删除这个类，然后直接在SVG标签中设置width和height属性。
+
+实例一：按照不同的多边形形状裁剪图像
+
+如果你需要快速定义一个多边形，它必须是一个由直线组成并闭合的2D图形。
+
+多边形是没有曲线的，而且必须闭合，并由三条以上的直线组成。历史上一些著名的多边形有三角形、四边形、五边形和六边形。星形也是多边形，因为多边形的边界可以相互交叉。
+
+注意：这个demo中的图像是响应式的。通过使用ol的响应式图像方案img { max-width: 100%; height: auto; }，并让CSS和SVG自适应clipping path，这样我们就可以自由地让多边形放大或缩小~
+
+这个demo是了解绘图坐标来制作多边形图形的练习。我在下面的demo中加入了几个你可以在自己的设计中使用的图形。把鼠标移上去，你就可以看到原始图像的宽高比。
+
+没有什么比Clippy更强大，这是一个由Bennett Feely制作的GUI工具，用于创建可视化图形。Clippy上的所有图形都提供了百分比坐标，还有自定义多边形的选项。你可以使用Clippy来生成用于裁剪的图形，然后在它们的基础上创建你自己的SVG，因为SVG有更好的浏览器支持。
+使用Clip-Path的实例
+
+注意：这篇文章中的所有demo都是使用CSSclip-path，但是在html中添加了内联SVG，类名为clip-svg，简单地用于把SVG的width和height都设置为0。你也可以选择删除这个类，然后直接在SVG标签中设置width和height属性。
+
+实例一：按照不同的多边形形状裁剪图像
+
+如果你需要快速定义一个多边形，它必须是一个由直线组成并闭合的2D图形。
+
+多边形是没有曲线的，而且必须闭合，并由三条以上的直线组成。历史上一些著名的多边形有三角形、四边形、五边形和六边形。星形也是多边形，因为多边形的边界可以相互交叉。
+
+注意：这个demo中的图像是响应式的。通过使用ol的响应式图像方案img { max-width: 100%; height: auto; }，并让CSS和SVG自适应clipping path，这样我们就可以自由地让多边形放大或缩小~
+
+这个demo是了解绘图坐标来制作多边形图形的练习。我在下面的demo中加入了几个你可以在自己的设计中使用的图形。把鼠标移上去，你就可以看到原始图像的宽高比。
+
+没有什么比Clippy更强大，这是一个由Bennett Feely制作的GUI工具，用于创建可视化图形。Clippy上的所有图形都提供了百分比坐标，还有自定义多边形的选项。你可以使用Clippy来生成用于裁剪的图形，然后在它们的基础上创建你自己的SVG，因为SVG有更好的浏览器支持。
+</div>
+
+</body>
+</html>

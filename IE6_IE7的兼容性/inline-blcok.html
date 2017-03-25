@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>IE6/IE7下的inline-block兼容性问题</title>
+	<script type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="">
+	<style type="text/css">
+		.div1 {
+			display: inline-block;
+			*zoom: 1;
+			*display: inline;
+			width: 100px;
+			height: 100px;
+			border: 1px solid blue;
+		}
+
+		.div2 {
+			display: inline-block;
+			*zoom: 1;
+			*display: inline;
+			width: 150px;
+			height: 150px;
+			border: 1px solid red;
+		}
+	</style>
+	<!-- 在IE6/IE7下对display:inline-block的支持性不好 
+		  1、inline元素的display属性设置为inline-block时，所有的浏览器都支持；
+		  2、block元素的display属性设置为inline-block时，IE6/IE7浏览器是不支持的；
+	-->
+	<!-- 修改方法：
+		  1、div {display:inline-blcok; ...}
+		     div {display:inline;}   //必须在一个样式。不能写在一块
+		  2、div {display:inline-block; _zoom:1; _display: inline}  //针对ie6
+		     div {display:inline-block; *zoom:1; *display: inline}  //针对ie7   
+	-->
+</head>
+<body>
+	<div class="div1">AAAAAA</div>
+	<div class="div2">BBBBBB</div>
+</body>
+</html>

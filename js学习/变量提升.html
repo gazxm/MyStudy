@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>变量提升</title>
+	<script type="text/javascript"></script>
+</head>
+
+<body>	
+</body>
+<script>
+	var v1 = 'Hello World';
+	console.log(v1);
+
+	var v2 = 'Hello World';
+	(function() {
+		console.log(v2);
+	})()
+
+	var v3 = 'Hello World';
+	(function() {
+		
+	})()
+</script>
+
+</html>

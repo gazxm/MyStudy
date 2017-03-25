@@ -1,0 +1,20 @@
+http://devdocs.io/
+
+https://www.zhihu.com/question/30180100
+
+阮一峰：http://www.ruanyifeng.com/blog/
+张鑫旭：http://www.zhangxinxu.com/
+大漠：     http://www.w3cplus.com/
+KnightWu w3cHelp    http://w3help.org/zh-cn/casestudies/
+
+mozilla文档：https://developer.mozilla.org/zh-CN/docs/Web/CSS/
+
+Emacs:	http://blog.csdn.net/redguardtoo/article/details/7222501/
+
+Jquery的background-image更换: https://github.com/rewish/jquery-bgswitcher
+
+手机淘宝的flexible的设计与实现(有一个很6的批注功能)：http://www.html-js.com/article/2402 
+
+webpack : http://blog.csdn.net/kun5706947/article/details/52596766
+
+深入理解line-height:http://www.cnblogs.com/fengzheng126/archive/2012/05/18/2507632.html

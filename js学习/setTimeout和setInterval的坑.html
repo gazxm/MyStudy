@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>setTimeout和setInterval的坑</title>
+	<script type="text/javascript"></script>
+</head>
+
+<body>
+</body>
+<script type="text/javascript">
+	setTimeout(function() {
+		console.log('小马');
+		setTimeout(function() {arguments.callee;}, 1000)
+	}, 1000)
+
+	setInterval(function(){console.log("老马");},1000)
+</script>
+</html>

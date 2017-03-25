@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>inline-block和float实现buttom宽度自适应</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .div-1 {
+    padding: 30px;
+  }
+  
+  .inline-block-button {
+    padding: 30px;
+  }
+  
+  .float-button {
+    padding: 30px;
+  }
+  
+  .a1 {
+    display: inline-block;
+    text-decoration: none;
+    color: #000000;
+    padding-left: 3px;
+    background: transparent url(img/sina_gray_btn.png) 0 0 no-repeat;
+    font-size: 12px;
+  }
+  
+  .a1 span {
+    display: block;
+    line-height: 26px;
+    padding: 0 13px 0 10px;
+    background: transparent url(img/sina_gray_btn.png) right top no-repeat;
+  }
+  
+  .a2 {
+    float: left;
+    text-decoration: none;
+    color: #000000;
+    padding-left: 3px;
+    background: transparent url(img/sina_gray_btn.png) 0 0 no-repeat;
+    font-size: 12px;
+  }
+  
+  .a2 span {
+    display: block;
+    line-height: 26px;
+    padding: 0 13px 0 10px;
+    background: transparent url(img/sina_gray_btn.png) right top no-repeat;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="div-1">
+    <div class="inline-block-button">
+      <a href="#" class="a1">
+        <span>inli22222ne-block</span>
+      </a>
+    </div>
+    <div class="float-button">
+      <a href="#" class="a2">
+        <span>float-button</span>
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>

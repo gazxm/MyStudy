@@ -1,0 +1,179 @@
+.login-body {
+	background: #f2f2f2;
+	width: 750px;
+	height: 1334px;
+}
+.login {
+	margin-top: 30px;
+	.am-list-item {
+		.am-input-label {
+			font-size: 32px;
+		}
+		.am-input-control {
+			input {
+				font-size: 28px;
+				height: 54px;
+				vertical-align: top;
+				line-height: 54px;
+			}
+		}
+	}
+	.input-password {
+		&:after {
+			display: none;
+		}
+	}
+	.error {
+		font-size: 28px;
+		color: #ff8003;
+		padding: 20px 0 0 30px;
+	}
+	.login-btn {
+		display: block;
+		width: 690px;
+		margin: 90px auto 0;
+		background: #4ab6fa;
+		color: #fff;
+		border-radius: 45px;
+		border: none;
+	}
+}
+
+.list-body {
+	.date-div {
+		width: 710px;
+		margin: 0 auto;
+		border-bottom: 1px solid #ddd;
+		height: 110px;
+		.date-custom {
+			background: #fff;
+			height: 110px;
+			line-height: 110px;
+			padding: 0 22.5px;
+			.date-span {
+				display: block;
+				text-align: center;
+				color: #999;
+				font-size: 26px;
+			}
+		}
+	}
+	.date-picker {
+		float: left;
+		width: 330px;
+		&:last-child {
+			float: right;
+		}
+	}
+	.date-separator {
+		padding-top: 40px;
+		float: left;
+	}
+	.head {
+		font-size: 26px;
+		color: #666;
+		width: 715px;
+		margin: 30px auto 20px;
+		white-space: nowrap;
+		span {
+			margin-left: 80px;
+			&:first-child {
+				margin-left: 20px;
+			}
+			&:nth-child(2) {
+				margin-left: 80px;
+			}
+			&:nth-child(4) {
+				margin-left: 40px;
+			}
+			&:last-child {
+				margin-left: 12.5px;
+			}
+		}
+		span.tel {
+			margin-left: 100px;
+		}
+		span.loan {
+			margin-left: 75px;
+		}
+		span.day {
+			margin-left: 25px;
+		}
+		span.service {
+			margin-left: 25px;
+		}
+	}
+	.am-list-body {
+		&:after {
+			display: none;
+		}
+	}
+	.listview {
+		width: 715px;
+		margin: 0 auto;
+		height: 1035px;
+		.am-list-body {
+			border-top: none;
+		}
+		.content {
+			font-size: 24px;
+			line-height: 42px;
+			&:first-child {
+				border-top: 1px solid #ddd;
+				padding-top: 10px;
+			}
+			span {
+				display: inline-block;
+				margin-left: 15px;
+				vertical-align: top;
+				text-align: center;
+			}
+			.one {
+				width: 110px;
+				margin-left: 0px;
+			}
+			.two {
+				width: 170px;
+				margin-left: 10px;
+			}
+			.three {
+				width: 170px;
+				margin-left: 10px;
+			}
+			.four {
+				width: 130px;
+				margin-left: 10px;
+			}
+			.five {
+				width: 70px;
+				margin-left: 17.5px;
+			}
+			.tel {
+				width: 175px;
+			}
+			.loan {
+				margin-left: 25px;
+				width: 100px;
+			}
+			.loan-day {
+				margin-left: 45px;
+				width: 80px;
+			}
+			.service-pay {
+				width: 100px;
+				margin-left: 45px;
+			}
+		}
+	}
+	.line {
+		height: 1PX;
+		width: 100%;
+		background: #ddd;
+		margin: 10px 0;
+	}
+}
+
+::-webkit-scrollbar {
+	width: 0px;
+	height: 0px;
+}

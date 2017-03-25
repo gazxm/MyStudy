@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example1"></div>
+    <script type="text/babel">
+      var NotesList = React.createClass({
+        render: function() {
+          return (
+            <ol>
+              {
+                React.Children.map(this.props.children, function (child) {
+                  return <li>{child}</li>;
+                })
+              }
+            </ol>
+          );
+        }
+      });
+
+
+      var ZxmList = React.createClass({
+        render: function() {
+          return (
+            <div>
+              {
+                React.Children.map(this.props.children, function (child) {
+                  return <h1>{child}</h1>;
+                })
+              }
+            </div>
+          );
+        }
+      });
+
+      ReactDOM.render(
+        <NotesList>
+          <span>hello</span>
+          <span>world</span>
+        </NotesList>,
+        document.getElementById('example')
+      );
+
+      ReactDOM.render(
+        <ZxmList>
+          <span>hello</span>
+          <span>world</span>
+        </ZxmList>,
+        document.getElementById('example1')
+      );
+
+    </script>
+  </body>
+</html>
+

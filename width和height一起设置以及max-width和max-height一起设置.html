@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>width和height</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		.fa {
+			width: 300px;
+			height: 300px;
+			background-color: #999;
+			margin-bottom: 30px;
+		}
+		img {
+			/*max-width*/
+			max-width: 100%;
+			max-height: 100%;
+			/*object-fit: fill;默认值*/
+		}
+
+		.child {
+			border: 1px solid red;
+			background: transparent url(img/iphone_bili.jpg) 0 0 no-repeat;
+			background-size: contain;
+			max-width: 100%;
+			min-height: 100%; 
+			box-sizing: border-box;
+		}
+		/*
+			1、仅一起设置：width和height: <length> || <Percentage>  是设置一个box的宽和高;高度百分比需要注意。均为父元素，若父元素为body，则高度百分比需要在html,body上都加上10%,才能生效。若img设置width: 100%和height: 100%，则图片会拉伸至整个父元素的宽高来显示。
+
+			2、仅一起设置：max-width和max-height: <length> || <Percentage> 
+				1、若值为<length>，则为固定的最大宽度和最大高度，但是在实际应用中，若这个box里面没有任何东西，高度会变成0，宽度设置max-width(理解：对于max-width和max-height来说，是最大是这个值，不能超过这个值，但是可以小于，即为0)
+				2、若值为<Percentage>，则根据父元素的宽，高来进行百分比的计算。和固定值一样，若里面没有任何东西，则高度为0;
+				3、若img替换元素设置max-width: 100%和max-height:100%，若图片的宽高大于父元素的宽高，则图片会自动等比例进行缩放(设置的宽高中取一个占满了整个父元素的宽或者高)，空白的地方不填充，此时的替换元素的大小和替换内容的大小是一致的。
+				总结：max-width,max-height和@media中的max-width,max-height一样，表示的不大于，即小于都满足条件。
+			3、同样的针对于min-width,min-height表示不小于，即大于这个都满足条件
+					当图片设置了min-width,max-height都为100%之后，小于父元素宽高的会拉伸，大于的会全部显示
+		*/
+	</style>
+</head>
+<body>
+	<div class="fa">
+		<img src="img/iphone_bili.jpg" alt=""/>
+	</div>
+	<div class="fa">
+		<div class="child">
+		</div>
+	</div>
+</body>
+<script>
+	window.onload = function(){
+		var img = document.getElementsByTagName("img");
+		console.log(img[0].offsetWidth, img[0].offsetHeight);
+	}
+</script>
+</html>

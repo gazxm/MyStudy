@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>垂直居中的几种方式</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  html {
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  /*第一种：line-height 详细见line-height实现居中*/
+  /*第二种：absolute 配合 使用上下左右边距均为margin:auto居中; IE7不支持*/
+  /*
+  .margin-auto {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 200px;
+    height: 100px;
+    margin: auto;
+    background: red;
+  }
+	*/
+  
+  /*第三种(实用性感觉很低啊)：float居中的方法,也是需要计算的,floater的margin-bottom的负值需要是pa的一半加上line-height的一半,同时floater的高度和pa高度相等,child需要为pa高度的一半*/
+  /*.float-pa {
+    height: 200px;
+    border: 1px solid red;
+    text-align: center;
+    font-size: 16px;
+    line-height: 16px;
+  }
+  
+  .floater {
+    float: left;
+    height: 200px;
+    width: 100px;
+    margin-bottom: -108px;
+    border: 1px solid black;
+  }
+  
+  .child {
+    clear: both;
+    height: 100px;
+  }
+	*/
+
+  /*第四种：absolute居中 child的margin-left为width的一半,margin-top为height的一半*/
+	/*.absolute-pa {
+		position: relative;
+		width: 300px;
+		height: 300px;
+		margin-left: 200px;
+		margin-top: 100px;
+		border: 1px solid red;
+	}
+
+	.absolute-child {
+		position: absolute;
+		width: 50%;
+		height: 30%;
+		left: 50%;
+		top: 50%;
+		margin-left: -25%;
+		margin-top: -15%;
+		border: 1px solid blue;
+	}*/
+
+	/*第五种：table-cell居中*/
+	.table-pa {
+		display: table-cell;
+		width: 300px;
+		height: 300px;
+		border: 1px solid red;
+		margin-left: 200px;
+		margin-top: 200px;
+		vertical-align: middle;
+		text-align: center;
+	}
+	.table-child {
+		/*width: 200px;*/
+		height: 100px;
+		border: 1px solid black;
+		/*margin: 0 auto;*/
+	}
+
+  /*第六种: transform: translate(-50%,-50%);
+      这个原理和absolute居中一样，position的top:50%;left:50%;是相对于界面宽高的。translate的-50%,-50%是相对于div本身高度的。 相当于先将div左上角居中，再将div中心点居中。
+      补充：第六种有一个小BUG，当你需要针对这个居中的元素添加animation的时候居中会失效(animation一定不可以，transition我来试一哈)
+      再补充一次：transition并不会
+  */
+  @keyframes zxm {
+    0% {
+      transform: scale(1,1);
+    }
+    100% {
+      transform: scale(3,3);
+    }
+  }
+
+  .translate-pa {
+    width: 300px;
+    height: 300px;
+    border: 1px solid red;
+    position: relative;
+  }
+  .translate-child {
+    position: absolute;
+    border: 1px solid black;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    /*animation: zxm 5s linear infinite alternate;*/
+    transition: all 5s linear;
+  }
+
+  .translate-child:hover {
+    transform: scale(3, 3);
+  }
+  </style>
+</head>
+
+<body>
+	<!-- 2 -->
+  <!-- <div class="margin-auto"></div> -->
+  <!-- 3 -->
+  <!-- <div class="float-pa">
+    <div class="floater"></div>
+    <div class="child">Content here</div>
+  </div> -->
+  <!-- 4 -->
+  <!-- <div class="absolute-pa">
+  	<div class="absolute-child">Content Here</div>
+  </div> -->
+  <!-- 5 -->
+  <!-- <div class="table-pa">
+  	<div class="table-child">Content Here</div>
+  </div> -->
+  <!-- 6 -->
+  <div class="translate-pa">
+    <div class="translate-child">Content HereContent HereContent HereContent HereContent HereContent HereContent Here</div>
+  </div>
+</body>
+
+</html>

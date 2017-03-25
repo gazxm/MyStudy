@@ -1,0 +1,169 @@
+body {
+  font-style: normal;
+  font-weight: normal;
+  font-size: small;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.css-zengarden-body {
+  margin: 0;
+  padding: 0;
+  background: transparent url(../img/BGTile.jpg) 0 0;
+  position: relative;
+  width: 780px;
+  margin: 0 auto;
+}
+
+.container {
+  background: transparent url(../img/ContentBG.gif) 0 0 repeat-y;
+  width: 780px;
+  margin: 0 auto;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  a:link {
+    padding: 0 0 1px 0;
+    text-decoration: none;
+    color: #CC3300;
+    background: transparent url(../img/underline.gif) bottom left repeat-x;
+  }
+  a:visited {
+    padding: 0 0 2px 0;
+    text-decoration: none;
+    color: #666;
+    background: transparent url(../img/underline.gif) bottom left repeat-x;
+  }
+  a:hover {
+    text-decoration: none;
+    color: #FF0000;
+    background: none;
+  }
+}
+
+.header {
+  position: relative;
+  width: 780px;
+  height: 444px;
+  h1 {
+    background: transparent url(../img/CSZenLogo.gif) 0 0 no-repeat;
+    width: 780px;
+    height: 444px;
+    margin: 0px;
+  }
+  div {
+    position: absolute;
+    left: 410px;
+    top: 15px;
+    width: 405px;
+    margin: 0;
+    padding: 0;
+    font-size: x-small;
+    font-style: italic;
+    letter-spacing: 2px;
+    background: transparent url(../img/RoadToEnlightmentBG_2.gif) right bottom no-repeat;
+    p {
+      padding: 8px 70px 0px 70px;
+      margin: 0;
+    }
+    .p1 {
+      background: transparent url(../img/RoadToEnlightmentBG_1.gif) 0 0 no-repeat;
+      padding-top: 10px;
+    }
+    .p3 {
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.main {
+  margin: 40px 50px 0px 30px;
+  position: relative;
+  p {
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+    padding-left: 280px;
+  }
+  p.sowhat,
+  p.part,
+  p.bene,
+  p.require {
+    margin-top: 40px;
+  }
+  p.sowhat {
+    background: transparent url(../img/SoWhatIsThisAbout.gif) 0 0 no-repeat;
+  }
+  p.part {
+    margin-left: 120px;
+    padding-left: 160px;
+    background: transparent url(../img/Participation.gif) 0 0 no-repeat;
+  }
+  p.bene {
+    margin-left: 165px;
+    padding-left: 115px;
+    background: transparent url(../img/Benefits.gif) 0 0 no-repeat;
+  }
+  p.require {
+    margin-left: 110px;
+    padding-left: 170px;
+    background: transparent url(../img/Requirements.gif) 0 0 no-repeat;
+  }
+  .p5 {
+    padding-top: 30px;
+    font-size: 10px;
+  }
+}
+
+.footer {
+  position: absolute;
+  left: 115px;
+  bottom: 13px;
+}
+
+.linklist {
+  width: 729px;
+  margin: 40px auto;
+  background: transparent url(../img/NavBG.gif) left bottom no-repeat;
+  .linklist2 {
+    background: transparent url(../img/NavBG_top.gif) left top no-repeat;
+    padding: 5px 0;
+  }
+  ul {
+    padding: 0px 60px 0px 140px;
+    font-size: 0px;
+    line-height: 16px;
+    li {
+      font-size: xx-small;
+      display: inline;
+      list-style-type: none;
+    }
+    li:after {
+      content: url(../img/Bullet.gif);
+      display: inline;
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+  }
+  .ul-First {
+    background: transparent url(../img/SelectADesign.gif) 20px 10px no-repeat;
+  }
+  .ul-Two {
+    margin: 10px 0;
+    padding: 8px 60px 8px 140px;
+    background: transparent url(../img/Archive.gif) 20px -2px no-repeat;
+  }
+  .ul-Three {
+    margin: 10px 0;
+    padding: 8px 60px 8px 140px;
+    background: transparent url(../img/Resources.gif) 20px -2px no-repeat;
+  }
+}
+
+.eximg-div {
+  position: absolute;
+  background: transparent url(../img/Dragon.gif) 0 0 no-repeat;
+  width: 96px;
+  height: 206px;
+  bottom: 20px;
+  left: -20px;
+}

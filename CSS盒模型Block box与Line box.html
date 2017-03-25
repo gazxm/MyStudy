@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 想要清晰的明白（二）CSS 盒模型Block box与Line box
+	https://segmentfault.com/a/1190000005155084 -->
+
+    <!-- 详解containing boxes; line boxes; inline boxes; content area
+            http://www.cnblogs.com/fengzheng126/archive/2012/05/18/2507632.html
+     -->
+    <meta charset="UTF-8">
+    <title>CSS盒模型Block box与Line box</title>
+    <script type="text/javascript"></script>
+    <style type="text/css">
+    .div-1 {
+        background: #999;
+        display: block;
+        line-height: 50px;
+    }
+    
+    .div-2 {
+        background: #666;
+        line-height: 50px;
+        display: inline;
+    }
+    
+    .div-3 {
+        background: #333;
+        line-height: 50px;
+        display: inline-block;
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="div-1">
+            AAAAAA
+        </div>
+        <div class="div-1">
+            AAAAAA
+        </div>
+        <div class="div-1">
+            AAAAAA
+        </div>
+        <div class="div-1">
+            AAAAAA
+        </div>
+    </div>
+    <div>
+        <div class="div-2">
+        	BBBBBB
+        </div>
+        <div class="div-2">
+            BBBBBB
+        </div>
+        <div class="div-2">
+            BBBBBB
+        </div>
+        <div class="div-2">
+            BBBBBB
+        </div>
+    </div>
+    <div>
+        <div class="div-3">
+            CCCCCC
+        </div>
+        <div class="div-3">
+            CCCCCC
+        </div>
+        <div class="div-3">
+            CCCCCC
+        </div>
+        <div class="div-3">
+            CCCCCC
+        </div>
+    </div>
+    <div>
+        <span class="div-3">
+            DDDDDD
+        </span>
+        <span class="div-3">
+            DDDDDD
+        </span>
+        <span class="div-3">
+            DDDDDD
+        </span>
+        <span class="div-3">
+            DDDDDD
+        </span>
+    </div>
+</body>
+
+</html>

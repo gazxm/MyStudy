@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>absolute和float的z-index设置(float没有z-index)</title>
+    <script type="text/javascript"></script>
+    <!-- 
+		z-index使用注意：1、必须在position:relative/absolute/fixed才能生效
+		2、比较z-index前，先看看其父元素是否也设置了z-index
+    -->
+    <!-- z-index只能在position属性值为relative,absolute,fixed的元素上才生效
+		 在其他的元素上则没有z-index属性
+		 若设置了position,不设置z-index，则为默认值auto(IE8+,现代浏览器)，IE6/IE7则为0
+    -->
+    <style type="text/css">
+    .body {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .content {
+        border: 1px solid red;
+    }
+    
+    .absolute {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 0;
+    }
+    
+    .float {
+        float: left;
+        margin-top: 0px;
+    }
+    
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+        font-size: 0px;
+        vertical-align: middle;
+    }
+
+    .div-example {
+        margin-bottom: 50px;
+    }
+    /*均未加z-index值 效果为z-index1.png*/
+    /*.pr {
+        position: relative;
+    }
+    
+    .pa {
+        position: absolute;
+    }
+    
+    div {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ccc;
+        color: #fff;
+        font: bold 14px \5fae\8f6f\96c5\9ed1;
+    }
+    
+    #one {
+        background: #39f;
+    }
+    
+    #one .pa1 {
+        background: #096;
+        top: 25px;
+        left: 20px;
+    }
+    
+    #one .pa2 {
+        background: #969;
+        top: 90px;
+        left: 40px;
+    }
+    
+    #two {
+        background: #669;
+        top: 165px;
+        left: 70px;
+    }*/
+    /*相对性实验 为#one加上z-index:1;#one .pa1加上z-index:30;#one .pa2加上z-index:20;#two加上z-index:9;*/
+    /*效果图为z-index2.png*/
+    /*.pr {
+        position: relative;
+    }
+    
+    .pa {
+        position: absolute;
+    }
+    
+    div {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ccc;
+        color: #fff;
+        font: bold 14px \5fae\8f6f\96c5\9ed1;
+    }
+    
+    #one {
+        background: #39f;
+        z-index: 1;
+    }
+    
+    #one .pa1 {
+        background: #096;
+        top: 25px;
+        left: 20px;
+        z-index: 30;
+    }
+    
+    #one .pa2 {
+        background: #969;
+        top: 90px;
+        left: 40px;
+        z-index: 20;
+    }
+    
+    #two {
+        background: #669;
+        top: 165px;
+        left: 70px;
+        z-index: 9;
+    }*/
+    /*IE6/IE7和IE8+,正常浏览器的差异*/
+    /*效果图为z-index3.png*/  
+    .pr {
+        position: relative;
+    }
+    
+    .pa {
+        position: absolute;
+    }
+    
+    div {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ccc;
+        color: #fff;
+        font: bold 14px \5fae\8f6f\96c5\9ed1;
+    }
+    
+    #one {
+    	z-index: 0;	/*兼容IE6/IE7的处理方式：在z-index: auto的地方设置z-index: 0*/
+        background: #39f;
+    }
+    
+    #one .pa1 {
+        background: #096;
+        top: 25px;
+        left: 20px;
+        z-index: 10;
+    }
+    
+    #one .pa2 {
+        background: #969;
+        top: 90px;
+        left: 40px;
+    }
+    
+    #two {
+        background: #669;
+        top: 165px;
+        left: 70px;
+        z-index: 1;
+    }
+
+	/*z-index: auto和z-index: 0的区别:
+		以上述代码为例：若#one的z-index: auto;则div#one下的子节点会和div#two的z-index共同对比，然后进行z-index排序;
+		若#one的z-index: 0;同时div#two的z-index: 1(>0就好)，则div#one下的子节点永远在div#two的下面
+	*/
+    .one-div {
+        position: relative;
+        background-color: green;
+        z-index: 3;
+    }
+    .one-child-one {
+        position: absolute;
+        background: blue;
+        top: 30px;
+        left: 30px;
+        z-index: 1;
+    }
+    .one-child-two {
+        position: absolute;
+        background: red;
+        top: 60px;
+        left: 60px;
+        z-index: 7;
+    }
+    .two-div {
+        margin-top: -100px;
+        position: relative;
+        background: black;
+        /*z-index: 1;*/
+        /*这里设置了z-index:1 one-div的z-index:auto，则two-div和one-div中的子元素one-child-one和one-child-two对比
+        会在one-child-one上面
+        */
+
+    }
+    .two-child-one {
+        position: absolute;
+        background: pink;
+        top: -30px;
+        left: 100px;
+        z-index: 3;
+    }
+    .two-child-two {
+        position: absolute;
+        background: teal;
+        top: -60px;
+        left: 150px;
+        z-index: 4;
+    }
+    </style>
+</head>
+
+<body class="body">
+    <div class="content clearfix" style="display: none;">
+        <div class="absolute">
+            <img src="img/base_line.jpg" alt="" />
+        </div>
+        <div class="float">
+            <img src="img/iphone_bili.jpg" alt="" />
+        </div>
+    </div>
+    <div class="div-example" style="display: none;">
+        <div class="pr" id="one">
+            #one相对定位
+            <div class="pa pa1">#one的子元素pa1，相对#one绝对定位，#one是它的父元素，与.pa2为同级兄弟元素</div>
+            <div class="pa pa2">#one的子元素pa2，相对#one绝对定位，#one是它的父元素，与.pa1为同级兄弟元素</div>
+        </div>
+        <div class="pa" id="two">#two绝对定位，与#one为同级元素</div>
+    </div>
+
+    <div class="test-example">
+        <div class="one-div">
+            one相对定位,未设置z-index
+            <div class="one-child-one">one的子元素1,z-index:1</div>
+            <div class="one-child-two">one的子元素2,z-index:2</div>
+        </div>
+        <div class="two-div">
+            two相对定位，与one为同级元素，未设置z-index
+            <div class="two-child-one">two的子元素1,z-index:3</div>
+            <div class="two-child-two">two的子元素2,z-index:4</div>
+        </div>
+    </div>
+
+    <div>结论: 1、同z-index等级的div,在dom结构后面会在上面<br>
+            2、子元素的z-index永远在父元素上面
+            3、两个未设置z-index等级的父div,自己的分别的子元素的z-index会一起进行对比<br>
+            4、若两个父div,其中的一个设置了z-index,则设置了z-index的父div会和未设置z-index的父div中的子元素按z-index排列；(即未设置z-index的父div中的子元素升级成了父元素和设置了z-index进行比较,同时设置了z-index的父元素中的子元素会按照父元素的z-index排序;eg:若 父1：z-index: 2 ; 父1子1：z-index: 1 ; 父1子2：z-index: 7 ; 父2：z-index:auto ; 父2子1：z-index: 3 ; 父2子2：z-index: 4 展现给我们顺序是(从里到外): 父2,父1,父1子1,父1子2,父2子1,父2子2)
+    </div>
+</body>
+
+</html>
+
+

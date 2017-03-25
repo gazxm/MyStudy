@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>jqueryrotate</title>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jqueryrotate2.2.js"></script>
+  <style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    text-align: center;
+  }
+  
+  .ly-plate {
+    position: relative;
+    width: 520px;
+    height: 510px;
+    margin: 50px auto;
+  }
+  
+  .rotate-bg {
+    width: 163px;
+    height: 212px;
+    background: url(img/point.png);
+    position: absolute;
+    background-size: 163px 212px;
+    top: 50%;
+    left: 50%;
+    margin-top: -106px;
+    margin-left: -81.5px;
+  }
+  
+  .ly-plate div.lottery-star {
+    width: 520px;
+    height: 510px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    outline: none;
+  }
+  
+  .ly-plate div.lottery-star #lotteryBtn {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    *left: -107px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="ly-plate">
+    <div class="lottery-star" id="lotteryBtn2"><img src="img/rotate.png"></div>
+    <div class="rotate-bg" id="lotteryBtn"></div>
+  </div>
+  <script>
+  $(function() {
+    var timeOut = function() { //超时函数
+      $("#lotteryBtn2").rotate({
+        angle: 0,
+        duration: 10000,
+        animateTo: 2160, 
+        callback: function() {
+          alert('网络超时')
+        }
+      });
+    };
+
+    var rotateFunc = function(awards, angle, text) { //awards:奖项，angle:奖项对应的角度，text:提示文字
+      $('#lotteryBtn2').stopRotate();
+      $("#lotteryBtn2").rotate({
+        angle: 0,
+        duration: 5000,
+        animateTo: angle + 1440, 
+        callback: function() {
+          alert(text);
+        }
+      });
+    };
+
+    $("#lotteryBtn").rotate({
+      bind: {
+        click: function() {
+          var time = 1;
+          if (time == 0) {
+            timeOut(); //网络超时
+          }
+          if (time == 1) {
+            var data = [1, 2, 3, 4, 5, 6]; //返回的数组
+            data = data[Math.floor(Math.random() * data.length)];
+            if (data == 1) {
+              rotateFunc(1, 300, '1元抵扣卷')
+            }
+            if (data == 2) {
+              rotateFunc(2, 240, '5元抵扣卷')
+            }
+            if (data == 3) {
+              rotateFunc(3, 180, '10元抵扣卷')
+            }
+            if (data == 4) {
+              rotateFunc(4, 120, '20元抵扣券')
+            }
+            if (data == 5) {
+              rotateFunc(5, 60, '7天免息奖')
+            }
+            if (data == 6) {
+              rotateFunc(6, 360, '很遗憾，这次您未抽中奖')
+            }
+          }
+        }
+      }
+    });
+  })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="utf-8" />
+<title>transparent_CSS参考手册_web前端开发参考手册系列</title>
+<meta name="author" content="Joy Du(飘零雾雨), dooyoe@gmail.com, www.doyoe.com" />
+<style>
+/*transparent: 用来指定全透明色彩,它是带有阿尔法通道的最小值的黑色,是rgba(0,0,0,0)的简写*/
+/*
+	在css2,css1中并不是一个真实的颜色,是一个特殊的关键字,用于background和border属性中
+	在css3中由于rgba的支持,被重新定义为一个真实的颜色,可用于所有<color>属性中
+*/
+.test {
+	color: transparent;
+	border: 1px solid transparent;
+	background: transparent;
+}
+</style>
+</head>
+<body>
+<div class="test">看看各带color的属性设置为transparent时的效果</div>
+<div>IE7/IE8只对background和border支持transparent关键字。<br>
+		在IE下color:transparent会被渲染成黑色。IE6下渲染透明边框也是黑色;
+</div>
+</body>
+</html>

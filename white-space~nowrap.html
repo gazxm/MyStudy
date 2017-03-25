@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>white-space~nowrap</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+
+		div {
+			box-sizing: border-box;
+		}
+
+		.div-row {
+			white-space: nowrap;	/* 文本不换行 */
+			font-size: 0px;		/*去除水平+垂直间隙*/
+			background: black;
+			width: 200px;
+			height: 200px;
+			border: 1px solid black;
+			margin: 2px;
+		}
+
+		.div-col {
+			*display: inline;	/*兼容IE 6/7，模拟inline-block效果*/
+			*zoom: 1;		/*兼容IE 6/7，模拟inline-block效果*/
+			display: inline-block;
+			background: url(img/iphone_bili.jpg) 0 0 no-repeat;
+			background-size: 200px 200px;
+			width: 200px;
+			height: 200px;
+			border: 1px solid red;
+			font-size: 14px;	/*覆盖.div-row的font-size:0px*/
+			vertical-align: top;	/* 向上对齐，同时去除垂直间隙*/
+		}
+
+		/*用的都是background还有个毛线的垂直间隙啊*/
+	</style>
+</head>
+<body>
+	<div class="div-row">
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+		<div class="div-col">
+		</div>
+	</div>
+</body>
+</html>

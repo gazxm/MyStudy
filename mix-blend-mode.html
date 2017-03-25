@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>mix-bledn-mode</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  * {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 80%;
+    height: auto;
+    background-color: #084F66;
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+  .artwork {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgb(12, 185, 242), rgb(6, 49, 64));
+  }
+  
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  /* If the browser supports blending, this rule set will be applied */
+  
+  @supports (mix-blend-mode: overlay) {
+    .artwork img {
+      mix-blend-mode: overlay;
+    }
+  }
+  /* If the browser doesn't support blending, the rule set below will be applied */
+  
+  @supports not (mix-blend-mode: overlay) {
+    .artwork img {
+      opacity: 0.5;
+    }
+  }
+  
+  .p {
+    text-align: center;
+    padding-top: 50px;
+    font-size: 12px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <article class="artwork">
+      <img src="img/artwork.jpg" alt="artwork">
+    </article>
+  </div>
+  <p class="p">Demo by Maria Antonietta Perna. <a href="http://www.sitepoint.com/an-introduction-to-the-css-supports-rule-feature-queries" target="_blank">See article</a>.</p>
+</body>
+
+</html>

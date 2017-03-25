@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>基本包装类型-String类型</title>
+  <script>
+  	"use strict";
+  	//String类型是字符串的对象包装类型，可以像下面这样使用String构造函数来创建
+		var stringObject = new String("hello world");
+		/*String对象的方法也可以在所有的基本的字符串值中访问到。其中，继承的valueOf()、toLocaleString()和toString()方法，都返回对象所表示的基本字符串值。
+			String类型的每个实例都有一个length属性，表示字符串中包含多个字符
+		*/
+		console.log(stringObject.length);	//	11
+
+		console.log("-----1、字符方法:charAt(),charCodeAt(),方括号加上数字索引-------");
+		//charAt()【返回字符】,charCodeAt()【返回字符编码】和使用方括号加数字所有来访问。
+		var stringValue = "hello world";
+		console.log(stringValue.charAt(1),stringValue.charAt(4),stringValue.charAt(100));
+		//e  o   ""
+		console.log(stringValue.charCodeAt(1), stringValue.charCodeAt(4));//101 111
+		console.log(stringValue[1], stringValue[4]);											//e  o
+		console.log(typeof stringValue.charAt(1), typeof stringValue.charCodeAt(1), typeof stringValue[1]);		// string  number  string
+
+		console.log("----2、字符串操作方法:concat(),slice(),substr(),substring()----");
+		//concat():用于将一或多个字符串拼接起来，返回拼接得到的新字符串,可以使用加号代替
+		var stringValue_2 = "hello ";
+		var result_2 = stringValue_2.concat("world");
+		console.log(result_2, stringValue_2);	//"hello world"   "hello"
+		var result_3 = stringValue_2.concat("world", "!");
+		console.log(result_3, stringValue_2);	//"hello world!  "hello"
+		/*ECMAScript提供了三个基于子字符串创建新字符串的方法: slice()、substr()和substring()。这三个方法都会返回被操作字符串的一个子字符串，而且也都接收一个或两个参数。第一个参数指定子字符串的开始位置，第二个参数(在有值的情况下)表示子字符串到哪里结束。
+			slice()和substring()的第二个参数指定的是子字符串最后一个字符后面的位置。
+			substr()的第二个参数指定的则是返回的字符个数。
+			如果没有给这些方法传递第二个参数，则将字符串的长度作为结束位置。
+		*/
+		stringValue = "hello world";
+		console.log(stringValue.slice(3));				//"lo world"
+		console.log(stringValue.substring(3));		//"lo world"
+		console.log(stringValue.substr(3));				//"lo world"
+		console.log(stringValue.slice(3, 7));			//"lo w"  从第4个开始,到第7个为止(包括第七个) 从这里可以看到，第一个参数是从0开始计算，第二个参数是从1开始计算的，需要格外注意
+		console.log(stringValue.substring(3, 7));	//"lo w"  从第4个开始,到第7个为止(包括第七个)
+		console.log(stringValue.substr(3, 7));		//"lo worl"  从第4个开始，后面读取7个
+
+		console.log(stringValue.slice(0, 1));			//"h"     从第一个开始，到第一个为止(包括第一个)
+		console.log(stringValue.slice(0, 0));			//""		  从第一个开始，到第零个为止
+		console.log(stringValue.substring(0, 0));	//""			从第一个开始，往后读取零个
+		console.log(stringValue.substr(3, 0));		//""			从第四个开始，往后读取零个
+
+		//若参数为负数的情况下：
+		console.log(stringValue.slice(-3));			//"rld"
+		console.log(stringValue.substring(-3));	//"hello world"
+		console.log(stringValue.substr(-3));		//"rld"
+		/*	对于第一个参数为负数的情况：
+					slice()和substr()方法,会把字符串的length加上这个负数(11+(-3)=8)传递给slice()和substr()方法。
+					substring()方法则会将负数转换成0，所以返回了全部的字符串
+				若第二个参数为负数的情况下：
+		*/
+		console.log(stringValue.slice(3, -2));			//"lo wor"
+		console.log(stringValue.substring(3, -2));	//"hel"
+		console.log(stringValue.substr(3, -2));			//""
+		/*
+			1、slice()方法会把第二个参数转换为9 (11+(-2)=9),传递给slice()方法
+			2、substring()方法会把第二个参数转换为0，是调用变成了substring(3,0)，而由于这个方法会将较小的数作为开始位置，将较大的数作为结束位置，因此最终相当于调用了substring(0,3)
+			3、substr()也会将第二个参数转换为0，这也就意味着返回包含零个字符的字符串，也就是一个空字符串。
+		*/
+
+		console.log("---------3、字符串位置方法:indexOf()和lastIndexOf()------------");
+		//这两个方法都是从一个字符串中搜索给定的子字符串，然后返回子字符串的位置(如果没有找到该子字符串,则返回-1)。这两个方法的区别在于：indexOf()方法从字符串的开头向后搜索子字符串，而lastIndexOf()方法是从字符串的末尾向前搜索子字符串。
+		stringValue = "hello world";
+		console.log(stringValue.indexOf("o"));				//4
+		console.log(stringValue.lastIndexOf("o"));		//7
+		console.log(stringValue.indexOf("o", 6));			//7		从位置6开始搜索
+		console.log(stringValue.lastIndexOf("o", 6));	//4		从位置6往前搜索
+
+		var stringValue_2 = "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+				positions = [],
+				pos = stringValue.indexOf("e");
+
+		while(pos > -1) {
+			positions.push(pos);
+			pos = stringValue_2.indexOf("e", pos + 1);	
+			//加1表示从上一次搜索位置的下一个位置开始
+		}
+		console.log(positions);		//[1, 3, 24, 32, 35, 52]
+
+		console.log("---------4、trim()方法-------------");
+		/*ES5为所有字符串定义了trim()方法。这个方法会创建一个字符串的副本,删除前置及后缀的所有空格，然后返回结果。不会对原字符串产生影响。
+			兼容性:IE9+、Firefox3.5+、Safari5+、Opera10.5+和chrome。
+		*/
+		var stringValue_trim = "   hello world      ";
+		var trimResult = stringValue_trim.trim();
+		console.log(trimResult);	//hello world
+
+		console.log("--------5、字符串大小写转换方法-------");
+		/*
+			toLowerCase(),toUpperCase(),toLocaleUpperCase(),toLocaleLowerCase()方法
+			前两个方法是经典的方法，借鉴自java.lang.String中的同名方法。
+			而toLocaleUpperCase(),toLocaleLowerCase()方法则是针对特定地区的实现。
+		*/
+		var stringValue_to = "hello world";
+		console.log(stringValue_to.toLowerCase());				//hello world
+		console.log(stringValue_to.toLocaleLowerCase());	//hello world
+		console.log(stringValue_to.toUpperCase());				//HELLO WORLD
+		console.log(stringValue_to.toLocaleUpperCase());	//HELLO WORLD
+		//尽量使用toLocaleLowerCase()和toLocaleUpperCase()方法，避免出错可能性
+
+		console.log("--------6、字符串的模式匹配方法--------");
+		/*String类型定义了几个用于在字符串中匹配模式的方法。
+				1、match()，在字符串上调用这个方法，本质上与调用RegExp的exec()方法相同。match()方法只接受一个参数，1、正则表达式；2、一个RegExp对象。
+		*/
+		var text_6 = "cat, bat, sat, fat";
+		var pattern = /.at/;
+		var matches = text_6.match(pattern);
+		console.log(matches.index, matches[0], pattern.lastIndex);	//0 "cat" 0
+		console.log(matches instanceof Array, matches); //true  ["cat", index: 0, input: "cat, bat, sat, fat"]
+		console.log(pattern.exec(text_6), pattern.exec(text_6) instanceof Array);	
+		//	["cat", index: 0, input: "cat, bat, sat, fat"] true
+		/*	2、search()。这个方法的唯一参数与match()方法的参数相同：由字符串或RegExp对象指定的一个正则表达式。search()方法返回字符串中第一个匹配项的索引;如果没有找到匹配项，则返回-1。而且,search()方法始终是从字符串开头向后查找模式
+		*/
+		var text_7 = "cmt, bgt, sdt, fat";
+		var pos_7 = text_7.search(/at/);
+		console.log(pos_7);								//16
+		/* 3、replace()	  
+		方法。这个方法接收两个参数:第一个参数可以是一个RegExp对象或者一个字符串(这个字符串不会被转换成正则表达式)，第二个参数可以是一个字符串或者一个函数。
+				如果第一个参数是字符串，则只会替换第一个子字符串。要想替换所有的子字符串，唯一的办法就是提供一个正则表达式，而且要指定全局(g)标志。
+		*/
+		var text_8 = "cat, bat, sat, fat";
+		var	pos_8 = text_8.replace("at", "ond");
+		var pos_9 = text_8.replace(/at/g, "ond");
+		console.log(pos_8, pos_9);//cond, bat, sat, fat  cond, bond, sond, fond
+		//	如果第二个参数是字符串，那么还可以使用一些特殊的字符序列，将正则表达式操作得到的值插入到结果字符串中
+
+		var text_9 = "cat, bat, sat, fat";
+		var pos_10 = text_9.replace(/(.at)/g, "word($1)");
+		console.log(pos_10);			//word(cat), word(bat), word(sat), word(fat)
+		/*  第二个参数是一个函数。
+					1、在只有一个匹配项(即与模式匹配的字符串)的情况下，会向这个函数传递三个参数：模式的匹配项、模式匹配项在字符串中的位置和原始字符串。
+					2、在正则表达式中定义了多个捕获组的情况下，传递给函数的参数依次是
+							模式的匹配项、第一个捕获组的匹配项，第二个捕获组的匹配项…… ;
+							模式匹配项在字符串中的位置;
+							原始字符串
+				返回一个字符串。
+		*/
+		function htmlEscape(text) {
+			return text.replace(/[<>"$]/g, function(match, pos, originalText){
+				switch(match) {
+					case "<": 
+						return "&lt;";
+					case ">":
+						return "&gt;";
+					case "&":
+						return "&amp;";
+					case "\"":
+						return "&quot;";
+				}
+			});
+		}
+		console.log(htmlEscape("<p class=\"greeting\")Hello world!</p>"));
+		//&lt;p class=&quot;greeting&quot;)Hello world!&lt;/p&gt;
+		//htmlEscape()函数能够转义4个字符: 小于号、大于号、和号以及双引号。通过正则表达式查找这几个字符，然后定义一个能够针对每个匹配的字符返回特定HTML实体的函数。
+
+		/*	4、split()  这个方法可以基于指定的分隔符将一个字符串分割成多个子字符串，并将结果放在一个数组中。分隔符可以是字符串，也可以是一个RegExp对象(这个方法不会将字符串看成正则表达式)。split()方法可以接受可选的第二个参数，用于指定数组的大小，以便确保返回的数组不会超过既定大小。
+		*/
+		var colorText = "red,blue,green,yellow";
+		var color_1 = colorText.split(","),
+				color_2 = colorText.split(",", 2),
+				color_3 = colorText.split(/[^\,]+/);
+		console.log(color_1, color_2, color_3);	
+		// ["red", "blue", "green", "yellow"] , ["red", "blue"] , ["", "," , "," , "," , ""]
+		
+		console.log(text_6, text_7, text_8, text_9, colorText);
+		//都是原来的字符串，所以都不会对原来的字符串进行操作。
+
+		console.log("--------7、localeCompare()方法------------");
+		/* 这个方法比较两个字符串：
+				1、如果字符串在字母表中应该排在字符串参数之前，则返回一个负数(大多数情况下是-1，具体的值要视实现而定)。
+				2、如果字符串等于字符串参数，则返回0。
+				3、如果字符串在字母表中应该排在字符串参数之后，则返回一个正数(大多数情况下是1，具体的值同样要视实现而定)。
+		*/
+		var stringValue_7 = "yellow";
+		console.log(stringValue_7.localeCompare("brick"));		//1
+		console.log(stringValue_7.localeCompare("yellow"));		//0
+		console.log(stringValue_7.localeCompare("zoo"));			//-1
+
+		var determineOrder = function(value1, value2) {
+			var result = value1.localeCompare(value2);
+			switch(true) {
+				case result > 0 :
+					console.log("The string '" + value1 + "' comes before the string '" + value2 + "'.");
+					break;
+				case result < 0 :
+					console.log("The string '" + value1 + "' comes after the string '" + value2 + "'.");
+					break;
+				case result == 0 :
+					console.log("The string '" + value1 + "' is equal to the string '" + value2 + "'.");
+					break;
+			}
+		}
+		determineOrder(stringValue_7, "brick");	//The string 'yellow' comes before the string 'brick'.
+		determineOrder(stringValue_7, "yellow");//The string 'yellow' is equal to the string 'yellow'.
+		determineOrder(stringValue_7, "zoo");		//The string 'yellow' comes after the string 'zoo'.
+
+		console.log("-----------8、fromCharCode()方法-----------");
+		//String构造函数本身有一个静态方法: fromCharCode()。 这个方法的任务是接收一个或多个字符编码，然后将它们转换成一个字符串。从本质上来看，这个方法与实例方法charCodeAt()执行的是相反的操作。
+		console.log(String.fromCharCode(104, 101, 108, 108, 111)); //"hello"
+		//给fromCharCode()传递的是字符串"hello"中每个字母的字符编码
+  </script>
+</head>
+
+<body>
+	
+</body>
+
+</html>
