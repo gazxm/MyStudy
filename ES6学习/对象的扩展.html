@@ -285,6 +285,119 @@
 
 	//	如果参数不是对象，会被自动转为对象。
 	//	如果参数是undefined或null,它们无法转为对象，所以会报错。
-</script>
 
+	//9、Object.keys()、Object.values()、Object.entries()
+	//	ES5引入了Object.keys方法，返回一个数组，成员是参数对象自身的(不含继承的)所有可遍历(enumerable)属性的键名
+	let {keys, values, entries} = Object;
+	let forObj = { a: 1, b: 2, c: 3};
+	for (let key of keys(forObj)) {
+		console.log(key);		//	a, b, c
+	}
+
+	for (let value of values(forObj)) {
+		console.log(value);		//	1, 2, 3
+	}
+
+	for (let [key, value] of entries(forObj)) {
+		console.log([key, value]);	//	[a, 1], [b, 2], [c, 3]
+	}
+
+	//Object.values() 方法返回一个数组，成员是参数对象自身的(不含继承的)所有课遍历(enumerable)属性的键值。
+	var objValues = { foo: 'bar', baz: 42};
+	Object.values(objValues);	//	['bar', 42]
+
+	var objValues1 = { 100: 'a', 2: 'b', 7: 'c'};
+	Object.values(objValues1);	// ['b', 'c', 'a']
+	//	上面代码中，属性名为数值的属性，是按照数值大小，从小到大遍历的，因此返回的顺序是b、c、a
+
+	//	Object.values只返回对象自身的可遍历属性
+	var objValues2 = Object.create({}, {p: {value: 42}});
+	Object.values(objValues2);	//	[]
+
+	//	上面代码中，Object.create方法的第二个参数添加的对象属性（属性p），如果不显式声明，默认是不可遍历的，因为p的属性描述对象的enumerable默认是false，Object.values不会返回这个属性。只要把enumerable改成true，Object.values就会返回属性p的值。
+	var objValues3 = Object.create({}, {p: {value: 42, enumerable: true}})
+	Object.values(objValues3);	//	[42]
+
+	//	Object.values会过滤属性名为Symbol值的属性。
+	Object.values({[Symbol()]: 123, foo: 'abc' });	//	['abc']
+
+	//	如果Object.values方法的参数是一个字符串，会返回各个字符组成的一个数组
+	Object.values('foo');		//	['f', 'o', 'o']
+	//	上面代码中，字符串会先转成一个类似数组的对象。字符串的每个字符，就是该对象的一个属性。因此，Object.values返回每个属性的键值，就是各个字符组成的一个数组。
+
+	//	如果参数不是对象，Object.values会先将其转为对象。由于数值和布尔值的包装对象，都不会为实例添加非继承的属性。所以，Object.values会返回空数组。
+	Object.values(42);	//	[]
+	Object.values(true);	//	[]
+
+	//	Object.entries方法返回一个数组，成员是参数对象自身的(不含继承的)所有可遍历(enumerable)属性的键值对数组
+	var objEntries = { foo: 'bar', baz: 42};
+	Object.entries(objEntries);	// [ ['foo', 'bar'], ['baz', 42] ]
+	//除了返回值不一样，该方法的行为与Object.values基本一致
+
+	//如果源对象的属性名是一个Symbol值，该属性会被忽略
+	Object.entries({ [Symbol()]: 123, foo: 'abc'});	// [ ['foo': 'abc'] ]
+
+	// Object.entries的基本用途是遍历对象的属性。
+	let objEntries1 = { one: 1, two: 2}
+	for (let [k, v] of Object.entries(objEntries1)) {
+		console.log(`${JSON.stringify(k)}: ${JSON.stringify(v)}`);	// 'one': 1 ; 'two': 2
+	}
+
+	// 第二个用处： 将对象转为真正的Map结构
+	let objEntries2 = { foo: 'bar', baz: 42 };
+	let mapE = new Map(Object.entries(objEntries2));
+	console.log(mapE);	//	Map {"foo" => "bar", "baz" => 42}
+
+	//	10.对象的扩展运算符
+	//	(1)、解构赋值
+	let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };
+	console.log(x, y, z);		//	1,	2,	{a: 3, b: 4}
+
+	//  由于解构赋值要求等号右边是一个对象，所以如果等号右边是undefined或null，就会报错，因为它们无法转为对象。
+	let { x, y, ...z } = null;	//运行时错误
+	let { x, y, ...z } = undefined;		//运行时错误
+
+  //  解构赋值必须是最后一个参数，否则会报错。
+  let { ...x, y, z} = obj;		//	句法错误
+  let { x, ...y, ...z} = obj;	//	句法错误
+
+  // 注意，结构赋值的拷贝是浅拷贝，即如果一个键的值是符合类型的值（数组、对象、函数）、那么解构赋值的拷贝的是这个值的引用，而不是这个值的副本。
+  let obj = { a: { b: 1 } };
+  let { ...x } = obj;
+  obj.a.b = 2;
+  x.a.b // 2
+  //	上面代码中，x是解构赋值所在的对象，拷贝了对象obj的a属性。a属性引用了一个对象，修改这个对象的值，会影响到解构赋值对它的引用。
+
+  //	另外，解构赋值不会拷贝继承自原型对象的属性。
+  let o1 = { a: 1 };
+  let o2 = { b: 2 };
+  o2.__proto__ = o1;
+  let o3 = { ...o2 };
+  console.log(o3);	//	{ b: 2 }
+  //	上面代码中，对象o3是o2的拷贝，但是只复制了o2自身的属性，没有复制它的原型对象o1的属性。
+
+  //	下面是另外一个例子：
+  let o = Object.create({x: 1, y: 2});
+  o.z = 3;
+
+  let { x, ...{ y, z }} = o;
+  console.log(x, y, z);	//	1, undefined, 3
+  //	上面代码中，变量x是单纯的解构赋值，所以可以读取继承的属性；解构赋值产生的变量y和z，只能读取对象自身的属性，所以只有变量z可以赋值成功。
+
+  //	(2)、扩展运算符：扩展运算符(...)用于取出参数对象的所有可遍历属性，拷贝到当前对象之中。
+  let z = { a: 3, b: 4 };
+  let n = { ...z };
+  console.log(n);	//	{ a: 3, b: 4 }
+
+  // 这等同于使用Object.assign方法
+  let aClone = { ...a };
+  //等同于
+  let aClone = Object.assign({}, a);
+
+  //	扩展运算符可以用于合并两个对象。
+  let ab = { ...a, ...b };
+  //等同于
+  let ab = Object.assign({}, a, b);
+
+</script>
 </html>
