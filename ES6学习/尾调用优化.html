@@ -60,23 +60,23 @@
 	*/
 	function factorial(n) {
 		if (n === 1) return 1;
-		return n * factorial(n - 1);
+		return n * factorial(n - 1);	//	这里需要多保存一个参数n，没有实现尾函数调用
 	}
 	console.log(factorial(5));	//	120
 	//上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 O(n) 。如果改写成尾递归，只保留一个调用记录，复杂度 O(1) 。
 
 	function factorialTwo (n, total) {
 		if (n === 1) return total;
-		return factorialTwon( n - 1, n * total);
+		return factorialTwo( n - 1, n * total);
 	}
 	console.log(factorialTwo(5, 1));	//	120
 
 	//非尾递归函数的fibonacci递归方法
 	function Fibonacci (n) {
 		if (n <= 1) return 1;
-		return Fibonacci(n - 1) + Fibonacci(n - 2);
+		return Fibonacci(n - 1) + Fibonacci(n - 2);	//	这里会保存两个Fibonacci函数的调用帧
 	}
-	console.log(Fibonacci(10));
+	console.log(Fibonacci(10));	// 89
 	console.log(Fibonacci(40));	//已经有点卡了。。。
 
 	//尾递归函数的fibonacci递归方法: 都是秒开 很嗨
@@ -84,6 +84,8 @@
 		if (n <= 1) return ac2;
 		return FibonacciTwo(n - 1, ac2, ac1 + ac2);
 	}
+
+	console.log(FibonacciTwo(10));		//	89
 	console.log(FibonacciTwo(100));		//	573147844013817200000
 	console.log(FibonacciTwo(1000));	//	7.0330367711422765e+208
 	console.log(FibonacciTwo(1500));	//	Infinity

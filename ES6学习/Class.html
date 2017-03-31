@@ -213,6 +213,11 @@
 		}
 	}
 
+	/* function Point(x, y) {
+		this.x = x;
+		this.y = y;
+	} */
+
 	class ColorPoint extends Point {
 		constructor(x, y, color) {
 			//this.color = color;		//	Uncaught ReferenceError: this is not defined
@@ -282,9 +287,9 @@
 
 	new A2();	//	A2
 	new B2();	//	B2
-	//可以看到，在super()执行时，它指向的是子类B的构造函数，而不是父类A的构造函数。也就是说，super()内部的this指向的是B。
+	//  可以看到，在super()执行时，它指向的是子类B的构造函数，而不是父类A的构造函数。也就是说，super()内部的this指向的是B。
 
-	//注意：作为函数时，super()只能用在子类的构造函数之中，用在其他地方就会报错。
+	//  注意：作为函数时，super()只能用在子类的构造函数之中，用在其他地方就会报错。
 
 	//第二种情况：super作为对象时，指向父类的原型对象
 	class A3 {
