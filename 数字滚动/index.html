@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CSS3动态数字翻转切换动画特效 - 站长素材</title>
+
+<style type="text/css">
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	font: inherit;
+	font-size: 100%;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#stage-1 .stage-content {
+	width: 700px;
+	height: 630px;
+	margin:60px auto 0 auto;
+}
+
+.stage-1-icon {
+	width: 204px;
+	height: 289px;
+	margin: 0 auto 68px;
+	position: relative;
+	-webkit-perspective: 900px
+}
+
+.stage-1-icon-top,.stage-1-icon-bottom {
+	width: 184px;
+	position: absolute;
+	left: 0;
+	background-color: #fff;
+	background-repeat: no-repeat;
+	-webkit-transform-style: preserve-3d
+}
+
+.stage-1-icon-top {
+	height: 134px;
+	padding: 10px 10px 0;
+	top: 0;
+	background-position: center 10px;
+	transform-origin: center bottom
+}
+
+.stage-1-icon-bottom {
+	height: 135px;
+	top: 144px;
+	padding: 0 10px 10px;
+	background-position: center -134px;
+	transform-origin: center top
+}
+
+.stage-1-icon-1 .stage-1-icon-top,.stage-1-icon-1 .stage-1-icon-bottom {
+	z-index: 7;
+	background-image: url(img/bg-number-1_d055a87.png)
+}
+
+.stage-1-icon-2 .stage-1-icon-top,.stage-1-icon-2 .stage-1-icon-bottom {
+	z-index: 6;
+	background-image: url(img/bg-number-2_8474a71.png)
+}
+
+.stage-1-icon-3 .stage-1-icon-top,.stage-1-icon-3 .stage-1-icon-bottom {
+	z-index: 5;
+	background-image: url(img/bg-number-3_5180f47.png)
+}
+
+.stage-1-icon-4 .stage-1-icon-top,.stage-1-icon-4 .stage-1-icon-bottom {
+	z-index: 4;
+	background-image: url(img/bg-number-4_23d785e.png)
+}
+
+.stage-1-icon-5 .stage-1-icon-top,.stage-1-icon-5 .stage-1-icon-bottom {
+	z-index: 3;
+	background-image: url(img/bg-number-5_517e73d.png)
+}
+
+.stage-1-icon-6 .stage-1-icon-top,.stage-1-icon-6 .stage-1-icon-bottom {
+	z-index: 2;
+	background-image: url(img/bg-number-6_e104400.png)
+}
+
+.stage-1-icon-7 .stage-1-icon-top,.stage-1-icon-7 .stage-1-icon-bottom {
+	z-index: 1;
+	background-image: url(img/bg-number-7_5c57e30.png)
+}
+ @keyframes flipover-top {
+ 0% {
+ z-index: 8;
+ background-color: #fff;
+ transform: rotateX(0);
+}
+ 50% {
+ z-index: 8;
+ background-color: #efefef;
+ transform: rotateX(-90deg);
+}
+ 51% {
+ z-index: 7;
+ opacity: 1;
+}
+ 100% {
+ z-index: 7;
+ background-color: #fff;
+ opacity: 0;
+ transform: rotateX(-180deg);
+}
+}
+ @keyframes flipover-bottom {
+ 0% {
+ z-index: 7;
+ background-color: #fff;
+ transform: rotateX(180deg);
+}
+ 50% {
+ z-index: 7;
+ background-color: #efefef;
+ transform: rotateX(90deg);
+}
+ 51% {
+ z-index: 8;
+}
+ 100% {
+ z-index: 8;
+ background-color: #fff;
+ transform: rotateX(0);
+}
+}
+#stage-1.stage-state-default {
+	z-index: 1
+}
+#stage-1.stage-state-default .stage-1-icon-1 .stage-1-icon-top {
+	animation: flipover-top .15s linear 1.2s 1 normal forwards
+}
+#stage-1.stage-state-default .stage-1-icon-2 .stage-1-icon-bottom {
+	animation: flipover-bottom .15s linear 1.2s 1 normal forwards
+}
+#stage-1.stage-state-default .stage-1-icon-2 .stage-1-icon-top {
+	animation: flipover-top .15s linear 1.3499999999999999s 1 normal forwards
+}
+#stage-1.stage-state-default .stage-1-icon-3 .stage-1-icon-bottom {
+	animation: flipover-bottom .15s linear 1.3499999999999999s 1 normal forwards
+}
+#stage-1.stage-state-default .stage-1-icon-3 .stage-1-icon-top {
+	animation: flipover-top .15s linear 1.4999999999999998s 1 normal forwards
+}
+#stage-1.stage-state-default .stage-1-icon-4 .stage-1-icon-bottom {
+	animation: flipover-bottom .15s linear 1.4999999999999998s 1 normal forwards
+}
+#stage-1.stage-state-default .stage-1-icon-4 .stage-1-icon-top {
+	animation: flipover-top .2s linear 1.6499999999999997s 1 normal forwards
+}
+#stage-1.stage-state-default .stage-1-icon-5 .stage-1-icon-bottom {
+	animation: flipover-bottom .2s linear 1.6499999999999997s 1 normal forwards
+}
+#stage-1.stage-state-default .stage-1-icon-5 .stage-1-icon-top {
+	animation: flipover-top .35s linear 1.8499999999999996s 1 normal forwards
+}
+#stage-1.stage-state-default .stage-1-icon-6 .stage-1-icon-bottom {
+	animation: flipover-bottom .35s linear 1.8499999999999996s 1 normal forwards
+}
+#stage-1.stage-state-default .stage-1-icon-6 .stage-1-icon-top {
+	animation: flipover-top 1.5s linear 2.1999999999999997s 1 normal forwards
+}
+#stage-1.stage-state-default .stage-1-icon-7 .stage-1-icon-bottom {
+	animation: flipover-bottom 1.5s linear 2.1999999999999997s 1 normal forwards
+}
+</style>
+</head>
+
+<body>
+
+<div id="stage-1" class="stage stage-state-default">
+  <div class="stage-content">
+    <ul class="stage-1-icon">
+      <li class="stage-1-icon-1"> <span class="stage-1-icon-top"></span> <span class="stage-1-icon-bottom"></span> </li>
+      <li class="stage-1-icon-2"> <span class="stage-1-icon-top"></span> <span class="stage-1-icon-bottom"></span> </li>
+      <li class="stage-1-icon-3"> <span class="stage-1-icon-top"></span> <span class="stage-1-icon-bottom"></span> </li>
+      <li class="stage-1-icon-4"> <span class="stage-1-icon-top"></span> <span class="stage-1-icon-bottom"></span> </li>
+      <li class="stage-1-icon-5"> <span class="stage-1-icon-top"></span> <span class="stage-1-icon-bottom"></span> </li>
+      <li class="stage-1-icon-6"> <span class="stage-1-icon-top"></span> <span class="stage-1-icon-bottom"></span> </li>
+      <li class="stage-1-icon-7"> <span class="stage-1-icon-top"></span> <span class="stage-1-icon-bottom"></span> </li>
+    </ul>
+  </div>
+</div>
+</div>
+</body>
+</html>

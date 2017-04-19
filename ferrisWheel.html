@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ferrisWheel</title>
+	<script type="text/javascript" src="js/jquery3.1.1.js"></script>
+	<style>
+		body {
+			overflow: hidden;
+		}
+		@keyframes r {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+		.ferrisWheel {
+			width: 750px;
+			height: 750px;
+			margin: 50px auto;
+			border: 3px solid #333;
+			border-radius: 50%;
+			position: relative;
+			box-sizing: border-box;
+			animation: r 30s linear infinite paused;
+		}
+		.ferrisWheel:hover {
+			animation-play-state: running;
+		}
+		i {
+			display: block;
+			width: 50px;
+			height: 50px;
+			border: 2px solid #ff8003;
+			border-radius: 50%;
+			position: absolute;
+			box-sizing: border-box;
+			top: 0%;
+			left: 50%;
+			transform: translateX(-50%);
+			transform-origin: 25px 372px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class='ferrisWheel'></div>	
+</body>
+<script>
+	$(function() {
+		var num = 42;
+		var rotate = 360 / num;
+		var rotateArr = [];
+		for(let i = 0; i < num; i++) {
+			rotateArr.push(i * rotate);
+		}
+		var rotateDiv = rotateArr.map((v, i) => {
+			return `<i style='transform: translateX(-50%) rotate(${v}deg);'></i>`
+		})
+		$('.ferrisWheel').append(rotateDiv)
+	})
+</script>
+
+</html>

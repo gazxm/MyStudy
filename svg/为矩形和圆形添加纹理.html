@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>为矩形和圆形添加纹理</title>
+</head>
+
+<body>
+	<svg width='200' height='200'>
+		<defs>
+			<pattern id="grap" patternUnits="userSpaceOnUse" x="0" y="0" width="100" height="67" viewBox="0 0 100 67">
+        <image x="0" y="0" width="100" height="67" xlink:href="https://www.baidu.com/img/bd_logo1.png"></image>
+      </pattern>
+      <linearGradient id="redBLackGradient">
+        <stop offset="0%" stop-color="#000"></stop>
+        <stop offset="100%" stop-color="#f00"></stop>
+    	</linearGradient>
+		</defs>
+    	<rect width="100" height="80" x="10" y="20" stroke="red" fill="url(#redBLackGradient)"></rect>
+      <circle cx="120" cy="80" r="40" stroke="#00f" stroke-width="8" fill="url(#grap)"></circle>
+	</svg>
+  pattern 定义一个待填充的图像
+  linearGradient:定义一个渐变
+  stop:设置渐变的开始值以及结束值
+  fill="url(#redBLackGradient)加载预设的纹理或者渐变
+</body>
+
+</html>

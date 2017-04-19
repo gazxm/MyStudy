@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>css3配合js实现数字动态效果</title>
+    <style type="text/css">
+        #wrap {
+            width: 1000px;
+            margin: 100px auto;
+        }
+        .test {
+            width: 60px;
+            height: 60px;
+            background-color: #006699;
+            color: #fff;
+            text-align: center;
+            font-size: 44px;
+            line-height: 60px;
+            display: inline-block;
+            -moz-transition: all 0.4s ease;
+            -webkit-transition: all 0.4s ease;
+            -ms-transition: all 0.4s ease;
+            font-family: tahoma;
+            margin: 0 5px;
+        }
+        .animation {
+            -moz-transform: scale3d(0, 0, 1);
+            -webkit-transform: scale3d(1, 0, 0);
+            -ms-transform: scale3d(1, 2, 0);
+            transform: scale3d(0, 0, 1);
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+</div>
+<script type="text/javascript" src="js/jquery3.1.1.js"></script>
+<script type="text/javascript">
+    var transfer = {
+        init:function (data) {
+            this.last = data || new Date().getTime() + "";
+            this.oWrap = $("#wrap");
+            this.timer = null;
+            transfer.render(this.last);
+            transfer.auto();
+        },
+        getDiff:function () {
+            var arr = this.last.split("");
+            var arr2 = this.iNow.split("");
+            var arr3 = [];
+            for (var i = 0; i < arr2.length; i++) {
+                if (arr[i] != arr2[i]) {
+                    arr3.push({"index":i, "val":arr2[i]});
+                }
+            }
+            this.last = this.iNow;
+            return arr3;
+        },
+        render:function (str) {
+            var arr = str.split("");
+            var len = arr.length;
+            var frag = '';
+            for (var i = 0; i < len; i++) {
+                frag += "<div class='test'>" + arr[i] + "</div>";
+            }
+            this.oWrap.html(frag);
+            this.el = this.oWrap.children();
+        },
+        auto:function () {
+            var _this = this;
+            clearInterval(this.timer);
+            this.timer = setInterval(function () {
+                var data = transfer.getDiff();
+                $.each(data, function (i, el) {
+                    _this.el.eq(el.index).addClass("animation");
+                    setTimeout(function () {
+                        _this.el.eq(el.index).removeClass("animation").html(el.val);
+                    }, 380);
+                });
+            }, 4000);
+        },
+        setData:function (data) {
+            this.iNow = data;
+        }
+    };
+    transfer.init();
+    setInterval(function () {
+        transfer.setData(new Date().getTime() + "")
+    }, 1000);
+</script>
+</body>
+</html>
