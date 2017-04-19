@@ -102,6 +102,15 @@ export default {
           callback(null, require('pages/activity/share/Share'))
         })
       }
+    },
+    {
+      path: 'test',
+      transaction: 'from-left',
+      getComponent (location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/activity/test/test'))
+        })
+      }
     }
   ]
 }
