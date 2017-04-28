@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css3Filter</title>
+	<script></script>
+	<style>
+		.filter-img {
+			width: 100px;
+			height: 50px;
+			margin-bottom: 30px;
+			background: transparent url(./img/dog.jpg) 0 0 no-repeat;
+			background-size: 100px 50px;
+		}
+		img {
+			width: 100px;
+			height: 50px;
+		}
+		.grayscale {
+			filter: grayscale(1);		/*灰度*/
+		}
+		.sepia {
+			filter: sepia(2);				/*褐色*/
+		}
+		.saturate {
+			filter: saturate(2);		/*饱和度*/
+		}
+		.hue-rotate {
+			filter: hue-rotate(90deg);	/*色相旋转*/
+		}
+		.invert {
+			filter: invert(1);	/*反色*/
+		}
+		.opacity {
+			filter: opacity(.3);	/*透明度*/
+		}
+		.brightness {
+			filter: brightness(.3);		/*亮度*/
+		}
+		.contrast {
+			filter: contrast(2);		/*对比度*/
+		}
+		.blur {
+			filter: blur(2px);		/*模糊*/
+		}
+		.drop-shadow {
+			filter: drop-shadow(5px 5px 5px #ccc);		/*阴影*/
+		}
+	</style>
+</head>
+
+<body>
+	<div class='filter-img'></div>
+	<div class='filter-img grayscale'></div>
+	<div style='color: #4afbbb' class='grayscale'>钟燮鸣</div>
+	<img class='grayscale' alt='' src='./img/dog.jpg' />
+	<img class='sepia' alt='' src='./img/dog.jpg' />
+	<img class='saturate' alt='' src='./img/dog.jpg' />
+	<img class='hue-rotate' alt='' src='./img/dog.jpg' />
+	<img class='invert' alt='' src='./img/dog.jpg' />
+	<img class='opacity' alt='' src='./img/dog.jpg' />
+	<img class='brightness' alt='' src='./img/dog.jpg' />
+	<img class='contrast' alt='' src='./img/dog.jpg' />
+	<img class='blur' alt='' src='./img/dog.jpg' />
+	<img class='drop-shadow' alt='' src='./img/dog.jpg' />
+</body>
+
+</html>

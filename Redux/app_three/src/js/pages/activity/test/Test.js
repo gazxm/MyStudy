@@ -44,7 +44,15 @@ export default class Test extends React.Component {
   }
 
   componentDidMount () {
-
+    this.setState({
+      scroll: {
+        prize: ['20%', '40%', '60%'],
+        length: 20,
+        rTIme: 60,
+        delayTime: 3,
+        time: 0.5
+      }
+    })
   }
 
   render () {

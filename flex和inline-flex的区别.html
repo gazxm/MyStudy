@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>flex和inline-flex的区别</title>
+	<style type="text/css">
+    .main {
+    	margin-bottom: 50px;
+      background-color: red;
+      display: flex;
+      justify-content: space-between;
+    }
+    .main>div {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      background: blue;
+      box-sizing: border-box;
+    }
+    .main2 {
+      background-color: red;
+      display: inline-flex;
+      justify-content: space-between;
+    }
+    .main2>div {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      background: blue;
+      box-sizing: border-box;
+    }
+    /*可以看到flex会占据整个一行，而inline-flex的flex容器会随着flex-item的大小变化而变化*/
+  </style>
+</head>
+<body>
+	<div class="main">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+  </div>
+  <div class="main2">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+  </div>
+</body>
+</html>

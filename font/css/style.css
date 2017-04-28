@@ -1,7 +1,7 @@
 @font-face{
   font-family: 'zxm';
-  src: url('../font/abc.ttf');
-  src: url('../font/abc.ttf') format('truetype');
+  src: url('../font/方正黑体简体.TTF');
+  src: url('../font/方正黑体简体.TTF') format('truetype');
 }
 
 h1 {
