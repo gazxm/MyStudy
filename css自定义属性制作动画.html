@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS自定义属性制作动画</title>
+	<!-- https://developer.mozilla.org/zh-CN/docs/Web/CSS/--* -->
+	<script type="text/javascript">
+		(function changeVar() {
+        var root = document.documentElement;
+        document.addEventListener('mousemove', function(e) {
+      		console.log(e)
+      		//	第一个图片动画
+          var spacing = e.clientX / innerWidth;
+          var blur = e.clientY / innerHeight;
+          root.style.setProperty('--spacing', spacing);
+          root.style.setProperty('--blur', blur);
+					
+					//	第二个图片动画
+          var x = e.clientX / innerWidth;
+          var y = e.clientY / innerHeight;
+          var z = (e.clientX - e.clientY) / (innerWidth - innerHeight);
+          root.style.setProperty('--mouse-x', x);
+          root.style.setProperty('--mouse-y', y);
+        	root.style.setProperty('--mouse', z);
+        });
+    })();
+	</script>
+	<style>
+		:root {
+			/*第一个图片的css的变量*/
+		  --base: #ffc600;
+		  --spacing: .1;
+		  --blur: .1;
+			
+			/*第二个图片的css的变量*/
+		  --mouse-x: .1;
+      --mouse-y: .1;
+      --mouse: .1;
+      --base: #1497AD;
+		}
+
+		img {
+			-webkit-filter: saturate(2);
+			filter: saturate(2);
+		}
+
+		.photo {
+			background: #193549;
+		  padding: calc(10px * var(--spacing, .1));
+		  background: var(--base);
+		  -webkit-filter: blur(calc(10px * var(--blur, .1)));
+		  filter:  blur(calc(10px * var(--blur, .1)));
+		}
+
+		.photo2 {
+			transform: rotateX(calc(50deg * var(--mouse-x, .1))) rotateY(calc(50deg * var(--mouse-y, .1))) rotateZ(calc(50deg * var(--mouse, .1)));
+			transition: all 0.5s;
+			border: 20px solid white;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+
+		body {
+		  color: white;
+		  font-family: 'helvetica neue', sans-serif;
+		  font-weight: 100;
+		  font-size: 50px;
+		  text-align: center;
+		}
+
+		.display2 {
+	    perspective: 800px;
+	  }
+	</style>
+</head>
+
+<body>
+	<div class="display">
+  	<img class="photo" src="./img/artwork.jpg">
+  </div>
+  <div class="display2">
+    <img class="photo2" src="./img/artwork.jpg">
+  </div>
+</body>
+
+</html>

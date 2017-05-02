@@ -1,6 +1,7 @@
 import React from 'react'
 import Loading from '../../../components/Loading'
 import Scroll from '../../../components/Scroll'
+import { Carousel } from 'antd-mobile'
 
 export default class Test extends React.Component {
   constructor (props) {
@@ -63,6 +64,14 @@ export default class Test extends React.Component {
         <div className='test'>
           <Loading loading={loading} />
           <Scroll scroll={scroll} />
+          <div className='sub-title'>vertical</div>
+          <Carousel className='my-carousel'
+            dots={false} dragging={false} swiping={false} autoplay infinite vertical
+          >
+            <div className='v-item'>Carousel 1</div>
+            <div className='v-item'>Carousel 2</div>
+            <div className='v-item'>Carousel 3</div>
+          </Carousel>
         </div>
       </div>
     )
