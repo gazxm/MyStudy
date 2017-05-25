@@ -1,0 +1,11 @@
+.wrapper-mobile-certification{
+    .contacts{
+        .am-list-header{
+            &:after{
+                color: #b5b5b5;
+                font-size: 24px;
+                content: '（为通过审核请勿填写虚假号码）';
+            }
+        }
+    }
+}

@@ -1,0 +1,130 @@
+html{
+    background: url(../../img/activity/thursday-freeinterest/bg.jpg) no-repeat;
+    background-size: 100% auto;
+}
+.wrapper-thursday-freeinterest{
+    color: #fff;
+    background-color: transparent;
+    padding-bottom: 45px;
+    &:before{
+        width: 752px;
+        height: 689px;
+        content: '';
+        background: url(../../img/activity/thursday-freeinterest/picture.png) center top no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+.am-modal{
+    width: 495px !important;
+}
+.am-modal-close{
+    color: #831ef5;
+    left: auto;
+    top: 10px;
+    right: 10px;
+}
+.am-modal-content{
+
+    background-color: #ffaf19;
+}
+.am-modal-body{
+    color: #831ef5;
+}
+.tips{
+    line-height: 52px;
+    font-size: 27px;
+    text-align: center;
+    text-shadow: 0 2px 2px rgba(#a71c2c, .75);
+    margin-top: 1065px;
+}
+.message{
+    line-height: 42px;
+    font-size: 30px;
+    font-weight: 600;
+    padding: 15px 50px 0;
+}
+.button-receive{
+    width: 450px;
+    height: 90px;
+    color: #8420f5;
+    font-size: 40px;
+    border-radius: 10px;
+    background-color: #ffe71b;
+    transition: .3s ease-out;
+    margin: 5px auto 0;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    &:active{
+        background-color: darken(#ffe71b, 5);
+    }
+    &:before{
+        width: 554px;
+        height: 439px;
+        content: '';
+        background: url(../../img/activity/thursday-freeinterest/coupon.png) center top no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: -435px;
+        left: 50%;
+        z-index: -1;
+        transform: translateX(-50%);
+        pointer-events: none;
+    }
+}
+.button{
+    width: 320px;
+    height: 75px;
+    color: #ffaf19;
+    font-size: 30px;
+    font-weight: 600;
+    border-radius: 10px;
+    background-color: #7c16ef;
+    margin: 35px auto 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    &:active{
+        background-color: darken(#7c16ef, 5);
+    }
+}
+.rule{
+    color: #ead8ff;
+    font-size: 26px;
+    text-align: center;
+    margin-top: 20px;
+    span{
+        border-bottom: 1PX solid #ead8ff;
+        position: relative;
+        &:after{
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            bottom: -10px;
+            left: -10px;
+        }
+    }
+}
+.rules{
+    width: 610px !important;
+    h5{
+        font-size: 35px;
+        font-weight: 600;
+        margin-bottom: 25px;
+    }
+    p{
+        font-size: 26px;
+        line-height: 38px;
+        text-align: left;
+        padding: 0 20px;
+        + p{
+            margin-top: 10px;
+        }
+    }
+}

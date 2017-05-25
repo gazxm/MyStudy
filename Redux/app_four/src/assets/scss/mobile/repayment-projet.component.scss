@@ -1,0 +1,68 @@
+@import '../common/base';
+@import '../common/custom-style';
+html, body{
+  background:$bg;
+}
+.repayment-projet{
+  .am-segment {
+    height: 70px;
+    width: 690px;
+    margin: 60px auto;
+  }
+  .am-segment-item{
+    font-size: 32px;
+  }
+  .am-list-item{
+    min-height: 110px;
+  }
+  .am-list-item .am-list-line{
+    .am-list-content, .am-list-extra{
+      font-size: 32px;
+    }
+  }
+  .custom-list .am-list-body .am-list-item:last-child .am-list-line {
+    .am-list-content, .am-list-extra{
+      color: $main;
+      font-size: 36px;
+    }
+  }
+  ul {
+    font-size: 26px;
+    background: #fff;
+    border-top: 1PX solid $line;
+    li:not(:first-child) span:last-child{
+      color:$warning;
+    }
+    li.achieve{
+      span{
+        color: #e7e7e7;
+        &:last-child{
+          color: $main;
+        }
+      }
+    }
+    li {
+      line-height:110px;
+      border-bottom: 1PX solid $line;
+      span {
+        display: inline-block;
+        width: 150px;
+        text-align: center;
+      }
+    }
+    li:first-child{
+      line-height: 60px;
+      color:$h2;
+    }
+    li:last-child{
+      text-align: right;
+      padding: 20px 30px;
+      line-height: 2em;
+      font-size: 36px;
+      color:$main;
+      p{
+        float: left;
+      }
+    }
+  }
+}

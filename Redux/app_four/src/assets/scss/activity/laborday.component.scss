@@ -1,0 +1,118 @@
+.laborday {
+	width: 750px;
+	background: #be292b url(../../img/activity/laborday/laborday-01.jpg) 0 0 no-repeat;
+	background-size: 750px 500px;
+	padding: 1PX 0;
+	a.sub {
+		display: block;
+		width: 672px;
+		height: 116px;
+		font-size: 48px;
+		line-height: 116px;
+		background: transparent url(../../img/activity/laborday/laborday-02.jpg) 0 0 no-repeat;
+		background-size: 672px 116px;
+		margin: 530px auto 0;
+		text-align: center;
+		color: #cf0b00;
+		font-weight: bold;
+		cursor: pointer;
+	}
+	h3 {
+		font-size: 32px;
+		font-weight: bold;
+		color: #fbd58b;
+		margin: 45px auto 50px;
+		text-align: center;
+	}
+	.rule-content {
+		width: 666px;
+		padding: 66px 35px 40px;
+		box-sizing: border-box;
+		background: #ffe096;
+		margin: 0 auto 10px;
+		border-radius: 30px;
+		border: 12px solid #cfa972;
+		font-size: 26px;
+		line-height: 48px;
+		color: #333;
+		position: relative;
+		p {
+			word-break: break-all;
+		}
+		&:before {
+			content: '';
+			display: block;
+      position: absolute;
+      width: 405px;
+      height: 86px;
+      background: transparent url(../../img/activity/laborday/laborday-04.png) 0 0 no-repeat;
+      background-size: 405px 86px;
+      top: -50px;
+      left: 115px;
+		}
+	}
+	h4 {
+		font-size: 26px;
+		color: #fbd58b;
+		margin: 30px auto;
+		text-align: center;
+		b {
+			font-weight: normal;
+			color: #ffff00;
+		}
+	}
+	i {
+		display: block;
+		width: 231px;
+		height: 242px;
+		background: transparent url(../../img/activity/laborday/laborday-03.jpg) 0 0 no-repeat;
+		background-size: 231px 242px;
+		margin: 0 auto 65px;
+	}
+}
+
+.popup {
+	.content {
+		width: 538px;
+		height: 385px;
+		background: transparent url(../../img/activity/laborday/laborday-05.png) 0 0 no-repeat;
+		background-size: 538px 385px;
+		padding-top: 150px;
+		box-sizing: border-box;
+		p {
+			font-size: 0;
+			width: 450px;
+			margin: 0 auto;
+			text-align: center;
+			color: #333;
+			line-height: 100px;
+			height: 100px;
+			span {
+				display: inline-block;
+				font-size: 30px;
+				line-height: 50px;
+				vertical-align: middle;
+			}
+		}
+		a {
+			width: 360px;
+			line-height: 70px;
+			font-size: 30px;
+			background: #be292b;
+			border-radius: 30px;
+			margin-top: 15px;
+		}
+		span.close {
+			top: 100px;
+			right: 25px;
+			cursor: pointer;
+			&:before, &:after {
+				background: #cf0b00;
+			}
+		}
+	}
+}
+
+a:hover {
+	text-decoration: none;
+}

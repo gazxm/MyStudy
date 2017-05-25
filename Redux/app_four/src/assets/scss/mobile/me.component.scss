@@ -1,0 +1,142 @@
+@import '../common/base';
+@mixin tab-img {
+  @each $i in gold, coupon, pack{
+    a.#{$i}-tab{
+      background: url("../../img/mobile/me/#{$i}.png") no-repeat 0 50%;
+      background-size: 51px 51px;
+    }
+  }
+}
+.me {
+  canvas {
+    background: $main;
+    width: 100%;
+  }
+  a:hover, a:visited, a:link, a:active
+  {
+    text-decoration: none;
+  }
+  .head {
+    position: relative;
+    background: #fff;
+    ul.content {
+      position: absolute;
+      left: 360px;
+      top: 80px;
+      color: #fff;
+      line-height: 40px;
+      a {
+        font-size: 24px;
+        color: #a7ddff;
+        text-decoration: underline;
+      }
+      li {
+        font-size: 28px;
+        i {
+          font-size: 32px;
+          font-style: normal;
+        }
+      }
+      li:first-child {
+        font-size: 26px;
+      }
+      li:nth-child(2) {
+        padding-left: 30px;
+        position: relative;
+        &:before{
+          content: '';
+          display: block;
+          width: 15px;
+          height: 15px;
+          position: absolute;
+          left: 0;
+          top: 10px;
+          border: 4px solid #fff;
+          border-radius: 40px;
+        }
+      }
+      li:last-child{
+        position: relative;
+        padding-left: 30px;
+        &:before{
+          content: '';
+          display: block;
+          width: 15px;
+          height: 15px;
+          position: absolute;
+          left: 0;
+          top: 10px;
+          background: #ff8003;
+          border: 2PX solid #fff;
+          border-radius: 5px;
+        }
+      }
+    }
+    .tab {
+      padding: 20px 0;
+      margin-bottom: 22px;
+      .am-flexbox-item:not(:last-child){
+        border-right: 2px solid $line;
+      }
+      @include tab-img;
+      a {
+        display: block;
+        font-size: 28px;
+        color: $h1;
+        width: 170px;
+        margin:0 auto;
+        text-align: right;
+        line-height: 1.6em;
+      }
+      a.gold-tab{
+        width: 130px;
+      }
+      a.coupon-tab{
+        width: 150px;
+      }
+    }
+  }
+  .am-list-body div:not(:last-child) .am-list-line:after{
+    display: none;
+  }
+  .am-list-item .am-list-line .am-list-content{
+    color: $h1;
+    font-size: 28px;
+  }
+  .am-list-item .am-list-line .am-list-extra{
+    font-size: 28px;
+  }
+  .am-list-item {
+    border-bottom: 1PX solid #ddd;
+  }
+  .am-list-item img {
+    width: 51px;
+    height: 51px;
+  }
+  .am-list{
+    margin-bottom: 22px;
+  }
+
+  div.btn{
+    padding: 30px;
+    margin-bottom: 100px;
+    .am-button{
+      font-size: 32px;
+      color:$h1;
+    }
+  }
+}
+
+.am-list-body div:not(:last-child) .am-list-line:after{
+  display: none;
+}
+
+.order-nothing {
+  background: url(../../img/mobile/misc/icon-1.png) 50% 0 no-repeat;
+  background-size: 217px 174px;
+  padding-top: 190px;
+  text-align: center;
+  font-size: 28px;
+  color: $h1;
+  margin-top: 300px;
+}

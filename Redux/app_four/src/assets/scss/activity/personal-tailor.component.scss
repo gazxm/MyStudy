@@ -1,0 +1,288 @@
+.personal-tailor {
+	width: 750px;
+	height: 4050px;
+	background: transparent url(../../img/activity/personal-tailor/tailor-01.jpg) 0 0 no-repeat;
+	background-size: contain;
+	a.rule {
+    font-size: 46px;
+    line-height: 1.4em;
+    color: #490809;
+    display: block;
+    width: 175px;
+    height: 175px;
+    background: #fee555;
+    border-radius: 50%;
+    border: 5px solid #490809;
+    box-shadow: 5px 5px 8px #60250e;
+    text-align: center;
+    padding-top: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 560px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 5;
+	}
+	a.rule:hover {
+		text-decoration: none;
+	}
+	ul {
+		margin-top: 1010px;
+		position: relative;
+		li {
+			width: 216px;
+			height: 216px;
+			border-radius: 50%;
+			background: transparent;
+			position: absolute;
+			cursor: pointer;
+			h3 {
+				font-size: 40px;
+				font-weight: bold;
+				text-align: center;
+				margin-top: 36px;
+				color: #fd702a;
+				line-height: 1.4em;
+			}
+			img {
+				display: block;
+				width: 105px;
+				height: 105px;
+				margin: 0 auto;
+			}
+			&:nth-child(odd) {
+				left: 87px;
+			}
+			&:nth-child(even) {
+				left: 478px;
+			}
+			&:nth-child(2) {
+				top: 213px;
+				h3 {
+					color: #22a1e3;
+				}
+			}
+			&:nth-child(3) {
+				top: 405px;
+				left: 60px;
+				h3 {
+					color: #50bb33;
+				}
+			}
+			&:nth-child(4) {
+				top: 580px;
+				left: 461px;
+				h3 {
+					color: #f24aad;
+				}
+			}
+			&:nth-child(5) {
+				top: 815px;
+				left: 70px;
+				h3 {
+					color: #22a1e3;
+				}
+			}
+			&:nth-child(6) {
+				top: 1042px;
+				left: 453px;
+				h3 {
+					color: #50bb33;
+				}
+			}
+			&:nth-child(7) {
+				top: 1258px;
+				left: 62px;
+				h3 {
+					color: #416abe;
+				}
+			}
+			&:nth-child(8) {
+				top: 1442px;
+				left: 480px;
+				h3 {
+					color: #22a1e3;
+				}
+			}
+			&:nth-child(9) {
+				top: 1698px;
+				left: 50px;
+				h3 {
+					color: #50bb33;
+				}
+			}
+			&:nth-child(10) {
+				top: 1863px;
+				left: 467px;
+				h3 {
+					color: #d4520c;
+				}
+			}
+		}
+	}
+}
+
+.popup {
+	.close {
+		width: 54px;
+		height: 54px;
+		border: 5px solid #fff;
+		border-radius: 50%;
+		background: #e7494d;
+		cursor: pointer;
+		top: -22px;
+		right: -22px;
+		&:before, &:after {
+			background: #fff;
+			width: 40px;
+			left: 8px;
+			top: 46%;
+		}
+	}
+	.content {
+		width: 500px;
+		border-radius: 20px;
+		a.click {
+			font-size: 36px;
+			color: #fff;
+			line-height: 90px;
+			width: 390px;
+			background: #e7494d;
+			border-radius: 20px;
+		}
+		p {
+			font-size: 28px;
+			line-height: 40px;
+			text-align: center;
+			color: #000;
+		}
+	}
+}
+
+.popup-rule {
+	.close {
+		width: 54px;
+		height: 54px;
+		border: 5px solid #fff;
+		border-radius: 50%;
+		background: #e7494d;
+		cursor: pointer;
+		top: -22px;
+		right: -22px;
+		&:before, &:after {
+			background: #fff;
+			width: 40px;
+			left: 8px;
+			top: 46%;
+		}
+	}
+	.content {
+		padding: 0;
+		width: 575px;
+		border-radius: 20px;
+		h3 {
+      line-height: 84px;
+      font-size: 30px;
+      color: #fff;
+      background: #e7494d;
+      text-align: center;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+		}
+		.rule-content {
+			padding: 40px 60px 50px;
+			p {
+				font-size: 26px;
+				line-height: 48px;
+			}
+		}
+	}
+}
+
+.popup-show {
+	.close {
+		width: 0;
+		height: 0;
+		&:before, &:after {
+			content: none
+		}
+	}
+	.content {
+		width: 650px;
+		background: #a5e14f;
+		border-radius: 25px;
+		padding: 0;
+		.all-content {
+			width: 610px;
+			margin: 20px auto;
+			background: #fff;
+			padding: 50px 0 40px;
+			h3 {
+				font-size: 46px;
+				color: #414141;
+				font-weight: bold;
+				text-align: center;
+				b {
+	        color: #f86116;
+				}
+			}
+			.popup-icon {
+				width: 600px;
+				height: 373px;
+				position: relative;
+				background: transparent url(../../img/activity/personal-tailor/tailor-04.jpg) 0 0 no-repeat;
+				background-size: contain;
+				img {
+					width: 137px;
+					height: 137px;
+          position: absolute;
+          top: 45%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+				}
+			}
+			h4, p {
+				font-size: 32px;
+				line-height: 54px;
+				text-align: center;
+				color: #6d6d6d;
+			}
+			p {
+				color: #fd702a;
+			}
+			a.click {
+				font-size: 42px;
+				line-height: 115px;
+				width: 550px;
+				margin: 20px auto;
+				border-radius: 25px;
+				padding-left: 100px;
+				background: #f86116;
+				position: relative;
+				cursor: pointer;
+				box-sizing: border-box;
+				&:before {
+					content: '';
+					display: block;
+					width: 89px;
+					height: 89px;
+					background: #fff url(../../img/activity/personal-tailor/tailor-03.png) 50% 50% no-repeat;
+					background-size: 63px 53px;
+					position: absolute;
+					top: 14px;
+					left: 135px;
+					border-radius: 50%;
+				}
+			}
+			a.click:hover {
+				text-decoration: none;
+			}
+			h5 {
+				font-size: 30px;
+				line-height: 50px;
+				text-align: center;
+				color: #343434;
+			}
+		}
+	}
+}

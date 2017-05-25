@@ -1,0 +1,44 @@
+@import '../common/base';
+@import '../common/custom-style';
+html, body{
+  background:$bg;
+}
+.credit-tied-card{
+  background:$bg;
+  padding-top: 20px;
+  p.error{
+    padding: 0 30px;
+    font-size: 24px;
+    color:$h3;
+    line-height: 1.6em;
+    margin-top:10px;
+    color:$warning;
+  }
+  .am-list-item .am-list-line .am-list-extra{
+    flex-basis:60%;
+  }
+
+  .am-list-item .am-input-label {
+    color: $h1;
+  }
+  a.timer{
+    text-align: center;
+    text-decoration: none;
+    width: 100px;
+    line-height: 60px;
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 60px;
+    color: $h1;
+    border-left: 1PX solid $line;
+    padding-left: 40px;
+    font-size: 32px;
+  }
+  a.timer.disabled {
+    color: $h3;
+  }
+  .custom-button{
+    padding: 60px 30px;
+  }
+}

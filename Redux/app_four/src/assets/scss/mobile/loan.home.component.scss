@@ -1,0 +1,500 @@
+@import '../common/base';
+.am-list-body:after{
+  display: none;
+}
+.am-list-body{
+  background: $bg;
+}
+.am-slider-step{
+  height: 10px;
+}
+.am-slider-track, .am-slider{
+  height: 10px;
+}
+.am-slider-track{
+  background: $main;
+}
+.am-slider-handle{
+  border-color: $main;
+}
+
+.loan-home {
+  width: 750px;
+  margin-bottom:70px;
+  .btn{
+    background: $main;
+    color: #fff;
+    margin: 40px 0;
+    border-radius: 30px;
+    border: 1PX solid $main;
+  }
+  .content{
+    margin: 0 30px;
+    background: #fff;
+    padding: 30px;
+    color: $h1;
+    font-size: 28px;
+    .amount{
+      color:$main;
+    }
+    .slider-range{
+      color: $h3;
+    }
+    p {
+      line-height: 60px;
+      span {
+        display: block;
+        &:first-child{
+          float: left;
+        }
+        &:last-child{
+          margin-left: 200px;
+          text-align: right;
+        }
+      }
+      span.icon{
+        padding-right: 28px;
+        background: url(../../img/mobile/loan/icon_service_charge_tip.png) 100% 50% no-repeat;
+        background-size: 28px 28px;
+      }
+    }
+    div.day {
+      padding: 40px 0;
+      >span {
+        display: block;
+        &:first-child{
+          float: right;
+          button{
+            margin: 0;
+            margin-left: 20px;
+            width: 180px;
+            height: 60px;
+            line-height: 60px;
+            float: left;
+            background: transparent;
+            border-color: $main;
+            &.am-button{
+              font-size: 28px;
+              color: $main;
+            }
+          }
+          button.active{
+            background: $main;
+            color: #fff;
+          }
+        }
+        &:last-child{
+          line-height: 60px;
+        }
+      }
+    }
+  }
+  .carousel{
+    padding: 20px 30px;
+    color: $warning;
+    font-size: 28px;
+  }
+  .wrap {
+    background: #233845;
+    padding-bottom: 30px;
+    height: 500px !important;
+    >h1 {
+      font-size: 32px;
+      text-align: center;
+      color:#fff;
+      padding: 20px 0;
+    }
+    .credit{
+      width: 630px;
+   //   height: 371px;
+      background: $main;
+      position: relative;
+      margin: 0 auto;
+      border-radius: 10px;
+      padding: 16px 0;
+    }
+    p.title{
+      padding: 5px 40px;
+      background: #257fc7;
+      color: #77caff;
+      font-size: 22px;
+    }
+    h2 {
+      font-size: 36px;
+      color: #fff;
+      padding: 30px 0 0 40px;
+    }
+    p.quota{
+      padding: 0 40px;
+      text-align: right;
+      color:#257fc7;
+      font-size: 24px;
+      line-height: 24px;
+    }
+    div.number{
+      padding: 0 40px;
+      background: url(../../img/mobile/loan/card-heart-1.png) 30px 50% no-repeat;
+      background-size: 83px 83px;
+      &.card-heart-2 {
+        background-image: url(../../img/mobile/loan/card-heart-2.png);
+      }
+      h3{
+        font-size: 90px;
+        line-height: 83px;
+        color:#fff;
+        text-align: right;
+      }
+      h3.amount-title{
+        font-size: 60px;
+      }
+    }
+    p.credit-number {
+      font-size: 46px;
+      color:#257fc7;
+      text-align: justify;
+      letter-spacing: 0.01em;
+      vertical-align: top;
+      width: 560px;
+      margin: 30px auto 0;
+      height: 90px;
+      &::after {
+        content:"";
+        display: inline-block;
+        width:100%;
+        overflow:hidden;
+        height:0;
+      }
+    }
+    div.info{
+      width: 560px;
+      margin: 0 auto;
+      font-size: 28px;
+      line-height: 28px;
+      span{
+        display: block;
+        color:#257fc7;
+        padding: 5px 0;
+      }
+      a {
+        font-size: 26px;
+        display: block;
+        float: right;
+        background: #257fc7;
+        color:#77caff;
+        padding: 5px 10px;
+        border-radius: 8px;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .gold-card{
+    .credit{
+      background:#ecbe06;
+      p.title, div.info a{
+        background:#a6880e;
+        color:#ecbe06;
+      }
+      p.quota, p.credit-number, div.info span{
+        color:#a6880e;
+      }
+    }
+  }
+
+  .repayment{
+    padding: 0;
+    h1,h3{
+      font-size: 28px;
+      color:$main;
+      text-align: center;
+    }
+    h1{
+      font-size: 50px;
+      line-height: 1.2em;
+      padding-bottom: 70px;
+    }
+    h3{
+      padding-top: 80px;
+    }
+    div {
+      padding: 40px 30px;
+      border-top: 1PX solid $line;
+      a {
+        display: block;
+        color: #fff;
+        font-size: 32px;
+        height: 71px;
+        line-height: 71px;
+        background: $main;
+        text-align: center;
+        width: 100%;
+        border-radius: 30px;
+        margin: 40px 0;
+      }
+    }
+    p{
+      line-height: 1.4em;
+    }
+  }
+  .repayment-btn{
+    padding: 30px;
+    margin-bottom: 60px;
+  }
+  .repayment-list{
+    background: #fff;
+    padding: 40px 30px;
+    a {
+      display: block;
+      height: 92px;
+      line-height: 92px;
+      background: $main;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      font-size: 32px;
+      margin: 30px 20px;
+      border-radius: 40px;
+    }
+    ul>li {
+      color: $h3;
+      position: relative;
+      padding-left: 60px;
+      margin-bottom: 60px;
+      background: url(../../img/mobile/loan/icon_02.png) 0 8px no-repeat;
+      background-size: 35px 35px;
+      &:last-child {
+        margin-bottom: 0;
+        &:after {
+          display: none;
+        }
+      }
+      &:first-child {
+        &:before {
+          display: none;
+        }
+      }
+      &:before {
+        content: '';
+        display: block;
+        width: 4px;
+        height: 58px;
+        background: #dddddd;
+        position: absolute;
+        top: -50px;
+        left: 15px;
+      }
+      &:after {
+        content: '';
+        display: block;
+        width: 4px;
+        height: 60px;
+        background: #ddd;
+        position: absolute;
+        top: 42px;
+        left: 15px;
+      }
+      h1 {
+        font-size: 32px;
+        padding-bottom: 10px;
+        color:$h2;
+      }
+      p,
+      span {
+        font-size: 26px;
+      }
+    }
+    ul>li.do {
+      &:first-child {
+        background-image: url(../../img/mobile/loan/icon_01.png);
+        &:after {
+          background: #4ab6fa;
+        }
+        h1 {
+          color: $h1;
+        }
+        p {
+          color: $h1;
+        }
+      }
+    }
+    ul>li.die {
+      &:first-child {
+        background-image: url(../../img/mobile/loan/icon_03.png);
+        &:after {
+          background: #ff8003;
+        }
+        h1 {
+          color: #000;
+          span {
+            color: $h1;
+          }
+        }
+        p {
+          color: $h1;
+        }
+      }
+    }
+  }
+}
+
+.horizontal-slider {
+  width: 100%;
+  height: 50px;
+  margin: 30px 0 0;
+}
+.handle {
+  font-size: 28px;
+  text-align: center;
+  background: #fff;
+  border: 2PX solid $main;
+  color: $h3;
+  cursor: pointer;
+}
+
+.handle.active {
+  //  background-color: grey;
+}
+
+.bar {
+  position: relative;
+  background: $main;
+  border-radius: 10px;
+}
+
+.bar.bar-1 {
+  background: #ddd;
+}
+
+.horizontal-slider .bar {
+  top: 20px;
+  height: 10px;
+}
+
+.horizontal-slider .handle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  position: relative;
+  div {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  &:after{
+    content: '';
+    display: block;
+    width: 5px;
+    height: 25px;
+    background: $main;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -12.5px;
+    margin-left: -2.5px;
+  }
+  &:before{
+    content: '';
+    display: block;
+    width: 15px;
+    height: 25px;
+    border: 5px solid $main;
+    border-bottom:none;
+    border-top: none;
+    border-radius: 2px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -12.5px;
+    margin-left: -12px;
+  }
+}
+
+
+.popup-fee {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,.7);
+  .fee{
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 10px;
+    width: 635px;
+    padding:47px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    h2{
+      font-size: 36px;
+      color:$h1;
+      text-align: center;
+    }
+    ul {
+      li:not(:last-child){
+        border-bottom: 1PX solid $line;
+      }
+      li {
+        line-height: 60px;
+        font-size: 24px;
+        color: $h2;
+        span{
+          display: block;
+          &:first-child{
+            float: left;
+          }
+          &:last-child{
+            text-align: right;
+          }
+        }
+        &:last-child{
+          color: $h1;
+          font-size: 28px;
+          line-height: 100px;
+        }
+      }
+    }
+    .btn {
+      border-radius: 10px;
+      margin: 20px 0;
+      background: $main;
+      color: #fff;
+      border: none;
+    }
+    p {
+      color: $h2;
+      font-size: 24px;
+    }
+  }
+}
+
+.home-open-app {
+  z-index: 21;
+  position: fixed;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -200%);
+  span {
+    display: inline-block;
+    &:first-child{
+      background: url(../../img/mobile/loan/overlay_openapp.png) 0 0 no-repeat;
+      background-size: 408px 98px;
+      width: 408px;
+      height: 98px;
+    }
+    &:last-child {
+      background: url(../../img/mobile/loan/overlay_openapp_close.png) 0 0 no-repeat;
+      background-size: 48px 49px;
+      width: 48px;
+      height: 49px;
+      position: absolute;
+      right: -48px;
+      top: -20px;
+    }
+  }
+}

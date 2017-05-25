@@ -1,0 +1,127 @@
+.gold {
+	width: 750px;
+	background: #7513fa url(../../img/activity/experience-gold/gold-01.jpg) 0 0 no-repeat;
+	background-size: 750px 795px;
+	padding: 1PX 0;
+	p.num {
+		margin-top: 575px;
+		text-align: center;
+		font-size: 22px;
+		color: #500;
+		b {
+			display: inline-block;
+			margin-left: 3PX;
+			color: #ff4824;
+		}
+	}
+	a {
+		display: block;
+		width: 451px;
+		height: 90px;
+		line-height: 85px;
+		font-size: 32px;
+		color: #fff;
+		text-align: center;
+		margin: 200px auto 0;
+		background: transparent url(../../img/activity/experience-gold/gold-02.png) 0 0 no-repeat;
+		background-size: 451px 90px;
+	}
+	.rule {
+		width: 630px;
+		padding: 0 20px;
+		background: #5605cd;
+		border-radius: 15px;
+		margin: 45px auto 20px;
+		h3 {
+			color: #ffbc01;
+			font-size: 28px;
+			font-weight: bold;
+			text-align: center;
+			line-height: 60px;
+			position: relative;
+			span {
+				&:before, &:after {
+					content: '';
+					display: block;
+					height: 2PX;
+					width: 162px;
+					position: absolute;
+					background: #ffbc01;
+					top: 30px;
+				}
+				&:before {
+					left: 35px;
+				}
+				&:after {
+					right: 35px;
+				}
+			}
+			&:before, &:after {
+				content: '';
+				display: block;
+				width: 12px;
+				height: 12px;
+				border: 2PX solid #ffbc01;
+				border-radius: 50%;
+				position: absolute;
+				top: 23px;
+			}
+			&:before {
+				left: 20px;
+			}
+			&:after {
+				right: 20px;
+			}
+		}
+		p.p-head {
+			font-size: 26px;
+			font-weight: bold;
+			color: #fff;
+			line-height: 46px;
+			margin: 7px 0;
+		}
+		p {
+			font-size: 24px;
+			line-height: 42px;
+			color: #b078fb;
+		}
+		p.center {
+			text-align: center;
+		}
+	}
+}
+
+.popup {
+	.content {
+		width: 525px;
+		border-radius: 20px;
+		padding-bottom: 0;
+		p {
+			padding: 15px 0 60px;
+			text-align: center;
+			color: #333;
+			font-size: 30px;
+			line-height: 50px;
+		}
+		a {
+			background: #7513fa;
+			font-size: 36px;
+			color: #fff;
+			line-height: 100px;
+			width: 100%;
+			border-bottom-left-radius: 20px;
+			border-bottom-right-radius: 20px;
+			margin-top: 0;
+		}
+		.close {
+			top: 10px;
+			&:before, &:after {
+				height: 3PX;
+				color: #999;
+			}
+		}
+	}
+}
+a:hover {
+	text-decoration: none;
+}

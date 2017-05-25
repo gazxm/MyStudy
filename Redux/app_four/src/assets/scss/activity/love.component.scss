@@ -1,0 +1,217 @@
+.love{	
+	background: #f3d5e1 url(../../img/activity/love/bg_02.jpg) 0 0 no-repeat;
+	width: 750px;
+	height: 2500px;
+	background-size: 750px 2424px;
+	position: relative;
+	.btn{
+		display: block;
+		border: none;
+		width: 229px;
+		height: 51px;
+		background: #ee4250 url(../../img/activity/love/icon-1.png) 30px 50% no-repeat;
+		background-size: 30px 26px;
+		border-bottom: 5px solid #bb1734;
+		box-shadow: 0 5px 5px #e0bccc;
+		border-radius: 30px;
+		span{
+			display: block;
+			line-height: 51px;
+			padding-left: 30px;
+			font-size: 30px;
+			color: #fff;
+		}
+	}
+	.btn1 {
+		position: absolute;
+		left: 125px;
+		top: 920px;
+		transform:rotateZ(-9deg);
+	}
+	.btn2 {
+		position: absolute;
+		right:95px;
+		top: 1120px;
+		transform:rotateZ(5deg);
+	}
+	.btn3 {
+		position: absolute;
+		left:100px;
+		top: 1370px;
+		transform:rotateZ(-1deg);
+	}
+	.btn4 {
+		position: absolute;
+		right:75px;
+		top: 1550px;
+		transform:rotateZ(1deg);
+	}
+  .bt{
+ 	  display: block;
+		border: none;
+		width: 255px;
+		height: 62px;
+		background: #ee4250 url(../../img/activity/love/icon-2.png) 20px 50% no-repeat;
+		background-size: 40px 35px;
+		border-radius: 8px;
+		margin: 50px auto 0;
+		border-bottom: 8px solid #bb1734;
+		box-shadow: 0 8px 8px #e0bccc;
+		z-index: 6;
+		span{
+			display: block;
+			line-height: 62px;
+			padding-left: 50px;
+			font-size: 32px;
+			color: #fff;
+		} 
+  }
+  p {
+  	font-size: 24px;
+  	color: #999;
+  	margin-top: 30px;
+  	text-align: center;
+  }
+  .barrage {
+  	width: 632px;
+  	height: 465px;
+  	background: transparent url(../../img/activity/love/barrage-01.png) 0 0 no-repeat;
+  	background-size: contain;
+  	position: relative;
+  	margin: 1800px 0 0 90px;
+  	padding: 1PX;
+  	&:before, &:after {
+  		content: '';
+  		display: block;
+  		position: absolute
+  	}
+  	&:before {
+  		width: 210px;
+  		height: 265px;
+  		background: transparent url(../../img/activity/love/barrage-03.png) 0 0 no-repeat;
+  		background-size: contain;
+  		top: 15px;
+  		left: -30px;
+  		z-index: 5;
+  	}
+  	&:after {
+  		width: 377px;
+  		height: 203px;
+  		background: transparent url(../../img/activity/love/barrage-02.png) 0 0 no-repeat;
+  		background-size: contain;
+  		top: 280px;
+  		left: -60px;
+  		z-index: 5;
+  	}
+  	.barrage-content {
+  		width: 470px;
+  		height: 150px;
+  		margin: 210px 0 0 60px;
+  		position: relative;
+  		overflow: hidden;
+  		div {
+  			font-size: 24px;
+  			line-height: 48px;
+  			color: #535353;
+  			position: absolute;
+  			white-space: nowrap;
+  			left: 750px;
+  		}
+  		.transition {
+  			transition: all 5s linear;
+  		}
+  		.color-0 {
+  			color: #535353;
+  		}
+  		.color-1 {
+        color: #eb6100;
+  		}
+  		.color-2 {
+        color: #ee4250;
+  		}
+  	}
+  }
+}
+
+.popup {
+	.content {
+		width: 632px;
+		height: 465px;
+		padding: 0;
+		left: 53%;
+		background: transparent url(../../img/activity/love/barrage-01.png) 0 0 no-repeat;
+    background-size: contain;
+    &:before, &:after {
+  		content: '';
+  		display: block;
+  		position: absolute
+  	}
+  	&:before {
+  		width: 210px;
+  		height: 265px;
+  		background: transparent url(../../img/activity/love/barrage-03.png) 0 0 no-repeat;
+  		background-size: contain;
+  		top: 15px;
+  		left: -30px;
+  		z-index: 5;
+  	}
+  	&:after {
+  		width: 377px;
+  		height: 203px;
+  		background: transparent url(../../img/activity/love/barrage-02.png) 0 0 no-repeat;
+  		background-size: contain;
+  		top: 280px;
+  		left: -60px;
+  		z-index: 5;
+  	}
+	}
+	.close {
+		width: 30px;
+		height: 30px;
+		top: 15px;
+		right: 60px;
+		&:before, &:after {
+			height: 2px;
+			width: 30px;
+			height: 4PX;
+			background: #fff;
+		}
+	}
+	p {
+		font-size: 30px;
+		line-height: 60px;
+		text-align: center;
+		margin-top: 220px;
+		margin-left: -30px;
+	}
+	input {
+		display: block;
+		width: 290px;
+    border: 1PX solid #e5e5e5;
+    border-radius: 20px;
+    height: 100px;
+    margin: 0 auto;
+    font-size: 22px;
+    color: #666;
+    padding: 0 20px;
+	}
+	input::-webkit-input-placeholder {
+		color: #dcdcdc;
+	}
+	a {
+		position: absolute;
+		background: #ff3f5e;
+		font-size: 30px;
+		width: 252px;
+		line-height: 56px;
+		border-radius: 10px;
+		border-bottom: 8px solid #bb122f;
+		bottom: -100px;
+		cursor: pointer;
+		left: 48%;
+		transform: translateX(-50%);
+	}
+	a:hover {
+		text-decoration: none;
+	}
+}

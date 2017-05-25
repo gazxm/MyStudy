@@ -1,0 +1,143 @@
+.update{
+	 background: url(../../img/activity/update/bg.jpg) 0 0 no-repeat;
+	width: 750px;
+	height: 1730px;
+	background-size: 750px  1730px;
+	position: relative;
+	.content{
+		   margin-top: 788px;
+           padding:0px 28px;
+    	 .public{
+             position:relative;
+             border: 4px solid #ffe348;
+             border-radius: 25px;
+             background-color: #ffffff;
+             img{
+                  width: 242px;
+                  height: 229px;
+                  border-radius: 22px 0px 0px 22px;
+                  display:block;
+             }
+            ul{
+            	position: absolute;
+            	right: 54px;
+            	top:31px;
+            	li{
+            		line-height: 44px;
+            		border-bottom:1px solid #cecece;
+            		color: #606060;
+            		.span1{
+            			color: #ff7506;
+            			font-size: 35px;
+            		}
+            		.span2{
+            			color: #8e00e9;
+            			font-size: 30px;
+            		}
+                 }
+           }
+	    	
+	}
+	.content-middle{
+		margin: 18px 0px;
+	}
+
+}
+ .bt1{
+ 	 position: fixed;
+ 	 bottom:42px;
+ 	 left:28px; 
+ 	 // bottom:3%;
+ 	 // left:5%;
+ 	 background-color:#2ea7f1;
+ 	 width: 330px;
+ 	 height: 94px;
+ 	 border-radius:20px;
+ 	 border:none;
+ 	 color:#fff;
+ 	 font-size: 28px;
+ 	 box-shadow：-webkit-box-shadow:0 9px 15px #0a5f93; /*底边阴影*/
+ 	                                // -10px 0.5px 10px #0a5f93, /*左边阴影*/  
+                                    // 10px 0.5px 10px #0a5f93; /*右边阴影*/    
+                 -moz-box-shadow: 0 9px 15px #0a5f93; /*底边阴影*/
+                                  // -10px 0.5px 10px #0a5f93, /*左边阴影*/  
+                                  // 10px 0.5px 10px #0a5f93; /*右边阴影*/         
+                 box-shadow:0 9px 15px #0a5f93;/*底边阴影*/
+                            // -10px 0.5px 10px #0a5f93, /*左边阴影*/  
+                            // 10px 0.5px 10px #0a5f93; /*右边阴影*/    
+                                         
+
+ }
+ .bt2{
+ 	 position: fixed;
+ 	 bottom:42px;
+ 	 right:28px;
+ 	 // bottom:3%;
+ 	 // right:5%; 
+    background-color:#ff9e06;
+ 	 width: 330px;
+ 	 height: 94px;
+ 	 border-radius:20px;
+ 	 border:none;
+ 	 color:#FFF;
+ 	 font-size:28px;
+ 	 -webkit-box-shadow:0 9px 15px #855100; /*底边阴影*/   
+     -moz-box-shadow: 0 9px 15px #855100; /*底边阴影*/     
+     box-shadow:0 9px 15px #855100; /*底边阴影*/
+ }
+}
+
+
+.popup{
+
+	.content{
+		width: 506px;
+		height: 308px;
+		background-color:#fff;
+		border-radius:25px;
+		padding: 0;
+		left:50%;
+	}
+	p{
+		font-size:28px;
+        color: #000000;
+		text-align: center;
+		margin-top: 88px;
+		font-family: "微软雅黑";
+	}
+	a{
+		position: absolute;
+		background: #8e00e9;
+		font-size: 36px;
+		color: #fff;
+		width: 388px;
+		line-height: 90px;
+		border-radius: 25px;
+		cursor: pointer;
+		left: 50%;
+		bottom:15%;
+		transform: translateX(-50%);
+	}
+	.close{
+		height: 50px;
+		    width: 50px	;
+            border: 5px solid #fff;
+		    border-radius:50%;
+		    background-color:#8e00e9;
+		    top:-7%;
+            right:-5%;
+           
+            &:before, &:after {
+			height: 2px;
+			width: 35px;
+			height: 3PX;
+			background: #fff;
+            left: 7px;
+		
+		}
+	}
+	a:hover {
+		text-decoration: none;
+	}
+
+}

@@ -1,0 +1,54 @@
+@import '../common/base';
+
+.coupon {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: $bg;
+  .expired{
+    span:first-child{
+      background: $h3;
+    }
+    span:last-child{
+      background: #fff url(../../img/mobile/misc/benefit_expired.png) 100% 0 no-repeat;
+      background-size: 121px 114px;
+    }
+  }
+  .used {
+    span:first-child{
+      background: $h3;
+    }
+    span:last-child{
+      background: #fff url(../../img/mobile/misc/benefit_used.png) 100% 0 no-repeat;
+      background-size: 121px 114px;
+    }
+  }
+}
+
+.result {
+  padding-top: 40%;
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+  p {
+    text-align: center;
+    font-size: 28px;
+    color: $h1;
+    line-height: 3em;
+  }
+  a {
+    font-size: 24px;
+    color: $main;
+  }
+}
+
+.am-list-footer{
+  text-align: center;
+  a {
+    font-size: 24px;
+    color: $main;
+  }
+}

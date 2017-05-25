@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>给jpg添加透明通道</title>
+	<style type="text/css">
+		
+	</style>
+</head>
+
+<body>
+	<svg preserveAspectRatio="xMinYMin" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 560 1388"> 
+		<defs>
+			<mask id="canTopMask">
+				<image width="560" height="1388" xlink:href="img/can-top-alpha.png"></image>
+			</mask>
+		</defs>
+		<image mask="url(#canTopMask)" id="canTop" width="560" height="1388" xlink:href="can-top.jpg"></image> 
+	</svg>
+	<img src="hero-image.svg" />
+</body>
+
+</html>

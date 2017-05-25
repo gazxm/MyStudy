@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>transform-style和Perspective属性</title>
+	<style type="text/css">
+		.wrap {
+			width: 500px;
+			height: 300px;
+			margin: 30px auto;
+			position: relative;
+			background: #fff;
+		}
+
+		/*设置动画*/
+		@keyframes spin {
+			0% {
+				transform: rotateY(0deg)
+			}
+			100% {
+				transform: rotateY(360deg)
+			}
+		}
+		.spin {
+			width: 142px;
+			height: 200px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-left: -72px;
+			margin-top: -101px;
+			border: 1px dashed orange;
+			cursor: pointer;
+			transform-style: preserve-3d;
+		}
+
+		/*调用动画*/
+		.spin:hover {
+			animation: spin 5s linear infinite;
+		}
+		.rotate {
+			border: 5px solid hsla(50, 50%, 50%, .9);
+			transform: perspective(200px) rotateY(45deg);
+		}
+		.rotate img {
+			border: 1px solid green;
+			transform: rotateX(15deg) translateZ(10px);
+			transform-origin: 0 0 40px;
+		}
+
+		/*改变transform-style的默认值*/
+		.three-d {
+			transform-style: preserve-3d;
+			overflow: hidden;	
+			/*	如果你的元素设置了transform-style值为preserve-3d，就不能为了防止子元素溢出容器而设置overflow值为hidden，如果设置了overflow:hidden同样可以迫死子元素出现在同一平面（和元素设置了transform-style为flat一样的效果）*/
+		}
+
+		/*第二个*/
+		.div {
+			width: 500px;
+			height: 300px;
+			margin: 30px auto;
+			position: relative;
+			background: #fff;
+		}
+		.div img {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-left: -71px;
+			margin-top: -100px;
+			transform-origin: bottom;
+		}
+		.div img:nth-child(1) {
+			opacity: .5;
+			z-index: 1;
+		}
+		.div img:nth-child(2) {
+			z-index: 2;
+			transform: rotateX(45deg);
+		}
+		.perspective {
+			perspective: 500px;
+		}
+
+		/*第三个*/
+		.wrapper {
+			width: 50%;
+			float: left;
+		}
+		.cube {
+			font-size: 4em;
+			width: 2em;
+			margin: 1.5em auto;
+			transform-style: preserve-3d;
+			transform: rotateX(-40deg) rotateY(32deg);
+		}
+		.side {
+			position: absolute;
+			width: 2em;
+			height: 2em;
+			background: rgba(255, 99, 71, 0.6);
+			border: 1px solid rgba(0, 0, 0, 0.5);
+			color: white;
+			text-align: center;
+			line-height: 2em;
+		}
+		.front1 {
+			transform: translateZ(1em);
+		}
+		.top {
+			transform: rotateX(90deg) translateZ(1em);
+		}
+		.right {
+			transform: rotateY(90deg) translateZ(1em);
+		}
+		.left {
+			transform: rotateY(-90deg) translateZ(1em);
+		}
+		.bottom {
+			transform: rotateX(-90deg) translateZ(1em);
+		}
+		.back1 {
+			transform: rotateY(-180deg) translateZ(1em);
+		}
+		.w1 {
+			perspective: 100px;
+		}
+		.w2 {
+			perspective: 1000px;
+		}
+
+		/*第四个*/
+		@keyframes r {
+			from {
+				transform: rotateY(0deg);
+			}
+			to {
+				transform: rotateY(180deg);
+			}
+		}
+		.stage {
+			float: left;
+			border: 1px dotted orange;
+			position: relative;
+			margin: 20px;
+			margin-top: 500px;
+			border-radius: 8px;
+			perspective: 1000;
+		}
+		.container {
+			width: 102px;
+			height: 142px;
+			position: relative;
+			transition: 0.5s;
+			transform-style: preserve-3d;
+		}
+		.card {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			backface-visibility: hidden;
+		}
+		.front {
+			background: url(./img/dog.jpg) no-repeat center/100% 100%;
+			z-index: 2;
+		}
+		.back {
+			background: url(./img/horse.jpg) no-repeat center/100% 100%;
+			transform: rotateY(180deg);
+		}
+		.stage:nth-child(1) .container {
+			transform: rotateY(0deg);
+		}
+		.stage:nth-child(2) .container {
+			transform: rotateY(30deg);
+		}
+		.stage:nth-child(3) .container {
+			transform: rotateY(60deg);
+		}
+		.stage:nth-child(4) .container {
+			transform: rotateY(90deg);
+		}
+		.stage:nth-child(5) .container {
+			transform: rotateY(120deg);
+		}
+		.stage:nth-child(6) .container {
+			transform: rotateY(150deg);
+		}
+		.stage:nth-child(7) .container {
+			transform: rotateY(180deg);
+		}
+
+		.container:hover {
+			animation: r 3s ease-in-out infinite alternate;
+		}
+
+		i {
+			display: block;
+			margin-bottom: 800px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- transform-style属性：transform-style属性是3D空间一个重要属性，指定嵌套元素如何在3D空间中呈现。它主要有两个属性值：flat和preserve-3d 
+		transform-style: flat | preserve-3d
+		其中flat值为默认值，表示所有子元素在2D平面呈现。preserve-3d表示所有子元素在3d空间中呈现。
+
+		也就是说，如果对一个元素设置了transform-style的值为flat，则该元素的所有子元素都将被平展到该元素的2D平面中进行呈现。沿着X轴或Y轴方向旋转该元素将导致位于正或负Z轴位置的子元素显示在该元素的平面上，而不是它的前面或者后面。如果对一个元素设置了transform-style的值为preserve-3d，它表示不执行平展操作，他的所有子元素位于3D空间中。
+	-->
+	<div class="wrap">
+    <div class="spin">
+        <div class="rotate">
+            <img src="./img/artwork.jpg" alt="" width="142" height="200" />
+        </div>
+    </div>
+	</div>
+	<div class="wrap">
+	    <div class="spin">
+	        <div class="rotate three-d">
+	            <img src="./img/artwork.jpg" alt="" width="142" height="200" />
+	        </div>
+	    </div>
+	</div>
+	<!-- 其实对于perspective属性，我们可以简单的理解为视距，用来设置用户和元素3D空间Z平面之间的距离。而其效应由他的值来决定，值越小，用户与3D空间Z平面距离越近，视觉效果更令人印象深刻；反之，值越大，用户与3D空间Z平面距离越远，视觉效果就很小。
+	 -->
+	<div class='div'> 
+ 		<img src="./img/artwork.jpg" alt="" width="142" height="200" /> 
+ 		<img src="./img/artwork.jpg" alt="" width="142" height="200" /> 
+ 	</div> 
+ 	<div class='div perspective'> 
+ 		<img src="./img/artwork.jpg" alt="" width="142" height="200" /> 
+ 		<img src="./img/artwork.jpg" alt="" width="142" height="200" /> 
+ 	</div>
+
+ 	<div class="wrapper w2"> 
+ 		<div class="cube">
+ 			<div class="side front1">1</div> 
+ 			<div class="side back1">6</div> 
+ 			<div class="side right">4</div> 
+ 			<div class="side left">3</div> 
+ 			<div class="side top">5</div> 
+ 			<div class="side bottom">2</div> 
+		</div> 
+	</div> 
+	<div class="wrapper w1"> 
+		<div class="cube"> 
+			<div class="side front1">1</div> 
+			<div class="side back1">6</div> 
+			<div class="side right">4</div> 
+			<div class="side left">3</div> 
+			<div class="side top">5</div> 
+			<div class="side bottom">2</div> 
+		</div> 
+	</div>
+	<i />
+
+	<!-- perspective-origin属性:
+		perspective-origin属性是3D变形中另一个重要属性，主要用来决定perspective属性的源点角度。它实际上设置了X轴和Y轴位置，在该位置观看者好像在观看该元素的子元素。
+
+		该属性的默认值为“50% 50%”(也就是center)，其也可以设置为一个值，也可以设置为两个长度值：
+
+		直接用上面的做例子就好了
+	-->
+
+	<!-- backface-visibility属性:
+		backface-visibility属性决定元素旋转背面是否可见。对于未旋转的元素，该元素的正面面向观看者。当其Y轴旋转约180度时会导致元素的背面面对观众。
+
+		backface-visibility:visible | hidden
+		visible：为backface-visibility的默认值，表示反面可见
+		hidden：表示反面不可见
+
+		简单点来说，backface-visibility属性可用于隐藏内容的背面。默认情况下，背面可见，这意味着即使在翻转后，旋转的内容仍然可见。但当backface-visibility设置为hidden时，旋转后内容将隐藏，因为旋转后正面将不再可见。该功能可帮助您模拟多面的对象，例如下例中使用的纸牌。通过将backface-visibility设置为hidden，您可以轻松确保只有正面可见。
+	 -->
+
+	<div class="stage"> 
+	 	<div class="container"> 
+	 		<div class="card front"></div> 
+	 		<div class="card back"></div> 
+	 	</div> 
+	</div> 
+	<div class="stage"> 
+		<div class="container"> 
+			<div class="card front"></div> 
+			<div class="card back"></div> 
+		</div> 
+	</div> 
+	<div class="stage"> 
+		<div class="container"> 
+			<div class="card front"></div> 
+			<div class="card back"></div> 
+		</div> 
+	</div> 
+	<div class="stage"> 
+		<div class="container"> 
+			<div class="card front"></div> 
+			<div class="card back"></div> 
+		</div> 
+	</div> 
+	<div class="stage"> 
+		<div class="container"> 
+			<div class="card front"></div> 
+			<div class="card back"></div> 
+		</div> 
+	</div> 
+	<div class="stage"> 
+		<div class="container"> 
+			<div class="card front"></div> 
+			<div class="card back"></div> 
+		</div> 
+	</div> 
+	<div class="stage"> 
+		<div class="container"> 
+			<div class="card front"></div> 
+			<div class="card back"></div> 
+		</div> 
+	</div>
+</body>
+
+</html>

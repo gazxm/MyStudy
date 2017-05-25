@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>a标签嵌套</title>
+	<script type="text/javascript"></script>
+	<style type="text/css">
+		div {
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<a href="http://www.baidu.com">When the crisis was over, <a href="http://www.sina.com">Mr. Jones</a> left the region immediately.</a>
+	</div>
+	<!-- 在浏览器解析的时候，将它们解析成不成套的，浏览器解析上面的html代码将会变成这样： -->
+	<div>
+		<a href="http://www.baidu.com">When the crisis was over, </a>
+		<a href="http://www.sina.com">Mr. Jones</a>
+		left the region immediately.
+	</div>
+	<!-- 然而实际上我们要实现如下的效果 -->
+	<div>
+		<a href="http://www.baidu.com">When the crisis was over, </a>
+		<a href="http://www.sina.com">Mr. Jones</a>
+		<a href="http://www.baidu.com">left the region immediately.</a>
+	</div>
+	<!-- 黑魔法: -->
+	<div>
+		<a href="http://www.baidu.com">When the crisis was over, <object><a href="http://www.sina.com">Mr. Jones</a></object> left the region immediately.</a>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>background-clip实现弹出层透明边框</title>
+	<style>
+		.normal, .background-clip {
+			margin: 0 auto 30px;
+			position: relative;
+		}
+		.text {
+			width: 200px;
+			font-size: 24px;
+			margin: 0 auto;
+		}
+		.normal .pop {
+			position: absolute;
+			width: 150px;
+			height: 100px;
+			display: flex;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			background: rgba(200, 200, 200, 0.7);
+			border-radius: 30px;
+			justify-content: center;
+			align-items: center;
+			z-index: 1;
+		}
+		.normal .pop p {
+			margin: 0;
+			width: 130px;
+			line-height: 80px;
+			text-align: center;
+			background: lightblue;
+			border-radius: 20px;
+		}
+		.background-clip .pop {
+			width: 130px;
+			line-height: 80px;
+			background: lightblue;
+			border: 10px solid rgba(200, 200, 200, 0.7);
+			border-radius: 30px;
+			position: absolute;
+			text-align: center;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			-moz-background-clip: padding-box; 
+			-webkit-background-clip: padding-box; 
+			-o-background-clip: padding-box; 
+			background-clip: padding-box;
+			z-index: 1;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="normal">
+		<p class="text">实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明</p>
+		<div class="pop">
+			<p>
+				弹出层tips
+			</p>
+		</div>
+	</div>
+
+	<div class="background-clip">
+		<p class="text">实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明实现弹出层边框透明</p>
+		<div class="pop">弹出层tips</div>
+	</div>
+</body>
+
+</html>

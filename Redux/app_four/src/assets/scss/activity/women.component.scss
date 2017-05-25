@@ -1,0 +1,489 @@
+$pink: #f1397d;
+
+.women {
+	width: 750px;
+	background: transparent url(../../img/activity/women/women-01.jpg) 0 0 no-repeat;
+	background-size: 750px 2191px;
+	h2 {
+		margin: 315px auto 0;
+		font-size: 26px;
+		width: 578px;
+		line-height: 48px;
+		text-align: center;
+		border: 1PX solid $pink;
+		color: $pink;
+	}
+	h3.gift {
+		width: 482px;
+		height: 47px;
+		margin: 180px auto 30px;
+		background: transparent url(../../img/activity/women/women-12.png) 0 0 no-repeat;
+		background-size: 482px 47px;
+	}
+	h3.loan {
+		width: 512px;
+		height: 48px;
+		margin: 0 auto 40px;
+		background: transparent url(../../img/activity/women/women-11.png) 0 0 no-repeat;
+		background-size: 512px 48px;
+	}
+	.queen {
+		padding: 0 30px;
+		i {
+			display: block;
+			float: left;
+			width: 210px;
+			height: 221px;
+			background: transparent url(../../img/activity/women/women-03.png) 0 0 no-repeat;
+			background-size: 210px 221px;
+		}
+		.left {
+			float: left;
+			margin-left: 30px;
+		}
+		p {
+			font-size: 28px;
+			color: #333;
+			margin-top: 25px;
+			b {
+				color: $pink;
+			}
+		}
+		a {
+			display: block;
+			width: 330px;
+			line-height: 64px;
+			color: #fff;
+			text-align: center;
+			font-size: 30px;
+			border-radius: 30px;
+			margin-top: 30px;
+			background: #fa3875;
+		}
+	}
+	.pardon {
+		h3 {
+			margin-top: 50px;
+		}
+		p {
+			font-size: 28px;
+			line-height: 48px;
+			padding: 0 38px;
+		}
+	}
+	.table {
+		position: relative;
+		width: 692px;
+		height: 265px;
+		margin: 30px auto;
+		padding-top: 1PX;
+		i {
+			position: relative;
+			display: block;
+			width: 692px;
+			height: 265px;
+			background: transparent url(../../img/activity/women/women-04.png) 0 0 no-repeat;
+			background-size: 692px 265px;
+			z-index: 10;
+		}
+		table {
+			position: absolute;
+			width: 624px;
+			height: 236px;
+			color: #333;
+			font-size: 24px;
+			line-height: 42px;
+			top: 6px;
+			left: 32px;
+			text-align: center;
+			background: rgba(255, 255, 255, 0.7);
+			td {
+				width: 210px;
+			}
+			.tr-one, .tr-two {
+				b {
+					font-size: 30px;
+					color: #4bb6fa;
+					font-weight: normal;
+				}
+				td {
+					&:first-child {
+						font-size: 26px;
+					}
+				}
+			}
+			.tr-two {
+				b {
+					color: #d5194b;
+				}	
+			}
+		}
+	}
+	.tab {
+		width: 690px;
+		margin: 0 auto;
+	}
+	.am-tabs-bar {
+		.am-tabs-tab {
+			font-size: 24px;
+			color: #666;
+			width: 260px;
+			height: 56px;
+			line-height: 56px;
+			margin-left: 10px;
+			padding-left: 32px;
+			transition: all 0.2s ease-in-out;
+			background: transparent url(../../img/activity/women/women-06.png) 0 0 no-repeat;
+			background-size: 222px 58px;
+			&:nth-child(2) {
+				margin-left: 0;
+			}
+		}
+		.am-tabs-tab-active {
+			color: #e30250;
+			background: transparent url(../../img/activity/women/women-05.png) 0 0 no-repeat;
+			background-size: 221px 58px;
+		}
+	}
+	.am-tabs-ink-bar {
+		background: transparent;
+	}
+	.am-tabs-tabpane {
+		margin-bottom: 150px;
+	}
+	.content {
+		width: 690px;
+		margin-top: 25px;
+		table {
+			width: 690px;
+			thead {
+				background: rgba(255, 219, 237, 0.7);
+			}
+			th, td {
+				width: 230px;
+				height: 70px;
+				text-align: center;
+				font-size: 24px;
+				color: #333;
+			}
+			tr {
+				td {
+					&:last-child {
+						color: #e30250;
+					}
+				}
+			}
+			tbody {
+				width: 690px;
+				height: 300px;
+				background: rgba(255, 255, 255, 0.7);
+				overflow-y: scroll;
+			}
+		}
+		.table-content {
+			width: 690px;
+			max-height: 320px;
+			overflow-y: scroll;
+			-webkit-overflow-scrolling: touch;
+			p {
+				font-size: 36px;
+				line-height: 320px;
+				color: #fd578d;
+				background: rgba(255, 255, 255, 0.7);
+				text-align: center;
+				letter-spacing: 5px;
+			}
+		}
+	}
+}
+
+.womenshare {
+	width: 750px;
+	height: 1334px;
+	background: transparent url(../../img/activity/women/women-07.jpg) 0 0 no-repeat;
+	background-size: 750px 1334px;
+	h3 {
+		width: 640px;
+		height: 85px;
+		background: transparent url(../../img/activity/women/women-08.png) 0 0 no-repeat;
+		background-size: 640px 85px;
+		margin: 300px auto 0;
+		font-size: 30px;
+		line-height: 72px;
+		text-align: center;
+		color: #fff;
+		b {
+			font-weight: normal;
+			color: #fcef2d;
+		}
+	}
+	h2 {
+		position: relative;
+		font-size: 40px;
+		font-weight: bolder;
+		color: #e21662;
+		margin-top: 40px;
+		margin-bottom: 40px;
+		text-align: center;
+		&:before, &:after {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 140px;
+			height: 4PX;
+			background: transparent url(../../img/activity/women/women-10.png) 0 0 no-repeat;
+			background-size: 140px 4PX;
+			top: 50%;
+		}
+		&:before {
+			left: 60px;
+		}
+		&:after {
+			right: 60px;
+		}
+	}
+	.h2-two {
+		&:before {
+			left: 35px;
+		}
+		&:after {
+			right: 35px;
+		}
+	}
+	p {
+		text-align: center;
+		font-size: 28px;
+		line-height: 50px;
+		color: #333;
+		b {
+			font-weight: normal;
+			color: #fe2d70;
+		}
+	}
+	a {
+		display: block;
+		background: #fb427d;
+		width: 330px;
+		line-height: 64px;
+		color: #fff;
+		font-size: 30px;
+		margin: 30px auto 40px;
+		text-align: center;
+		border-radius: 30px;
+		cursor: pointer;
+	}
+	i {
+		display: block;
+		width: 248px;
+		height: 202px;
+		background: transparent url(../../img/activity/women/women-09.png) 0 0 no-repeat;
+		background-size: 248px 202px;
+		margin: 0 auto 20px;
+	}
+}
+
+.rule-button {
+	position: fixed;
+	display: block;
+	top: 33px;
+	right: 30px;
+	width: 120px;
+	line-height: 50px;
+	background: #f1397d;
+	color: #fff;
+	border-radius: 25px;
+	font-size: 24px;
+	text-align: center;
+	z-index: 101;
+}
+
+.fixed {
+	position: fixed;
+	height: 110px;
+	width: 750px;
+	bottom: 0;
+	left: 0;
+	background: rgba(255, 255, 255, 0.7);
+	z-index: 100;
+	.button {
+		font-size: 30px;
+		color: #fff;
+		line-height: 70px;
+		width: 380px;
+		background: #fd578d;
+		border-radius: 35px;
+		text-align: center;
+		margin: 20px auto;
+		cursor: pointer;
+	}
+}
+
+.rule {
+	position: relative;
+	z-index: 101;
+	.overlay {
+		position: fixed;
+		background: rgba(0, 0, 0, 0.2);
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 101;
+	}
+	.animation-dialog {
+		position: fixed;
+		width: 100%;
+		height: 680px;
+		left: 0;
+		top: 85px;
+		overflow: hidden;
+		z-index: 101;
+	}
+	.dialog {
+		width: 100%;
+		height: 645px;
+		background: #fff;
+		border-radius: 15px;
+		transition: all 0.3s ease-in-out;
+		transform: translateY(-120%);
+		z-index: 101;
+		h3 {
+			color: #fb437e;
+			text-align: center;
+			font-size: 32px;
+			line-height: 60px;
+			margin: 20px 0;
+		}
+		.rule-content {
+			padding: 0 30px;
+			height: 480px;
+			overflow-y: scroll;
+			-webkit-overflow-scrolling: touch;
+			h4, p {
+				font-size: 24px;
+				line-height: 48px;
+			}
+			h4 {
+				color: #fb437e;
+			}
+			p {
+				color: #333;
+			}
+		}
+		.pack {
+			float: right;
+			margin-top: 25px;
+			margin-right: 30px;
+			font-size: 30px;
+			color: #fb437e;
+			cursor: pointer;
+			&:after {
+				content: '';
+				display: inline-block;
+				border-top: 1PX solid #fb437e;
+				border-right: 1PX solid #fb437e;
+				width: 20px;
+				height: 20px;
+				transform: rotate(-45deg);
+				margin-top: 10px;
+				margin-left: 10px;
+				vertical-align: top;
+			}
+		}
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 24px;
+			height: 24px;
+			top: -12px;
+			background: #fff;
+			right: 75px;
+			transform: rotate(45deg);
+		}
+	}
+	.active {
+		transform: translateY(0%);
+	}
+}
+
+.popup {
+	position: relative;
+	z-index: 101;
+	.overlay {
+		position: fixed;
+		background: rgba(0, 0, 0, 0.2);
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 101;
+	}
+	.dialog {
+		position: fixed;
+		width: 620px;
+		background: #fff;
+		left: 50%;
+		top: 50%;
+		border-radius: 25px;
+		transform: translate(-50%, -50%);
+		z-index: 101;
+		p {
+			text-align: center;
+			font-size: 30px;
+			color: #333;
+			line-height: 54px;
+			padding: 75px 0 44px;
+		}
+		a {
+			display: block;
+			background: #fb256a;
+			width: 100%;
+			font-size: 32px;
+			color: #fff;
+			text-align: center;
+			line-height: 88px;
+			border-bottom-left-radius: 25px;
+			border-bottom-right-radius: 25px;
+		}
+		.close {
+			position: absolute;
+			top: 15px;
+			right: 25px;
+			width: 47px;
+			height: 47px;
+			cursor: pointer;
+			&:before, &:after {
+				content: '';
+				position: absolute;
+				left: 2px;
+				top: 47%;
+				width: 50px;
+				height: 2PX;
+				background: #e1e1e1;
+			}
+			&:before {
+				transform: rotate(45deg);
+			}
+			&:after {
+				transform: rotate(-45deg);
+			}
+		}
+	}
+}
+
+a {
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.clearfix {
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+}

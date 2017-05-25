@@ -1,0 +1,66 @@
+@import '../common/base';
+.wrapper-mobile{
+    .information{
+        .am-list-item.am-list-item-middle .am-list-content{
+            min-width: 34px * 5 !important;
+        }
+        .am-list-item.am-input-item.street{
+            padding-left: 228px;
+        }
+        .welfare{
+            color: #ff8003;
+            font-size: 26px;
+            margin-top: 30px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            &:before{
+                width: 30px;
+                height: 30px;
+                content: '';
+                background: url(../../img/mobile/certification/icon-quick.png) center no-repeat;
+                background-size: contain;
+                margin-right: 10px;
+                display: inline-block;
+            }
+        }
+        .upload{
+            .selfie,
+            .id_card{
+                margin-left: 30px;
+                display: flex;
+            }
+            .selfie,
+            .id_card_front,
+            .id_card_back{
+                width: 80px !important;
+                height: 52px !important;
+                border-radius: 2px;
+                background: center left no-repeat;
+                background-size: contain;
+                overflow: hidden;
+                .rc-upload{
+                    width: 100%;
+                    height: 100%;
+                    transition: .3s ease-out;
+                    &:active{
+                        background-color: rgba(#000, .35);
+                    }
+                }
+            }
+            .selfie{
+                background-image: url(../../img/mobile/certification/selfie.png);
+            }
+            .id_card_front{
+                background-image: url(../../img/mobile/certification/id-card-front.png);
+            }
+            .id_card_back{
+                background-image: url(../../img/mobile/certification/id-card-back.png);
+                margin-left: 30px;
+            }
+            .am-input-item{
+                display: none;
+            }
+        }
+    }
+}

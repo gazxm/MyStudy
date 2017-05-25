@@ -1,0 +1,365 @@
+@keyframes shake {
+	0% {
+		transform: translate(0, 0);
+	}
+	12% {
+		transform: translate(-2px, -2px);
+	}
+	25% {
+		transform: translate(0, -4px);
+	}
+	37% {
+		transform: translate(2px, -2px);
+	}
+	62% {
+		transform: translate(-2px, 2px);
+	}
+	75 {
+		transform: translate(0, 4px);
+	}
+	87% {
+		transform: translate(2px, 2px);
+	}
+	100% {
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes p {
+	0% {
+		transform: skewX(0deg) rotate(0deg) translate(0, 0);
+	}
+	30% {
+		transform: skewX(-1deg) rotate(-1deg) translate(2.5px, 0);
+	}
+	47% {
+		transform: skewX(-0.5deg) rotate(-0.5deg) translate(1.5px, 1.5px)
+	}
+	65% {
+		transform: skewX(1deg) rotate(0.5deg) translate(-1px, 3px)
+	}
+	85% {
+		transform: skewX(-0.5deg) rotate(1deg) translate(-1.5px, 2.5px)
+	}
+	100% {
+		transform: skewX(0deg) rotate(0deg) translate(0, 0);
+	}
+}
+
+@keyframes rabbit {
+	0% {
+		transform: translateY(-300%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
+
+.group-loan {
+	width: 750px;
+	background: transparent url(../../img/activity/group-loan/group-loan-09.jpg) 0 0 repeat;
+	background-size: 16px 16px;
+	padding: 1PX 0;
+	header {
+		width: 750px;
+		height: 705px;
+		background: transparent url(../../img/activity/group-loan/group-loan-01.jpg) 0 0 no-repeat;
+		background-size: 750px 705px;
+		padding: 1PX 0;
+		position: relative;
+		.rabbit1, .rabbit2, .rabbit3 {
+			display: inline-block;
+			position: absolute;
+			transform: translateY(-300%);
+		}
+		.rabbit1 {
+			width: 200px;
+			height: 224px;
+			top: 56px;
+			left: 66px;
+			background: transparent url(../../img/activity/group-loan/group-loan-02.png) 0 0 no-repeat;
+			background-size: 200px 224px;
+			animation: rabbit 1.5s cubic-bezier(.65, 1.32, .28, .91) 1 forwards;
+		}
+		.rabbit2 {
+			width: 211px;
+			height: 222px;
+			top: 50px;
+			left: 280px;
+			background: transparent url(../../img/activity/group-loan/group-loan-04.png) 0 0 no-repeat;
+			background-size: 211px 222px;
+			animation: rabbit 1.5s cubic-bezier(.65, 1.32, .28, .91) .3s 1 forwards;
+		}
+		.rabbit3 {
+			width: 163px;
+			height: 216px;
+			top: 61px;
+			right: 105px;
+			background: transparent url(../../img/activity/group-loan/group-loan-03.png) 0 0 no-repeat;
+			background-size: 163px 216px;
+			animation: rabbit 1.5s cubic-bezier(.65, 1.32, .28, .91) .15s 1 forwards;
+		}
+		h1 {
+			font-size: 30px;
+			color: #ffe401;
+			text-align: center;
+			margin-top: 280px;
+			b {
+				display: inline-block;
+				margin: 0 5px;
+				font-weight: bold;
+				color: #fa5504;
+			}
+		}
+		.div-scroll {
+			width: 585px;
+			margin: 250px auto 0;
+			line-height: 50px;
+			text-align: center;
+			letter-spacing: 3px;
+			font-size: 28px;
+			color: #4843b3;
+		}
+		.scroll-div {
+			width: 585px;
+			margin: 250px auto 0;
+			height: 50px;
+			padding-top: 1PX;
+			position: relative;
+			.scroll-bar {
+				width: 585px;
+				height: 50px;
+				position: relative;
+				overflow: hidden;
+				background: transparent url(../../img/activity/group-loan/group-loan-05.jpg) 30px 50% no-repeat;
+				background-size: 44px 36px;
+				.scroll {
+					width: 585px;
+					text-align: center;
+					position: absolute;
+					padding-left: 15px;
+				}
+				li {
+					list-style: none;
+					line-height: 50px;
+					font-size: 24px;
+					text-align: center;
+					color: #4843b3;
+					b {
+						display: inline-block;
+						margin: 0 8px;
+						color: #fa5504;
+						font-weight: normal;
+					}
+				}
+			}
+		}
+		.scroll-not {
+			margin: 225px auto 0;
+		}
+		h2 {
+			font-size: 24px;
+			color: #4843b3;
+			text-align: center;
+			margin-top: 16px;
+		}
+	}
+	.notInApp {
+		background: transparent url(../../img/activity/group-loan/group-loan-12.jpg) 0 0 no-repeat;
+		background-size: 750px 705px;
+	}
+	.content {
+		width: 630px;
+		margin: -30px auto 0;
+		position: relative;
+		z-index: 1;
+		.balloon1, .balloon2 {
+			width: 280px;
+			position: relative;
+			i {
+				display: block;
+				margin: 0 auto;
+				animation: shake 10s ease-in-out infinite;
+			}
+			p {
+				font-size: 24px;
+				line-height: 30px;
+				color: #fa5504;
+				width: 279px;
+				height: 153px;
+				margin-top: -15px;
+				background: transparent url(../../img/activity/group-loan/group-loan-08.png) 0 0 no-repeat;
+				background-size: 279px 153px;
+				box-sizing: border-box;
+				padding: 18px 12px;
+				position: relative;
+				animation: p 10s ease-in-out infinite;
+				transform-origin: 50% 0;
+				z-index: 1;
+			}
+		}
+		.balloon1 {
+			float: left;
+			i {
+				position: relative;
+				width: 239px;
+				height: 227px;
+				background: transparent url(../../img/activity/group-loan/group-loan-06.png) 0 0 no-repeat;
+				background-size: 239px 227px;
+			}
+		}
+		.balloon2 {
+			float: right;
+			i {
+				position: relative;
+				width: 238px;
+				height: 225px;
+				background: transparent url(../../img/activity/group-loan/group-loan-07.png) 0 0 no-repeat;
+				background-size: 238px 225px;
+				animation: shake 10s ease-in-out infinite reverse;
+			}
+			p {
+				margin-top: -22px;
+				color: #625ddb;
+				animation: p 10s ease-in-out infinite reverse;
+			}
+		}
+		a {
+			display: inline-block;
+			width: 250px;
+			line-height: 60px;
+			font-size: 40px;
+			font-weight: bold;
+			text-align: center;
+			border-radius: 5px;
+			color: #ffe401;
+			margin-top: 35px;
+		}
+		.open {
+			float: left;
+			background: #fa5504;
+			box-shadow: 0 0 0 15px #fa5504;
+			border: 1PX solid #fd702b;
+			margin-left: 10px;
+		}
+		.look {
+			float: right;
+			background: #625ddb;
+			box-shadow: 0 0 0 15px #625ddb;
+			border: 1PX solid #7974ee;
+			margin-right: 10px;
+		}
+		.center {
+			width: 350px;
+			margin-left: 150px;
+			background: #fa5504;
+			box-shadow: 0 0 0 15px #fa5504;
+			border: 1PX solid #fd702b;
+		}
+	}
+	.rule {
+		width: 650px;
+		margin: 40px auto 50px;
+		h3 {
+			color: #625ddb;
+			font-size: 30px;
+			width: 158px;
+			line-height: 60px;
+			font-weight: bold;
+			margin: 0 auto;
+			position: relative;
+			text-align: center;
+			&:before, &:after {
+				content: '';
+				position: absolute;
+				width: 245px;
+				height: 9px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+			&:before {
+				left: -240px;
+				background: transparent url(../../img/activity/group-loan/group-loan-10.png) 0 0 no-repeat;
+				background-size: contain;
+			}
+			&:after {
+				left: 150px;
+				background: transparent url(../../img/activity/group-loan/group-loan-11.png) 0 0 no-repeat;
+				background-size: contain;
+			}
+		}
+		p {
+			color: #625ddb;
+			font-size: 26px;
+			line-height: 46px;
+			span {
+				margin-right: 25px;
+			}
+			b {
+				color: #fa5504;
+			}
+		}
+	}
+}
+
+.popup {
+	.content {
+		width: 520px;
+		background: #b6f0ff;
+		border-radius: 20px;
+		padding: 60px 0 30px;
+		.close {
+			width: 46px;
+			height: 46px;
+			top: -60px;
+			right: 10px;
+			border: 1PX solid #fff;
+			border-radius: 50%;
+			&:before, &:after {
+				background: #fff;
+				width: 35px;
+				left: 5.5px;
+			}
+		}
+		p {
+			font-size: 26px;
+			color: #625ddb;
+			text-align: center;
+			line-height: 42px;
+			margin-bottom: 50px;
+			b {
+				font-weight: normal;
+				color: #fa5504;
+			}
+			b.bold {
+				font-weight: bold;
+			}
+		}
+		a {
+			width: 210px;
+			line-height: 50px;
+			font-size: 36px;
+			color: #ffe401;
+			background: #fa5504;
+			box-shadow: 0 0 0 10px #fa5504;
+			border: 2PX solid #fd702b;
+			border-radius: 1px;
+		}
+	}
+}
+
+a {
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.clearfix {
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+}

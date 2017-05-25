@@ -1,0 +1,449 @@
+html{
+    background-color: #2c2241;
+}
+.wrapper{
+    bottom: auto;
+    padding-bottom: 75px;
+    &:before{
+        height: 657px;
+        content: '';
+        background: url(../../img/activity/cash-gift/money.png) center no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: 75px;;
+        right: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 100;
+
+    }
+    &:after{
+        width: 747px;
+        height: 676px;
+        content: '';
+        background: url(../../img/activity/cash-gift/confetti.png) center no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+}
+.logo{
+    width: 484px;
+    height: 285px;
+    background: url(../../img/activity/cash-gift/logo.png) center no-repeat;
+    background-size: contain;
+    margin: 75px auto 0;
+}
+.button-group{
+    margin-top: 50px;
+    justify-content: center;
+    display: flex;
+    .button{
+        height: 80px;
+        border-radius: 10px;
+        background-color: #ffae00;
+        transition: .5s ease-out;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        &:active{
+            background-color: lighten(#ffae00, 5);
+        }
+        &:after{
+            height: 31px;
+            content: '';
+            background: center no-repeat;
+            background-size: contain;
+        }
+    }
+    .button-receive{
+        width: 375px;
+        &:after{
+            width: 221px;
+            background-image: url(../../img/activity/cash-gift/text-receive.png);
+        }
+    }
+    .button-check{
+        width: 177px;
+        margin-left: 25px;
+        &:after{
+            width: 127px;
+            background-image: url(../../img/activity/cash-gift/text-check.png);
+        }
+    }
+}
+.wooden-chests{
+    margin-top: 50px;
+    &:after{
+        width: 755px;
+        height: 754px;
+        content: '';
+        background: url(../../img/activity/cash-gift/light.png) center no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: -1;
+        transform: translate(-50%, -60%);
+    }
+    &.open{
+        .wooden-chests-head{
+            &:before{
+                opacity: 0;
+                transition: opacity 1s ease-out;
+            }
+            &:after{
+                opacity: 1;
+                transition: opacity .75s ease-out;
+            }
+        }
+        .gold{
+            opacity: 1;
+            transition: opacity .75s ease-out .3s;
+        }
+        .money{
+            opacity: 1;
+            transition: opacity 1s ease-out .5s;
+        }
+        .light{
+            opacity: .6;
+            transition: opacity .75s ease-out;
+            animation: breathe 2.7s infinite alternate ease-in-out;
+            animation-delay: 2s;
+        }
+        .blue{
+            transition-delay: 1s;
+        }
+        .orange{
+            transition-delay: .85s;
+            animation-delay: 1.8s;
+        }
+        @keyframes breathe{
+            form{
+                opacity: .2;
+            }
+            to{
+                opacity: 1;
+            }
+        }
+    }
+    .gold,
+    .light,
+    .money{
+        background: center no-repeat;
+        background-size: contain;
+        position: absolute;
+        z-index: 1;
+        opacity: 0;
+    }
+    .gold{
+        width: 343px;
+        height: 41px;
+        background-image: url(../../img/activity/cash-gift/gold.png);
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .blue{
+        width: 67px;
+        height: 49px;
+        background-image: url(../../img/activity/cash-gift/light-blue.png);
+        left: 98px;
+        bottom: 12px;
+        z-index: 2;
+    }
+    .orange{
+        width: 81px;
+        height: 69px;
+        background-image: url(../../img/activity/cash-gift/light-orange.png);
+        right: 85px;
+        bottom: 0px;
+    }
+    .money{
+        width: 117px;
+        height: 77px;
+        background-image: url(../../img/activity/cash-gift/money-ground.png);
+        bottom: -10px;
+        left: -100px;
+    }
+}
+.wooden-chests-head{
+    width: 374px;
+    height: 146px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    &:before,
+    &:after{
+        content: '';
+        background: center no-repeat;
+        background-size: contain;
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+    }
+    &:before{
+        width: 374px;
+        height: 146px;
+        background-image: url(../../img/activity/cash-gift/wooden-chests-head.png);
+        margin-left: -2px;
+    }
+    &:after{
+        width: 362px;
+        height: 132px;
+        background-image: url(../../img/activity/cash-gift/wooden-chests-head-open.png);
+        opacity: 0;
+    }
+}
+.wooden-chests-body{
+    width: 378px;
+    height: 195px;
+    background: url(../../img/activity/cash-gift/wooden-chests-body.png) center no-repeat;
+    background-size: contain;
+    margin-top: -2px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.rules{
+    text-align: center;
+    margin-top: 30px;
+    &:before{
+        width: 317px;
+        height: 131px;
+        content: '';
+        background: url(../../img/activity/cash-gift/rules.png) center no-repeat;
+        background-size: contain;
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+    }
+}
+.rules-content{
+    width: 576px;
+    color: #9d7be2;
+    font-size: 22px;
+    text-align: left;
+    border-radius: 10px;
+    background-color: #37235e;
+    margin-top: -25px;
+    padding: 30px 20px;
+    position: relative;
+    display: inline-block;
+    &:before{
+        width: 255px;
+        height: 160px;
+        content: '';
+        background: url(../../img/activity/cash-gift/money-bottom.png) center no-repeat;
+        background-size: contain;
+        position: absolute;
+        z-index: -1;
+        bottom: 15px;
+        left: -40px;
+    }
+    &:after{
+        width: 751px;
+        height: 409px;
+        content: '';
+        background: url(../../img/activity/cash-gift/confetti-bottom.png) center no-repeat;
+        background-size: contain;
+        position: absolute;
+        z-index: -2;
+        bottom: -120px;
+        left: -80px;
+
+    }
+    p{
+        line-height: 36px;
+        padding-left: 40px;
+        position: relative;
+    }
+    span{
+        width: 24px;
+        height: 24px;
+        color: #2c2241;
+        background-color: #9d7be2;
+        position: absolute;
+        top: 5px;
+        left: 0;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        &:after{
+            content: '';
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 8px solid #9d7be2;
+            position: absolute;
+            top: 0;
+            right: -6px;
+        }
+    }
+}
+.prize{
+    width: 555px !important;
+    .am-modal-close{
+        color: #efb0b1;
+        font-size: 52px;
+        left: auto;
+        right: 20px;
+    }
+    .am-modal-content{
+        background-color: #db3b5e;
+        padding-top: 150px !important;
+        &:after{
+            width: 550px;
+            height: 566px;
+            content: '';
+            background: url(../../img/activity/cash-gift/prize-background.png) center no-repeat;
+            background-size: contain;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+    }
+    ul{
+        position: relative;
+        padding: 20px 45px 25px;
+        z-index: 1;
+        &:before{
+            height: 15px;
+            content: '';
+            border-radius: 20px;
+            border: 3px solid #fcf1a7;
+            background-color: #e8ca00;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: -2;
+        }
+        &:after{
+            content: '';
+            background: #ffe3a6 url(../../img/activity/cash-gift/bottom-repeat.png) center bottom repeat-x;
+            background-size: 20px;
+            position: absolute;
+            top: 6px;
+            right: 15px;
+            bottom: 0;
+            left: 15px;
+            z-index: -1;
+            overflow: hidden;
+        }
+    }
+    li{
+        height: 85px;
+        border-radius: 10px;
+        background-color: #fff;
+        display: flex;
+        + li{
+            margin-top: 10px;
+        }
+        .primary{
+            width: 135px;
+            color: #ed4834;
+            font-size: 22px;
+            border-right: 1px dotted #bbb;
+            background: url(../../img/activity/cash-gift/left-repeat.png) left center no-repeat;
+            background-size: auto 100%;
+            padding: 0 20px;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            span{
+                font-size: 48px;
+                font-family: Arial;
+                margin-right: 3px;
+                position: relative;
+                top: 1px;
+            }
+            &:before,
+            &:after{
+                width: 20px;
+                height: 20px;
+                border-radius: 100%;
+                content: '';
+                background-color: #ffe3a6;
+                position: absolute;
+                right: -10px;
+            }
+            &:before{
+                top: -12px;
+            }
+            &:after{
+                bottom: -12px;
+            }
+        }
+        .details{
+            width: auto;
+            text-align: left;
+            white-space: nowrap;
+            padding: 0 20px 0 30px;
+            align-items: center;
+            display: flex;
+            h5{
+                font-size: 22px;
+                margin-bottom: 5px;
+            }
+            p{
+                color: #999;
+                font-size: 14px;
+            }
+        }
+    }
+    .button{
+        width: 300px;
+        height: 76px;
+        color: #333;
+        border-radius: 10px;
+        background-color: #fef133;
+        justify-content: center;
+        align-items: center;
+        margin: 15px auto 0;
+        display: flex;
+        transition: .3s ease-out;
+        &:active{
+            background-color: lighten(#fef133, 10);
+        }
+    }
+}
+.prompt{
+    .am-modal-close{
+        font-size: 36px;
+        top: 12px;
+        right: 12px;
+        left: auto;
+    }
+    .am-modal-content{
+        padding-top: 50px !important;
+    }
+    .am-modal-body{
+        padding: 0 35px 35px !important;
+    }
+    .button{
+        width: 190px;
+        height: 76px;
+        color: #333;
+        border-radius: 10px;
+        background-color: #fef133;
+        justify-content: center;
+        align-items: center;
+        margin: 30px auto 0;
+        padding: 30px;
+        display: flex;
+        transition: .3s ease-out;
+        &:active{
+            background-color: lighten(#fef133, 10);
+        }
+    }
+    p{
+        line-height: 36px;
+        padding: 0 10px;
+    }
+}

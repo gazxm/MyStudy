@@ -1,0 +1,160 @@
+@keyframes one {
+	0% {
+		transform: scale(1, 1) rotate(0deg);
+		opacity: 1;
+		transform-origin: 28.5% 31%;
+	}
+	30% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 0;
+		transform-origin: 28.5% 31%;
+	}
+	100% {
+		transform: scale(.13, .13) rotate(-11deg);
+		opacity: 0;
+		transform-origin: 28.5% 31%;
+	}
+}
+
+@keyframes two {
+	0% {
+		transform: scale(6.1, 6.1) rotate(10deg);
+		transform-origin: 28.5% 31%;
+	}
+	100% {
+		transform: scale(1, 1) rotate(0deg);
+		transform-origin: 28.5% 31%;
+	}
+}
+
+@keyframes three {
+	0% {
+		transform: scale(1, 1) rotate(0deg);
+		opacity: 1;
+		transform-origin: 34.7% 83.5%;
+	}
+	30% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 0;
+		transform-origin: 34.7% 83.5%;
+	}
+	100% {
+		transform: scale(.092, .092) rotate(-10deg);
+		opacity: 0;
+		transform-origin: 34.7% 83.5%;
+	}
+}
+
+@keyframes four {
+	0% {
+		transform: scale(7.7, 8.4) rotate(11deg) skew(2deg);
+		transform-origin: 34.7% 83.5%;
+	}
+	100% {
+		transform: scale(1, 1) rotate(0deg);
+		transform-origin: 34.7% 83.5%;
+	}
+}
+
+@keyframes five {
+	0% {
+		transform: scale(1, 1) rotate(0deg);
+		opacity: 1;
+		transform-origin: 36.3% 45.4%;
+	}
+	30% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 0;
+		transform-origin: 36.3% 45.4%;
+	}
+	100% {
+		transform: scale(.085, .085) rotate(-11deg);
+		opacity: 0;
+		transform-origin: 36.3% 45.4%;
+	}
+}
+
+@keyframes six {
+	0% {
+		transform: scale(7.3, 7.3) rotate(13deg) skew(3.8deg);
+    transform-origin: 36.3% 45.4%;
+	}
+	100% {
+		transform: scale(1, 1) rotate(0deg) skew(0deg);
+		transform-origin: 36.3% 45.4%;
+	}
+}
+
+@keyframes seven {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes r {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+
+.mother {
+	width: 750px;
+	height: 1334px;
+	overflow: hidden;
+	.bg1, .bg2, .bg3 {
+		display: block;
+		position: absolute;
+		width: 750px;
+		height: 1334px;
+	}
+	.bg1 {
+		z-index: 8;
+	}
+	.bg2 {
+		z-index: 6;
+	}
+	.audio-div {
+		position: fixed;
+		background: #f6efde url(../../img/activity/mother-day/mother-10.png) 45% 45% no-repeat;
+		background-size: 36px 36px;
+		width: 60px;
+		height: 60px;
+		line-height: 60px;
+		top: 60px;
+		right: 80px;
+		border-radius: 50%;
+		z-index: 10;
+	}
+	.anim-a {
+		display: block;
+		position: fixed;
+		width: 135px;
+		height: 108px;
+		line-height: 92px;
+		text-align: center;
+		font-size: 30px;
+		font-weight: bold;
+		color: #333;
+		background: transparent url(../../img/activity/mother-day/mother-06.png) 0 0 no-repeat;
+		background-size: contain;
+		bottom: 35px;
+		left: 315px;
+		cursor: pointer;
+		z-index: 10;
+	}
+	.anim-a {
+		text-decoration: none;
+	}
+}

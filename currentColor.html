@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>currentColor(当前文字的颜色)</title>
+	<style type="text/css">
+		input {
+			color: blue;
+			border: 1px solid;
+		}
+		button {
+			width: 100px;
+			line-height: 50px;
+			margin-left: 40px;
+			color: lightblue;
+			border: 1px solid currentColor;
+			box-shadow: 0 0 3px currentColor;
+			background-color: #fff;
+			transition: all 1s ease-in-out;
+		}
+		button:hover {
+			color: yellow;
+		}
+	</style>
+</head>
+
+<body>
+	<input />
+	<button>button</button>
+</body>
+
+</html>

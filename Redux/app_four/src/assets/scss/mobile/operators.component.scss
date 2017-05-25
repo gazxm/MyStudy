@@ -1,0 +1,40 @@
+@import '../common/base';
+
+.wrapper-mobile{
+    .operator{
+        iframe{
+            border: none;
+        }
+        .tips{
+            line-height: 32px;
+            color: #999;
+            font-size: 26px;
+            padding: 30px 25px 0;
+            p + p{
+                margin-top: 10px;
+            }
+        }
+        .am-checkbox-agree{
+            .am-checkbox-inner{
+                width: 32px;
+                height: 32px;
+                border: none;
+                border-radius: 10px;
+                background-color: #d9dbdb;
+                margin-top: -16px;
+                top: 50%;
+            }
+            .am-checkbox-agree-label{
+                margin-left: 42px;
+            }
+            .am-checkbox.am-checkbox-checked .am-checkbox-inner{
+                background-color: $brand-primary;
+                transition: .3s ease-out;
+                &:after{
+                    border-color: #fff;
+                    transition: .3s ease-out;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,106 @@
+html{
+    background: url(../../img/activity/firstorrow-freeinterest/background-repeat.jpg);
+}
+.wrapper{
+    bottom: auto;
+    padding-bottom: 75px;
+    &:after{
+        width: 873px;
+        height: 1062px;
+        content: '';
+        background: url(../../img/activity/firstorrow-freeinterest/background.png) center top no-repeat;
+        background-size: contain;
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        z-index: -1;
+        transform: translateX(-50%);
+    }
+}
+.footer{
+    line-height: 36px;
+    color: #5b52a1;
+    font-size: 22px;
+    text-align: center;
+    margin-top: 55px;
+    span + span{
+        margin-left: 15px;
+    }
+}
+.register{
+    width: 560px;
+    margin: 735px auto 0;
+    .am-button{
+        border-color: #f8de33;
+        background-color: #f8de33;
+        .anticon{
+            color: #fff;
+        }
+    }
+    .am-button-active{
+        border-color: darken(#f8de33, 8);
+        background-color: darken(#f8de33, 8);
+    }
+    .button-verify{
+        &.disabled{
+            color: #bbb;
+            border-color: lighten(#f8de33, 15);
+            background-color: lighten(#f8de33, 15);
+        }
+    }
+    .button-submit{
+        color: #ff3939;
+        font-size: 36px;
+        font-weight: 600;
+    }
+}
+.register-footer{
+    margin-top: 12px;
+    .agreement{
+        font-size: 22px;
+        &,
+        a{
+            color: #ccc;
+        }
+    }
+    .am-checkbox{
+        width: auto;
+    }
+    .am-checkbox-inner{
+        width: 21px;
+        height: 21px;
+        border-radius: 4px;
+        border-color: #f8de33;
+        background-color: #f8de33;
+        top: 10px;
+    }
+    .am-checkbox-checked .am-checkbox-inner{
+        border-color: #f8de33;
+        background-color: #f8de33;
+        &:after{
+            width: 8px;
+            height: 16px;
+            border-width: 0 2px 2px 0;
+            border-color: #333;
+            top: -2px;
+            left: 4px;
+        }
+    }
+    .am-checkbox-agree-label{
+        margin-left: 30px;
+    }
+}
+.rule{
+    color: #fff;
+    font-size: 24px;
+    border-bottom: 1px solid #fff;
+    position: relative;
+    &:after{
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        bottom: -10px;
+        left: -10px;
+    }
+}

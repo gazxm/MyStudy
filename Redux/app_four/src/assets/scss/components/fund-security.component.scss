@@ -1,0 +1,32 @@
+@import '../common/base';
+@import '../common/custom-style';
+html, body{
+  background:$bg;
+}
+.fund-security-certification{
+  padding-top: 20px;
+  p{
+    padding: 0 30px 200px;
+    font-size: 24px;
+    color:$h3;
+    line-height: 1.6em;
+    margin-top:10px;
+  }
+  div.error{
+    padding: 20px 30px 0;
+    color:$warning;
+    font-size: 24px;
+  }
+  .verify-code {
+    position:relative;
+    img {
+      height: 60px;
+      position:absolute;
+      top:15px;
+      right:30px;
+    }
+  }
+  .am-list-item .am-list-line .am-list-extra{
+    flex-basis:60%;
+  }
+}

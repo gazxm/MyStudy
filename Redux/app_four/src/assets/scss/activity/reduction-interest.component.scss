@@ -1,0 +1,27 @@
+.wrapper-reduction-interest{
+    background-color: #fcd609;
+    bottom: 0;
+    padding-bttom: 75px;
+    &:before{
+        width: 653px;
+        height: 914px;
+        content: '';
+        background: url(../../img/activity/reduction-interest/picture.png) center no-repeat;
+        background-size: contain;
+        margin: 65px auto 0;
+        display: block;
+    }
+    .button{
+        width: 460px;
+        height: 118px;
+        background: url(../../img/activity/reduction-interest/button.png) center no-repeat;
+        background-size: contain;
+        margin: 65px auto 0;
+    }
+    .tips{
+        color: #fd9e00;
+        font-size: 24px;
+        text-align: center;
+        margin-top: 40px;
+    }
+}

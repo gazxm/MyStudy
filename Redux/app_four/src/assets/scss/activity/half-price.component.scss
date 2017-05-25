@@ -1,0 +1,122 @@
+.wrapper-half-price{
+    background: #f2f4ef url(../../img/activity/half-price/bg.jpg) no-repeat;
+    background-size: 100% auto;
+    bottom: auto;
+    padding-bottom: 45px;
+}
+.am-modal{
+    width: 500px !important;
+}
+.am-modal-close{
+    width: 54px;
+    height: 54px;
+    border-radius: 100%;
+    border: 1Px solid #fff;
+    background-color: #0f0d16;
+    top: -20px;
+    right: -20px;
+    left: auto;
+}
+.am-modal-content{
+    overflow: visible;
+}
+.am-modal-body{
+    padding-top: 25px !important;
+    p{
+        line-height: 40px;
+    }
+    .button{
+        width: 388px;
+        height: 90px;
+        border-radius: 10px;
+        background-color: #fb6d3c;
+        color: #fff;
+        font-size: 36px;
+        margin: 35px auto 0;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        transition: .3s ease-out;
+        &:active{
+            background-color: darken(#fb6d3c, 5);
+        }
+    }
+}
+.totals{
+    width: 580px;
+    height: 88px;
+    color: #000;
+    font-size: 33px;
+    border: 2px solid #477044;
+    border-radius: 10px;
+    padding-left: 40px;
+    margin: 1110px auto 0;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    span{
+        color: #d92900;
+        margin: 0 5px;
+    }
+}
+.corner-mark{
+    width: 100px;
+    height: 60px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    background-color: #477044;
+    padding-bottom: 3px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    transform: rotate(-45deg);
+    transform-origin: left bottom;
+    justify-content: center;
+    align-items: flex-end;
+    display: flex;
+}
+.rules{
+    width: 750px;
+    height: 1014px;
+    font-size: 26px;
+    background: url(../../img/activity/half-price/rules.png) no-repeat;
+    background-size: contain;
+    margin-top: 75px;
+    padding: 245px 75px 0 85px;
+    li{
+        line-height: 38px;
+        display: flex;
+        + li{
+            margin-top: 10px;
+        }
+    }
+    span{
+        color: #477044;
+        font-weight: 700;
+    }
+}
+.apply{
+    height: 85px;
+    background-color: rgba(#011100, .75);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    .button{
+        width: 300px;
+        height: 57px;
+        border-radius: 10px;
+        background: #7a985d url(../../img/activity/half-price/apply.png) center no-repeat;
+        background-size: 75%;
+        transition: .3s ease-out;
+        &:active{
+            background-color: darken(#7a985d, 5);
+        }
+    }
+}
