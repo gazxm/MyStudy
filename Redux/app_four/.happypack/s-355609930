@@ -1,0 +1,107 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/modal/style/css');
+
+var _modal = require('antd-mobile/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = require('utils');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+require('scss/components/reboot.component.scss');
+
+require('scss/activity/half-price.component.scss');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Welcome = function (_Component) {
+    (0, _inherits3.default)(Welcome, _Component);
+
+    function Welcome(props) {
+        (0, _classCallCheck3.default)(this, Welcome);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Welcome.__proto__ || (0, _getPrototypeOf2.default)(Welcome)).call(this, props));
+
+        _this.state = {
+            loaded: 0,
+            visible: 0
+        };
+        return _this;
+    }
+
+    (0, _createClass3.default)(Welcome, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.setState({
+                loaded: 1
+            });
+        }
+    }, {
+        key: 'loan',
+        value: function loan() {
+            (0, _utils.goHome)();
+        }
+    }, {
+        key: 'apply',
+        value: function apply() {
+            this.setState({
+                visible: 1
+            });
+        }
+    }, {
+        key: 'close',
+        value: function close() {
+            this.setState({
+                visible: 0
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _state = this.state,
+                loaded = _state.loaded,
+                visible = _state.visible;
+
+            return _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'wrapper wrapper-half-price': true, loaded: loaded }) }, _react2.default.createElement('div', { className: 'totals' }, _react2.default.createElement('div', { className: 'corner-mark' }, '\u534A\u4EF7'), '\u5F53\u524D\u5DF2\u6709', _react2.default.createElement('span', null, '10000'), '\u4EBA\u4EAB\u53D7\u534A\u4EF7'), _react2.default.createElement('ul', { className: 'rules' }, _react2.default.createElement('li', null, _react2.default.createElement('span', null, '\u4E00\u3001'), _react2.default.createElement('div', null, _react2.default.createElement('span', null, '\u6D3B\u52A8\u65F6\u95F4\uFF1A'), '\u5373\u65E5\u8D77\u81F34\u670830\u65E524:00')), _react2.default.createElement('li', null, _react2.default.createElement('span', null, '\u4E8C\u3001'), _react2.default.createElement('div', null, _react2.default.createElement('span', null, '\u6D3B\u52A8\u5BF9\u8C61\uFF1A'), '\u6309\u65F6\u6210\u529F\u8FD8\u6B3E\u4E14\u518D\u7533\u8BF7\u7684\u7528\u6237')), _react2.default.createElement('li', null, _react2.default.createElement('span', null, '\u4E09\u3001'), _react2.default.createElement('div', null, _react2.default.createElement('span', null, '\u5982\u4F55\u4EAB\u53D7\u534A\u4EF7\uFF1F'), _react2.default.createElement('p', null, '1\u3001\u9996\u6B21\u8FD8\u6B3E\u7684\u7528\u6237\u8FD8\u6B3E\u5F53\u65E524\u70B9\u4E4B\u524D\u7533\u8BF7\u501F\u6B3E\uFF0C\u7ACB \u4EAB\u7EFC\u5408\u670D\u52A1\u8D39\u51CF\u534A\u5956\u52B1'), _react2.default.createElement('p', null, '2\u3001\u975E\u9996\u6B21\u8FD8\u6B3E\u7684\u7528\u6237\u6BCF\u6708\u7684\u7B2C\u4E8C\u7B14\u7533\u8BF7\u501F\u6B3E\uFF0C\u7ACB\u4EAB \u7EFC\u5408\u670D\u52A1\u8D39\u51CF\u534A\u5956\u52B1'), _react2.default.createElement('p', null, '3\u3001\u6240\u6709\u7528\u6237\u534A\u4EF7\u7533\u8BF7\u524D\u7684\u6700\u8FD1\u4E00\u6B21\u8FD8\u6B3E\u4E0D\u80FD\u903E\u671F'))), _react2.default.createElement('li', null, _react2.default.createElement('span', null, '\u56DB\u3001'), _react2.default.createElement('div', null, '\u51CF\u534A\u5956\u52B1\u4E0D\u53EF\u4F7F\u7528\u62B5\u6263\u5238\u3001\u514D\u606F\u5238\uFF0C\u4E0D\u4E0E\u5E73\u53F0\u5176\u5B83\u4F18\u60E0\u6D3B\u52A8\u540C\u65F6\u4EAB\u7528')), _react2.default.createElement('li', null, _react2.default.createElement('span', null, '\u4E94\u3001'), _react2.default.createElement('div', null, _react2.default.createElement('p', null, '\u672C\u6D3B\u52A8\u6700\u7EC8\u89E3\u91CA\u6743\u5F52\u73B0\u91D1\u5361\u6240\u6709\uFF0C'), '\u4E0EApple.lnc\u65E0\u5173'))), _react2.default.createElement('div', { className: 'apply' }, _react2.default.createElement('div', { className: 'button', onClick: this.apply.bind(this) })), _react2.default.createElement(_modal2.default, { visible: visible == 1, onClose: this.close.bind(this), maskClosable: true, transparent: true }, _react2.default.createElement('p', null, '\u606D\u559C\u4F60\uFF01'), _react2.default.createElement('p', null, '\u83B7\u5F97\u4E86\u7B2C\u4E8C\u7B14\u534A\u4EF7\u8D44\u683C'), _react2.default.createElement('div', { className: 'button', onClick: this.loan.bind(this) }, '\u7ACB\u5373\u501F\u6B3E')));
+        }
+    }]);
+    return Welcome;
+}(_react.Component); /* eslint-disable */
+
+exports.default = Welcome;
+module.exports = exports['default'];

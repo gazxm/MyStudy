@@ -1,0 +1,94 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _css = require('antd-mobile/lib/list/style/css');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _request = require('common/request');
+
+var _request2 = _interopRequireDefault(_request);
+
+var _utils = require('utils');
+
+require('scss/integral/eggs.component.scss');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var title = '欢乐砸金蛋'; /* eslint-disable */
+
+var Item = _list2.default.Item;
+var Brief = Item.Brief;
+
+var Tasks = function (_Component) {
+    (0, _inherits3.default)(Tasks, _Component);
+
+    function Tasks(props) {
+        (0, _classCallCheck3.default)(this, Tasks);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Tasks.__proto__ || (0, _getPrototypeOf2.default)(Tasks)).call(this, props));
+
+        _this.state = {
+            lock: 1,
+            loaded: 1,
+            description: {}
+        };
+        return _this;
+    }
+
+    (0, _createClass3.default)(Tasks, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            document.title = title;
+            var middleware = this.props.middleware;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var loaded = this.state.loaded;
+
+            return _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'wrapper wrapper-integral-eggs': true, loaded: loaded }) }, '1');
+        }
+    }]);
+    return Tasks;
+}(_react.Component);
+
+exports.default = Tasks;
+;
+module.exports = exports['default'];

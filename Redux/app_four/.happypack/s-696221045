@@ -1,0 +1,272 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/modal/style/css');
+
+var _modal = require('antd-mobile/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _css2 = require('antd-mobile/lib/grid/style/css');
+
+var _grid = require('antd-mobile/lib/grid');
+
+var _grid2 = _interopRequireDefault(_grid);
+
+var _css3 = require('antd-mobile/lib/carousel/style/css');
+
+var _carousel = require('antd-mobile/lib/carousel');
+
+var _carousel2 = _interopRequireDefault(_carousel);
+
+var _css4 = require('antd-mobile/lib/notice-bar/style/css');
+
+var _noticeBar = require('antd-mobile/lib/notice-bar');
+
+var _noticeBar2 = _interopRequireDefault(_noticeBar);
+
+var _css5 = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _css6 = require('antd-mobile/lib/list/style/css');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+require('./index.component.scss');
+
+var _request = require('./request');
+
+var _request2 = _interopRequireDefault(_request);
+
+var _utils = require('utils');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var TITLE = '更多选择'; /* eslint-disable */
+
+var Item = _list2.default.Item;
+var Brief = Item.Brief;
+
+var lock = true;
+
+var Flow = function (_Component) {
+    (0, _inherits3.default)(Flow, _Component);
+
+    function Flow(props) {
+        (0, _classCallCheck3.default)(this, Flow);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Flow.__proto__ || (0, _getPrototypeOf2.default)(Flow)).call(this, props));
+
+        _this.state = {
+            tips: '',
+            gallerys: [],
+            items: [],
+            loaded: 0,
+            modal: {
+                visible: 0
+            }
+        };
+        return _this;
+    }
+
+    (0, _createClass3.default)(Flow, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _this2 = this;
+
+            document.title = TITLE;
+            _toast2.default.loading(undefined, 0);
+            (0, _request2.default)('notice/get-flow-list').then(function (response) {
+                var _response$data = response.data,
+                    tips = _response$data.tips,
+                    gallerys = _response$data.gallerys,
+                    item = _response$data.item;
+
+                var items = [];
+                for (var i in item) {
+                    items.push(item[i]);
+                }
+                _this2.setState({
+                    active: items[0].id,
+                    tips: tips,
+                    gallerys: gallerys,
+                    items: items,
+                    loaded: 1
+                });
+                _toast2.default.hide();
+            }).catch(this.middleware.bind(this));
+        }
+    }, {
+        key: 'middleware',
+        value: function middleware(response) {
+            var message = response.message;
+
+            _toast2.default.hide();
+            _toast2.default.fail(message, 1.5);
+        }
+    }, {
+        key: 'carousel',
+        value: function carousel() {}
+    }, {
+        key: 'goto',
+        value: function goto() {
+            var _this3 = this;
+
+            var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+            var name = options.title,
+                link = options.href,
+                l = options.link;
+            var modal = this.state.modal;
+
+            if (lock) {
+                lock = !lock;
+                _toast2.default.loading(undefined, 0);
+                (0, _request2.default)({
+                    url: 'credit-web/user-click-count',
+                    params: {
+                        title: name
+                    }
+                }).then(function (response) {
+                    _toast2.default.hide();
+                    if (name && _utils.platform.isAndroid) {
+                        modal.name = name;
+                        modal.link = link;
+                        _this3.setState({
+                            modal: modal
+                        });
+                        setTimeout(function () {
+                            modal.visible = 1;
+                            _this3.setState({
+                                modal: modal
+                            });
+                        }, 100);
+                    } else {
+                        if (l) {
+                            window.location.href = l;
+                            return;
+                        }
+                        window.location.href = link;
+                    }
+                    lock = !lock;
+                }).catch(this.middleware.bind(this));
+            }
+        }
+    }, {
+        key: 'close',
+        value: function close() {
+            var modal = this.state.modal;
+
+            modal.visible = 0;
+            this.setState({
+                modal: modal
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this4 = this;
+
+            var _refs$wrapper = this.refs.wrapper,
+                wrapper = _refs$wrapper === undefined ? { clientWidth: 0 } : _refs$wrapper;
+            var _state = this.state,
+                tips = _state.tips,
+                gallerys = _state.gallerys,
+                items = _state.items,
+                modal = _state.modal,
+                loaded = _state.loaded,
+                active = _state.active;
+
+            var grid = function grid(data) {
+                var id = data.id,
+                    text = data.name;
+
+                var style = {
+                    height: wrapper.clientWidth / items.length
+                };
+                var iconSize = style.height * .44;
+                var click = function click() {
+                    active != id && _this4.setState({ active: id });
+                };
+                return _react2.default.createElement('div', { className: (0, _classnames2.default)({
+                        'am-grid-item-contain': true,
+                        active: active == id
+                    }), style: style, onClick: click }, _react2.default.createElement('div', { className: 'am-grid-icon', style: { width: iconSize, height: iconSize } }), _react2.default.createElement('div', { className: 'am-grid-text' }, text));
+            };
+            var item = function item(data, index) {
+                var name = data.title,
+                    slogan = data.slogan,
+                    description = data.remark,
+                    thumb = data.img_url,
+                    interest = data.loan_apr,
+                    interestType = data.type,
+                    maximumAmount = data.max_amount;
+
+                return _react2.default.createElement(Item, { key: index, arrow: 'horizontal', thumb: thumb, onClick: _this4.goto.bind(_this4, data), multipleLine: true }, name, slogan ? ' - ' + slogan : '', _react2.default.createElement('div', { className: 'description' }, _react2.default.createElement(Brief, null, description)), _react2.default.createElement('div', { className: 'params' }, _react2.default.createElement(Brief, null, _react2.default.createElement('p', null, '\u53C2\u8003', interestType == 0 ? '年' : interestType == 1 ? '月' : interestType == 2 ? '日' : '/', '\u5229\u7387\uFF1A', _react2.default.createElement('span', null, interest)), _react2.default.createElement('p', null, '\u6700\u9AD8\u989D\u5EA6\uFF1A', _react2.default.createElement('span', null, maximumAmount)))));
+            };
+            var carouselStyle = this.state.initialHeight ? { height: this.state.initialHeight } : {};
+            return _react2.default.createElement('div', { ref: 'wrapper', className: 'wrapper wrapper-misc-flow ' + (loaded ? 'loaded' : '') }, tips && _react2.default.createElement(_noticeBar2.default, { icon: null }, tips), _react2.default.createElement('div', { className: 'carousel' }, gallerys && _react2.default.createElement(_carousel2.default, { dots: gallerys.length > 1, autoplay: gallerys.length > 1, infinite: true }, gallerys.map(function (gallery, index) {
+                return _react2.default.createElement('a', { key: index, className: 'slider-link', onClick: _this4.goto.bind(_this4, gallery), style: carouselStyle }, _react2.default.createElement('img', { src: gallery.image, onLoad: function onLoad() {
+                        // fire window resize event to change height
+                        window.dispatchEvent(new Event('resize'));
+                        _this4.setState({
+                            initialHeight: null
+                        });
+                    } }));
+            }))), _react2.default.createElement(_grid2.default, { data: items, columnNum: items.length, renderItem: grid }), items && items.length && items.map(function (_ref, index) {
+                var id = _ref.id,
+                    children = _ref.blackFlowInfo;
+                return _react2.default.createElement(_list2.default, { key: index, className: (0, _classnames2.default)({ active: active == id }) }, children && children.length ? children.map(item) : _react2.default.createElement('div', { className: 'empty' }, '\u6682\u65E0\u6570\u636E'));
+            }), _react2.default.createElement(_modal2.default, {
+                className: 'goto',
+                title: '\u5373\u5C06\u8FDB\u5165"' + modal.name + '"\u9875\u9762',
+                visible: modal.visible,
+                onClose: this.close.bind(this),
+                maskClosable: true,
+                transparent: true }, _react2.default.createElement('p', null, '\u6CE8\u518C\u5B8C\u6210\u540E\u8BF7\u81F3\u5404\u5927\u5E94\u7528\u5E02\u573A\u4E0B\u8F7D"', modal.name, '"APP'), _react2.default.createElement('a', { href: modal.link || 'javascript:;', className: 'button' }, '\u524D\u5F80')));
+        }
+    }]);
+    return Flow;
+}(_react.Component);
+
+exports.default = Flow;
+;
+module.exports = exports['default'];

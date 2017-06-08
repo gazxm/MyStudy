@@ -1,0 +1,271 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/icon/style/css');
+
+var _icon = require('antd-mobile/lib/icon');
+
+var _icon2 = _interopRequireDefault(_icon);
+
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _css2 = require('antd-mobile/lib/carousel/style/css');
+
+var _carousel = require('antd-mobile/lib/carousel');
+
+var _carousel2 = _interopRequireDefault(_carousel);
+
+var _css3 = require('antd-mobile/lib/button/style/css');
+
+var _button = require('antd-mobile/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _css4 = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _css5 = require('antd-mobile/lib/list/style/css');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _request = require('common/request');
+
+var _request2 = _interopRequireDefault(_request);
+
+var _utils = require('utils');
+
+require('scss/integral/tasks.component.scss');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var title = '任务中心'; /* eslint-disable */
+
+var Item = _list2.default.Item;
+var Brief = Item.Brief;
+
+var Tasks = function (_Component) {
+    (0, _inherits3.default)(Tasks, _Component);
+
+    function Tasks(props) {
+        (0, _classCallCheck3.default)(this, Tasks);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Tasks.__proto__ || (0, _getPrototypeOf2.default)(Tasks)).call(this, props));
+
+        _this.state = {
+            lock: 1,
+            loaded: 0,
+            description: {}
+        };
+        return _this;
+    }
+
+    (0, _createClass3.default)(Tasks, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            document.title = title;
+            var middleware = this.props.middleware;
+
+            (0, _request2.default)('credit-gold/task-list').then(function (response) {
+                var _response$data = response.data,
+                    _response$data$gold_t = _response$data.gold_task_banner;
+                _response$data$gold_t = _response$data$gold_t === undefined ? {} : _response$data$gold_t;
+                var gallery = _response$data$gold_t.items,
+                    task = _response$data.task;
+
+                _this2.setState({
+                    gallery: gallery,
+                    task: task,
+                    loaded: 1
+                });
+            }).catch(middleware.bind(this));
+        }
+    }, {
+        key: 'reward',
+        value: function reward() {
+            var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+            var type = options.type,
+                link = options.link;
+
+            if (type === 0) {
+                return;
+            } else if (type === 1) {
+                if (_utils.platform.isApp) {
+                    (0, _utils.hrefNative)(link);
+                } else {
+                    Modal.alert('下载App', '下载app后可完善高级认证，完善后可借更高的额度', [{
+                        text: '取消'
+                    }, {
+                        text: '下载app',
+                        onPress: download
+                    }]);
+                }
+                return;
+            } else if (type === 2) {
+                window.location.href = link;
+                return;
+            } else {
+                _toast2.default.fail('服务器繁忙，请稍后重试');
+            }
+        }
+    }, {
+        key: 'receive',
+        value: function receive(data, parentIndex, index) {
+            var _this3 = this;
+
+            var middleware = this.props.middleware;
+            var _state = this.state,
+                task = _state.task,
+                lock = _state.lock;
+
+            if (lock && data.status == 1 && !data.loading) {
+                if (task[parentIndex] && task[parentIndex].item && task[parentIndex].item[index]) {
+                    data.loading = 1;
+                    task[parentIndex].item[index] = data;
+                    this.setState({
+                        task: task,
+                        lock: 0
+                    });
+                    var start = Date.now();
+                    (0, _request2.default)('credit-gold/get-task-gold?id=' + data.id).then(function (response) {
+                        var end = Date.now();
+                        var timeout = 0;
+                        if (end - start < 1000) timeout = 1000;
+                        if (end - start > 1000) timeout = 0;
+                        setTimeout(function () {
+                            data.received = 1;
+                            data.status = 2;
+                            data.loading = 0;
+                            task[parentIndex].item[index] = data;
+                            _this3.setState({
+                                task: task,
+                                lock: 1
+                            });
+                        }, timeout);
+                    }).catch(function (response) {
+                        var end = Date.now();
+                        var timeout = 0;
+                        if (end - start < 1000) timeout = 1000;
+                        if (end - start > 1000) timeout = 0;
+                        setTimeout(function () {
+                            data.loading = 0;
+                            task[parentIndex].item[index] = data;
+                            _this3.setState({
+                                task: task,
+                                lock: 1
+                            });
+                            middleware.bind(_this3, response)();
+                        }, timeout);
+                    });
+                } else {
+                    _toast2.default.fail('服务器繁忙，请稍后重试');
+                }
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this4 = this;
+
+            var _state2 = this.state,
+                task = _state2.task,
+                gallery = _state2.gallery,
+                description = _state2.description,
+                loaded = _state2.loaded;
+
+            var format = function format(data, parentIndex, index) {
+                var status = data.status,
+                    url = data.url,
+                    loading = data.loading;
+
+                return _react2.default.createElement('div', null, status == 0 ? _react2.default.createElement('div', { className: 'reward', onClick: _this4.reward.bind(_this4, url) }, '\u53BB\u5B8C\u6210') : _react2.default.createElement(_button2.default, { className: (0, _classnames2.default)({
+                        'receive': true,
+                        'received': status == 2
+                    }), loading: loading, onClick: _this4.receive.bind(_this4, data, parentIndex, index) }));
+            };
+            return _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'wrapper wrapper-integral-tasks': true, loaded: loaded }) }, gallery ? _react2.default.createElement(_carousel2.default, { className: 'gallery', infinite: true, dots: gallery.length > 1, autoplay: gallery.length > 1, variableWidth: true }, gallery && gallery.length && gallery.map(function (data, index) {
+                return _react2.default.createElement('a', { key: index, className: 'slider-slide-link', href: data.link }, _react2.default.createElement('img', { src: data.img }));
+            })) : '', task && task.length && task.map(function (_ref, parentIndex) {
+                var name = _ref.name,
+                    items = _ref.item,
+                    active = _ref.active;
+                return _react2.default.createElement(_list2.default, {
+                    key: parentIndex,
+                    className: (0, _classnames2.default)({
+                        tasks: true,
+                        active: active
+                    }),
+                    renderHeader: function renderHeader() {
+                        return name || '其他任务';
+                    },
+                    renderFooter: items && items.length && items.length > 3 ? function () {
+                        return _react2.default.createElement('div', { className: 'more', onClick: function onClick() {
+                                task.map(function (data, index) {
+                                    return index == parentIndex && (data.active = !data.active);
+                                });
+                                _this4.setState({ task: task });
+                            } }, active ? '收起' : '更多');
+                    } : false }, items && items.length ? items.map(function (item, index) {
+                    return _react2.default.createElement(Item, {
+                        key: index,
+                        thumb: _react2.default.createElement('i', { style: item.img ? { backgroundImage: 'url(' + item.img + ')' } : {} }),
+                        multipleLine: true,
+                        extra: format.bind(_this4, item, parentIndex, index)() }, _react2.default.createElement('div', { className: 'title' }, item.name, item.icon ? _react2.default.createElement('i', { style: item.icon ? { backgroundImage: 'url(' + item.icon + ')' } : {} }) : ''), _react2.default.createElement(Brief, null, _react2.default.createElement('div', { className: 'money' }, '+', item.gold_score, '\u91D1\u5E01'), item.desc ? _react2.default.createElement('div', { className: 'description' }, description['d_' + parentIndex + '_' + index] ? _react2.default.createElement('p', null, '\u4EFB\u52A1\u8BF4\u660E\uFF1A', item.desc) : '', _react2.default.createElement('div', { className: 'handle', onClick: function onClick() {
+                            return _this4.setState({
+                                description: (0, _defineProperty3.default)({}, 'd_' + parentIndex + '_' + index, !description['d_' + parentIndex + '_' + index])
+                            });
+                        } }, _react2.default.createElement(_icon2.default, { type: description['d_' + parentIndex + '_' + index] ? 'up' : 'down' }))) : ''));
+                }) : _react2.default.createElement('div', { className: 'empty' }, '\u6682\u65E0\u6570\u636E'));
+            }), _react2.default.createElement('div', { className: 'toolbar', onClick: function onClick() {
+                    return setTimeout(_utils.redirect.push('/integral-mall'));
+                } }, '\u91D1\u5E01\u5151\u6362'));
+        }
+    }]);
+    return Tasks;
+}(_react.Component);
+
+exports.default = Tasks;
+;
+module.exports = exports['default'];

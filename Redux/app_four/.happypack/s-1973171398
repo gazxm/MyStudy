@@ -1,0 +1,134 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/modal/style/css');
+
+var _modal = require('antd-mobile/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _css2 = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactBack2top = require('react-back2top');
+
+var _reactBack2top2 = _interopRequireDefault(_reactBack2top);
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _request = require('common/request');
+
+var _request2 = _interopRequireDefault(_request);
+
+var _utils = require('utils');
+
+require('scss/integral/tasks.component.scss');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+/* eslint-disable */
+var RETRY_TEXT = '系统繁忙，请稍后重试';
+
+var Tasks = function (_Component) {
+    (0, _inherits3.default)(Tasks, _Component);
+
+    function Tasks(props) {
+        (0, _classCallCheck3.default)(this, Tasks);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Tasks.__proto__ || (0, _getPrototypeOf2.default)(Tasks)).call(this, props));
+
+        _this.state = {};
+
+        _request2.default.interceptors.response.use(function (response) {
+            var code = response.code,
+                message = response.message;
+
+            if (code != 0) {
+                return _promise2.default.reject(response);
+            }
+            return _promise2.default.resolve(response);
+        }, function (error) {
+            return _promise2.default.reject(error);
+        });
+        return _this;
+    }
+
+    (0, _createClass3.default)(Tasks, [{
+        key: 'middleware',
+        value: function middleware(response) {
+            var _this2 = this;
+
+            var code = response.code,
+                _response$message = response.message,
+                message = _response$message === undefined ? RETRY_TEXT : _response$message;
+
+            _toast2.default.hide();
+            if (code == -1001) {
+                var modal = document.querySelector('.am-modal');
+                if (!modal) {
+                    _modal2.default.alert('提 示', message, [{
+                        text: '确 定',
+                        onPress: _utils.login
+                    }]);
+                }
+            } else {
+                _toast2.default.fail(message, function () {
+                    _this2.setState && _this2.setState({ lock: 1, loaded: 1, loading: 0 });
+                });
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var middleware = this.middleware;
+
+            return _react2.default.createElement('div', null, _react2.default.cloneElement(this.props.children, {
+                middleware: middleware
+            }), _react2.default.createElement(_reactBack2top2.default, null));
+        }
+    }]);
+    return Tasks;
+}(_react.Component);
+
+exports.default = Tasks;
+;
+module.exports = exports['default'];

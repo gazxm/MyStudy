@@ -1,0 +1,188 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+exports.default = reducer;
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function reducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    list: {
+      items: [],
+      fetching: false,
+      fetched: false,
+      code: 0,
+      message: null
+    },
+    verify: {
+      user: {
+        name: null,
+        id_card: null,
+        city: []
+      },
+      sort: null,
+      sorts: null,
+      fields: null,
+      tabs: null,
+      fetching: false,
+      fetched: false,
+      code: 0,
+      message: null
+    }
+  };
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'FETCH_SF_LIST_PENDING':
+      {
+        return (0, _extends3.default)({}, state, { list: { fetching: true, fetched: false, code: 0, message: null }, verify: (0, _extends3.default)({}, state.verify, { code: 0, message: null }) });
+      }
+    case 'FETCH_SF_LIST_REJECTED':
+      {
+        return (0, _extends3.default)({}, state, { list: { fetching: false, error: action.payload } });
+      }
+    case 'FETCH_SF_LIST_FULFILLED':
+      {
+        return (0, _extends3.default)({}, state, {
+          list: {
+            fetching: false,
+            fetched: true,
+            items: action.payload.data.data,
+            code: action.payload.data.code,
+            message: action.payload.data.message
+          }
+        });
+      }
+    case 'FETCH_SF_USER_PENDING':
+      {
+        return (0, _extends3.default)({}, state, {
+          verify: {
+            user: {
+              name: null,
+              id_card: null,
+              city: []
+            },
+            sort: null,
+            fields: null,
+            tabs: null,
+            fetching: true,
+            fetched: false,
+            code: 0,
+            message: null
+          }
+        });
+      }
+    case 'FETCH_SF_USER_REJECTED':
+      {
+        return (0, _extends3.default)({}, state, { verify: { fetching: false, error: action.payload } });
+      }
+    case 'FETCH_SF_USER_FULFILLED':
+      {
+        return (0, _extends3.default)({}, state, {
+          verify: {
+            fetching: false,
+            fetched: true,
+            user: action.payload.data.data || { name: null, id_card: null, city: [] },
+            code: action.payload.data.code,
+            message: action.payload.data.message
+          }
+        });
+      }
+    case 'FETCH_SF_USER_SORT_PENDING':
+      {
+        return (0, _extends3.default)({}, state, {
+          verify: (0, _extends3.default)({}, state.verify, {
+            fetching: true,
+            fetched: false,
+            code: 0,
+            message: null
+          })
+        });
+      }
+    case 'FETCH_SF_USER_SORT_REJECTED':
+      {
+        return (0, _extends3.default)({}, state, { verify: (0, _extends3.default)({}, state.verify, { fetching: false, fetched: true, error: action.payload }) });
+      }
+    case 'FETCH_SF_USER_SORT_FULFILLED':
+      {
+        var data = action.payload.data.data;
+        var sort = data ? data.length === 1 ? data[0] : data : null;
+        var sorts = data ? data.length > 1 ? data : null : null;
+        return (0, _extends3.default)({}, state, {
+          verify: (0, _extends3.default)({}, state.verify, {
+            fetching: false,
+            fetched: true,
+            sort: sort,
+            sorts: sorts,
+            tabs: sort && sort.tabs && sort.tabs.length > 1 ? sort.tabs : null,
+            fields: sort && sort.tabs && sort.tabs.length === 1 ? sort.tabs[0].field : null,
+            code: action.payload.data.code,
+            message: action.payload.data.message
+          })
+        });
+      }
+    case 'FETCH_SF_USER_TAB_FIELDS_CHANGE':
+      {
+        return (0, _extends3.default)({}, state, {
+          verify: (0, _extends3.default)({}, state.verify, {
+            fields: action.payload
+          })
+        });
+      }
+    case 'FETCH_SF_USER_SORT_FIELDS_CHANGE':
+      {
+        return (0, _extends3.default)({}, state, {
+          verify: (0, _extends3.default)({}, state.verify, {
+            sort: action.payload,
+            tabs: action.payload.tabs,
+            fields: null
+          })
+        });
+      }
+    case 'FETCH_SF_USER_VERIFY_PENDING':
+      {
+        return (0, _extends3.default)({}, state, { verify: (0, _extends3.default)({}, state.verify, { fetching: true, fetched: false, code: 0, message: null }) });
+      }
+    case 'FETCH_SF_USER_VERIFY_REJECTED':
+      {
+        return (0, _extends3.default)({}, state, { verify: (0, _extends3.default)({}, state.verify, { fetching: false, fetched: true, error: action.payload }) });
+      }
+    case 'FETCH_SF_USER_VERIFY_FULFILLED':
+      {
+        return (0, _extends3.default)({}, state, {
+          verify: (0, _extends3.default)({}, state.verify, {
+            fetching: false,
+            fetched: true,
+            code: action.payload.data.code,
+            message: action.payload.data.message
+          })
+        });
+      }
+    case 'FETCH_SF_USER_VERIFY_RESET':
+      {
+        return (0, _extends3.default)({}, state, {
+          verify: (0, _extends3.default)({}, state.verify, {
+            sort: null,
+            sorts: null,
+            fields: null,
+            tabs: null,
+            fetching: false,
+            fetched: true,
+            code: 0,
+            message: null
+          })
+        });
+      }
+  }
+  return state;
+}
+module.exports = exports['default'];

@@ -1,0 +1,248 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _css = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _css2 = require('antd-mobile/lib/list-view/style/css');
+
+var _listView = require('antd-mobile/lib/list-view');
+
+var _listView2 = _interopRequireDefault(_listView);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _css3 = require('antd-mobile/lib/list/style/css');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+require('scss/signin/detailed.component.scss');
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = require('utils');
+
+var _moment = require('moment');
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _request = require('./request');
+
+var _request2 = _interopRequireDefault(_request);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Item = _list2.default.Item;
+var Brief = Item.Brief;
+
+var title = '金币明细';
+var page = 1;
+var size = 15;
+var lock = true;
+
+var Detailed = function (_Component) {
+    (0, _inherits3.default)(Detailed, _Component);
+
+    function Detailed(props) {
+        (0, _classCallCheck3.default)(this, Detailed);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Detailed.__proto__ || (0, _getPrototypeOf2.default)(Detailed)).call(this, props));
+
+        var data = new _listView2.default.DataSource({
+            rowHasChanged: function rowHasChanged(row1, row2) {
+                return row1 !== row2;
+            }
+        });
+
+        _this.data = {};
+        _this.state = {
+            money: 0,
+            dataSource: data.cloneWithRows({}),
+            loading: 1,
+            loaded: 0,
+            empty: 0
+        };
+        return _this;
+    }
+
+    (0, _createClass3.default)(Detailed, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            document.title = title;
+            var _state = this.state,
+                dataSource = _state.dataSource,
+                loading = _state.loading,
+                loaded = _state.loaded;
+
+            _toast2.default.loading(undefined, 0);
+            (0, _request2.default)('credit-gold/draw-list').then(function (response) {
+                _toast2.default.hide();
+                var _response$data = response.data,
+                    money = _response$data.score,
+                    items = _response$data.list;
+
+                var data = {};
+                if (!items.length) {
+                    _this2.setState({
+                        empty: 1,
+                        loaded: 1
+                    });
+                    return;
+                }
+                items.map(function (item, index) {
+                    var ii = page * items.length + index;
+                    data[ii] = item;
+                });
+                items.length < size && (loading = 0);
+                _this2.data = (0, _extends3.default)({}, _this2.data, data);
+                page++;
+                _this2.setState({
+                    money: money,
+                    dataSource: dataSource.cloneWithRows(_this2.data),
+                    loading: loading,
+                    loaded: 1
+                });
+            }).catch(this.middleware.bind(this));
+        }
+    }, {
+        key: 'middleware',
+        value: function middleware(response) {
+            var code = response.code,
+                message = response.message;
+
+            var type = 'info';
+
+            _toast2.default.hide();
+            if ([-1000, -1004].indexOf(code) >= 0) {
+                type = 'fail';
+            } else if ([-1003].indexOf(code) >= 0) {
+                type = 'offline';
+            } else if (-1001 === code) {
+                (0, _utils.login)();
+                return;
+            }
+            this.setState({
+                loaded: 1
+            });
+            _toast2.default[type](message, 1.5);
+            setTimeout(function () {
+                lock = !lock;
+            }, 1500);
+        }
+    }, {
+        key: 'onEndReached',
+        value: function onEndReached(event) {
+            var _this3 = this;
+
+            var _state2 = this.state,
+                loading = _state2.loading,
+                dataSource = _state2.dataSource;
+
+            if (lock && loading) {
+                lock = !lock;
+                (0, _request2.default)('credit-gold/draw-list?page=' + page).then(function (response) {
+                    var _response$data2 = response.data,
+                        money = _response$data2.score,
+                        items = _response$data2.list;
+
+                    var data = {};
+                    if (!items.length) {
+                        _this3.setState({
+                            loading: 0
+                        });
+                        return;
+                    }
+                    items.map(function (item, index) {
+                        var ii = page * items.length + index;
+                        data[ii] = item;
+                    });
+                    _this3.data = (0, _extends3.default)({}, _this3.data, data);
+                    _this3.setState({
+                        money: money,
+                        dataSource: dataSource.cloneWithRows(_this3.data)
+                    });
+                    page++;
+                    lock = !lock;
+                }).catch(this.middleware.bind(this));
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _state3 = this.state,
+                money = _state3.money,
+                dataSource = _state3.dataSource,
+                loading = _state3.loading,
+                loaded = _state3.loaded,
+                empty = _state3.empty;
+
+            var row = function row(data) {
+                var name = data.name,
+                    money = data.operator_gold_score,
+                    created_at = data.created_at;
+
+                var date = _moment2.default.unix(created_at).format('YYYY-MM-DD HH:mm:ss');
+                return _react2.default.createElement(Item, { multipleLine: true, extra: '' + money }, name, _react2.default.createElement(Brief, null, date));
+            };
+            return _react2.default.createElement('div', { className: 'wrapper wrapper-signin-detailed loaded' }, _react2.default.createElement('div', { className: 'header' }, _react2.default.createElement('div', null, _react2.default.createElement('p', null, '\u603B\u91D1\u5E01'), _react2.default.createElement('p', null, money))), _react2.default.createElement('div', { className: 'content ' + (loaded ? 'loaded' : '') }, !empty ? _react2.default.createElement(_listView2.default, {
+                dataSource: dataSource,
+                renderFooter: function renderFooter() {
+                    return _react2.default.createElement('div', { style: { padding: 30, textAlign: 'center' } }, loading && !loaded ? '加载中...' : '');
+                },
+                pageSize: 10,
+                renderRow: row,
+                scrollRenderAheadDistance: 333,
+                scrollEventThrottle: 100,
+                onEndReached: this.onEndReached.bind(this),
+                onEndReachedThreshold: 100,
+                renderBodyComponent: function renderBodyComponent() {
+                    return _react2.default.createElement(_list2.default, { className: 'logger' });
+                }
+            }) : _react2.default.createElement('div', { className: 'empty' }, '\u6682\u65E0\u6570\u636E')));
+        }
+    }]);
+    return Detailed;
+}(_react.Component);
+// <ListView
+// dataSource={data}/>
+
+
+exports.default = Detailed;
+module.exports = exports['default'];

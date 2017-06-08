@@ -1,0 +1,121 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Content = require('./Content');
+
+var _Content2 = _interopRequireDefault(_Content);
+
+var _Popup = require('../components/Popup');
+
+var _Popup2 = _interopRequireDefault(_Popup);
+
+var _utils = require('utils');
+
+require('scss/activity/inte-eval.component.scss');
+
+require('img/activity/inte-eval/eval-05.jpg');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Result = function (_React$Component) {
+  (0, _inherits3.default)(Result, _React$Component);
+
+  function Result(props) {
+    (0, _classCallCheck3.default)(this, Result);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Result.__proto__ || (0, _getPrototypeOf2.default)(Result)).call(this, props));
+
+    _this.state = {
+      data: {}
+    };
+    return _this;
+  }
+
+  (0, _createClass3.default)(Result, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      _toast2.default.loading('加载中...', 0);
+      (0, _utils.get)('http://credit.xianjincard.com/activity/intelligence-testing/my-test').then(function (data) {
+        return data.data;
+      }).then(function (data) {
+        _toast2.default.hide();
+        if (data.code !== 0) {
+          _Popup2.default.alert(_Content2.default.showHtml(data.code), 'popup');
+          if (data.code === -1001) {
+            _Popup2.default.click('a.click', _utils.login);
+            return;
+          }
+          _Popup2.default.click('a.click');
+          return;
+        }
+        _this2.setState({
+          data: data.data
+        });
+      });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      document.title = '测评结果';
+    }
+  }, {
+    key: 'receive',
+    value: function receive() {
+      _utils.redirect.push('/integral/tasks');
+    }
+  }, {
+    key: 'test',
+    value: function test() {
+      _utils.redirect.push('/activity/evaluation/stepone');
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var data = this.state.data;
+
+      return _react2.default.createElement('div', { className: 'transition-group' }, _react2.default.createElement('div', { className: 'result' }, _react2.default.createElement('h1', null, '\u9636\u6BB5\u667A\u80FD\u6D4B\u8BC4\u5B8C\u6210'), _react2.default.createElement('p', { className: 'loan' }, '\u60A8\u7684\u8D37\u6B3E\u989D\u5EA6', _react2.default.createElement('b', null, '\u5DF2\u63D0\u5347'), _react2.default.createElement('br', null), '\u60A8\u7684\u8D37\u6B3E\u6210\u529F\u7387\u63D0\u5347\u81F3', _react2.default.createElement('b', null, data.score, '%')), _react2.default.createElement('p', { className: 'quota' }, _react2.default.createElement('img', { src: '../../../assets/img/activity/inte-eval/eval-05.jpg' }), _react2.default.createElement('span', null, _react2.default.createElement('b', null, data.quota), _react2.default.createElement('br', null), '\u6211\u7684\u989D\u5EA6')), _react2.default.createElement('div', { className: 'gold clearfix' }, _react2.default.createElement('p', null, _react2.default.createElement('span', null, '\u7EE7\u7EED\u6D4B\u8BC4\u989D\u5EA6\u6700\u9AD8\u53EF\u63D0\u81F35000', _react2.default.createElement('br', null), '\u8FD8\u53EF\u83B7\u5F97\u989D\u5916\u7684\u91D1\u5E01\u5956\u52B1\u3002')), _react2.default.createElement('a', { onClick: this.receive.bind(this) }, '\u9886\u53D6\u91D1\u5E01\u5956\u52B1')), _react2.default.createElement('a', { className: 'test', onClick: this.test.bind(this) }, '\u7EE7\u7EED\u6D4B\u8BD5')));
+    }
+  }]);
+  return Result;
+}(_react2.default.Component);
+
+exports.default = Result;
+module.exports = exports['default'];

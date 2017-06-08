@@ -1,0 +1,214 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/modal/style/css');
+
+var _modal = require('antd-mobile/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _css2 = require('antd-mobile/lib/carousel/style/css');
+
+var _carousel = require('antd-mobile/lib/carousel');
+
+var _carousel2 = _interopRequireDefault(_carousel);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _css3 = require('antd-mobile/lib/list/style/css');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+var _reactSlick = require('react-slick');
+
+var _reactSlick2 = _interopRequireDefault(_reactSlick);
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _request = require('common/request');
+
+var _request2 = _interopRequireDefault(_request);
+
+var _utils = require('utils');
+
+require('scss/integral/mall.component.scss');
+
+require('slick-carousel/slick/slick.css');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+/* eslint-disable */
+var title = '金币商城';
+var Item = _list2.default.Item;
+
+function hex2rgb(hex) {
+    var color = hex.toLowerCase();
+    if (color && /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/.test(color)) {
+        if (color.length === 4) {
+            var newColor = '#';
+            for (var _i = 1; _i < 4; _i += 1) {
+                newColor += color.slice(_i, _i + 1).concat(color.slice(_i, _i + 1));
+            }
+            color = newColor;
+        }
+        var rgb = [];
+        for (var i = 1; i < 7; i += 2) {
+            rgb.push(parseInt('0x' + color.slice(i, i + 2)));
+        }
+        return rgb.join(',');
+    } else {
+        return color;
+    }
+}
+
+var Mall = function (_Component) {
+    (0, _inherits3.default)(Mall, _Component);
+
+    function Mall() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        (0, _classCallCheck3.default)(this, Mall);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Mall.__proto__ || (0, _getPrototypeOf2.default)(Mall)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+            visible: 0,
+            loaded: 0
+        }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    }
+
+    (0, _createClass3.default)(Mall, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            document.title = title;
+            var middleware = this.props.middleware;
+
+            (0, _request2.default)('credit-gold/shop-index').then(function (response) {
+                var _response$data = response.data,
+                    is_login = _response$data.is_login,
+                    money = _response$data.score,
+                    modules = _response$data.module;
+
+                _this2.setState({
+                    is_login: is_login,
+                    money: money,
+                    modules: modules,
+                    loaded: 1
+                });
+            }).catch(middleware.bind(this));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this3 = this;
+
+            var _state = this.state,
+                is_login = _state.is_login,
+                money = _state.money,
+                modules = _state.modules,
+                loaded = _state.loaded,
+                visible = _state.visible,
+                initialHeight = _state.initialHeight;
+
+            var gallery = function gallery(data) {
+                var items = data.items;
+
+                return _react2.default.createElement('div', null, _react2.default.createElement(_carousel2.default, { infinite: true, dots: items.length > 1, autoplay: items.length > 1, variableWidth: true }, items && items.length && items.map(function (item, index) {
+                    return _react2.default.createElement('a', { key: index, className: 'slider-slide-link', href: item.link }, _react2.default.createElement('img', { src: item.img }));
+                })), _react2.default.createElement('div', { className: 'main' }, is_login ? _react2.default.createElement('div', { className: 'money' }, '\u53EF\u7528\u91D1\u5E01', _react2.default.createElement(_reactRouter.Link, { to: '/signin/detailed' }, money)) : _react2.default.createElement('a', { className: 'login', onClick: _utils.login }, '\u767B\u9646\u67E5\u770B\u91D1\u5E01\u6570'), _react2.default.createElement('a', { className: 'instruction', onClick: function onClick() {
+                        return _this3.setState({ visible: 1 });
+                    } }, '\u91D1\u5E01\u662F\u4EC0\u4E48?')));
+            };
+            var guides = function guides(data) {
+                var items = data.items;
+                // let creteBackgroundColor = (color, index) => {
+                //     let opacity = .75;
+                //     let style = document.createElement('style');
+                //         style.type = 'text/css';
+                //         style.innerHTML = `
+                //             .guides-background-color-${index}{
+                //                 background-image: linear-gradient(to bottom, rgba(${hex2rgb(color)}, ${opacity}) 0%, ${color} 100%);
+                //                 background-image: -o-linear-gradient(to bottom, rgba(${hex2rgb(color)}, ${opacity}) 0%, ${color} 100%);
+                //                 background-image: -moz-linear-gradient(to bottom, rgba(${hex2rgb(color)}, ${opacity}) 0%, ${color} 100%);
+                //                 background-image: -webkit-linear-gradient(top, rgba(${hex2rgb(color)}, ${opacity}) 0%, ${color} 100%);
+                //             }
+                //         `;
+                //     document.head.appendChild(style);
+                // }
+
+                return _react2.default.createElement('div', { className: 'guides' }, _react2.default.createElement(_reactSlick2.default, { arrows: false, infinite: false, slidesToShow: 3, slidesToScroll: 3, variableWidth: true }, items && items.length && items.map(function (item, index) {
+                    return _react2.default.createElement('div', { key: index }, _react2.default.createElement('a', { href: item.link, style: item.img ? { backgroundImage: 'url(' + item.img + ')' } : '' }, item.text));
+                })));
+            };
+            var goods = function goods(data) {
+                var items = data.items;
+
+                return _react2.default.createElement('div', { className: 'goods' }, _react2.default.createElement(_list2.default, { renderHeader: function renderHeader() {
+                        return _react2.default.createElement('div', { className: 'header' }, _react2.default.createElement('div', { className: 'title', style: data.color ? { color: data.color } : {} }, data.icon ? _react2.default.createElement('i', { className: 'icon', style: { backgroundImage: 'url(' + data.icon + ')' } }) : '', data.name), _react2.default.createElement('a', { href: data.link, className: 'more' }, '\u66F4\u591A'));
+                    } }, items && items.length ? _react2.default.createElement('ul', { className: (0, _classnames2.default)({
+                        'body': data.model == 1,
+                        'body-grid': data.model == 2
+                    }) }, items.map(function (item, index) {
+                    return _react2.default.createElement('li', { key: index, onClick: function onClick() {
+                            return _utils.redirect.push('/integral-mall/details?id=' + item.id);
+                        } }, _react2.default.createElement('div', null, _react2.default.createElement('div', { className: 'picture', style: item.default_img ? { backgroundImage: 'url(' + item.default_img + ')' } : {} })), _react2.default.createElement('div', { className: 'description' }, _react2.default.createElement('div', { className: 'title' }, _react2.default.createElement('span', null, item.name), data.model == 1 ? _react2.default.createElement('span', { className: (0, _classnames2.default)({
+                            stock: true,
+                            active: item.stock > 0 || item.status
+                        }) }, item.stock > 0 ? '\u5269\u4F59' + item.stock + '\u4EFD' : item.status ? '抢购中' : '已抢完') : ''), _react2.default.createElement('div', { className: 'details' }, data.model == 1 ? _react2.default.createElement('div', { className: 'subtitle' }, item.sub_title || '') : '', _react2.default.createElement('div', { className: 'money' }, _react2.default.createElement('span', null, item.disc_price > 0 ? item.disc_price : item.price), '\u91D1\u5E01'), data.model == 1 ? _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'exchange': true, 'disabled': item.status == 0 && item.stock <= 0 }), onClick: function onClick() {
+                            return _utils.redirect.push('/integral-mall/details?id=' + item.id);
+                        } }, item.status == 0 && item.stock <= 0 ? '已售罄' : '立即兑换') : '', data.model == 2 ? _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'status': true, active: item.status == 0 }) }, item.status ? '抢购中' : '已抢完') : '')));
+                })) : _react2.default.createElement('div', { className: 'empty' }, '\u6682\u65E0\u6570\u636E')));
+            };
+            return _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'wrapper wrapper-integral-mall': true, loaded: loaded }) }, modules && modules.map(function (module, index) {
+                return _react2.default.createElement('div', { className: 'module', key: index }, module.type == 'gold_shop_page_banner' && gallery(module, index), module.type == 'gold_shop_page_icon' && module.items && module.items.length && guides(module, index), module.type == 'gold_shop_page_goods' && goods(module, index));
+            }), _react2.default.createElement(_modal2.default, { className: 'integral-mall-modal-instruction', title: '\u91D1\u5E01\u8BF4\u660E', visible: visible, onClose: function onClose() {
+                    return _this3.setState({ visible: 0 });
+                }, maskClosable: true, transparent: true }, _react2.default.createElement('div', null, _react2.default.createElement('h6', null, '\u91D1\u5E01\u7684\u5B9A\u4E49\uFF1A'), _react2.default.createElement('p', null, '\u91D1\u5E01\u662F\u73B0\u91D1\u5361\u7684\u4E00\u79CD\u865A\u62DF\u8D27\u5E01\uFF0C\u6CE8\u518C\u7528\u6237\u53EF\u901A\u8FC7\u7B7E\u5230\u3001\u5B8C\u6210\u4EFB\u52A1\u3001\u53C2\u4E0E\u6D3B\u52A8\u3001\u73A9\u6E38\u620F\u7B49\u6E20\u9053\u83B7\u5F97\uFF0C\u53EF\u7528\u4E8E\u5151\u6362\u76F8\u5E94\u7684\u4F18\u60E0\uFF0C\u66F4\u591A\u91D1\u5E01\u73A9\u6CD5\u6B63\u5728\u5F00\u53D1\u4E2D\u3002'), _react2.default.createElement('h6', null, '\u91D1\u5E01\u7684\u6E05\u7B97\u89C4\uFF1A'), _react2.default.createElement('p', null, '\u6BCF\u5E741\u67081\u65E5\u548C7\u67081\u65E5\uFF0C\u5C06\u5BF9\u534A\u5E74\u524D\u7684\u91D1\u5E01\u8FDB\u884C\u6E05\u7B97\uFF0C\u5230\u671F\u672A\u7528\u5B8C\u7684\u91D1\u5E01\u6E05\u7B97\u540E\u5C06\u5931\u6548\uFF0C\u6240\u4EE5\u8981\u6293\u7D27\u65F6\u95F4\u5151\u6362\u54E6\uFF01'), _react2.default.createElement('p', null, '\u4F8B\uFF1A2017\u5E741\u67081\u65E5~7\u67081\u65E5\u671F\u95F4\u83B7\u5F975\u4E07\u91D1\u5E01\uFF0C2017\u5E747\u67081\u65E5~12\u670831\u65E5\u83B7\u5F975\u4E07\u91D1\u5E01\uFF0C\u82B1\u8D393\u4E07\u91D1\u5E01\uFF0C\u52192018\u5E741\u67081\u65E5\u8FDB\u884C\u6E05\u7B97\u540E\uFF0C2017\u5E741\u67081\u65E5~7\u67081\u65E5\u672A\u7528\u5B8C\u76842\u4E07\u91D1\u5E01\u5C06\u5931\u6548\uFF0C\u6E05\u7B97\u540E\u8D26\u6237\u91D1\u5E01\u603B\u6570\u4E3A5\u4E07\u91D1\u5E01\uFF0C\u4EE5\u6B64\u7C7B\u63A8\u3002'), _react2.default.createElement('span', null, '\u91D1\u5E01\u7684\u6700\u7EC8\u89E3\u91CA\u6743\u5F52\u73B0\u91D1\u5361\u6240\u6709'))));
+        }
+    }]);
+    return Mall;
+}(_react.Component);
+
+exports.default = Mall;
+;
+module.exports = exports['default'];

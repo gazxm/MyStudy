@@ -1,0 +1,188 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var animTime = 8;
+
+var Barrage = function (_React$Component) {
+  (0, _inherits3.default)(Barrage, _React$Component);
+
+  function Barrage(props) {
+    (0, _classCallCheck3.default)(this, Barrage);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Barrage.__proto__ || (0, _getPrototypeOf2.default)(Barrage)).call(this, props));
+
+    _this.state = {
+      barrageData: [],
+      inputData: ''
+    };
+    return _this;
+  }
+
+  (0, _createClass3.default)(Barrage, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var timeFlag = this.props.timeFlag;
+
+      if (timeFlag !== 0) {
+        return;
+      }
+      this.randomData();
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var timeFlag = this.props.timeFlag;
+
+      if (timeFlag !== 0) {
+        return;
+      }
+      var inputData = nextProps.inputData;
+
+      if (inputData) {
+        this.setState({
+          inputData: inputData
+        });
+      }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var timeFlag = this.props.timeFlag;
+
+      if (timeFlag !== 0) {
+        return;
+      }
+
+      var _loop = function _loop(i) {
+        var delayTime = Math.random() * 10;
+        var totalTime = animTime + delayTime;
+        _this2.barrage(_this2.refs[i], delayTime, totalTime);
+        setInterval(function () {
+          _this2.barrage(_this2.refs[i], delayTime, totalTime);
+        }, totalTime * 1000);
+      };
+
+      for (var i in this.refs) {
+        _loop(i);
+      }
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      var _this3 = this;
+
+      var timeFlag = this.props.timeFlag;
+
+      if (timeFlag !== 0) {
+        return;
+      }
+      var top = Math.random() * 1.2;
+      setTimeout(function () {
+        _this3.refs.inputData.className = 'transition color-' + Math.floor(Math.random() * 3);
+        _this3.refs.inputData.style.top = top + 'rem';
+        _this3.refs.inputData.style.left = '-' + (Math.random() * 5 + 5) + 'rem';
+      }, 100);
+      setTimeout(function () {
+        _this3.refs.inputData.className = '';
+        _this3.refs.inputData.style.left = '';
+        _this3.refs.inputData.style.top = '';
+      }, animTime * 1000 + 100);
+    }
+  }, {
+    key: 'barrage',
+    value: function barrage(domNode, delayTime, totalTime) {
+      var timeFlag = this.props.timeFlag;
+
+      if (timeFlag !== 0) {
+        return;
+      }
+      var data = this.props.data.data;
+
+      var textData = data[Math.floor(Math.random() * 50)].word;
+      var top = Math.random() * 1.5;
+      domNode.innerHTML = textData;
+      setTimeout(function () {
+        domNode.style.left = '-' + (Math.random() * 5 + 5) + 'rem';
+        domNode.style.top = top + 'rem';
+        domNode.className = 'transition color-' + Math.floor(Math.random() * 3);
+      }, delayTime * 1000);
+      setTimeout(function () {
+        domNode.className = '';
+        domNode.style.left = '';
+        domNode.style.top = '';
+      }, totalTime * 1000);
+    }
+  }, {
+    key: 'randomData',
+    value: function randomData() {
+      var _props$data = this.props.data,
+          data = _props$data.data,
+          length = _props$data.length;
+
+      var finalData = [];
+      for (var i = 0; i < length; i++) {
+        finalData = [].concat((0, _toConsumableArray3.default)(finalData), [data[Math.floor(Math.random() * 50)]]);
+      }
+      this.setState({
+        barrageData: finalData
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _state = this.state,
+          barrageData = _state.barrageData,
+          inputData = _state.inputData;
+      var timeFlag = this.props.timeFlag;
+
+      var barrage = barrageData && timeFlag === 0 ? barrageData.map(function (v, i) {
+        return _react2.default.createElement('div', { key: i, ref: 'barrage' + i }, v.word);
+      }) : null;
+      var input = inputData ? _react2.default.createElement('div', { ref: 'inputData' }, inputData) : null;
+
+      return _react2.default.createElement('div', { className: 'barrage' }, _react2.default.createElement('div', { className: 'barrage-content' }, barrage, input));
+    }
+  }]);
+  return Barrage;
+}(_react2.default.Component);
+
+exports.default = Barrage;
+module.exports = exports['default'];

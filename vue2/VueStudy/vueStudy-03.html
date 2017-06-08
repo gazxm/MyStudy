@@ -1,0 +1,37 @@
+<script src="./vue.js"></script>
+
+<div id="example" :class="classObject"></div>
+
+<!-- <div id="example2" :class="[isActive ? activeClass : '', errorClass]"></div> -->
+
+<div id="example2" :class="[{active: isActive}, errorClass]"></div>
+
+<script>
+	var vm = new Vue({
+	  el: '#example',
+	  data: {
+		  isActive: true,
+		  error: null
+		},
+		computed: {
+		  classObject: function () {
+	    	console.log(this.error)
+		    return {
+		      active: this.isActive && !this.error,
+		      textDanger: !this.error,
+		      'text-danger': !this.error
+		    }
+		  }
+		}
+	})
+
+	var vm1 = new Vue({
+		el: '#example2',
+		data: {
+			activeClass: 'active',
+			errorClass: 'text-danger',
+			isActive: false
+		}
+	})
+	
+</script>

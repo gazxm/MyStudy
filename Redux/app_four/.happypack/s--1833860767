@@ -1,0 +1,294 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/modal/style/css');
+
+var _modal = require('antd-mobile/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _css2 = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = require('utils');
+
+var _request = require('./request');
+
+var _request2 = _interopRequireDefault(_request);
+
+require('scss/activity/eggs.component.scss');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var title = '欢乐砸金蛋';
+var lock = true;
+
+var Eggs = function (_Component) {
+    (0, _inherits3.default)(Eggs, _Component);
+
+    function Eggs(props) {
+        (0, _classCallCheck3.default)(this, Eggs);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Eggs.__proto__ || (0, _getPrototypeOf2.default)(Eggs)).call(this, props));
+
+        var eggs = [];
+        for (var i = 0; i < 16; i++) {
+            eggs.push({});
+        }_this.state = {
+            eggs: eggs,
+            count: 0,
+            completed: 0,
+            guide: {
+                visible: 0
+            },
+            checkout: {
+                visible: 0
+            },
+            empty: 0,
+            loaded: 0
+        };
+        return _this;
+    }
+
+    (0, _createClass3.default)(Eggs, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            document.title = title;
+            (0, _request2.default)('credit-info/get-last-hit-number').then(function (response) {
+                var count = response.message;
+
+                _this2.setState({
+                    count: +count,
+                    loaded: 1
+                });
+            }).catch(this.middleware.bind(this));
+        }
+    }, {
+        key: 'middleware',
+        value: function middleware(response) {
+            var code = response.code,
+                message = response.message;
+
+            var type = 'info';
+            if ([-1, -2].indexOf(code) >= 0) {
+                _toast2.default[type](message || '未知错误', 1.5);
+            } else if (code == -5) {
+                (0, _utils.login)();
+            } else if (code == 2001) {
+                this.setState({
+                    empty: 1
+                });
+            } else if (code == 3) {
+                this.setState({
+                    empty: 2
+                });
+            }
+            this.setState({
+                loaded: 1
+            });
+            setTimeout(function () {
+                lock = true;
+            }, 1500);
+        }
+    }, {
+        key: 'checkout',
+        value: function checkout(i) {
+            var _state = this.state,
+                count = _state.count,
+                completed = _state.completed,
+                checkout = _state.checkout;
+
+            if (!lock) return;
+            if (count) {
+                checkout.index = i;
+                checkout.visible = 1;
+                this.setState({
+                    checkout: checkout
+                });
+            } else {
+                this.setState({
+                    empty: 2
+                });
+            }
+        }
+    }, {
+        key: 'close',
+        value: function close() {
+            var checkout = this.state.checkout;
+
+            checkout.visible = 0;
+            this.setState({
+                checkout: checkout
+            });
+        }
+    }, {
+        key: 'start',
+        value: function start(i) {
+            var _this3 = this;
+
+            var _state2 = this.state,
+                eggs = _state2.eggs,
+                count = _state2.count,
+                completed = _state2.completed,
+                checkout = _state2.checkout,
+                guide = _state2.guide;
+
+            if (typeof i === 'number' && lock) {
+                lock = !lock;
+                new _promise2.default(function (resolve) {
+                    _this3.close.apply(_this3);
+                    setTimeout(resolve, 500);
+                }).then(function () {
+                    (0, _request2.default)('credit-info/get-hit-gold?postion=' + i).then(function (response) {
+                        var _response$data = response.data,
+                            items = _response$data.gold_egg_info,
+                            config = _response$data.pop_info;
+
+                        eggs.map(function (egg, index) {
+                            egg.value = items[index];
+                            if (i === index) {
+                                egg.active = 1;
+                                guide.money = items[i];
+                                setTimeout(function () {
+                                    egg.actived = 1;
+                                    _this3.setState({
+                                        eggs: eggs
+                                    });
+                                }, 500);
+                            } else {
+                                egg.complete = 1;
+                            }
+                        });
+                        guide.content = config.content;
+                        guide.image = config.img;
+                        guide.links = config.url;
+                        guide.style = guide.image ? { backgroundImage: 'url(' + guide.image + ')' } : {};
+
+                        _this3.setState({
+                            guide: guide,
+                            eggs: eggs,
+                            count: --count
+                        });
+                        setTimeout(function () {
+                            completed = 1;
+                            guide.visible = 1;
+                            _this3.setState({
+                                guide: guide,
+                                completed: completed
+                            });
+                        }, 3000);
+                    }).catch(_this3.middleware.bind(_this3));
+                });
+            }
+        }
+    }, {
+        key: 'reset',
+        value: function reset() {
+            var _state3 = this.state,
+                eggs = _state3.eggs,
+                completed = _state3.completed;
+
+            if (completed) {
+                eggs.map(function (egg, index) {
+                    egg.active = egg.actived = egg.complete = 0;
+                });
+                this.setState({
+                    eggs: eggs,
+                    completed: 0
+                });
+                lock = !lock;
+            }
+        }
+    }, {
+        key: 'guide',
+        value: function guide() {
+            var guide = this.state.guide;
+
+            guide.visible = 0;
+            this.setState({
+                guide: guide
+            });
+        }
+    }, {
+        key: 'empty',
+        value: function empty() {
+            this.setState({
+                empty: 0
+            });
+        }
+    }, {
+        key: 'signin',
+        value: function signin() {
+            window.location.href = '/signin';
+        }
+    }, {
+        key: 'desc',
+        value: function desc() {
+            this.setState({
+                empty: 3
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this4 = this;
+
+            var _state4 = this.state,
+                eggs = _state4.eggs,
+                count = _state4.count,
+                guide = _state4.guide,
+                checkout = _state4.checkout,
+                empty = _state4.empty,
+                loaded = _state4.loaded,
+                completed = _state4.completed;
+
+            return _react2.default.createElement('div', { className: 'wrapper wrapper-activity-eggs ' + (loaded ? 'loaded' : '') }, _react2.default.createElement('div', { className: 'logo' }), _react2.default.createElement('div', { className: 'desc' }, _react2.default.createElement('span', { onClick: this.desc.bind(this) }, '\u67E5\u770B\u6D3B\u52A8\u89C4\u5219')), _react2.default.createElement('div', { className: 'satin' }, _react2.default.createElement('ul', null, eggs.map(function (egg, index) {
+                return _react2.default.createElement('li', { key: index, onClick: _this4.checkout.bind(_this4, index), className: '' + (egg.active ? 'active' : '') + (egg.complete ? 'complete' : '') + (egg.actived ? ' actived' : '') }, _react2.default.createElement('div', { className: 'egg' }), _react2.default.createElement('div', { className: 'egg-crack' }), _react2.default.createElement('div', { className: 'money' }, egg.value));
+            })), _react2.default.createElement('div', { className: 'tips' }, '\u4ECA\u65E5\u8FD8\u5269 ', _react2.default.createElement('span', null, count, '\u6B21'), '\u7838\u86CB\u673A\u4F1A'), _react2.default.createElement('div', { className: 'button button-reset ' + (completed ? '' : 'disabled'), onClick: this.reset.bind(this) }, '\u91CD\u65B0\u5F00\u59CB')), _react2.default.createElement(_modal2.default, { className: 'guide', visible: guide.visible, onClose: this.guide.bind(this), maskClosable: true, transparent: true }, _react2.default.createElement('div', { className: 'title' }, guide.money > 0 ? _react2.default.createElement('p', null, '\u606D\u559C\u4F60\uFF01\u83B7\u5F97', guide.money, '\u91D1\u5E01') : _react2.default.createElement('p', null, '\u672C\u6B21\u6CA1\u6709\u83B7\u5F97\u91D1\u5E01\uFF01'), _react2.default.createElement('p', null, '\u53C2\u52A0\u6D3B\u52A8\u83B7\u5F97\u66F4\u591A\u91D1\u5E01')), _react2.default.createElement('div', { className: 'picture', style: guide.style }), _react2.default.createElement('div', { className: 'description', dangerouslySetInnerHTML: { __html: guide.content } }), _react2.default.createElement('a', { className: 'links', href: '' + (guide.links ? guide.links : 'javascript:;') }, '\u70B9\u51FB\u67E5\u770B')), _react2.default.createElement(_modal2.default, { className: 'checkout', visible: checkout.visible, onClose: this.close.bind(this), maskClosable: true, transparent: true }, _react2.default.createElement('p', null, '\u672C\u6B21\u7838\u86CB\u5C06\u6D88\u8017100\u91D1\u5E01'), _react2.default.createElement('p', null, '\u786E\u5B9A\u4E0B\u9524\u5417?'), _react2.default.createElement('div', { className: 'button-group' }, _react2.default.createElement('div', { className: 'button button-violet', onClick: this.start.bind(this, checkout.index) }, '\u6211\u8981\u7838'), _react2.default.createElement('div', { className: 'button button-cancel', onClick: this.close.bind(this) }, '\u5BB9\u6715\u60F3\u60F3'))), _react2.default.createElement(_modal2.default, { className: 'checkout', visible: empty === 1, onClose: this.empty.bind(this), maskClosable: true, transparent: true }, _react2.default.createElement('p', null, '\u5BF9\u4E0D\u8D77\uFF0C\u60A8\u7684\u91D1\u5E01\u4E0D\u8DB3\uFF01'), _react2.default.createElement('div', { className: 'button-group' }, _react2.default.createElement('div', { className: 'button button-violet', onClick: this.signin }, '\u8D5A\u91D1\u5E01\u53BB'))), _react2.default.createElement(_modal2.default, { className: 'checkout', visible: empty === 2, onClose: this.empty.bind(this), maskClosable: true, transparent: true }, _react2.default.createElement('p', null, '\u4ECA\u65E5\u7838\u86CB\u6B21\u6570\u5DF2\u7528\u5B8C'), _react2.default.createElement('div', { className: 'button-group' }, _react2.default.createElement('div', { className: 'button button-cancel', onClick: this.empty.bind(this) }, '\u77E5\u9053\u4E86'))), _react2.default.createElement(_modal2.default, { title: '\u6D3B\u52A8\u89C4\u5219', className: 'checkout checkout-desc', visible: empty === 3, onClose: this.empty.bind(this), maskClosable: true, transparent: true }, _react2.default.createElement('ul', null, _react2.default.createElement('li', null, '\u5956\u6C60\u91CC\u5171\u67092000\u91D1\u5E01\uFF0C\u968F\u673A\u5206\u5E03\u572816\u4E2A\u91D1\u86CB\u91CC\uFF1B'), _react2.default.createElement('li', null, '\u6BCF\u6B21\u7838\u86CB\u9700\u8981\u6D88\u8017100\u79EF\u5206\uFF0C\u6BCF\u4EBA\u6BCF\u5929\u6700\u591A\u53EF\u78385\u6B21\uFF1B'), _react2.default.createElement('li', null, '\u672C\u6D3B\u52A8\u6700\u7EC8\u89E3\u91CA\u6743\u5F52\u73B0\u91D1\u5361\u6240\u6709\uFF0C\u4E0EApple.Inc\u65E0\u5173\u3002'))));
+        }
+    }]);
+    return Eggs;
+}(_react.Component);
+
+exports.default = Eggs;
+;
+module.exports = exports['default'];

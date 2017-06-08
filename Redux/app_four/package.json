@@ -73,7 +73,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "cross-env NODE_ENV=develop ./node_modules/.bin/webpack-dev-server --define process.env.NODE_ENV='\"develop\"' -d --port 8000 --host 0.0.0.0 --content-base src --inline --hot --history-api-fallback",
+    "dev": "cross-env NODE_ENV=develop ./node_modules/.bin/webpack-dev-server --define process.env.NODE_ENV='\"develop\"' -d --port 8050 --host 0.0.0.0 --content-base src --inline --hot --history-api-fallback",
     "build:dll": "webpack --config webpack.dll.js",
     "build": "cross-env NODE_ENV=debug webpack --define process.env.NODE_ENV='\"debug\"' --progress --colors",
     "build-t": "cross-env NODE_ENV=test webpack --define process.env.NODE_ENV='\"production\"' --progress --colors",

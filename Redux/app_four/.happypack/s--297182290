@@ -1,0 +1,124 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _css = require('antd-mobile/lib/button/style/css');
+
+var _button = require('antd-mobile/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _css2 = require('antd-mobile/lib/input-item/style/css');
+
+var _inputItem = require('antd-mobile/lib/input-item');
+
+var _inputItem2 = _interopRequireDefault(_inputItem);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _rcForm = require('rc-form');
+
+var _utils = require('utils');
+
+var _Toast = require('../../components/Toast');
+
+var _Toast2 = _interopRequireDefault(_Toast);
+
+require('scss/components/employer.component.scss');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Login = function (_React$Component) {
+  (0, _inherits3.default)(Login, _React$Component);
+
+  function Login(props) {
+    (0, _classCallCheck3.default)(this, Login);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Login.__proto__ || (0, _getPrototypeOf2.default)(Login)).call(this, props));
+
+    _this.submit = function () {
+      _this.props.form.validateFields(function (error, value) {
+        if (!error) {
+          _Toast2.default.loading('');
+          (0, _utils.post)('http://credit.xianjincard.com/credit-fund/login', value).then(function (data) {
+            return data.data;
+          }).then(function (data) {
+            _Toast2.default.hide();
+            if (data.code === -2) {
+              _this.setState({ errorMessage: data.message });
+              return;
+            }
+            if (data.code === -1) {
+              _utils.redirect.push('/employer/list');
+              return;
+            }
+            _this.setState({ errorMessage: '服务器繁忙，请稍候再试' });
+          });
+        }
+      });
+    };
+
+    _this.state = {
+      errorMessage: ''
+    };
+    return _this;
+  }
+
+  (0, _createClass3.default)(Login, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      document.title = '资金方查询';
+    }
+  }, {
+    key: 'onChange',
+    value: function onChange() {
+      this.setState({
+        errorMessage: ''
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var errors = void 0;
+      var _props$form = this.props.form,
+          getFieldProps = _props$form.getFieldProps,
+          getFieldError = _props$form.getFieldError;
+
+      return _react2.default.createElement('div', { className: 'transition-group fund-security-certification login-body' }, _react2.default.createElement('div', { className: 'login' }, _react2.default.createElement(_inputItem2.default, (0, _extends3.default)({}, getFieldProps('user_name', { onChange: this.onChange.bind(this), rules: [{ required: true, message: '用户名不能为空' }] }), { placeholder: '\u8BF7\u8F93\u5165\u7528\u6237\u540D' }), '\u7528\u6237\u540D\uFF1A'), _react2.default.createElement(_inputItem2.default, (0, _extends3.default)({ className: 'input-password' }, getFieldProps('pass_word', { onChange: this.onChange.bind(this), rules: [{ required: true, message: '密码不能为空' }] }), { placeholder: '\u8BF7\u8F93\u5165\u5BC6\u7801', type: 'password' }), '\u5BC6\u7801\uFF1A'), _react2.default.createElement('div', { className: 'error' }, (errors = getFieldError('user_name') || getFieldError('pass_word')) ? errors.join(',') : null, this.state.errorMessage), _react2.default.createElement(_button2.default, { className: 'btn login-btn', onClick: this.submit }, '\u767B\u5F55')));
+    }
+  }]);
+  return Login;
+}(_react2.default.Component);
+
+exports.default = (0, _rcForm.createForm)()(Login);
+module.exports = exports['default'];

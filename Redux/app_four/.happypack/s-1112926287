@@ -1,0 +1,71 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+exports.default = new (function () {
+  function Content() {
+    (0, _classCallCheck3.default)(this, Content);
+  }
+
+  (0, _createClass3.default)(Content, [{
+    key: 'popupHtml',
+    value: function popupHtml() {
+      var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '服务器繁忙，请稍后重试';
+      var tips = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '朕知道了';
+
+      return '<p>' + content + '</p><a class=\'click\'>' + tips + '</a>';
+    }
+  }, {
+    key: 'showHtml',
+    value: function showHtml(code, type, amount, name, expire, unit) {
+      switch (code) {
+        case 0:
+          if (type === '1') {
+            return this.popupHtml('\u606D\u559C\u60A8\u9886\u53D6\u4E00' + unit + amount + name + '\uFF0C<br />\u6709\u6548\u671F' + expire + '\uFF0C\u8BB0\u5F97\u4F7F\u7528\u54E6~', '马上使用');
+          } else if (type === '2') {
+            return this.popupHtml('\u606D\u559C\u60A8\u9886\u53D6' + amount + name + '\uFF0C<br />\u8BB0\u5F97\u4F7F\u7528\u54E6~');
+          } else {
+            return this.popupHtml('\u606D\u559C\u60A8\u9886\u53D6' + amount + name + '\uFF0C<br />\u8BB0\u5F97\u53BB\u8FD4\u73B0\u54E6~');
+          }
+        case -1001:
+          return this.popupHtml('您尚未登录，请先登录哦~', '马上登录');
+        case -1014:
+          return this.popupHtml('亲，您点击的太频繁了，<br />请耐心等待一会儿~');
+        case -2012:
+          return this.popupHtml('亲，活动即将开始，敬请期待~');
+        case -2013:
+          return this.popupHtml('亲，活动已经结束<br />更多精彩马上来袭~');
+        case -2024:
+          return this.popupHtml('好遗憾，您与本次秒杀擦肩而过<br />下个时段惊喜更大哦~');
+        case -2025:
+          if (type === '1') {
+            return this.popupHtml('\u606D\u559C\u60A8\u5DF2\u9886\u53D6\u8FC7\u4E00' + unit + amount + name + '\uFF0C<br />\u6709\u6548\u671F' + expire + '\uFF0C\u8BB0\u5F97\u4F7F\u7528\u54E6~', '马上使用');
+          } else if (type === '2') {
+            return this.popupHtml('\u606D\u559C\u60A8\u5DF2\u9886\u53D6\u8FC7' + amount + name + '\uFF0C<br />\u8BB0\u5F97\u4F7F\u7528\u54E6~');
+          } else {
+            return this.popupHtml('\u606D\u559C\u60A8\u5DF2\u9886\u53D6\u8FC7' + amount + name + '\uFF0C<br />\u8BB0\u5F97\u53BB\u8FD4\u73B0\u54E6~');
+          }
+        case -2029:
+          return this.popupHtml('亲，该奖励已经不能领取了哦~');
+        default:
+          return this.popupHtml();
+      }
+    }
+  }]);
+  return Content;
+}())();
+module.exports = exports['default'];

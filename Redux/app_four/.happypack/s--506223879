@@ -1,0 +1,257 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Layout = require('pages/mobile/Layout');
+
+var _Layout2 = _interopRequireDefault(_Layout);
+
+var _reactRouterTransitions = require('react-router-transitions');
+
+var _layout = require('pages/mobile/certification/layout');
+
+var _layout2 = _interopRequireDefault(_layout);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+exports.default = {
+  path: '/mobile',
+  component: (0, _reactRouterTransitions.withTransition)(_Layout2.default),
+  indexRoute: { onEnter: function onEnter(nextState, replace) {
+      return replace('/mobile/loan');
+    } },
+  childRoutes: [{
+    path: 'loan',
+    getComponent: function getComponent(location, callback) {
+      require.ensure([], function (require) {
+        callback(null, require('pages/mobile/loan'));
+      });
+    }
+  }, {
+    path: 'certification',
+    indexRoute: [{
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/certification'));
+        });
+      }
+    }],
+    childRoutes: [{
+      path: 'instruction',
+      transition: 'from-right',
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/certification/instruction'));
+        });
+      }
+    }, {
+      component: _layout2.default,
+      transition: 'from-right',
+      childRoutes: [{
+        path: 'information',
+        transaction: 'from-right',
+        getComponent: function getComponent(location, callback) {
+          require.ensure([], function (require) {
+            callback(null, require('pages/mobile/certification/information'));
+          });
+        }
+      }, {
+        path: 'contacts',
+        transaction: 'from-right',
+        getComponent: function getComponent(location, callback) {
+          require.ensure([], function (require) {
+            callback(null, require('pages/mobile/certification/contacts'));
+          });
+        }
+      }, {
+        path: 'bank',
+        transaction: 'from-right',
+        getComponent: function getComponent(location, callback) {
+          require.ensure([], function (require) {
+            callback(null, require('pages/mobile/certification/bank'));
+          });
+        }
+      }, {
+        path: 'operator',
+        transaction: 'from-right',
+        getComponent: function getComponent(location, callback) {
+          require.ensure([], function (require) {
+            callback(null, require('pages/mobile/certification/operator'));
+          });
+        }
+      }, {
+        path: 'jobs',
+        transaction: 'from-right',
+        getComponent: function getComponent(location, callback) {
+          require.ensure([], function (require) {
+            callback(null, require('pages/mobile/certification/jobs'));
+          });
+        }
+      }, {
+        transaction: 'from-right',
+        childRoutes: [{
+          path: 'credit/verify',
+          transaction: 'from-right',
+          getComponent: function getComponent(location, callback) {
+            require.ensure([], function (require) {
+              callback(null, require('pages/mobile/certification/credit/verify'));
+            });
+          }
+        }, {
+          path: 'credit/import',
+          transaction: 'from-right',
+          getComponent: function getComponent(location, callback) {
+            require.ensure([], function (require) {
+              callback(null, require('pages/mobile/certification/credit/import'));
+            });
+          }
+        }, {
+          path: 'credit/import/email',
+          transaction: 'from-right',
+          getComponent: function getComponent(location, callback) {
+            require.ensure([], function (require) {
+              callback(null, require('pages/mobile/certification/credit/email'));
+            });
+          }
+        }, {
+          path: 'credit/import/bank',
+          transaction: 'from-right',
+          getComponent: function getComponent(location, callback) {
+            require.ensure([], function (require) {
+              callback(null, require('pages/mobile/certification/credit/bank'));
+            });
+          }
+        }, {
+          path: 'credit/importing',
+          transaction: 'from-right',
+          getComponent: function getComponent(location, callback) {
+            require.ensure([], function (require) {
+              callback(null, require('pages/mobile/certification/credit/importing'));
+            });
+          }
+        }]
+      }]
+    }, {
+      path: 'credit',
+      indexRoute: [{
+        getComponent: function getComponent(location, callback) {
+          require.ensure([], function (require) {
+            callback(null, require('pages/mobile/certification/credit/index'));
+          });
+        }
+      }]
+    }]
+  }, {
+    path: 'find',
+    indexRoute: [{
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/find'));
+        });
+      }
+    }],
+    childRoutes: [{
+      path: 'article/:id',
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/find/article'));
+        });
+      }
+    }]
+  }, {
+    path: 'settings',
+    // indexRoute: [{
+    //   getComponent (location, callback) {
+    //     require.ensure([], function (require) {
+    //       callback(null, require('pages/mobile/find'))
+    //     })
+    //   }
+    // }],
+    childRoutes: [{
+      path: 'feedback',
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/settings/feedback'));
+        });
+      }
+    }]
+  }, {
+    path: 'me',
+    getComponent: function getComponent(location, callback) {
+      require.ensure([], function (require) {
+        callback(null, require('pages/mobile/me'));
+      });
+    }
+  }, {
+    path: '',
+    childRoutes: [{
+      path: 'loan/:card_type/:period/:money(/:coupon_id)',
+      transition: 'from-bottom',
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/misc/Loan'));
+        });
+      }
+    }, {
+      path: 'coupon',
+      transition: 'from-left',
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/misc/Coupon'));
+        });
+      }
+    }, {
+      path: 'order',
+      transition: 'from-left',
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/misc/Order'));
+        });
+      }
+    }, {
+      path: 'wechat',
+      transition: 'from-left',
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/misc/wechat'));
+        });
+      }
+    }]
+  }, {
+    path: 'repayment',
+    childRoutes: [{
+      path: 'result/:id',
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/repayment/Result'));
+        });
+      }
+    }, {
+      path: 'projet/:id',
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/repayment/Projet'));
+        });
+      }
+    }, {
+      path: 'feedback',
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/repayment/feedback'));
+        });
+      }
+    }, {
+      path: 'part',
+      getComponent: function getComponent(location, callback) {
+        require.ensure([], function (require) {
+          callback(null, require('pages/mobile/repayment/part'));
+        });
+      }
+    }]
+  }]
+};
+module.exports = exports['default'];

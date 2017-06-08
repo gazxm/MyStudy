@@ -1,0 +1,403 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/refresh-control/style/css');
+
+var _refreshControl = require('antd-mobile/lib/refresh-control');
+
+var _refreshControl2 = _interopRequireDefault(_refreshControl);
+
+var _css2 = require('antd-mobile/lib/icon/style/css');
+
+var _icon = require('antd-mobile/lib/icon');
+
+var _icon2 = _interopRequireDefault(_icon);
+
+var _css3 = require('antd-mobile/lib/carousel/style/css');
+
+var _carousel = require('antd-mobile/lib/carousel');
+
+var _carousel2 = _interopRequireDefault(_carousel);
+
+var _css4 = require('antd-mobile/lib/button/style/css');
+
+var _button = require('antd-mobile/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _css5 = require('antd-mobile/lib/list-view/style/css');
+
+var _listView = require('antd-mobile/lib/list-view');
+
+var _listView2 = _interopRequireDefault(_listView);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _css6 = require('antd-mobile/lib/modal/style/css');
+
+var _modal = require('antd-mobile/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = require('utils');
+
+var _Toast = require('components/Toast');
+
+var _Toast2 = _interopRequireDefault(_Toast);
+
+var _Slider = require('../components/Slider');
+
+var _Slider2 = _interopRequireDefault(_Slider);
+
+require('scss/mobile/loan.home.component.scss');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var alert = _modal2.default.alert;
+var currency = function currency(value) {
+  var bit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+
+  return value.toFixed(bit).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+};
+
+var Loan = function (_React$Component) {
+  (0, _inherits3.default)(Loan, _React$Component);
+
+  function Loan(props) {
+    (0, _classCallCheck3.default)(this, Loan);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Loan.__proto__ || (0, _getPrototypeOf2.default)(Loan)).call(this, props));
+
+    var dataSource = new _listView2.default.DataSource({
+      rowHasChanged: function rowHasChanged(row1, row2) {
+        return row1 !== row2;
+      }
+    });
+
+    _this.data = {
+      is_login: 0,
+      item: {
+        card: [{
+          card_type: 1,
+          card_validity: '',
+          card_verify_step: '',
+          card_title: '',
+          card_subtitle: '',
+          card_amount: 0,
+          amount_days: {
+            amount_text: '',
+            amounts: [0],
+            days: [0],
+            interests: [0],
+            interests_text: ''
+          }
+        }]
+      },
+      user_loan_log_list: ['尾号5552成功借款500元，申请至放款耗时15分钟']
+    };
+    _this.state = {
+      dataSource: dataSource.cloneWithRows([_this.data]),
+      refreshing: true,
+      amount: 0,
+      dayIndex: 0,
+      cardIndex: 0,
+      fee: null,
+      isOpenApp: window.localStorage && localStorage.getItem('isOpenApp')
+    };
+    return _this;
+  }
+
+  (0, _createClass3.default)(Loan, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      document.title = '现金卡';
+      if (_utils.platform.isWeixin) {
+        (0, _utils.get)('http://credit.xianjincard.com/credit-user/bind-wx').then(function (result) {
+          if (result.data.code == -1001) {
+            window.location.href = (0, _utils.resolveUrl)('http://credit.xianjincard.com/wx/user-auth-template?redirectUrl=' + window.location.href);
+            return;
+          }
+        });
+      }
+      // this.setState({refreshing: true})
+      // this.fetchData()
+      // console.log(ReactDOM.findDOMNode(this))
+      // openApp()
+    }
+  }, {
+    key: 'fetchData',
+    value: function fetchData() {
+      var _this2 = this;
+
+      (0, _utils.get)('http://credit.xianjincard.com/credit-app/multi-index').then(function (result) {
+        if (result.data.code !== 0) {
+          _Toast2.default.info(result.data.message, 2);
+          return;
+        }
+
+        _this2.data = result.data.data;
+        // let card = JSON.parse(JSON.stringify(data.item.card[0]))
+        // card.card_title = '现金白卡'
+        // card.card_type = 1
+        // card.amount_days.days = [7, 14]
+        // card.amount_days.interests = ['9000', '12000']
+        // this.data.item.card.push(card)
+
+        _this2.setState({
+          dataSource: _this2.state.dataSource.cloneWithRows([_this2.data]),
+          refreshing: false
+        });
+      });
+    }
+  }, {
+    key: 'fetchFee',
+    value: function fetchFee(cost) {
+      var _this3 = this;
+
+      var card = this.data.item.card[this.state.cardIndex];
+      var max = card.amount_days.amounts[card.amount_days.amounts.length - 1] / 100;
+      var params = {
+        money: this.state.amount || max,
+        period: card.amount_days.days[this.state.dayIndex],
+        card_type: card.card_type,
+        counter: cost
+      };
+      // console.log(params)
+      (0, _utils.post)('http://credit.xianjincard.com/credit-app/credit-fee-detail', params).then(function (result) {
+        console.log(result);
+        if (result.data.code !== 0) {
+          _Toast2.default.info(result.data.message, 2);
+          return;
+        }
+        _this3.setState({ fee: result.data.data });
+      });
+    }
+  }, {
+    key: 'onRefresh',
+    value: function onRefresh() {
+      this.setState({ refreshing: true });
+      this.fetchData();
+    }
+  }, {
+    key: 'selected',
+    value: function selected(index) {
+      this.setState({ cardIndex: index });
+    }
+  }, {
+    key: 'onChange',
+    value: function onChange(value) {
+      this.setState({ amount: value });
+    }
+  }, {
+    key: 'onClick',
+    value: function onClick(i) {
+      this.setState({ dayIndex: i });
+    }
+  }, {
+    key: 'info',
+    value: function info(cost) {
+      // alert('提 示', this.data.item.card_open_tip, [{text: '确 定'}])
+      this.fetchFee(cost);
+    }
+  }, {
+    key: 'closeFee',
+    value: function closeFee() {
+      this.setState({ fee: null });
+    }
+  }, {
+    key: 'onKnow',
+    value: function onKnow(data) {
+      (0, _utils.post)('http://credit.xianjincard.com/credit-loan/confirm-failed-loan', { id: data.id }).then(function (result) {
+        // console.log(result)
+        if (result.data.code !== 0) {
+          _Toast2.default.info(result.data.message, 2);
+          return;
+        }
+        location.href = data.active_url;
+      });
+    }
+  }, {
+    key: 'closeApp',
+    value: function closeApp() {
+      localStorage.removeItem('isOpenApp');
+      this.setState({ isOpenApp: false });
+    }
+  }, {
+    key: 'openAppHandler',
+    value: function openAppHandler() {
+      (0, _utils.openApp)();
+      this.closeApp();
+    }
+  }, {
+    key: 'createOpenApp',
+    value: function createOpenApp() {
+      return _react2.default.createElement('div', { className: 'home-open-app' }, _react2.default.createElement('span', { onClick: this.openAppHandler.bind(this) }), _react2.default.createElement('span', { onClick: this.closeApp.bind(this) }));
+    }
+  }, {
+    key: 'createLoan',
+    value: function createLoan(data) {
+      var _this4 = this;
+
+      if (this.data.is_login !== 1) {
+        alert('登录', '你还没有登录，请先登录', [{ text: '确 定', onPress: function onPress() {
+            return (0, _utils.login)();
+          } }]);
+        return;
+      }
+      if (data.verify_loan_pass !== 1) {
+        _utils.redirect.push('/mobile/certification');
+        return;
+      }
+
+      var max = data.amount_days.amounts[data.amount_days.amounts.length - 1] / 100;
+
+      if (this.data.double_repayment >= 1) {
+        alert('下载App', '您目前只有1000额度，下载app申请借款可借更高的额度', [{ text: '取消', onPress: function onPress() {
+            return _utils.redirect.push('/mobile/loan/' + data.card_type + '/' + data.amount_days.days[_this4.state.dayIndex] + '/' + (_this4.state.amount || max));
+          } }, { text: '确定', onPress: function onPress() {
+            return (0, _utils.forwardApp)();
+          } }]);
+        return;
+      }
+
+      _utils.redirect.push('/mobile/loan/' + data.card_type + '/' + data.amount_days.days[this.state.dayIndex] + '/' + (this.state.amount || max));
+      // this.confirmLoan({card_type: data.card_type, period: data.amount_days.days[this.state.dayIndex], money: (this.state.amount || max)})
+    }
+  }, {
+    key: 'confirmLoan',
+    value: function confirmLoan(params) {
+      _Toast2.default.loading('加载中...');
+      (0, _utils.post)('http://credit.xianjincard.com/credit-loan/get-confirm-loan', params).then(function (result) {
+        _Toast2.default.hide();
+        // 不能再借
+        if (result.data.code === -1) {
+          alert('提示', result.data.message, [{ text: '确 定' }]);
+          return;
+        }
+        if (result.data.code !== 0) {
+          _Toast2.default.info(result.data.message, 2);
+          return;
+        }
+        _utils.redirect.push('/mobile/loan/' + params.card_type + '/' + params.period + '/' + params.money);
+      });
+    }
+  }, {
+    key: 'createSlider',
+    value: function createSlider(data) {
+      var mix = parseInt(data.amounts[0] / 100);
+      var max = parseInt(data.amounts[data.amounts.length - 1] / 100);
+      return _react2.default.createElement('div', null, _react2.default.createElement(_Slider2.default, { orientation: 'horizontal', onChange: this.onChange.bind(this), defaultValue: max, step: 100, min: mix, max: max, withBars: true }), _react2.default.createElement('p', { className: 'slider-range' }, _react2.default.createElement('span', null, mix, '\u5143'), _react2.default.createElement('span', null, max, '\u5143')));
+    }
+  }, {
+    key: 'create',
+    value: function create(result) {
+      var _this5 = this;
+
+      var data = result.amount_days;
+      var max = parseInt(data.amounts[data.amounts.length - 1]) / 100;
+      var interest = data.interests[this.state.dayIndex] / 100 / max;
+      var cost = (this.state.amount || max) * interest;
+      var button = data.days.map(function (v, i) {
+        return _react2.default.createElement(_button2.default, { className: _this5.state.dayIndex === i && 'active', key: i, onClick: _this5.onClick.bind(_this5, i), type: 'primary' }, v, '\u5929');
+      });
+      return _react2.default.createElement('div', { className: 'content' }, data.amounts.length > 1 && this.createSlider(data), _react2.default.createElement('div', { className: 'day' }, _react2.default.createElement('span', null, button), _react2.default.createElement('span', null, '\u501F\u6B3E\u65F6\u95F4')), _react2.default.createElement('p', null, _react2.default.createElement('span', null, '\u5230\u5E10\u91D1\u989D'), _react2.default.createElement('span', { className: 'amount' }, data.amount_text || currency((this.state.amount || max) - cost))), _react2.default.createElement('p', null, _react2.default.createElement('span', { onClick: this.info.bind(this, cost), className: 'icon' }, '\u7EFC\u5408\u8D39\u7528'), _react2.default.createElement('span', { className: 'amount' }, data.interests_text || currency(cost))), _react2.default.createElement(_button2.default, { onClick: this.createLoan.bind(this, result), className: 'btn', type: 'primary' }, '\u9A6C\u4E0A\u7533\u8BF7'));
+    }
+  }, {
+    key: 'repayment',
+    value: function repayment(data) {
+      return _react2.default.createElement('div', { className: 'content repayment' }, _react2.default.createElement('h3', null, data.span_repayment_money), _react2.default.createElement('h1', null, data.repayment_money), _react2.default.createElement('div', null, _react2.default.createElement('p', null, _react2.default.createElement('span', null, data.span_fee_time), _react2.default.createElement('span', null, data.plan_fee_time)), _react2.default.createElement('p', null, _react2.default.createElement('span', null, data.span_loan_amount), _react2.default.createElement('span', null, data.loan_amount)), _react2.default.createElement('p', null, _react2.default.createElement('span', null, data.span_order_time), _react2.default.createElement('span', null, data.order_time)), _react2.default.createElement('a', { href: data.loan_detail_url }, '\u6211\u8981\u8FD8\u6B3E')));
+    }
+  }, {
+    key: 'steps',
+    value: function steps(data) {
+      return _react2.default.createElement('div', null, _react2.default.createElement('div', { className: 'repayment-list' }, _react2.default.createElement('ul', null, ' ', data.lists.map(function (v, i) {
+        return _react2.default.createElement('li', { key: i, className: i === 0 && 'do' }, _react2.default.createElement('h1', null, v.title), _react2.default.createElement('p', null, v.body));
+      }), ' ')), data.button && _react2.default.createElement('div', { className: 'repayment-btn' }, _react2.default.createElement(_button2.default, { className: 'btn', onClick: this.onKnow.bind(this, data.button) }, data.button.msg)));
+    }
+  }, {
+    key: 'card',
+    value: function card(_card, i) {
+      var url = this.data.is_login === 1 ? _card.amount_sub_url || '#' : (0, _utils.resolveUrl)('http://h5.xianjincard.com/mobile/index.html#/login?redirect_url=' + encodeURIComponent(location.href));
+      return _react2.default.createElement('div', { key: i, className: _card.card_type === 2 ? 'wrap gold-card' : 'wrap' }, _react2.default.createElement('h1', null, _card.card_title), _react2.default.createElement('div', { className: 'credit' }, _react2.default.createElement('p', { className: 'title' }, _card.card_subtitle), _react2.default.createElement('h2', null, _card.card_title), _react2.default.createElement('p', { className: 'quota' }, '\u4FE1\u7528\u989D\u5EA6 (\u5143)'), _react2.default.createElement('div', { className: 'number card-heart-' + _card.card_type }, _react2.default.createElement('h3', { className: _card.amount_title && 'amount-title' }, _card.amount_title || _card.card_amount / 100)), _react2.default.createElement('p', { className: 'credit-number' }, _card.card_no), _react2.default.createElement('div', { className: 'info' }, _react2.default.createElement('a', { href: url }, _card.amount_sub_title), _react2.default.createElement('span', null, _card.card_validity))));
+    }
+  }, {
+    key: 'createFee',
+    value: function createFee(fee) {
+      return _react2.default.createElement('div', { className: 'popup-fee', onClick: this.closeFee.bind(this) }, _react2.default.createElement('div', { className: 'fee' }, _react2.default.createElement('h2', null, fee.title), _react2.default.createElement('ul', null, fee.item.map(function (v, i) {
+        return _react2.default.createElement('li', { key: i }, _react2.default.createElement('span', null, v.text), _react2.default.createElement('span', null, v.fee));
+      }), _react2.default.createElement('li', null, _react2.default.createElement('span', null, fee.total.text), _react2.default.createElement('span', null, fee.total.fee))), _react2.default.createElement(_button2.default, { className: 'btn', onClick: this.closeFee.bind(this) }, fee.button), _react2.default.createElement('p', null, fee.tip)));
+    }
+  }, {
+    key: 'carouselCard',
+    value: function carouselCard(card) {
+      var _this6 = this;
+
+      if (card.length > 1) {
+        return _react2.default.createElement(_carousel2.default, { dots: card.length > 1, autoplay: false, selectedIndex: 0, afterChange: this.selected.bind(this) }, card.map(function (v, i) {
+          return _this6.card(v, i);
+        }));
+      }
+      return _react2.default.createElement('div', null, card.map(function (v, i) {
+        return _this6.card(v, i);
+      }));
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this7 = this;
+
+      var row = function row(rowData, sectionID, rowID) {
+        var card = rowData.item.card[_this7.state.cardIndex];
+        return _react2.default.createElement('div', { className: 'loan-home', key: rowID }, _this7.carouselCard(rowData.item.card), _react2.default.createElement(_carousel2.default, { className: 'carousel', dots: false, dragging: false, swiping: false, autoplay: true, infinite: true, vertical: true }, rowData.user_loan_log_list.length > 0 && rowData.user_loan_log_list.map(function (v, i) {
+          return _react2.default.createElement('div', { key: i }, v);
+        })), !card['repayment_infos'] && !card['loan_infos'] && card && _this7.create(card), card['loan_infos'] && _this7.steps(card['loan_infos']), card['repayment_infos'] && _this7.repayment(card['repayment_infos']));
+      };
+      return _react2.default.createElement('div', null, this.state.fee && this.createFee(this.state.fee), this.state.isOpenApp && this.createOpenApp(), _react2.default.createElement(_listView2.default, {
+        className: 'xjk-refresh',
+        dataSource: this.state.dataSource,
+        renderRow: row,
+        initialListSize: 5,
+        pageSize: 5,
+        scrollRenderAheadDistance: 200,
+        scrollEventThrottle: 20,
+        style: { height: document.documentElement.clientHeight },
+        refreshControl: _react2.default.createElement(_refreshControl2.default, {
+          refreshing: this.state.refreshing,
+          icon: [_react2.default.createElement('div', { key: '0', className: 'am-refresh-control-pull' }, ' ', _react2.default.createElement(_icon2.default, { type: 'arrow-down' }), _react2.default.createElement('span', null, '\u79D1\u6280\u8BA9\u91D1\u878D\u66F4\u7B80\u5355')), _react2.default.createElement('div', { key: '1', className: 'am-refresh-control-release' }, ' ', _react2.default.createElement(_icon2.default, { type: 'arrow-up' }), _react2.default.createElement('span', null, '\u79D1\u6280\u8BA9\u91D1\u878D\u66F4\u7B80\u5355'))],
+          distanceToRefresh: 40 * window.lib.flexible.dpr,
+          onRefresh: this.onRefresh.bind(this) }) }));
+    }
+  }]);
+  return Loan;
+}(_react2.default.Component);
+
+exports.default = Loan;
+module.exports = exports['default'];

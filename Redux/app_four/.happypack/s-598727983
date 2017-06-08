@@ -1,0 +1,80 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+require('scss/activity/download-popup.component.scss');
+
+var _utils = require('utils');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var DownloadPopup = function (_React$Component) {
+  (0, _inherits3.default)(DownloadPopup, _React$Component);
+
+  function DownloadPopup(props) {
+    (0, _classCallCheck3.default)(this, DownloadPopup);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (DownloadPopup.__proto__ || (0, _getPrototypeOf2.default)(DownloadPopup)).call(this, props));
+
+    _this.state = { isNot: _utils.platform.isApp };
+    return _this;
+  }
+
+  (0, _createClass3.default)(DownloadPopup, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'download',
+    value: function download() {
+      location.href = 'https://credit.xianjincard.com/download-app.html';
+    }
+  }, {
+    key: 'close',
+    value: function close(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      this.setState({ isNot: true });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var isNot = this.state.isNot;
+
+      if (isNot) return null;
+      return _react2.default.createElement('div', { onClick: this.download, className: 'download-popup' }, _react2.default.createElement('a', { href: '', className: 'close', onClick: this.close.bind(this) }), _react2.default.createElement('img', { alt: '', src: '//h5.xianjincard.com/credit/img/download-logo.png' }), _react2.default.createElement('div', null, _react2.default.createElement('p', null, '\u4E0B\u8F7D\u5373\u4EAB\u6781\u901F\u501F\u6B3E', _react2.default.createElement('br', null), '\u88AB\u62D2\u6700\u9AD8\u8D54\u507F', _react2.default.createElement('i', null, '50\u5143'))));
+    }
+  }]);
+  return DownloadPopup;
+}(_react2.default.Component);
+
+exports.default = DownloadPopup;
+module.exports = exports['default'];

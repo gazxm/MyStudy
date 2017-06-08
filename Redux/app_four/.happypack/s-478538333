@@ -1,0 +1,237 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/carousel/style/css');
+
+var _carousel = require('antd-mobile/lib/carousel');
+
+var _carousel2 = _interopRequireDefault(_carousel);
+
+var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _css2 = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _css3 = require('antd-mobile/lib/list-view/style/css');
+
+var _listView = require('antd-mobile/lib/list-view');
+
+var _listView2 = _interopRequireDefault(_listView);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = require('utils');
+
+require('scss/misc/app-mart.component.scss');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Approve = function (_React$Component) {
+    (0, _inherits3.default)(Approve, _React$Component);
+
+    //初始化加载
+    function Approve(props) {
+        (0, _classCallCheck3.default)(this, Approve);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Approve.__proto__ || (0, _getPrototypeOf2.default)(Approve)).call(this, props));
+
+        _this.onEndReached = function (event) {
+            // load new data
+            // hasMore: from backend data, indicates whether it is the last page, here is false
+            if (_this.state.isLoading && !_this.state.hasMore) {
+                return;
+            }
+            console.log('reach end', event);
+            _this.setState({ isLoading: true });
+            setTimeout(function () {
+                _this.load_list();
+            }, 1000);
+        };
+
+        console.log("c");
+        var dataSource = new _listView2.default.DataSource({
+            rowHasChanged: function rowHasChanged(row1, row2) {
+                return row1 !== row2;
+            }
+        });
+
+        _this.state = {
+            status: 1,
+            ad_list: [],
+            type_list: [],
+            dataSource: dataSource.cloneWithRows([]),
+            isLoading: true,
+            page: 1,
+            rawData: []
+        };
+        return _this;
+    }
+
+    (0, _createClass3.default)(Approve, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            var _this2 = this;
+
+            document.title = '应用市场';
+            _toast2.default.loading("加载中...", 0);
+            (0, _utils.post)('http://credit.xianjincard.com/appstore/index', { type_id: this.props.location.query.id }).then(function (data) {
+                return data.data;
+            }).then(function (response) {
+                var that = _this2;
+                if (response.code != 0) {
+                    _toast2.default.fail(response.message, 1.5);
+                    _this2.setState({ status: 0 }, function () {
+                        //console.log(111)
+                    });
+                    return;
+                }
+                _this2.setState({ status: 1, ad_list: response.data.ads }, function () {
+                    _toast2.default.hide();
+                    console.log(this.state);
+                });
+            });
+            this.load_list();
+        }
+    }, {
+        key: 'load_list',
+        value: function load_list() {
+            var _this3 = this;
+
+            (0, _utils.post)('http://credit.xianjincard.com/appstore/apps', {
+                offset: (this.state.page - 1) * 10,
+                limit: 10,
+                type_id: this.props.location.query.id
+            }).then(function (data) {
+                return data.data;
+            }).then(function (response) {
+                console.log();
+                var that = _this3;
+                if (response.code != 0) {
+                    _toast2.default.fail(response.message, 1.5);
+                    _this3.setState({ status: 0 }, function () {
+                        //console.log(111)
+                    });
+                    return;
+                }
+                if (response.data.models.length <= 0) {
+                    return;
+                }
+                //console.log(response.data.models)
+                _this3.setState({ rawData: [].concat((0, _toConsumableArray3.default)(_this3.state.rawData), (0, _toConsumableArray3.default)(response.data.models)) }, function () {
+                    this.setState({
+                        dataSource: this.state.dataSource.cloneWithRows(this.state.rawData),
+                        isLoading: false,
+                        page: this.state.page + 1
+                    }, function () {
+                        _toast2.default.hide();
+                        console.log(this.state.page);
+                    });
+                });
+            });
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            //console.log("b")
+        }
+    }, {
+        key: 'fetchData',
+        value: function fetchData() {
+            // get('http://credit.xianjincard.com/credit-app/multi-index').then(result => {console.log(result)})
+        }
+    }, {
+        key: 'handleClick',
+        value: function handleClick(id, install_url, e) {
+            e.stopPropagation();
+            e.preventDefault();
+            (0, _utils.post)('http://credit.xianjincard.com/appstore/action-log', {
+                app_id: id,
+                type: 1
+            }).then(function (data) {
+                return data.data;
+            }).then(function (response) {});
+            //下载app的方法
+            (0, _utils.callBrowser)(install_url);
+        }
+    }, {
+        key: 'toDetailClick',
+        value: function toDetailClick(id, e) {
+            window.location.href = "detail?id=" + id;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this4 = this;
+
+            var row = function row(rowData, sectionID, rowID) {
+                var obj = rowData;
+                return _react2.default.createElement('div', { key: rowID, className: 'item', onClick: _this4.toDetailClick.bind(_this4, obj.id) }, _react2.default.createElement('div', { className: 'icon' }, _react2.default.createElement('div', { className: 'img' }, _react2.default.createElement('img', { src: obj.icon_small }))), _react2.default.createElement('div', { className: 'main-cont' }, _react2.default.createElement('div', { className: 'top' }, _react2.default.createElement('div', { className: 'left' }, _react2.default.createElement('p', { className: 'name' }, _react2.default.createElement('span', null, obj.name)), _react2.default.createElement('p', { className: 'size' }, obj.size, 'MB')), _react2.default.createElement('div', { className: 'btn' }, _react2.default.createElement('a', { href: 'javascript:void(0)', className: 'a-btn', onClick: _this4.handleClick.bind(_this4, obj.id, obj.install_url) }, '\u5B89\u88C5'))), _react2.default.createElement('div', { className: 'info' }, _react2.default.createElement('p', null, obj.brief_info))));
+            };
+
+            var separator = function separator(sectionID, rowID) {
+                return _react2.default.createElement('div', { key: rowID });
+            };
+            return _react2.default.createElement('div', { className: 'app-mart' }, this.state.ad_list.length > 0 ? _react2.default.createElement('div', { className: 'carousel' }, _react2.default.createElement(_carousel2.default, { autoplay: true, infinite: true }, this.state.ad_list && this.state.ad_list.map(function () {
+                var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : item,
+                    link = _ref.link,
+                    img = _ref.img;
+
+                var index = arguments[1];
+                return _react2.default.createElement('a', { key: index, href: link, className: 'slider-link' }, _react2.default.createElement('img', { src: img }));
+            }))) : "", _react2.default.createElement('div', { className: 'list' }, _react2.default.createElement(_listView2.default, {
+                ref: 'lvOne',
+                dataSource: this.state.dataSource,
+                renderRow: row,
+                renderSeparator: separator,
+                initialListSize: 20,
+                pageSize: 20,
+                scrollRenderAheadDistance: 200,
+                scrollEventThrottle: 20,
+                className: 'listview',
+                scrollerOptions: { scrollbars: false },
+                onEndReached: this.onEndReached.bind(this),
+                onEndReachedThreshold: 10,
+                style: {
+                    overflow: 'hidden'
+                }
+            })));
+        }
+    }]);
+    return Approve;
+}(_react2.default.Component);
+
+exports.default = Approve;
+module.exports = exports['default'];

@@ -1,0 +1,161 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchFundUser = fetchFundUser;
+exports.fetchFundList = fetchFundList;
+exports.fetchFundForm = fetchFundForm;
+exports.verifyFund = verifyFund;
+exports.verifyFundReset = verifyFundReset;
+exports.changeFundFields = changeFundFields;
+exports.fetchSecurityUser = fetchSecurityUser;
+exports.fetchSecurityList = fetchSecurityList;
+exports.fetchSecurityForm = fetchSecurityForm;
+exports.verifySecurity = verifySecurity;
+exports.verifySecurityReset = verifySecurityReset;
+exports.changeSecurityFields = changeSecurityFields;
+exports.changeSecuritySorts = changeSecuritySorts;
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _utils = require('../utils');
+
+var utils = _interopRequireWildcard(_utils);
+
+var _qs = require('qs');
+
+var _qs2 = _interopRequireDefault(_qs);
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+      }
+    }newObj.default = obj;return newObj;
+  }
+}
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function fetchFundUser() {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_USER',
+      payload: _axios2.default.get(utils.resolveUrl('http://api.xianjincard.com/accumulation-fund/get-user-info'))
+    });
+  };
+}
+
+function fetchFundList() {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_LIST',
+      payload: _axios2.default.get(utils.resolveUrl('http://api.xianjincard.com/accumulation-fund/get-info-list'))
+    });
+  };
+}
+
+function fetchFundForm(data) {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_USER_SORT',
+      payload: _axios2.default.post(utils.resolveUrl('http://api.xianjincard.com/accumulation-fund/get-login-type'), data)
+    });
+  };
+}
+
+function verifyFund(data) {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_USER_VERIFY',
+      payload: _axios2.default.post(utils.resolveUrl('http://api.xianjincard.com/accumulation-fund/check-login'), _qs2.default.stringify(data))
+    });
+  };
+}
+
+function verifyFundReset() {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_USER_VERIFY_RESET'
+    });
+  };
+}
+
+function changeFundFields(data) {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_USER_TAB_FIELDS_CHANGE',
+      payload: data
+    });
+  };
+}
+// social security action
+function fetchSecurityUser() {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_USER',
+      payload: _axios2.default.get(utils.resolveUrl('http://api.xianjincard.com/social-security/get-user-info'))
+    });
+  };
+}
+
+function fetchSecurityList() {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_LIST',
+      payload: _axios2.default.get(utils.resolveUrl('http://api.xianjincard.com/social-security/get-info-list'))
+    });
+  };
+}
+
+function fetchSecurityForm(code) {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_USER_SORT',
+      payload: _axios2.default.get(utils.resolveUrl('http://api.xianjincard.com/social-security/get-form') + '?city_code=' + code)
+    });
+  };
+}
+
+function verifySecurity(data) {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_USER_VERIFY',
+      payload: _axios2.default.post(utils.resolveUrl('http://api.xianjincard.com/social-security/check-login'), _qs2.default.stringify(data))
+    });
+  };
+}
+
+function verifySecurityReset() {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_USER_VERIFY_RESET'
+    });
+  };
+}
+
+function changeSecurityFields(data) {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_USER_TAB_FIELDS_CHANGE',
+      payload: data
+    });
+  };
+}
+
+function changeSecuritySorts(data) {
+  return function (dispatch) {
+    dispatch({
+      type: 'FETCH_SF_USER_SORT_FIELDS_CHANGE',
+      payload: data
+    });
+  };
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>函数表达式和函数声明</title>
+	<script>
+		//	函数声明的语法
+		function functionName (arg0, arg1, arg2) {
+			//	函数体
+		}
+		//	有一个重要特征就是函数声明提升(function declaration hoisting)，意思是在执行代码之前会先读取函数声明。这就意味着可以把函数声明放在调用它的语句后面。
+
+		sayHi();
+		function sayHi() {
+			console.log('Hi');
+		}
+
+		//第二种：函数表达式
+		var functionName1 = function (arg0, arg1, arg2) {
+			//	函数体
+		}
+
+		try {
+			sayHi1();	//	报错
+		} catch(err) {
+			console.log(err);
+		}
+		var sayHi1 = function () {
+			console.log('Hi1');
+		}
+
+		var condition = 1;
+		if (condition) {
+			function sayHi2() {
+				console.log('Hi2!');
+			}
+		} else {
+			function sayHi2() {
+				console.log('Yo2!');
+			}
+		}
+		sayHi2();	//	这样的写法很危险，有的浏览器会直接返回第二个声明，忽略掉condition。
+
+    var sayHi3;
+		if (condition) {
+			sayHi3 = function() {
+				console.log('Hi3!');
+			}
+		} else {
+			sayHi3 = function() {
+				console.log('Yo3!');
+			}
+		}
+		sayHi3();	//	这样的写法不会出现上面的问题
+	</script>
+</head>
+
+<body>	
+</body>
+
+</html>

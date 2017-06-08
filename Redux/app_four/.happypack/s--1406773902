@@ -1,0 +1,145 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/list/style/css');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _css2 = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _css3 = require('antd-mobile/lib/radio/style/css');
+
+var _radio = require('antd-mobile/lib/radio');
+
+var _radio2 = _interopRequireDefault(_radio);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Content = require('./Content');
+
+var _Content2 = _interopRequireDefault(_Content);
+
+var _Popup = require('../components/Popup');
+
+var _Popup2 = _interopRequireDefault(_Popup);
+
+var _utils = require('utils');
+
+require('scss/activity/inte-eval.component.scss');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var RadioItem = _radio2.default.RadioItem;
+
+var Stepone = function (_React$Component) {
+  (0, _inherits3.default)(Stepone, _React$Component);
+
+  function Stepone(props) {
+    (0, _classCallCheck3.default)(this, Stepone);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Stepone.__proto__ || (0, _getPrototypeOf2.default)(Stepone)).call(this, props));
+
+    _this.state = {
+      value: 0,
+      data: [],
+      tag: ''
+    };
+    return _this;
+  }
+
+  (0, _createClass3.default)(Stepone, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      document.title = '智能评测';
+      _toast2.default.loading('加载中...', 0);
+      (0, _utils.get)('http://credit.xianjincard.com/activity/intelligence-testing/my-tags').then(function (data) {
+        return data.data;
+      }).then(function (data) {
+        _toast2.default.hide();
+        if (data.code !== 0) {
+          _Popup2.default.alert(_Content2.default.showHtml(data.code), 'popup');
+          if (data.code === -1001) {
+            _Popup2.default.click('a.click', _utils.login);
+            return;
+          }
+          _Popup2.default.click('a.click');
+          return;
+        }
+        _this2.setState({
+          data: data.data,
+          tag: data.data[0].tag
+        });
+      });
+    }
+  }, {
+    key: 'onChange',
+    value: function onChange(value, tag) {
+      this.setState({
+        value: value,
+        tag: tag
+      });
+    }
+  }, {
+    key: 'nextStep',
+    value: function nextStep() {
+      var tag = this.state.tag;
+
+      _utils.redirect.push('/activity/evaluation/steptwo?tag=' + tag);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var _state = this.state,
+          value = _state.value,
+          data = _state.data;
+
+      return _react2.default.createElement('div', { className: 'transition-group' }, _react2.default.createElement('div', { className: 'eval-one' }, _react2.default.createElement('h2', { className: 'head' }, '01/', _react2.default.createElement('b', null, '02')), _react2.default.createElement('h3', null, '\u9009\u51FA\u4E00\u4E2A\u6700\u9002\u5408\u4F60\u7684\u6807\u7B7E'), _react2.default.createElement(_list2.default, null, data.map(function (v, i) {
+        return _react2.default.createElement(RadioItem, { key: i, checked: value === i, onChange: function onChange() {
+            return _this3.onChange(i, v.tag);
+          } }, _react2.default.createElement('img', { src: v.icon, alt: v.title }), _react2.default.createElement('p', null, v.title));
+      })), _react2.default.createElement('a', { onClick: this.nextStep.bind(this) }, '\u4E0B\u4E00\u6B65')));
+    }
+  }]);
+  return Stepone;
+}(_react2.default.Component);
+
+exports.default = Stepone;
+module.exports = exports['default'];

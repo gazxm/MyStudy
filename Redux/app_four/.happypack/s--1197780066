@@ -1,0 +1,371 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _css = require('antd-mobile/lib/modal/style/css');
+
+var _modal = require('antd-mobile/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _css2 = require('antd-mobile/lib/button/style/css');
+
+var _button = require('antd-mobile/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _css3 = require('antd-mobile/lib/list/style/css');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _css4 = require('antd-mobile/lib/input-item/style/css');
+
+var _inputItem = require('antd-mobile/lib/input-item');
+
+var _inputItem2 = _interopRequireDefault(_inputItem);
+
+var _css5 = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _rcForm = require('rc-form');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+require('scss/mobile/credit.component.scss');
+
+var _request = require('common/request');
+
+var _request2 = _interopRequireDefault(_request);
+
+var _utils = require('utils');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+/* eslint-disable */
+var title = '信用卡账单导入';
+
+var COMPLETED_TEXT = '导入账单';
+
+var Import = function (_Component) {
+    (0, _inherits3.default)(Import, _Component);
+
+    function Import(props) {
+        (0, _classCallCheck3.default)(this, Import);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Import.__proto__ || (0, _getPrototypeOf2.default)(Import)).call(this, props));
+
+        _this.state = {
+            visible: 0,
+            lock: 1,
+            loaded: 0,
+            loading: 0,
+            buttonText: _this.props.READY_TEXT
+        };
+        return _this;
+    }
+
+    (0, _createClass3.default)(Import, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            document.title = title;
+            var _props = this.props,
+                middleware = _props.middleware,
+                getButtonText = _props.getButtonText,
+                route = _props.route;
+
+            (0, _request2.default)('credit-card/get-credit-user-name').then(function (response) {
+                var _response$data = response.data,
+                    name = _response$data.name,
+                    whetherBindingCredit = _response$data.whetherBindingCredit;
+
+                if (!whetherBindingCredit) {
+                    _toast2.default.fail('您还末绑定信用卡', function () {
+                        setTimeout(_utils.redirect.replace('/mobile/certification/credit'));
+                    });
+                }
+                _this2.setState({
+                    name: name,
+                    buttonText: COMPLETED_TEXT,
+                    loaded: 1
+                });
+            }).catch(this.middleware.bind(this));
+        }
+    }, {
+        key: 'middleware',
+        value: function middleware(response) {
+            var code = response.code,
+                message = response.message;
+            var middleware = this.props.middleware;
+
+            if (code == -5) {
+                this.setState({ visible: 0, buttonText: COMPLETED_TEXT });
+                _toast2.default.fail(message, function () {
+                    setTimeout(_utils.redirect.push('/mobile/certification/credit'));
+                });
+            } else {
+                middleware.bind(this, response)();
+            }
+        }
+    }, {
+        key: 'submit',
+        value: function submit() {
+            var _this3 = this;
+
+            var middleware = this.props.middleware;
+            var _props$form = this.props.form,
+                getFieldInstance = _props$form.getFieldInstance,
+                getFieldsValue = _props$form.getFieldsValue,
+                validateFields = _props$form.validateFields;
+
+            validateFields(['email', 'password'], function (errors, values) {
+                if (errors) {
+                    for (var i in errors) {
+                        var input = errors[i];
+                        input.errors && input.errors.map(function (error) {
+                            _toast2.default.offline(error.message, function () {
+                                var element = getFieldInstance(error.field);
+                                if (element && element.refs && element.refs.input) {
+                                    var _input = element.refs.input;
+
+                                    setTimeout(_input.focus());
+                                }
+                            });
+                        });
+                        break;
+                    }
+                } else {
+                    var lock = _this3.state.lock;
+
+                    var _getFieldsValue = getFieldsValue(),
+                        email = _getFieldsValue.email,
+                        password = _getFieldsValue.password;
+
+                    if (lock) {
+                        _this3.setState({ lock: 0, loaded: 0, loading: 1 });
+                        _request2.default.post('credit-card/mail-authentication', {
+                            login_name: email,
+                            password: password
+                        }).then(function (response) {
+                            var message = response.message;
+
+                            _toast2.default.success(message, function () {
+                                setTimeout(_utils.redirect.replace('/mobile/certification/credit/importing?type=email'));
+                            });
+                            _this3.setState({ lock: 1, loaded: 1, loading: 0 });
+                        }).catch(function (response) {
+                            var code = response.code,
+                                message = response.message,
+                                captcha = response.data.pic_captcha;
+
+                            _this3.setState({ lock: 1, loaded: 1, loading: 0 });
+                            if (code == 1) {
+                                _this3.setState({
+                                    captcha: captcha
+                                });
+                                setTimeout(function () {
+                                    _this3.setState({
+                                        visible: 1
+                                    });
+                                });
+                            } else if (code == 2) {
+                                _toast2.default.success(message, function () {
+                                    setTimeout(_utils.redirect.replace('/mobile/certification/credit/import?fail'));
+                                });
+                            } else {
+                                _this3.middleware.bind(_this3, response)();
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        // 提交验证码   
+
+    }, {
+        key: 'captcha',
+        value: function captcha() {
+            var _this4 = this;
+
+            var lock = this.state.lock;
+
+            if (lock) {
+                var _props$form2 = this.props.form,
+                    getFieldValue = _props$form2.getFieldValue,
+                    setFieldsValue = _props$form2.setFieldsValue;
+
+                var verify_code = getFieldValue('verify_code');
+                if (!verify_code) {
+                    _toast2.default.fail('验证码不能为空');
+                    return;
+                }
+                _toast2.default.loading(undefined, 0);
+                this.setState({ visible: 0, lock: 0 });
+                _request2.default.post('credit-card/mail-authentication-captcha', { verify_code: verify_code }).then(function (response) {
+                    _toast2.default.hide();
+                    _this4.setState({ visible: 0, lock: 1 });
+                    _utils.redirect.push('/mobile/certification/credit/importing?type=email');
+                }).catch(function (response) {
+                    var code = response.code,
+                        message = response.message,
+                        captcha = response.data.pic_captcha;
+
+                    setFieldsValue({ verify_code: '' });
+                    _this4.setState({ lock: 1, loaded: 1, loading: 0 });
+                    if (code == -1 && message == '验证码错误') {
+                        setTimeout(function () {
+                            _this4.refreshCaptcha.bind(_this4)();
+                            _this4.setState({ visible: 1 });
+                        }, 1500);
+                    }
+                    if (code == 1) {
+                        _toast2.default.offline(message, function () {
+                            _this4.setState({
+                                captcha: captcha,
+                                visible: 1
+                            });
+                        });
+                    } else if (code == 2) {
+                        _toast2.default.success(message, function () {
+                            setTimeout(_utils.redirect.replace('/mobile/certification/credit/import?fail'));
+                        });
+                    } else {
+                        _this4.middleware.bind(_this4, response)();
+                    }
+                });
+            }
+        }
+        // 刷新验证码
+
+    }, {
+        key: 'refreshCaptcha',
+        value: function refreshCaptcha() {
+            var _this5 = this;
+
+            var lock = this.state.lock;
+
+            if (lock) {
+                _toast2.default.loading(undefined, 0);
+                this.setState({ lock: 0 });
+                _request2.default.post('credit-card/refresh-mail-authentication-captcha').then(function (response) {
+                    var captcha = response.data.pic_captcha;
+
+                    _toast2.default.hide();
+                    _this5.setState({ captcha: captcha, lock: 1 });
+                }).catch(this.middleware.bind(this));
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this6 = this;
+
+            var getFieldProps = this.props.form.getFieldProps;
+            var _state = this.state,
+                visible = _state.visible,
+                captcha = _state.captcha,
+                lock = _state.lock,
+                loaded = _state.loaded,
+                loading = _state.loading,
+                name = _state.name,
+                buttonText = _state.buttonText;
+
+            return _react2.default.createElement('div', { className: 'import' }, _react2.default.createElement('div', { className: 'email' }, _react2.default.createElement(_list2.default, null, _react2.default.createElement(_inputItem2.default, { editable: false, labelNumber: 4, value: name }, '\u6301\u5361\u4EBA'), _react2.default.createElement(_inputItem2.default, (0, _extends3.default)({
+                labelNumber: 4,
+                placeholder: '\u90AE\u7BB1\u5730\u5740'
+            }, getFieldProps('email', {
+                rules: [{
+                    required: true,
+                    message: '邮箱地址不能为空'
+                }, {
+                    type: 'email',
+                    message: '邮箱格式不正确'
+                }]
+            })), '\u90AE\u7BB1\u5730\u5740'), _react2.default.createElement(_inputItem2.default, (0, _extends3.default)({
+                type: 'password',
+                labelNumber: 4,
+                placeholder: '\u90AE\u7BB1\u5BC6\u7801'
+            }, getFieldProps('password', {
+                rules: [{
+                    required: true,
+                    message: '邮箱密码不能为空'
+                }]
+            })), '\u90AE\u7BB1\u5BC6\u7801')), _react2.default.createElement(_button2.default, {
+                type: 'primary'
+                // disabled={!lock || disabled || loading}
+                , loading: loading,
+                className: (0, _classnames2.default)({
+                    'button-submit': true,
+                    'button-round': true,
+                    'button-loading': !loaded
+                }),
+                onClick: this.submit.bind(this) }, buttonText), _react2.default.createElement('div', { className: 'security' }, '\u94F6\u884C\u7EA7\u6570\u636E\u52A0\u5BC6\u9632\u62A4')), _react2.default.createElement(_modal2.default, {
+                className: 'am-modal-captcha',
+                title: '\u63D0\u793A',
+                onClose: function onClose() {
+                    return setTimeout(_this6.setState({ visible: 0 }));
+                },
+                visible: visible,
+                transparent: true,
+                footer: [{
+                    text: '确定',
+                    onPress: this.captcha.bind(this)
+                }] }, _react2.default.createElement(_inputItem2.default, (0, _extends3.default)({
+                labelNumber: 3,
+                placeholder: '\u8BF7\u8F93\u5165\u9A8C\u8BC1\u7801',
+                extra: captcha ? _react2.default.createElement('div', { className: 'captcha', style: { backgroundImage: 'url(data:image/jpeg;base64,' + captcha + ')' }, onClick: this.refreshCaptcha.bind(this) }) : ''
+            }, getFieldProps('verify_code', {
+                rules: [{
+                    required: true,
+                    message: '\u9A8C\u8BC1\u7801\u4E0D\u80FD\u4E3A\u7A7A'
+                }]
+            })), '\u9A8C\u8BC1\u7801')));
+        }
+    }]);
+    return Import;
+}(_react.Component);
+
+;
+
+exports.default = (0, _rcForm.createForm)()(Import);
+module.exports = exports['default'];

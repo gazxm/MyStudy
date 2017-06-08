@@ -1,0 +1,26 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  path: 'employer',
+  childRoutes: [{
+    path: 'login',
+    transaction: 'from-left',
+    getComponent: function getComponent(location, callback) {
+      require.ensure([], function (require) {
+        callback(null, require('pages/employer/Login'));
+      });
+    }
+  }, {
+    path: 'list',
+    transaction: 'from-left',
+    getComponent: function getComponent(location, callback) {
+      require.ensure([], function (require) {
+        callback(null, require('pages/employer/Thelist'));
+      });
+    }
+  }]
+};
+module.exports = exports['default'];

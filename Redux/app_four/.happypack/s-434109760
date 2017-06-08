@@ -1,0 +1,226 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _css = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+require('scss/activity/treasure.component.scss');
+
+var _Popup = require('../components/Popup');
+
+var _Popup2 = _interopRequireDefault(_Popup);
+
+var _utils = require('utils');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Treasure = function (_React$Component) {
+  (0, _inherits3.default)(Treasure, _React$Component);
+
+  function Treasure(props) {
+    (0, _classCallCheck3.default)(this, Treasure);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Treasure.__proto__ || (0, _getPrototypeOf2.default)(Treasure)).call(this, props));
+
+    document.title = '夺宝';
+    _this.state = {
+      clsName: 'empty',
+      login: 0,
+      indianaNumber: 0,
+      indiana: '登录查看夺宝券',
+      surplus: 0,
+      userRecord: [],
+      winningRecord: []
+    };
+    return _this;
+  }
+
+  (0, _createClass3.default)(Treasure, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.fetchData();
+    }
+  }, {
+    key: 'fetchData',
+    value: function fetchData() {
+      var _this2 = this;
+
+      _toast2.default.loading('加载中...', 0);
+      (0, _utils.get)('http://credit.xianjincard.com/operate-activity/mother-entrance?tag=h5-19700101-motherDay').then(function (response) {
+        // console.log(response)
+        _toast2.default.hide();
+        var _response$data = response.data,
+            code = _response$data.code,
+            message = _response$data.message,
+            data = _response$data.data;
+
+        if (parseInt(code) !== 0) {
+          _toast2.default.info(message, 2);
+          return;
+        }
+        _this2.setState((0, _extends3.default)({}, data));
+      }).catch(function (response) {
+        _toast2.default.hide();
+      });
+    }
+  }, {
+    key: 'fetchTicket',
+    value: function fetchTicket(e) {
+      e.preventDefault();
+      if (!this.login()) {
+        return;
+      }
+      var html = '\n      <div>\n        <h1></h1>\n        <div class="time"><p>\u6D3B\u52A8\u65F6\u95F4\uFF1A5\u670811\u65E510:00\u8D77</p></div>\n        <ul>\n          <li>\n            <div>\n              <h2>\u6210\u529F\u501F\u6B3E</h2>\n              <p>\u6210\u529F\u501F\u6B3E\uFF0C\u83B7\u593A\u5B9D\u52381\u5F20</p>\n            </div>\n            <button data-type="0">\u53BB\u501F\u6B3E</button>\n          </li>\n          <li>\n            <div>\n              <h2>\u5206\u4EAB\u9080\u8BF7</h2>\n              <p>\u597D\u53CB\u6CE8\u518C\uFF0C\u6BCF\u5929\u6700\u591A\u83B7\u593A\u5B9D\u523810\u5F20</p>\n            </div>\n            <button data-type="1">\u53BB\u9080\u8BF7</button>\n          </li>\n          <li>\n            <div>\n              <h2>\u6D4B\u8BD5\u4FE1\u7528</h2>\n              <p>\u829D\u9EBB\u4FE1\u7528\u5206\u8BA4\u8BC1\uFF0C\u83B7\u593A\u5B9D\u52381\u5F20</p>\n            </div>\n            <button data-type="2">\u53BB\u6D4B\u8BD5</button>\n          </li>\n        </ul>\n      </div>';
+      _Popup2.default.alert(html, 'treasure-fetch-ticket');
+      _Popup2.default.click('button', function (e) {
+        var type = parseInt(e.target.getAttribute('data-type'));
+        (0, _utils.get)('http://credit.xianjincard.com/operate-activity/mother-obtain', { type: type });
+
+        if (type === 0) {
+          (0, _utils.goHome)();
+          return;
+        }
+        if (type === 1) {
+          location.href = (0, _utils.resolveUrl)('http://credit.xianjincard.com/credit-invite/invite-rebate-start?clientType=wap');
+          return;
+        }
+        if (type === 2) {
+          (0, _utils.goCertification)();
+          return;
+        }
+      });
+    }
+  }, {
+    key: 'popup',
+    value: function popup(content, btnText, callback) {
+      _Popup2.default.alert('<p>' + content + '</p><button>' + btnText + '</button>', 'treasure-popup');
+      _Popup2.default.click('button', callback);
+    }
+  }, {
+    key: 'login',
+    value: function login() {
+      if (this.state.login === 1) {
+        return true;
+      }
+      this.popup('您还没登录</br>无法参与夺宝，请先登录', '点击登录', _utils.login);
+    }
+  }, {
+    key: 'bet',
+    value: function bet() {
+      if (this.login()) {
+        if (this.state.indianaNumber <= 0) {
+          this.popup('夺宝券为0</br>无法投注', '确定');
+          return;
+        }
+        this.popup('本次投注将消耗1张夺宝券</br>参与后获得夺宝号</br>投注后不可更改</br>确定投注吗?', '确定投注', this.sendBet.bind(this));
+      }
+    }
+  }, {
+    key: 'sendBet',
+    value: function sendBet() {
+      var _this3 = this;
+
+      (0, _utils.post)('http://credit.xianjincard.com/operate-activity/betting').then(function (response) {
+        // console.log(response)
+        var _response$data2 = response.data,
+            code = _response$data2.code,
+            message = _response$data2.message,
+            data = _response$data2.data;
+
+        if (code !== 0) {
+          _toast2.default.info(message, 2);
+          return;
+        }
+        _this3.setState({ userRecord: data.userRecord, indianaNumber: data.count, surplus: data.surplus });
+        _this3.popup('恭喜你</br>投注成功</br>祝您好运', '朕知道了');
+      });
+    }
+  }, {
+    key: 'onAll',
+    value: function onAll(e) {
+      e.preventDefault();
+      this.setState({ clsName: '' });
+    }
+  }, {
+    key: 'ticketList',
+    value: function ticketList() {
+      var userRecord = this.state.userRecord;
+
+      if (userRecord.length <= 0) {
+        return _react2.default.createElement('div', null, '\u6682\u65E0\u6570\u636E');
+      }
+      return userRecord.map(function (v, i) {
+        return _react2.default.createElement('li', { key: i }, '\u7B2C', v.key, '\u671F: ', v.value.join(', '));
+      });
+    }
+  }, {
+    key: 'prizeList',
+    value: function prizeList() {
+      var winningRecord = this.state.winningRecord;
+
+      if (winningRecord.length <= 0) {
+        return _react2.default.createElement('li', null, '\u6682\u65E0\u6570\u636E');
+      }
+      return winningRecord.map(function (v, i) {
+        return _react2.default.createElement('li', { key: i }, v);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _state = this.state,
+          login = _state.login,
+          indianaNumber = _state.indianaNumber,
+          surplus = _state.surplus,
+          clsName = _state.clsName,
+          stage = _state.stage,
+          winningRecord = _state.winningRecord;
+
+      var btn = login === 0 ? '登录查看夺宝券' : '\u6211\u7684\u593A\u5B9D\u5238(' + indianaNumber + ')';
+      return _react2.default.createElement('div', { className: 'activity-treasure' }, _react2.default.createElement('div', { className: 'top' }, _react2.default.createElement('button', { onClick: this.login.bind(this) }, btn), _react2.default.createElement('button', { onClick: this.fetchTicket.bind(this) }, '\u83B7\u53D6\u593A\u5B9D\u5238')), _react2.default.createElement('h1', { dangerouslySetInnerHTML: { __html: stage } }), _react2.default.createElement('h3', null, '\u6BCF\u671F\u5956\u91D1', _react2.default.createElement('i', null, '1000'), '\u5143'), _react2.default.createElement('div', { className: 'progress' }, _react2.default.createElement('div', { style: { width: (1000 - surplus) / 1000 * 100 + '%' } })), _react2.default.createElement('div', { className: 'progress-info' }, _react2.default.createElement('span', null, '\u96C6\u9F501000\u4EFD\u5F00\u5956\u54E6'), _react2.default.createElement('span', null, '\u8DDD\u5F00\u5956\u8FD8\u5DEE', _react2.default.createElement('i', null, surplus), '\u4EFD')), _react2.default.createElement('button', { className: 'bet', onClick: this.bet.bind(this) }, '\u6211\u8981\u6295\u6CE8'), _react2.default.createElement('div', { className: 'ticket-list' }, _react2.default.createElement('ul', null, this.ticketList())), _react2.default.createElement('div', { className: 'prize-list' }, _react2.default.createElement('span', { className: 'head' }), _react2.default.createElement('div', null, _react2.default.createElement('h4', null, '\u5F80\u671F\u4E2D\u5956\u7ED3\u679C'), _react2.default.createElement('ul', { className: clsName }, this.prizeList()), winningRecord.length > 3 && clsName !== '' && _react2.default.createElement('div', { className: 'bar' }, _react2.default.createElement('a', { href: '', onClick: this.onAll.bind(this) }, '\u67E5\u770B\u5168\u90E8'))), _react2.default.createElement('span', { className: 'bottom' })), _react2.default.createElement(_reactRouter.Link, { to: '/activity/treasure/rule', className: 'rule' }));
+    }
+  }]);
+  return Treasure;
+}(_react2.default.Component);
+
+exports.default = Treasure;
+module.exports = exports['default'];

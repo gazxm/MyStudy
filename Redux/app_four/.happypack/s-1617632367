@@ -1,0 +1,152 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _utils = require('utils');
+
+require('scss/components/password.component.scss');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+exports.default = new (function () {
+  function Password() {
+    var _this = this;
+
+    (0, _classCallCheck3.default)(this, Password);
+
+    this.focusHandler = function (e) {
+      var dom = _this.popup.querySelector('.dialog');
+      var interval = setInterval(function () {
+        if (document.activeElement.nodeName === 'INPUT') {
+          dom.style.top = '0';
+          dom.style.webkitTransform = 'translate(-50%, 0)';
+          document.body.scrollTop = 0;
+        } else {
+          dom.style.top = '50%';
+          dom.style.webkitTransform = 'translate(-50%, -50%)';
+          if (interval) {
+            clearInterval(interval);
+            interval = null;
+          }
+        }
+      }, 300);
+    };
+
+    this.inputHandler = function (e, input, els) {
+      els.map(function (v) {
+        v.className = '';
+      });
+      els.slice(0, input.value.length).map(function (v) {
+        v.className = 'point';
+      });
+      if (input.value.length >= 6) {
+        input.value = input.value.slice(0, 6);
+        _this.callback && _this.callback(input.value);
+      }
+
+      if (input.value.length < 6) {
+        _this.errorDom.style.display = 'none';
+      }
+    };
+
+    this.close = function (e) {
+      e.preventDefault();
+      _this.popup.style.display = 'none';
+    };
+  }
+
+  (0, _createClass3.default)(Password, [{
+    key: 'createDom',
+    value: function createDom() {
+      var html = '<div class="overlay"></div>                <div class="dialog pay">                  <span class="close"></span>                  <h2>' + this.title + '</h2>                  <p class="clearfix">                    <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>                    <input type="tel" value="" autofocus>                  </p>                  <p class="error-tips">\u5BC6\u7801\u9519\u8BEF</p>                  <a href="">\u5FD8\u8BB0\u5BC6\u7801?</a>                </div>';
+      var popup = document.createElement('div');
+      popup.className = 'popup-password';
+      popup.innerHTML = html;
+      document.body.appendChild(popup);
+
+      this.errorDom = popup.querySelector('p.error-tips');
+      this.popup = popup;
+
+      popup.querySelector('.overlay').addEventListener('click', function (e) {
+        e.stopPropagation();
+      }, false);
+
+      popup.querySelector('a').addEventListener('click', function (e) {
+        e.preventDefault();
+        (0, _utils.retrievePassword)();
+      }, false);
+      popup.querySelector('span.close').addEventListener('click', this.close, false);
+      popup.querySelector('p.clearfix').addEventListener('click', function (e) {
+        input.focus();
+      }, false);
+
+      var input = popup.querySelector('input');
+      var i = popup.querySelectorAll('i');
+      var els = Array.prototype.slice.call(i, '');
+      var inputHandler = this.inputHandler;
+      input.addEventListener('input', function (e) {
+        inputHandler(e, this, els);
+      }, false);
+      input.addEventListener('focus', this.focusHandler, false);
+    }
+  }, {
+    key: 'error',
+    value: function error() {
+      var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '密码错误';
+
+      this.errorDom.style.display = 'block';
+      this.errorDom.innerHTML = msg;
+    }
+  }, {
+    key: 'reset',
+    value: function reset(dom) {
+      var i = dom.querySelectorAll('i');
+      var els = Array.prototype.slice.call(i, '');
+      var input = dom.querySelector('input');
+      this.errorDom.style.display = 'none';
+      els.map(function (v) {
+        v.className = '';
+      });
+      input.value = '';
+      input.focus();
+    }
+  }, {
+    key: 'show',
+    value: function show(callback) {
+      var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '请输入交易密码';
+
+      this.callback = callback;
+      this.title = title;
+      var popup = document.querySelector('.popup-password');
+      if (popup !== null) {
+        popup.style.display = 'block';
+        popup.querySelector('h2').innerHTML = title;
+        this.reset(popup);
+        return;
+      }
+      this.createDom();
+    }
+  }, {
+    key: 'remove',
+    value: function remove() {
+      var popup = document.querySelector('.popup-password');
+      if (popup !== null) {
+        popup.parentNode.removeChild(popup);
+      }
+    }
+  }]);
+  return Password;
+}())();
+module.exports = exports['default'];

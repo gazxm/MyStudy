@@ -19,7 +19,7 @@ module.exports = {
   devtool: 'eval',
   context: path.join(__dirname, 'src'),
   entry: DEVELOP ? [
-    'webpack-dev-server/client?http://0.0.0.0:8000',
+    'webpack-dev-server/client?http://0.0.0.0:8050',
     'webpack/hot/only-dev-server',
     'react-hot-loader/patch',
     './js/client.js'

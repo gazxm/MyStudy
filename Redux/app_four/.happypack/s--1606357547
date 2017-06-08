@@ -1,0 +1,106 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Content = require('./Content');
+
+var _Content2 = _interopRequireDefault(_Content);
+
+var _Popup = require('../components/Popup');
+
+var _Popup2 = _interopRequireDefault(_Popup);
+
+var _utils = require('utils');
+
+require('scss/activity/inte-eval.component.scss');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Evaluation = function (_React$Component) {
+  (0, _inherits3.default)(Evaluation, _React$Component);
+
+  function Evaluation(props) {
+    (0, _classCallCheck3.default)(this, Evaluation);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Evaluation.__proto__ || (0, _getPrototypeOf2.default)(Evaluation)).call(this, props));
+
+    _this.state = {};
+    return _this;
+  }
+
+  (0, _createClass3.default)(Evaluation, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      document.title = '智能评测';
+    }
+  }, {
+    key: 'eval',
+    value: function _eval() {
+      _toast2.default.loading('加载中...', 0);
+      (0, _utils.get)('http://credit.xianjincard.com/activity/intelligence-testing/base-verify').then(function (data) {
+        return data.data;
+      }).then(function (data) {
+        _toast2.default.hide();
+        if (data.code !== 0) {
+          _Popup2.default.alert(_Content2.default.showHtml(data.code), 'popup');
+          if (data.code === -1001) {
+            _Popup2.default.click('a.click', _utils.login);
+            return;
+          }
+          _Popup2.default.click('a.click');
+          return;
+        }
+        if (!data.data.base) {
+          _Popup2.default.alert(_Content2.default.forwardHtml(), 'popup');
+          _Popup2.default.click('a.click', _utils.goCertification);
+          return;
+        }
+        _utils.redirect.push('/activity/evaluation/stepone');
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement('div', { className: 'transition-group' }, _react2.default.createElement('div', { className: 'eval' }, _react2.default.createElement('p', { className: 'head' }, '\u66F4\u597D\u7684\u4E86\u89E3\u81EA\u8EAB\u60C5\u51B5\uFF0C\u66F4\u5229\u4E8E\u60A8\u7684\u8D37\u6B3E'), _react2.default.createElement('i', null), _react2.default.createElement('h2', null, '\u8D37\u6B3E\u989D\u5EA6\u4F4E\uFF1F\u7533\u8BF7\u88AB\u62D2\uFF1F'), _react2.default.createElement('h3', null, '\u6D4B\u8BC4\u6210\u529F\u540E\u8D37\u6B3E\u989D\u5EA6\u5C06\u6781\u5927\u63D0\u9AD8\uFF0C\u8FD8\u53EF\u83B7\u5F97\u989D\u5916\u7684\u91D1\u5E01\u5956\u52B1'), _react2.default.createElement('a', { onClick: this.eval.bind(this) }, '\u5F00\u59CB\u6D4B\u8BC4'), _react2.default.createElement('h4', null, '\u5F00\u59CB\u6D4B\u8BC4\u5373\u8868\u793A\u60A8\u540C\u610F\u5E73\u53F0\u6536\u96C6\u4FE1\u606F\u7528\u4E8E\u6D4B\u8BC4')));
+    }
+  }]);
+  return Evaluation;
+}(_react2.default.Component);
+
+exports.default = Evaluation;
+module.exports = exports['default'];

@@ -1,0 +1,283 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _css = require('antd-mobile/lib/button/style/css');
+
+var _button = require('antd-mobile/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _css2 = require('antd-mobile/lib/image-picker/style/css');
+
+var _imagePicker = require('antd-mobile/lib/image-picker');
+
+var _imagePicker2 = _interopRequireDefault(_imagePicker);
+
+var _css3 = require('antd-mobile/lib/textarea-item/style/css');
+
+var _textareaItem = require('antd-mobile/lib/textarea-item');
+
+var _textareaItem2 = _interopRequireDefault(_textareaItem);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _css4 = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _class, _temp; /* eslint-disable */
+
+var _lrz = require('lrz');
+
+var _lrz2 = _interopRequireDefault(_lrz);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _rcForm = require('rc-form');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+require('scss/mobile/feedback.component.scss');
+
+var _request = require('common/request');
+
+var _request2 = _interopRequireDefault(_request);
+
+var _utils = require('utils');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var title = '还款问题反馈';
+var RETRY_TEXT = '系统繁忙，请稍后重试';
+
+var Feedback = (_temp = _class = function (_Component) {
+    (0, _inherits3.default)(Feedback, _Component);
+
+    function Feedback(props) {
+        (0, _classCallCheck3.default)(this, Feedback);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Feedback.__proto__ || (0, _getPrototypeOf2.default)(Feedback)).call(this, props));
+
+        _this.state = {
+            files: [],
+            lock: 1,
+            // 数据加载完毕
+            loaded: 1,
+            // request loading
+            loading: 0
+        };
+
+        _request2.default.interceptors.response.use(function (response) {
+            var code = response.code,
+                message = response.message;
+
+            if (code != 0) {
+                return _promise2.default.reject(response);
+            }
+            return _promise2.default.resolve(response);
+        }, function (error) {
+            return _promise2.default.reject(error);
+        });
+        return _this;
+    }
+
+    (0, _createClass3.default)(Feedback, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            document.title = title;
+        }
+    }, {
+        key: 'middleware',
+        value: function middleware(response) {
+            var _this2 = this;
+
+            var setFieldsValue = this.props.form.setFieldsValue;
+            var code = response.code,
+                _response$message = response.message,
+                message = _response$message === undefined ? RETRY_TEXT : _response$message;
+
+            _toast2.default.hide();
+            if (code == -2) {
+                var modal = document.querySelector('.am-modal');
+                if (!modal) {
+                    Modal.alert('提 示', message, [{
+                        text: '确 定',
+                        onPress: _utils.login
+                    }]);
+                }
+            } else {
+                if (code == -1) {
+                    setFieldsValue({ content: '' });
+                    this.setState({ files: [] });
+                }
+                _toast2.default.fail(message, function () {
+                    _this2.setState && _this2.setState({ lock: 1, loaded: 1 });
+                });
+                this.setState({ loading: 0 });
+            }
+        }
+    }, {
+        key: 'submit',
+        value: function submit() {
+            var _this3 = this;
+
+            var _props$form = this.props.form,
+                getFieldInstance = _props$form.getFieldInstance,
+                getFieldsValue = _props$form.getFieldsValue,
+                setFieldsValue = _props$form.setFieldsValue,
+                validateFields = _props$form.validateFields;
+
+            validateFields(function (errors, values) {
+                if (errors) {
+                    for (var i in errors) {
+                        var input = errors[i];
+                        input.errors && input.errors.map(function (error) {
+                            _toast2.default.offline(error.message, 1.5, function () {
+                                var element = getFieldInstance(error.field);
+                                if (element && element.refs && element.refs.input) {
+                                    var _input = element.refs.input;
+
+                                    setTimeout(_input.focus());
+                                } else if (element && element.refs && element.refs.textarea) {
+                                    var textarea = element.refs.textarea;
+
+                                    setTimeout(textarea.focus());
+                                }
+                            });
+                        });
+                        break;
+                    }
+                } else {
+                    var _state = _this3.state,
+                        lock = _state.lock,
+                        files = _state.files;
+
+                    var _getFieldsValue = getFieldsValue(),
+                        content = _getFieldsValue.content;
+
+                    var attach = [];
+                    if (lock) {
+                        if (!files.length) {
+                            _toast2.default.offline('请上传图片');
+                            return;
+                        }
+                        var queue = [];
+                        files.map(function (file) {
+                            return queue.push((0, _lrz2.default)(file.file, { width: 640 }));
+                        });
+                        _promise2.default.all(queue).then(function (file) {
+                            file.map(function (data) {
+                                return attach.push(data.base64);
+                            });
+                            var data = { type: 1, content: content, attach: attach };
+                            _this3.setState({ lock: 0, loading: 1 });
+                            var start = Date.now();
+                            _request2.default.post('picture/upload-order-image', data).then(function (response) {
+                                var end = Date.now();
+                                var timeout = 0;
+                                if (end - start < 1000) timeout = 1000;
+                                if (end - start > 1000) timeout = 0;
+                                var message = response.message;
+
+                                setTimeout(function () {
+                                    _toast2.default.success(message, function () {
+                                        return _utils.redirect.goBack();
+                                    });
+                                    setFieldsValue({ content: '' });
+                                    _this3.setState({ lock: 1, loading: 0 });
+                                }, timeout);
+                            }).catch(_this3.middleware.bind(_this3));
+                        });
+                    }
+                }
+            });
+        }
+    }, {
+        key: 'onChange',
+        value: function onChange(files, type, index) {
+            this.setState({
+                files: files
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var getFieldProps = this.props.form.getFieldProps;
+            var _state2 = this.state,
+                files = _state2.files,
+                lock = _state2.lock,
+                loaded = _state2.loaded,
+                loading = _state2.loading;
+
+            var editable = !loading && loaded && lock;
+            return _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'wrapper wrapper-mobile wrapper-settings-feedback': true, loaded: loaded }) }, _react2.default.createElement('div', { className: 'subtitle' }, '\u95EE\u9898\u63CF\u8FF0'), _react2.default.createElement(_textareaItem2.default, (0, _extends3.default)({
+                autoFocus: true,
+                editable: editable,
+                rows: 8,
+                count: 100,
+                placeholder: '\u8BF7\u8BE6\u7EC6\u63CF\u8FF0\u60A8\u7684\u8FD8\u6B3E\u95EE\u9898'
+            }, getFieldProps('content', {
+                rules: [{
+                    required: true,
+                    message: '内容不能为空'
+                }]
+            }))), _react2.default.createElement('div', { className: 'subtitle' }, '\u4E0A\u4F20\u56FE\u7247'), _react2.default.createElement(_imagePicker2.default, {
+                files: files,
+                selectable: files.length < 3,
+                onChange: this.onChange.bind(this) }), _react2.default.createElement(_button2.default, {
+                type: 'primary',
+                disabled: !lock || loading,
+                loading: loading,
+                className: (0, _classnames2.default)({
+                    'button-submit': true,
+                    'button-round': true,
+                    'button-loading': !loaded
+                }),
+                onClick: this.submit.bind(this) }, '\u4FDD\u5B58'));
+        }
+    }]);
+    return Feedback;
+}(_react.Component), _class.contextTypes = {
+    router: _react2.default.PropTypes.object.isRequired
+}, _temp);
+;
+
+exports.default = (0, _rcForm.createForm)()(Feedback);
+module.exports = exports['default'];

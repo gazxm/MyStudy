@@ -1,0 +1,95 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+exports.default = new (function () {
+  function Popup() {
+    (0, _classCallCheck3.default)(this, Popup);
+  }
+
+  (0, _createClass3.default)(Popup, [{
+    key: 'createDom',
+    value: function createDom(content, className, callback) {
+      var _this = this;
+
+      this.callback = callback;
+      var html = '<div class="popup-cover"></div>\n                  <div class="content">\n                    <span class="close"></span>\n                    ' + content + '\n                  </div>';
+      var dom = document.createElement('div');
+      dom.className = 'popup-container ' + (className || '');
+      dom.innerHTML = html;
+      document.body.appendChild(dom);
+      dom.querySelector('div.content').className = 'content in';
+      dom.querySelector('div.popup-cover').addEventListener('click', function (e) {
+        e.stopPropagation();
+        _this.close(e);
+      }, false);
+      dom.querySelector('span.close').addEventListener('click', function (e) {
+        e.preventDefault();
+        _this.close(e);
+      }, false);
+      this.dom = dom;
+    }
+  }, {
+    key: 'addEventListener',
+    value: function addEventListener(el, event, callback) {
+      var els = this.dom.querySelectorAll(el);
+      for (var i = 0, l = els.length; i < l; i++) {
+        els[i].addEventListener(event, function (e) {
+          e.preventDefault();
+          callback(e);
+        }, false);
+      }
+    }
+  }, {
+    key: 'click',
+    value: function click(el, callback) {
+      var _this2 = this;
+
+      this.addEventListener(el, 'click', function (e) {
+        _this2.close(e, callback);
+      });
+    }
+  }, {
+    key: 'closeClick',
+    value: function closeClick(el, callback) {
+      this.dom.querySelector(el).addEventListener('click', function (e) {
+        e.preventDefault();
+        callback && callback(e);
+      }, false);
+    }
+  }, {
+    key: 'close',
+    value: function close(e, callback) {
+      var _this3 = this;
+
+      e.preventDefault();
+      this.dom.querySelector('div.content').className = 'content out';
+      setTimeout(function () {
+        _this3.dom.parentNode.removeChild(_this3.dom);
+        _this3.callback && _this3.callback();
+        callback && callback(e);
+      }, 200);
+    }
+  }, {
+    key: 'alert',
+    value: function alert(content, className, callback) {
+      this.createDom(content, className, callback);
+    }
+  }]);
+  return Popup;
+}())();
+module.exports = exports['default'];

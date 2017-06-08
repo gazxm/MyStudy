@@ -1,0 +1,464 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _css = require('antd-mobile/lib/button/style/css');
+
+var _button = require('antd-mobile/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _css2 = require('antd-mobile/lib/textarea-item/style/css');
+
+var _textareaItem = require('antd-mobile/lib/textarea-item');
+
+var _textareaItem2 = _interopRequireDefault(_textareaItem);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _css3 = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _css4 = require('antd-mobile/lib/modal/style/css');
+
+var _modal = require('antd-mobile/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _css5 = require('antd-mobile/lib/list/style/css');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _rcForm = require('rc-form');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+require('scss/mobile/articles.component.scss');
+
+var _utils = require('utils');
+
+var _request = require('common/request');
+
+var _request2 = _interopRequireDefault(_request);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+/* eslint-disable */
+var title = '文章详情';
+var Item = _list2.default.Item;
+var Brief = Item.Brief;
+
+var thumb = require('../../../../assets/img/mobile/find/icon-avatar.png');
+
+var Article = function (_Component) {
+    (0, _inherits3.default)(Article, _Component);
+
+    function Article(props) {
+        (0, _classCallCheck3.default)(this, Article);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Article.__proto__ || (0, _getPrototypeOf2.default)(Article)).call(this, props));
+
+        _this.state = {
+            lock: 1,
+            visible: 0,
+            loaded: 1,
+            commentId: 0,
+            commentContent: null,
+            commentPopover: 0,
+            commentPopoverLock: 1,
+            commentLock: 1,
+            commentLoading: 0
+        };
+
+        _request2.default.interceptors.response.use(function (response) {
+            var code = response.code,
+                message = response.message;
+
+            if (code == -2) {
+                _modal2.default.alert('提 示', message, [{
+                    text: '确 定',
+                    onPress: function onPress() {
+                        (0, _utils.login)();
+                    }
+                }]);
+                return _promise2.default.reject(response);
+            } else if ([0, -2].indexOf(code) == -1) {
+                return _promise2.default.reject(response);
+            }
+            return _promise2.default.resolve(response);
+        }, function (error) {
+            return _promise2.default.reject(error);
+        });
+        return _this;
+    }
+
+    (0, _createClass3.default)(Article, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            document.title = title;
+            this.article.bind(this)();
+        }
+    }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            if (this.props.params.id != nextProps.params.id) {
+                this.article.bind(this)(nextProps.params.id);
+            }
+        }
+    }, {
+        key: 'middleware',
+        value: function middleware(response) {
+            var code = response.code,
+                message = response.message;
+
+            _toast2.default.hide();
+            if ([0, -2].indexOf(code) == -1) {
+                _toast2.default.fail(message, 1.5);
+            }
+            this.setState({
+                lock: 1,
+                commentLock: 1,
+                commentLoading: 0
+            });
+        }
+    }, {
+        key: 'article',
+        value: function article(id) {
+            var _this2 = this;
+
+            _toast2.default.loading(undefined, 0);
+            var params = this.props.params;
+            var wrapper = this.refs.wrapper;
+
+            (0, _request2.default)('notice/find-article?id=' + (id || params.id)).then(function (response) {
+                var _response$data = response.data,
+                    like = _response$data.count,
+                    article = _response$data.item,
+                    recommend = _response$data.recommend,
+                    comment = _response$data.comment;
+
+                if (article && article.content) {
+                    var content = document.createElement('div');
+                    content.innerHTML = article.content;
+                    var elements = content.querySelectorAll('*');
+                    for (var i in elements) {
+                        var element = elements[i];
+                        if (element.style) {
+                            element.style.lineHeight = '';
+                            element.style.fontSize = '';
+                            element.style.fontFamily = '';
+                            element.style.backgroundColor = '';
+                        }
+                    }
+                    article.content = content.innerHTML.replace(/https?\:/g, '');
+                }
+                _this2.setState({
+                    like: like,
+                    article: article,
+                    recommend: recommend,
+                    comment: comment
+                });
+                // 回到顶部
+                wrapper && (wrapper.scrollTop = 0);
+                _toast2.default.hide();
+                id && _utils.redirect.push('/mobile/find/article/' + id);
+            }).catch(this.middleware.bind(this));
+        }
+    }, {
+        key: 'hideComment',
+        value: function hideComment() {
+            var _this3 = this;
+
+            this.setState({
+                visible: 0
+            });
+            setTimeout(function () {
+                var setFieldsValue = _this3.props.form.setFieldsValue;
+
+                setFieldsValue({
+                    comment: ''
+                });
+            });
+        }
+    }, {
+        key: 'reply',
+        value: function reply(id) {
+            var _props$form = this.props.form,
+                setFieldsValue = _props$form.setFieldsValue,
+                getFieldInstance = _props$form.getFieldInstance;
+
+            var comment = getFieldInstance('comment');
+            var _state = this.state,
+                comments = _state.comment,
+                commentContent = _state.commentContent;
+            var element = comment.refs.textarea;
+
+            setTimeout(element.focus());
+            if (id) {
+                comments && comments.map(function (data) {
+                    if (data.id == id) {
+                        setFieldsValue({
+                            comment: data.comment
+                        });
+                    }
+                });
+            } else {
+                setFieldsValue({
+                    comment: commentContent
+                });
+            }
+            this.setState({
+                visible: 1,
+                commentId: id || 0,
+                commentPopover: 0
+            });
+        }
+    }, {
+        key: 'showPopover',
+        value: function showPopover(id) {
+            var _this4 = this;
+
+            var _state2 = this.state,
+                commentPopover = _state2.commentPopover,
+                commentPopoverLock = _state2.commentPopoverLock;
+
+            if (commentPopoverLock) {
+                this.setState({ commentPopoverLock: 0 });
+                commentPopover == id && (id = 0);
+                setTimeout(function () {
+                    _this4.setState({
+                        commentPopover: id,
+                        commentPopoverLock: 1
+                    });
+                }, 300);
+            }
+        }
+    }, {
+        key: 'like',
+        value: function like(id) {
+            var _this5 = this;
+
+            var _state3 = this.state,
+                lock = _state3.lock,
+                article = _state3.article,
+                comment = _state3.comment;
+
+            if (article && article.id) {
+                var params = {};
+                params.id = article.id;
+                id && (params.father_id = id);
+                _toast2.default.loading(undefined, 0);
+                (0, _request2.default)('notice/give-the-thumbs-up', {
+                    params: params
+                }).then(function (response) {
+                    var like = response.count,
+                        message = response.message;
+
+                    _toast2.default.success(message, 1.5);
+                    if (!id) {
+                        article.give = !article.give;
+                        _this5.setState({
+                            like: like,
+                            article: article
+                        });
+                    } else {
+                        comment.map(function (data) {
+                            if (id == data.id) {
+                                data.laud = like;
+                                data.userGive = !data.userGive;
+                            }
+                        });
+                        _this5.setState({
+                            comment: comment,
+                            commentPopover: 0
+                        });
+                    }
+                }).catch(this.middleware.bind(this));
+            } else {
+                _toast2.default.offline('缺少参数', 1.5);
+            }
+        }
+    }, {
+        key: 'setCommentContent',
+        value: function setCommentContent(value) {
+            var _state4 = this.state,
+                commentId = _state4.commentId,
+                comment = _state4.comment;
+
+            if (commentId) {
+                comment && comment.map(function (data) {
+                    data.id == commentId && (data.comment = value);
+                });
+                this.setState({
+                    comment: comment
+                });
+            } else {
+                this.setState({
+                    commentContent: value
+                });
+            }
+        }
+    }, {
+        key: 'comment',
+        value: function comment() {
+            var _this6 = this;
+
+            var _state5 = this.state,
+                article = _state5.article,
+                comments = _state5.comment,
+                commentId = _state5.commentId,
+                commentLock = _state5.commentLock;
+            var _props$form2 = this.props.form,
+                setFieldsValue = _props$form2.setFieldsValue,
+                getFieldValue = _props$form2.getFieldValue,
+                getFieldInstance = _props$form2.getFieldInstance;
+
+            var comment = getFieldInstance('comment');
+            var element = comment.refs.textarea;
+
+            if (commentLock) {
+                if (!getFieldValue('comment')) {
+                    _toast2.default.offline('内容不能为空', 1.5, function () {
+                        setTimeout(element.focus());
+                    });
+                    return;
+                }
+                this.setState({ commentLock: 0, commentLoading: 1 });
+                var data = {};
+                data.id = article.id;
+                data.content = getFieldValue('comment');
+                if (commentId) {
+                    comments.map(function (comment) {
+                        comment.id == commentId && (data.reply = commentId);
+                    });
+                }
+                _request2.default.post('notice/thumb-up', data).then(function (response) {
+                    var id = response.id,
+                        phone = response.phone,
+                        user_id = response.user_id,
+                        message = response.message;
+
+                    _toast2.default.success(message, 1.5, function () {
+                        _this6.setState({
+                            commentLock: 1,
+                            commentLoading: 0,
+                            visible: 0
+                        });
+                        setTimeout(function () {
+                            setFieldsValue({
+                                comment: ''
+                            });
+                            if (commentId) {
+                                comments.map(function (data) {
+                                    data.id == commentId && (data.comment = '');
+                                });
+                            } else {
+                                _this6.setState({ commentContent: '' });
+                            }
+                            comments.push({
+                                id: id,
+                                content: data.content,
+                                created_at: '刚刚',
+                                laud: 0,
+                                phone: phone,
+                                user_id: user_id,
+                                userGive: 0
+                            });
+                            _this6.setState({
+                                comment: comments
+                            });
+                            var wrapper = _this6.refs.wrapper;
+
+                            wrapper && (wrapper.scrollTop = wrapper.scrollHeight);
+                        });
+                    });
+                }).catch(this.middleware.bind(this));
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this7 = this;
+
+            var getFieldProps = this.props.form.getFieldProps;
+            var _state6 = this.state,
+                _state6$like = _state6.like,
+                like = _state6$like === undefined ? 0 : _state6$like,
+                article = _state6.article,
+                recommend = _state6.recommend,
+                comment = _state6.comment,
+                visible = _state6.visible,
+                loaded = _state6.loaded,
+                commentContent = _state6.commentContent,
+                commentPopover = _state6.commentPopover,
+                commentLoading = _state6.commentLoading;
+
+            return _react2.default.createElement('div', { ref: 'wrapper', className: (0, _classnames2.default)({ 'wrapper wrapper-mobile wrapper-find-article': true, loaded: loaded }) }, article ? _react2.default.createElement(_list2.default, { className: 'main' }, _react2.default.createElement(Item, null, _react2.default.createElement('div', { className: 'title' }, article.title), _react2.default.createElement('div', { className: 'desc' }, _react2.default.createElement('span', null, article.created_at), _react2.default.createElement('span', { className: 'total' }, article.count)), _react2.default.createElement(Brief, null, _react2.default.createElement('div', { className: 'content', dangerouslySetInnerHTML: { __html: article.content } })))) : '', recommend && recommend.length ? _react2.default.createElement(_list2.default, { className: 'recommend', renderHeader: function renderHeader() {
+                    return '更多推荐';
+                } }, recommend.map(function (data, index) {
+                return _react2.default.createElement(Item, { key: index, onClick: _this7.article.bind(_this7, data.id) }, data.title);
+            })) : '', comment && comment.length ? _react2.default.createElement(_list2.default, { className: 'comments', renderHeader: function renderHeader() {
+                    return '回复';
+                } }, comment.map(function (data, index) {
+                return _react2.default.createElement(Item, { key: index, thumb: thumb }, _react2.default.createElement('div', { className: 'title' }, _react2.default.createElement('span', null, data.phone ? data.phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2') : '\u7528\u6237_' + data.user_id), _react2.default.createElement('div', { className: (0, _classnames2.default)({ handle: true, active: commentPopover == data.id }), onClick: _this7.showPopover.bind(_this7, data.id) }), _react2.default.createElement('div', { className: (0, _classnames2.default)({ popover: true, active: commentPopover == data.id }) }, _react2.default.createElement('div', { className: 'like', onClick: _this7.like.bind(_this7, data.id) }, !data.userGive ? '赞一下' : '取消'), false && _react2.default.createElement('div', { className: 'reply', onClick: _this7.reply.bind(_this7, data.id) }, '\u56DE\u590D'))), _react2.default.createElement(Brief, null, _react2.default.createElement('div', { className: 'date' }, data.created_at), _react2.default.createElement('div', { className: 'content' }, data.content), _react2.default.createElement('div', { className: 'laud' }, _react2.default.createElement('span', null, data.laud))));
+            })) : '', _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'comment': true, visible: visible }) }, _react2.default.createElement(_textareaItem2.default, (0, _extends3.default)({
+                rows: 5,
+                count: 150,
+                editable: !commentLoading
+            }, getFieldProps('comment', {
+                onChange: this.setCommentContent.bind(this)
+            }))), _react2.default.createElement('div', { className: 'button' }, _react2.default.createElement(_button2.default, { type: 'primary', size: 'small', inline: true, disabled: commentLoading, loading: commentLoading, onClick: this.comment.bind(this) }, '\u53D1\u8868'))), _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'comment-mask': true, visible: visible }), onClick: this.hideComment.bind(this) }), _react2.default.createElement('div', { ref: 'toolbar', className: 'toolbar', onClick: function onClick() {
+                    return _this7.setState({ commentPopover: 0 });
+                } }, _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'button like': true, active: article && article.give }), onClick: this.like.bind(this, undefined) }, like > 0 ? _react2.default.createElement('span', null, like) : ''), _react2.default.createElement('div', { className: 'button reply', onClick: this.reply.bind(this, undefined) }, _react2.default.createElement('span', null, '\u56DE\u590D'))), _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'popover-mask': true, visible: commentPopover }), onClick: function onClick() {
+                    return _this7.setState({ commentPopover: 0 });
+                } }));
+        }
+    }]);
+    return Article;
+}(_react.Component);
+
+;
+
+exports.default = (0, _rcForm.createForm)()(Article);
+module.exports = exports['default'];

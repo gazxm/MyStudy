@@ -1,0 +1,335 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _css = require('antd-mobile/lib/button/style/css');
+
+var _button = require('antd-mobile/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _css2 = require('antd-mobile/lib/stepper/style/css');
+
+var _stepper = require('antd-mobile/lib/stepper');
+
+var _stepper2 = _interopRequireDefault(_stepper);
+
+var _css3 = require('antd-mobile/lib/notice-bar/style/css');
+
+var _noticeBar = require('antd-mobile/lib/notice-bar');
+
+var _noticeBar2 = _interopRequireDefault(_noticeBar);
+
+var _css4 = require('antd-mobile/lib/modal/style/css');
+
+var _modal = require('antd-mobile/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _css5 = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _css6 = require('antd-mobile/lib/list/style/css');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _class, _temp; /* eslint-disable */
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _rcForm = require('rc-form');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+require('scss/mobile/repayment/part.component.scss');
+
+var _request = require('common/request');
+
+var _request2 = _interopRequireDefault(_request);
+
+var _utils = require('utils');
+
+var _Password = require('components/Password');
+
+var _Password2 = _interopRequireDefault(_Password);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var title = '部分还款';
+var Item = _list2.default.Item;
+var RETRY_TEXT = '系统繁忙，请稍后重试';
+
+var timer = void 0;
+
+var Part = (_temp = _class = function (_Component) {
+    (0, _inherits3.default)(Part, _Component);
+
+    function Part(props) {
+        (0, _classCallCheck3.default)(this, Part);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Part.__proto__ || (0, _getPrototypeOf2.default)(Part)).call(this, props));
+
+        _this.state = {
+            fee: 0,
+            money: 0,
+            value: 0,
+            // LOCK
+            lock: 1,
+            // 数据加载完毕
+            loaded: 0,
+            // request loading
+            loading: 0,
+            query: 0
+        };
+
+        _request2.default.interceptors.response.use(function (response) {
+            var code = response.code,
+                message = response.message;
+
+            if (code != 0) {
+                return _promise2.default.reject(response);
+            }
+            return _promise2.default.resolve(response);
+        }, function (error) {
+            return _promise2.default.reject(error);
+        });
+        return _this;
+    }
+
+    (0, _createClass3.default)(Part, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            document.title = title;
+            var id = this.props.location.query.id;
+
+            if (!id) {
+                _toast2.default.fail('订单号为空', function () {
+                    _utils.redirect.goBack();
+                });
+                return;
+            }
+            (0, _request2.default)('credit-pay/loan-partial?id=' + id).then(function (response) {
+                var _response$data$item = response.data.item,
+                    title = _response$data$item.title,
+                    late_fee = _response$data$item.late_fee,
+                    remian_time = _response$data$item.remian_time,
+                    repayment_amount = _response$data$item.repayment_amount,
+                    repayment_date = _response$data$item.repayment_date,
+                    last_amount = _response$data$item.last_amount,
+                    setps = _response$data$item.remain_amount,
+                    service = _response$data$item.remain_service,
+                    tips = _response$data$item.remain_tip;
+
+                remian_time = 0;
+                _this2.setState({
+                    title: title,
+                    remian_time: remian_time,
+                    late_fee: late_fee,
+                    repayment_amount: repayment_amount,
+                    repayment_date: repayment_date,
+                    last_amount: last_amount,
+                    setps: setps,
+                    service: service,
+                    tips: tips,
+                    fee: service[0],
+                    value: setps[0] - 0,
+                    money: setps[0] - 0 + (service[0] - 0) + parseFloat(late_fee, 10),
+                    loaded: 1
+                });
+            }).catch(this.middleware.bind(this));
+        }
+    }, {
+        key: 'middleware',
+        value: function middleware(response) {
+            var _this3 = this;
+
+            var setFieldsValue = this.props.form.setFieldsValue;
+            var code = response.code,
+                _response$message = response.message,
+                message = _response$message === undefined ? RETRY_TEXT : _response$message;
+
+            _toast2.default.hide();
+            if (code == -2) {
+                var modal = document.querySelector('.am-modal');
+                if (!modal) {
+                    _modal2.default.alert('提 示', message, [{
+                        text: '确 定',
+                        onPress: login
+                    }]);
+                }
+            } else {
+                _toast2.default.fail(message, function () {
+                    _this3.setState && _this3.setState({ lock: 1, loaded: 1 });
+                    _utils.redirect.goBack();
+                });
+                this.setState({ loading: 0 });
+            }
+        }
+    }, {
+        key: 'query',
+        value: function query() {
+            var id = this.props.location.query.id;
+            var _state = this.state,
+                fee = _state.fee,
+                value = _state.value,
+                money = _state.money,
+                setps = _state.setps,
+                remian_time = _state.remian_time,
+                query = _state.query;
+
+            this.setState({ query: 1 });
+            _request2.default.post('credit-pay/partial-apply?id=' + id, {
+                // 服务费
+                service_fee: fee,
+                //  所选金额
+                principal: value,
+                // 合计金额
+                total_money: money
+            }).then(function (response) {
+                var message = response.message;
+
+                _toast2.default.success(message || '操作成功', function () {
+                    _utils.redirect.push('/mobile/repayment/result/' + id);
+                });
+            }).catch(this.middleware.bind(this));
+        }
+    }, {
+        key: 'submit',
+        value: function submit() {
+            var _this4 = this;
+
+            var id = this.props.location.query.id;
+            var _state2 = this.state,
+                fee = _state2.fee,
+                value = _state2.value,
+                money = _state2.money,
+                setps = _state2.setps,
+                remian_time = _state2.remian_time;
+
+            if (remian_time || value == setps[setps.length - 1]) {
+                window.location.href = (0, _utils.resolveUrl)('http://m.xianjincard.com/loan/loan-repayment-type?id=' + id);
+                return;
+            }
+            _Password2.default.show(function (password) {
+                _Password2.default.remove();
+                _toast2.default.loading(undefined, 0);
+                _request2.default.post('http://192.168.39.214/kdkj/mobile/web/user/check-pay-pwd-post', {
+                    password: password
+                }).then(function (response) {
+                    _Password2.default.remove();
+                    timer = setInterval(function () {
+                        if (_this4.state.query) {
+                            timer && clearInterval(timer);
+                        } else {
+                            _this4.query.bind(_this4)();
+                        }
+                    }, 1000);
+                }).catch(function (response) {
+                    var message = response.message;
+
+                    _toast2.default.hide();
+                    _this4.submit.bind(_this4)();
+                    _Password2.default.error(message);
+                });
+            });
+        }
+    }, {
+        key: 'onChange',
+        value: function onChange(value) {
+            var _state3 = this.state,
+                setps = _state3.setps,
+                service = _state3.service,
+                late_fee = _state3.late_fee;
+
+            var index = setps.indexOf(value + '');
+            this.setState({ value: value });
+            if (index >= 0) {
+                this.setState({
+                    fee: service[index] || 0,
+                    money: value + (service[index] - 0) + parseFloat(late_fee, 10)
+                });
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this5 = this;
+
+            var _state4 = this.state,
+                fee = _state4.fee,
+                money = _state4.money,
+                tips = _state4.tips,
+                late_fee = _state4.late_fee,
+                remian_time = _state4.remian_time,
+                repayment_amount = _state4.repayment_amount,
+                repayment_date = _state4.repayment_date,
+                last_amount = _state4.last_amount,
+                title = _state4.title,
+                setps = _state4.setps,
+                value = _state4.value,
+                visible = _state4.visible,
+                lock = _state4.lock,
+                loaded = _state4.loaded,
+                loading = _state4.loading;
+
+            return _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'wrapper wrapper-mobile wrapper-repayment-part': true, loaded: loaded }) }, title && _react2.default.createElement(_noticeBar2.default, { className: 'notice' }, title), remian_time == 0 ? _react2.default.createElement(_list2.default, null, _react2.default.createElement(Item, { extra: setps ? _react2.default.createElement(_stepper2.default, { defaultValue: setps[0] - 0, min: setps[0] - 0, max: setps[setps.length - 1] - 0, step: 100, onChange: this.onChange.bind(this), showNumber: true }) : '' }, '\u9996\u6B21\u8FD8\u6B3E'), _react2.default.createElement(Item, { extra: late_fee + '\u5143' }, '\u903E\u671F\u8D39'), _react2.default.createElement(Item, { extra: fee + '\u5143' }, '\u624B\u7EED\u8D39'), _react2.default.createElement(Item, { extra: _react2.default.createElement('div', { className: 'money' }, money, '\u5143') }, '\u603B\u91D1\u989D')) : _react2.default.createElement(_list2.default, null, _react2.default.createElement(Item, { extra: repayment_date }, '\u9996\u6B21\u8FD8\u6B3E\u65E5'), _react2.default.createElement(Item, { extra: repayment_amount + '\u5143' }, '\u5DF2\u8FD8\u6B3E\u91D1\u989D'), _react2.default.createElement(Item, { extra: _react2.default.createElement('div', { className: 'money' }, last_amount, '\u5143') }, '\u5269\u4F59\u5F85\u8FD8\u6B3E')), tips && !remian_time && _react2.default.createElement('div', { className: 'tips-repayment', dangerouslySetInnerHTML: { __html: '<div>' + tips + '</div>' } }), _react2.default.createElement('div', { className: 'tips' }, '\u6E29\u99A8\u63D0\u793A\uFF1A\u90E8\u5206\u8FD8\u6B3E\u4EC5', _react2.default.createElement('span', null, '\u652F\u6301\u94F6\u884C\u5361\u8FD8\u6B3E\uFF0C\u4E0D\u652F\u6301\u652F\u4ED8\u5B9D\u8FD8\u6B3E'), '\u3002'), _react2.default.createElement('div', { className: 'footer' }, _react2.default.createElement(_button2.default, {
+                type: 'primary',
+                disabled: !lock || loading,
+                loading: loading,
+                className: (0, _classnames2.default)({
+                    'button-submit': true,
+                    'button-round': true,
+                    'button-loading': !loaded
+                }),
+                onClick: this.submit.bind(this) }, '\u7ACB\u5373\u8FD8\u6B3E'), _react2.default.createElement('div', { className: 'instruction' }, _react2.default.createElement('span', { onClick: function onClick() {
+                    return _this5.setState({ visible: 1 });
+                } }, '\u67E5\u770B\u89C4\u5219\u8BF4\u660E'))), _react2.default.createElement(_modal2.default, { className: 'repayment-part-modal-instruction', title: '\u90E8\u5206\u8FD8\u6B3E\u89C4\u5219\u8BF4\u660E', onClose: function onClose() {
+                    return _this5.setState({ visible: 0 });
+                }, visible: visible, transparent: true }, _react2.default.createElement('dl', null, _react2.default.createElement('dt', null, '1\u3001\u89C4\u5219\u8BF4\u660E'), _react2.default.createElement('dd', null, '\u90E8\u5206\u8FD8\u6B3E\uFF0C\u53EF\u4EE5\u52062\u6B21\u5B8C\u6210\u8FD8\u6B3E\uFF0C\u9996\u6B21\u8FD8\u6B3E\u91D1\u989D\u4E0D\u4F4E\u4E8E\u5E94\u8FD8\u6B3E\u91D1\u989D\u768430%\u3002\u60A8\u5C06\u4F1A\u4EAB\u67093\u5929\u7684\u5BBD\u9650\u671F\uFF0C\u57283\u5929\u5185\u5B8C\u6210\u5168\u90E8\u8FD8\u6B3E\uFF0C\u4E0D\u4F1A\u8FDB\u5165\u7B2C\u4E09\u65B9\u50AC\u6536\u7A0B\u5E8F\uFF0C\u4E5F\u4E0D\u4F1A\u5F71\u54CD\u60A8\u7684\u4FE1\u7528\u3002')), _react2.default.createElement('dl', null, _react2.default.createElement('dt', null, '2\u3001\u76F8\u5173\u8D39\u7528'), _react2.default.createElement('dd', null, '\u7533\u8BF7\u90E8\u5206\u8FD8\u6B3E\uFF0C\u9700\u8981\u6536\u53D6\u4E00\u5B9A\u7684\u624B\u7EED\u8D39\u3002\u9996\u6B21\u8FD8\u6B3E\u6210\u529F\u540E\uFF0C\u5DF2\u8FD8\u6B3E\u91D1\u989D\u5C06\u4E0D\u518D\u6536\u903E\u671F\u7BA1\u7406\u8D39\uFF0C\u5E73\u53F0\u4F1A\u5BF9\u5269\u4F59\u672A\u8FD8\u91D1\u989D\u6536\u53D61%/\u5929\u7684\u903E\u671F\u7BA1\u7406\u8D39\u3002\u90E8\u5206\u8FD8\u6B3E\u4EC5\u652F\u6301\u94F6\u884C\u5361\u8FD8\u6B3E\uFF0C\u4E0D\u652F\u6301\u652F\u4ED8\u5B9D\u8FD8\u6B3E\u3002'))));
+        }
+    }]);
+    return Part;
+}(_react.Component), _class.contextTypes = {
+    router: _react2.default.PropTypes.object.isRequired
+}, _temp);
+exports.default = (0, _rcForm.createForm)()(Part);
+module.exports = exports['default'];

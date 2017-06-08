@@ -1,0 +1,71 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/flex/style/css');
+
+var _flex = require('antd-mobile/lib/flex');
+
+var _flex2 = _interopRequireDefault(_flex);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+require('scss/mobile/common.scss');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Nav = function (_React$Component) {
+  (0, _inherits3.default)(Nav, _React$Component);
+
+  function Nav() {
+    (0, _classCallCheck3.default)(this, Nav);
+    return (0, _possibleConstructorReturn3.default)(this, (Nav.__proto__ || (0, _getPrototypeOf2.default)(Nav)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(Nav, [{
+    key: 'render',
+    value: function render() {
+      var location = this.props.location;
+
+      var loanClass = location.pathname.match(/^\/mobile\/loan/) ? 'active' : '';
+      var certificationClass = location.pathname.match(/^\/mobile\/certification/) ? 'active' : '';
+      var findClass = location.pathname.match(/^\/mobile\/find/) ? 'active' : '';
+      var meClass = location.pathname.match(/^\/mobile\/me/) ? 'active' : '';
+
+      return _react2.default.createElement(_flex2.default, { className: 'nav' }, _react2.default.createElement(_flex2.default.Item, { className: loanClass }, _react2.default.createElement(_reactRouter.IndexLink, { className: 'loan', to: '/mobile/loan' }, '\u501F\u6B3E')), _react2.default.createElement(_flex2.default.Item, { className: certificationClass }, _react2.default.createElement(_reactRouter.Link, { className: 'certification', to: '/mobile/certification' }, '\u8BA4\u8BC1')), _react2.default.createElement(_flex2.default.Item, { className: findClass }, _react2.default.createElement(_reactRouter.Link, { className: 'find', to: '/mobile/find' }, '\u53D1\u73B0')), _react2.default.createElement(_flex2.default.Item, { className: meClass }, _react2.default.createElement(_reactRouter.Link, { className: 'me', to: '/mobile/me' }, '\u6211\u7684')));
+    }
+  }]);
+  return Nav;
+}(_react2.default.Component);
+
+exports.default = Nav;
+module.exports = exports['default'];

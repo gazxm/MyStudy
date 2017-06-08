@@ -1,0 +1,290 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = require('utils');
+
+var _Toast = require('../../../components/Toast');
+
+var _Toast2 = _interopRequireDefault(_Toast);
+
+require('img/activity/invite/invite-12.png');
+
+require('scss/activity/invite.component.scss');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Invite = function (_React$Component) {
+  (0, _inherits3.default)(Invite, _React$Component);
+
+  function Invite(props) {
+    (0, _classCallCheck3.default)(this, Invite);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Invite.__proto__ || (0, _getPrototypeOf2.default)(Invite)).call(this, props));
+
+    _this.startTime = '';
+    _this.endTime = '';
+    _this.timeFlag = 0;
+    _this.urlInvteCode = '';
+    _this.state = {
+      ruleState: false,
+      popupState: {
+        isShow: false,
+        tip: '',
+        content: '',
+        callback: ''
+      },
+      loginState: '',
+      inviteCode: '',
+      inviteUrl: ''
+    };
+    return _this;
+  }
+
+  (0, _createClass3.default)(Invite, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      document.title = '兼职赚钱';
+      if (!_utils.platform.isWeixin) {
+        (0, _utils.share)('inviteFour');
+      }
+      var query = this.props.location.query;
+      if (typeof query.invite_code !== 'undefined') {
+        this.urlInvteCode = query.invite_code;
+      }
+      _Toast2.default.loading('');
+      (0, _utils.get)('http://credit.xianjincard.com/credit-invite/invite-four-act').then(function (data) {
+        return data.data;
+      }).then(function (data) {
+        if (data.code === -1) {
+          _Toast2.default.hide();
+          if (_utils.platform.isWeixin) {
+            (0, _utils.share)('inviteFour', { corner: 0 });
+            _this2.popupInfo('请您先登录哦~', '点击登录', _utils.login);
+          }
+          _this2.setState({
+            loginState: data.code
+          });
+          return;
+        }
+        if (_utils.platform.isWeixin) {
+          (0, _utils.share)('inviteFour', { corner: 1 });
+        }
+        if (data.code === -11) {
+          _Toast2.default.hide();
+          _this2.setState({
+            loginState: data.code
+          });
+          _this2.popupInfo('本次邀请活动3月13日10:00开启哦~', '朕知道了');
+          return;
+        }
+        if (data.code === -10) {
+          _Toast2.default.hide();
+          _this2.setState({
+            loginState: data.code
+          });
+          _this2.popupInfo('本活动已结束，请关注平台其他活动~', '朕知道了');
+          return;
+        }
+        if (data.code === 1) {
+          if (_utils.platform.isWeixin) {
+            (0, _utils.share)('inviteFour', { invite_code: data.data.invite_code });
+          }
+          var tag = _this2.props.location.query.tag;
+
+          var inviteUrl = 'http://h.xianjincard.com/activity/invite/share?tag=' + (tag || '') + '&invite_code=' + (_this2.urlInvteCode ? _this2.urlInvteCode : data.data.invite_code);
+          _this2.setState({
+            loginState: data.code,
+            inviteCode: _this2.urlInvteCode ? _this2.urlInvteCode : data.data.invite_code
+          });
+          (0, _utils.get)('http://credit.xianjincard.com/credit-invite/get-short-url?url=' + encodeURIComponent(inviteUrl)).then(function (data) {
+            return data.data;
+          }).then(function (data2) {
+            _Toast2.default.hide();
+            if (data2.code === 1) {
+              _this2.setState({
+                inviteUrl: data2.data.short_url
+              });
+            }
+          });
+        } else {
+          _Toast2.default.hide();
+          _this2.popupInfo('服务器繁忙 请稍候重试', '朕知道了');
+        }
+      });
+    }
+  }, {
+    key: 'copyText',
+    value: function copyText() {
+      var _this3 = this;
+
+      this.startTime = (new Date().getTime() / 1000).toFixed(0);
+      if (this.timeFlag) {
+        return;
+      }
+      this.timeFlag = 1;
+      setTimeout(function () {
+        _this3.timeFlag = 0;
+        if (_this3.buttonBefore()) {
+          var inviteUrl = _this3.state.inviteUrl;
+
+          if (_this3.endTime === '') {
+            (0, _utils.copy)('#贷款新口子推荐#今天发现一个新贷款口子：现金卡。最高放款5000元，首次下款速度只要5分钟，被拒还赔钱！！！口子链接>>' + inviteUrl);
+            return;
+          }
+          var time = _this3.endTime - _this3.startTime;
+          if (time < 0) {
+            _this3.endTime = '';
+            (0, _utils.copy)('#贷款新口子推荐#今天发现一个新贷款口子：现金卡。最高放款5000元，首次下款速度只要5分钟，被拒还赔钱！！！口子链接>>' + inviteUrl);
+            return;
+          }
+          _this3.endTime = '';
+        }
+      }, 1000);
+    }
+  }, {
+    key: 'copyEnd',
+    value: function copyEnd() {
+      this.endTime = (new Date().getTime() / 1000).toFixed(0);
+    }
+  }, {
+    key: 'buttonBefore',
+    value: function buttonBefore() {
+      var loginState = this.state.loginState;
+
+      if (loginState === -1) {
+        this.popupInfo('请您先登录哦~', '点击登录', _utils.login);
+        return false;
+      }
+      if (loginState === -10) {
+        this.popupInfo('本活动已结束，请关注平台其他活动~', '朕知道了');
+        return false;
+      }
+      if (loginState === -11) {
+        this.popupInfo('本次邀请活动3月13日10:00开启哦~', '朕知道了');
+        return false;
+      }
+      if (loginState === 1) {
+        return true;
+      } else {
+        this.popupInfo('服务器繁忙 请稍候重试', '朕知道了');
+        return false;
+      }
+    }
+  }, {
+    key: 'invite',
+    value: function invite() {
+      var tag = this.props.location.query.tag;
+
+      if (this.buttonBefore()) {
+        if (_utils.platform.isApp) {
+          var url = (0, _utils.resolveUrl)('http://h.xianjincard.com/activity/invite/share?tag=' + (tag || '') + '&invite_code=' + this.state.inviteCode);
+          var imgUrl = (0, _utils.resolveUrl)('http://h.xianjincard.com/assets/img/activity/invite/invite-12.png');
+          (0, _utils.partake)({
+            'share_title': '送你15100元现金大礼包，快来领啊！',
+            'share_body': '通过我的邀请注册，1分钟认证，20分钟到账，被拒还有赔偿！',
+            'share_url': url,
+            'share_logo': imgUrl
+          });
+        } else {
+          if (_utils.platform.isWeixin) {
+            this.popupInfo('请点击右上角分享哦~', '朕知道了');
+            return;
+          }
+          this.popupInfo('请下载APP再去分享哦~', '立即下载', _utils.forwardApp);
+        }
+      }
+    }
+  }, {
+    key: 'lookReward',
+    value: function lookReward() {
+      if (this.buttonBefore()) {
+        _utils.redirect.push('/activity/invite/reward');
+      }
+    }
+  }, {
+    key: 'showRule',
+    value: function showRule(e) {
+      this.setState({ ruleState: true });
+    }
+  }, {
+    key: 'closeRule',
+    value: function closeRule(e) {
+      this.setState({ ruleState: false });
+    }
+  }, {
+    key: 'popupInfo',
+    value: function popupInfo(content, tip, callback) {
+      this.setState({
+        popupState: {
+          isShow: true,
+          content: content,
+          tip: tip,
+          callback: callback
+        }
+      });
+    }
+  }, {
+    key: 'closePopup',
+    value: function closePopup(e) {
+      this.setState({ popupState: { isShow: false } });
+    }
+  }, {
+    key: 'okPopup',
+    value: function okPopup(e) {
+      this.state.popupState.callback && this.state.popupState.callback();
+      this.closePopup();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _state = this.state,
+          ruleState = _state.ruleState,
+          inviteUrl = _state.inviteUrl,
+          popupState = _state.popupState;
+
+      var rule = ruleState ? _react2.default.createElement('div', { className: 'rule' }, _react2.default.createElement('div', { className: 'overlay', onClick: this.closeRule.bind(this) }), _react2.default.createElement('div', { className: 'dialog' }, _react2.default.createElement('span', { className: 'close', onClick: this.closeRule.bind(this) }), _react2.default.createElement('h3', null, '\u6D3B\u52A8\u89C4\u5219'), _react2.default.createElement('div', { className: 'rule-content' }, _react2.default.createElement('p', null, _react2.default.createElement('b', null, '\u6D3B\u52A8\u65F6\u95F4\uFF1A'), '2017\u5E743\u670813\u65E5\u8D77'), _react2.default.createElement('p', null, _react2.default.createElement('b', null, '\u53C2\u4E0E\u5BF9\u8C61\uFF1A'), '\u6240\u6709\u73B0\u91D1\u5361\u6CE8\u518C\u7528\u6237\u5747\u53EF\u53C2\u4E0E'), _react2.default.createElement('p', null, _react2.default.createElement('b', null, '\u9080\u8BF7\u4EBA\u5956\u52B1\uFF1A'), _react2.default.createElement('br', null), '\u6D3B\u52A8\u671F\u95F4\uFF0C\u597D\u53CB\u901A\u8FC7\u9080\u8BF7\u4EBA\u94FE\u63A5\u6CE8\u518C\u5373\u4E3A\u5EFA\u7ACB\u9080\u8BF7\u5173\u7CFB\uFF0C\u4E14\u4E24\u7EA7\u597D\u53CB\u572830\u5929\u5185\u9996\u6B21\u7533\u8BF7\u501F\u6B3E\uFF0C\u9080\u8BF7\u4EBA\u5373\u83B7\u9080\u8BF7\u5956\u52B1\uFF0C\u5956\u52B1\u5982\u4E0B'), _react2.default.createElement('p', null, _react2.default.createElement('b', null, '\u4E00\u7EA7\u5956\u52B1\uFF1A'), _react2.default.createElement('br', null), '\u9080\u8BF7\u597D\u53CB\uFF0C\u9080\u8BF7\u4EBA\u53EF\u83B7\u5F97\u597D\u53CB\u7533\u8BF7\u91D1\u989D\u76841%\uFF0C\u540C\u65F6\u83B7\u5F97100\u91D1\u5E01\u5956\u52B1\uFF0C\u53EF\u5728\u5E73\u53F0\u5151\u6362\u5956\u54C1'), _react2.default.createElement('p', null, _react2.default.createElement('b', null, '\u4E8C\u7EA7\u5956\u52B1\uFF1A'), _react2.default.createElement('br', null), '\u597D\u53CB\u518D\u9080\u8BF7\u597D\u53CB\uFF0C\u9080\u8BF7\u4EBA\u53EF\u83B7\u5F97\u518D\u9080\u8BF7\u597D\u53CB\u7533\u8BF7\u91D1\u989D\u76840.1%'), _react2.default.createElement('p', null, '*\u9080\u8BF7\u5956\u52B1\u5C06\u57281\u4E2A\u5DE5\u4F5C\u65E5\u5185\u53D1\u653E\u81F3\u9080\u8BF7\u4EBA\u201C\u6211\u7684\u9080\u8BF7\u201D\u8D26\u6237'), _react2.default.createElement('p', null, '*\u5956\u52B1\u63D0\u73B0\u89C4\u5219\u8BF7\u81F3\u3010\u6211\u7684\u3011-\u3010\u6211\u7684\u9080\u8BF7\u3011\u4E2D\u67E5\u770B\u8BE6\u60C5'), _react2.default.createElement('p', null, _react2.default.createElement('b', null, '\u597D\u53CB\u5956\u52B1\uFF1A'), _react2.default.createElement('br', null), '\u88AB\u9080\u8BF7\u597D\u53CB\u6CE8\u518C\u540E\uFF0C\u7CFB\u7EDF\u5C06\u81EA\u52A8\u53D1\u653E\u4E00\u5F2010\u5143\u73B0\u91D1\u5238\u81F3\u5176\u8D26\u6237\u4E2D\uFF0C\u53EF\u81F3\u3010\u6211\u7684\u3011-\u3010\u4F18\u60E0\u5238\u3011\u4E2D\u67E5\u770B\uFF0C\u73B0\u91D1\u5238\u6709\u6548\u671F20\u5929\uFF0C\u5728\u501F\u6B3E\u65F6\u53EF\u62B5\u6263\u76F8\u5E94\u73B0\u91D1'), _react2.default.createElement('p', null, '\u6D3B\u52A8\u671F\u95F4\u6709\u6076\u610F\u5237\u5956\u52B1\u7684\u7528\u6237\uFF0C\u5E73\u53F0\u6709\u6743\u53D6\u6D88\u7528\u6237\u5956\u52B1\u8D44\u683C'), _react2.default.createElement('p', { className: 'xianjincard' }, '\u672C\u6D3B\u52A8\u6700\u7EC8\u89E3\u91CA\u6743\u5F52\u73B0\u91D1\u5361\u6240\u6709\uFF0C\u4E0E\u82F9\u679C\u516C\u53F8\u65E0\u5173')))) : null;
+
+      var popup = popupState.isShow ? _react2.default.createElement('div', { className: 'popup' }, _react2.default.createElement('div', { className: 'overlay', onClick: this.closePopup.bind(this) }), _react2.default.createElement('div', { className: 'dialog' }, _react2.default.createElement('span', { className: 'close', onClick: this.closePopup.bind(this) }), _react2.default.createElement('p', { dangerouslySetInnerHTML: { __html: popupState.content } }), _react2.default.createElement('a', { onClick: this.okPopup.bind(this) }, popupState.tip))) : null;
+
+      var link = inviteUrl ? _react2.default.createElement('span', { className: 'span-link' }, inviteUrl) : _react2.default.createElement('a', { className: 'a-link', onClick: _utils.login }, '(', _react2.default.createElement('b', null, '\u767B\u5F55'), '\u540E\u663E\u793A\u4F60\u7684\u4E13\u5C5E\u94FE\u63A5)');
+
+      return _react2.default.createElement('div', { className: 'transition-group' }, _react2.default.createElement('div', { className: 'invite' }, _react2.default.createElement('h4', null, _react2.default.createElement('span', null, '\u6D3B\u52A8\u65F6\u95F4\uFF1A2017\u5E743\u670813\u65E5\u8D77')), _react2.default.createElement('h2', null, '\u6709\u94B1\u4E00\u8D77\u8D5A \u6536\u76CA\u4EAB\u4E8C\u7EA7'), _react2.default.createElement('div', { className: 'arrow' }, _react2.default.createElement('p', { className: 'one' }, _react2.default.createElement('b', { className: 'a' }, 'A'), '\u9080\u8BF7', _react2.default.createElement('b', { className: 'b' }, 'B'), '\u6CE8\u518C'), _react2.default.createElement('p', { className: 'two' }, _react2.default.createElement('b', { className: 'b' }, 'B'), '\u9996\u6B21\u7533\u8BF7\u501F\u6B3E'), _react2.default.createElement('p', { className: 'three' }, _react2.default.createElement('b', { className: 'b' }, 'B'), '\u9080\u8BF7', _react2.default.createElement('b', { className: 'c' }, 'C'), '\u6CE8\u518C'), _react2.default.createElement('p', { className: 'four' }, _react2.default.createElement('b', { className: 'c' }, 'C'), '\u9996\u6B21\u7533\u8BF7\u501F\u6B3E')), _react2.default.createElement('p', { className: 'reward-header' }, _react2.default.createElement('b', { className: 'a' }, 'A'), '\u53EF\u83B7\u9080\u8BF7\u5956\u52B1\u5982\u4E0B\uFF1A'), _react2.default.createElement('div', { className: 'reward' }, _react2.default.createElement('div', { className: 'ticket clearfix' }, _react2.default.createElement('div', { className: 'left' }, _react2.default.createElement('p', { className: 'left-one' }, '\u6700\u9AD8'), _react2.default.createElement('p', { className: 'left-two' }, _react2.default.createElement('b', { className: 'number' }, '50'), '\u5143/\u4EBA')), _react2.default.createElement('div', { className: 'right' }, _react2.default.createElement('p', null, '\u9080\u8BF7\u4E00\u7EA7\u5956\u52B1'), _react2.default.createElement('p', null, _react2.default.createElement('b', { className: 'a' }, 'A'), '\u9080\u8BF7', _react2.default.createElement('b', { className: 'b' }, 'B'), '\u6CE8\u518C\u4E14', _react2.default.createElement('b', { className: 'b' }, 'B'), '\u9996\u6B21\u7533\u8BF7\u501F\u6B3E'), _react2.default.createElement('p', null, _react2.default.createElement('b', { className: 'a' }, 'A'), '\u6700\u4F4E\u53EF\u83B7', _react2.default.createElement('b', { className: 'b' }, 'B'), '\u7533\u8BF7\u91D1\u989D\u7684', _react2.default.createElement('b', { className: 'b' }, '1%'), '\u548C', _react2.default.createElement('b', { className: 'b' }, '100'), '\u91D1\u5E01'))), _react2.default.createElement('div', { className: 'ticket clearfix' }, _react2.default.createElement('div', { className: 'left' }, _react2.default.createElement('p', { className: 'left-one' }, '\u6700\u9AD8'), _react2.default.createElement('p', { className: 'left-three' }, _react2.default.createElement('b', { className: 'number' }, '5'), '\u5143/\u4EBA')), _react2.default.createElement('div', { className: 'right' }, _react2.default.createElement('p', null, '\u9080\u8BF7\u4E8C\u7EA7\u5956\u52B1'), _react2.default.createElement('p', null, _react2.default.createElement('b', { className: 'b' }, 'B'), '\u9080\u8BF7', _react2.default.createElement('b', { className: 'c' }, 'C'), '\u6CE8\u518C\u4E14', _react2.default.createElement('b', { className: 'c' }, 'C'), '\u9996\u6B21\u7533\u8BF7\u501F\u6B3E'), _react2.default.createElement('p', null, _react2.default.createElement('b', { className: 'a' }, 'A'), '\u6700\u4F4E\u53EF\u83B7', _react2.default.createElement('b', { className: 'c' }, 'C'), '\u7533\u8BF7\u91D1\u989D\u7684', _react2.default.createElement('b', { className: 'c' }, '0.1%'))))), _react2.default.createElement('div', { className: 'eg' }, _react2.default.createElement('h5', null, '\u4E3E\u4E2A\u4F8B\u5B50'), _react2.default.createElement('p', null, 'A\u9080\u8BF7B\u6CE8\u518C\uFF0CB\u6210\u529F\u6CE8\u518C\u540E\u7533\u8BF7\u501F\u6B3E5000\u5143\uFF0C', _react2.default.createElement('br', null), '\u5219A\u83B7\u5F97\u5956\u52B1\u4E3A50\u5143\uFF085000*1%\uFF09\uFF1B', _react2.default.createElement('br', null), 'B\u9080\u8BF7C\u6CE8\u518C\uFF0CC\u7533\u8BF7\u501F\u6B3E5000\u5143\uFF0C ', _react2.default.createElement('br', null), '\u5219A\u83B7\u5956\u52B1\u4E3A5\u5143\uFF085000*0.1%\uFF09\uFF0CB\u83B7\u5956\u52B150\u5143\uFF085000*1%\uFF09\uFF1B', _react2.default.createElement('br', null), '\u591A\u9080\u591A\u5F97\uFF0C\u4E0A\u4E0D\u5C01\u9876\uFF01')), _react2.default.createElement('h2', null, '\u88AB\u9080\u8BF7\u4EBA\u5956\u52B1'), _react2.default.createElement('div', { className: 'coupon clearfix' }, _react2.default.createElement('p', { className: 'left' }, _react2.default.createElement('b', { className: 'number' }, '10'), '\u5143', _react2.default.createElement('br', null), '\u73B0\u91D1\u5238'), _react2.default.createElement('p', { className: 'right' }, '\u6240\u6709\u88AB\u9080\u8BF7\u4EBA\u6CE8\u518C\u540E\uFF0C', _react2.default.createElement('br', null), '\u5373\u53EF\u83B7\u53D610\u5143\u73B0\u91D1\u5238')), _react2.default.createElement('h2', null, '\u5982\u4F55\u66F4\u597D\u7684\u9080\u8BF7'), _react2.default.createElement('h6', null, '\u9080\u8BF7\u5C0F\u7A8D\u95E8\uFF1A\u957F\u6309', _react2.default.createElement('b', { className: 'b' }, '\u590D\u5236\u4E0B\u65B9\u6587\u5B57'), '\u53D1\u5E16\uFF0C\u53EF\u4EE5\u83B7\u5F97\u66F4\u591A\u597D\u53CB\u54E6\uFF01'), _react2.default.createElement('p', { className: 'link', onTouchStart: this.copyText.bind(this), onTouchEnd: this.copyEnd.bind(this) }, '#\u501F\u6B3E\u65B0\u53E3\u5B50\u63A8\u8350#\u4ECA\u5929\u53D1\u73B0\u4E00\u4E2A\u501F\u6B3E\u65B0\u53E3\u5B50\uFF1A\u73B0\u91D1\u5361\u3002\u6700\u9AD8', _react2.default.createElement('br', null), '\u989D\u5EA65000\u5143\uFF0C\u9996\u6B21\u4E0B\u6B3E\u6700\u5FEB\u53EA\u89815\u5206\u949F\uFF0C\u88AB\u62D2\u8FD8\u8D54\u94B1\uFF01\uFF01\uFF01', _react2.default.createElement('br', null), '\u53E3\u5B50\u94FE\u63A5>> ', link)), rule, popup, _react2.default.createElement('div', { className: 'button' }, _react2.default.createElement('a', { className: 'a-rule', onClick: this.showRule.bind(this) }, '\u67E5\u770B\u89C4\u5219'), _react2.default.createElement('a', { className: 'a-invite', onClick: this.invite.bind(this) }, _react2.default.createElement('span', null, '\u9A6C\u4E0A\u9080\u8BF7\u62FF\u73B0\u91D1')), _react2.default.createElement('a', { className: 'a-reward', onClick: this.lookReward.bind(this) }, '\u6211\u7684\u5956\u52B1')));
+    }
+  }]);
+  return Invite;
+}(_react2.default.Component);
+
+exports.default = Invite;
+module.exports = exports['default'];

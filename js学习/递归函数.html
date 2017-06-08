@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>递归函数</title>
+	<script>
+    function factorial(num) {
+    	if (num <= 1) return 1;
+    	return num * factorial(num - 1);
+    }
+    console.log(factorial(5));	//	120
+
+    var anotherFactorial = factorial;
+    factorial = null
+    try {
+    	console.log(anotherFactorial(10));
+    } catch(err) {
+    	console.log(err);	//	factorial is not a function
+    }
+
+		//	使用arguments.callee代替factorial函数
+    function factorialTwo(num) {
+    	if (num <= 1) return 1;
+    	return num * arguments.callee(num - 1);
+    }
+    var anotherFactorialTwo = factorialTwo;
+    factorialTwo = null
+    try {
+    	console.log(anotherFactorialTwo(5));	//	120
+    } catch(err) {
+    	console.log(err);
+    }
+
+    //	使用命名函数表达式
+    var factorialThree = (function f(num) {
+    	if (num < 1) {
+    		return 1;
+    	} else {
+    		return num * f(num - 1);
+    	}
+    });
+    var anotherFactorialThree = factorialThree;
+    factorialThree = null
+    try {
+    	console.log(anotherFactorialThree(5));	//	120
+    } catch(err) {
+    	console.log(err);
+    }
+
+	</script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/modal/style/css');
+
+var _modal = require('antd-mobile/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _css2 = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _request = require('./request');
+
+var _request2 = _interopRequireDefault(_request);
+
+var _utils = require('utils');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+require('scss/components/reboot.component.scss');
+
+require('scss/activity/cash-gift.component.scss');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var title = '现金大礼包';
+var lock = true;
+
+var Welcome = function (_Component) {
+    (0, _inherits3.default)(Welcome, _Component);
+
+    function Welcome(props) {
+        (0, _classCallCheck3.default)(this, Welcome);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Welcome.__proto__ || (0, _getPrototypeOf2.default)(Welcome)).call(this, props));
+
+        _this.state = {
+            receive: 0,
+            apply: 0,
+            loaded: 0,
+            visible: 0,
+            prompt: 0
+        };
+        // interceptors for response
+        _request2.default.interceptors.response.use(function (response) {
+            var code = response.code,
+                data = response.data,
+                message = response.message;
+
+            if (code !== 0) {
+                return _promise2.default.reject(response);
+            }
+            return _promise2.default.resolve(response);
+        });
+        return _this;
+    }
+
+    (0, _createClass3.default)(Welcome, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            document.title = title;
+            (0, _utils.share)('cash-gift');
+            (0, _request2.default)('act/cash-grab-every-day').then(function (response) {
+                var code = response.code,
+                    data = response.data,
+                    message = response.message;
+                var _response$data = response.data,
+                    receive = _response$data.flag,
+                    apply = _response$data.acted_flag,
+                    cash = _response$data.cash,
+                    coupons = _response$data.coupon;
+
+                if ([0, -1001].indexOf(code) >= 0) {
+                    _this2.setState({
+                        // 是否点击申请
+                        receive: receive,
+                        // 是否领取过奖励
+                        apply: apply,
+                        coupons: coupons,
+                        cash: cash,
+                        loaded: 1
+                    });
+                } else {
+                    _this2.middleware.apply(_this2, response);
+                }
+            }).catch(this.m.bind(this));
+        }
+    }, {
+        key: 'm',
+        value: function m(response) {
+            var code = response.code,
+                data = response.data,
+                message = response.message;
+
+            _toast2.default.hide();
+            this.setState({
+                loaded: 1
+            });
+            if (code != -1001) {
+                _toast2.default.fail(message, 1.5);
+            }
+            lock = true;
+        }
+    }, {
+        key: 'middleware',
+        value: function middleware(response) {
+            var code = response.code,
+                data = response.data,
+                message = response.message;
+
+            _toast2.default.hide();
+            this.setState({
+                loaded: 1
+            });
+            if (code === -1001) {
+                this.setState({
+                    prompt: 1
+                });
+            } else {
+                _toast2.default.fail(message, 1.5);
+            }
+            lock = true;
+        }
+    }, {
+        key: 'receive',
+        value: function receive() {
+            var _this3 = this;
+
+            var _state = this.state,
+                receive = _state.receive,
+                apply = _state.apply,
+                cash = _state.cash,
+                coupons = _state.coupons;
+
+            if (lock) {
+                lock = !lock;
+                _toast2.default.loading(undefined, 0);
+                (0, _request2.default)('act/act-flag-user?key=cashGrabEveryDayAct_act&tag=h5-20170323-cashGrabEveryDayAct_act').then(function () {
+                    if (!!cash && !!coupons) {
+                        _this3.setState({
+                            apply: 1
+                        });
+                        setTimeout(function () {
+                            _this3.setState({
+                                visible: 1
+                            });
+                            lock = !lock;
+                            _toast2.default.hide();
+                        }, 1500);
+                    } else {
+                        _this3.setState({
+                            prompt: 2
+                        });
+                        lock = !lock;
+                        _toast2.default.hide();
+                    }
+                }).catch(this.middleware.bind(this));
+            }
+        }
+    }, {
+        key: 'check',
+        value: function check() {
+            var _state2 = this.state,
+                apply = _state2.apply,
+                cash = _state2.cash,
+                coupons = _state2.coupons;
+
+            if (!!apply && !!cash && !!coupons) {
+                this.setState({
+                    visible: 1
+                });
+            } else {
+                this.setState({
+                    prompt: 2
+                });
+            }
+        }
+    }, {
+        key: 'close',
+        value: function close() {
+            this.setState({
+                visible: 0
+            });
+        }
+    }, {
+        key: 'prompt',
+        value: function prompt() {
+            this.setState({
+                prompt: 0
+            });
+        }
+    }, {
+        key: 'login',
+        value: function login() {
+            var tag = this.props.location.query.tag;
+
+            if (tag) {
+                (0, _utils.login)(tag);
+            } else {
+                (0, _utils.login)();
+            }
+        }
+    }, {
+        key: 'apply',
+        value: function apply() {
+            if (lock) {
+                lock = !lock;
+                _toast2.default.loading(undefined, 0);
+                (0, _request2.default)('act/act-flag-user?key=cashGrabEveryDayAct_act&tag=h5-20170323-cashGrabEveryDayAct_act').then(function (response) {
+                    _toast2.default.hide();
+                    if (_utils.platform.isApp) {
+                        (0, _utils.hrefNative)(4);
+                    } else {
+                        window.location.href = (0, _utils.resolveUrl)('http://h5.xianjincard.com/mobile');
+                    }
+                }).catch(this.middleware.bind(this));
+                lock = !lock;
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _state3 = this.state,
+                receive = _state3.receive,
+                apply = _state3.apply,
+                loaded = _state3.loaded,
+                visible = _state3.visible,
+                prompt = _state3.prompt,
+                coupons = _state3.coupons,
+                cash = _state3.cash;
+
+            return _react2.default.createElement('div', { className: (0, _classnames2.default)({ wrapper: true, loaded: loaded }) }, _react2.default.createElement('div', { className: 'logo' }), _react2.default.createElement('div', { className: (0, _classnames2.default)({ 'wooden-chests': true, open: apply }) }, _react2.default.createElement('div', { className: 'wooden-chests-head' }, _react2.default.createElement('span', { className: 'light blue' }), _react2.default.createElement('span', { className: 'light orange' }), _react2.default.createElement('span', { className: 'gold' })), _react2.default.createElement('div', { className: 'wooden-chests-body' }, _react2.default.createElement('div', { className: 'money' }))), _react2.default.createElement('div', { className: 'button-group' }, _react2.default.createElement('div', { className: 'button button-receive', onClick: this.receive.bind(this) }), _react2.default.createElement('div', { className: 'button button-check', onClick: this.check.bind(this) })), _react2.default.createElement('div', { className: 'rules' }, _react2.default.createElement('div', { className: 'rules-content' }, _react2.default.createElement('p', null, _react2.default.createElement('span', null, '1'), '\u6D3B\u52A8\u65F6\u95F4\uFF1A3\u670823\u65E518:00\u20143\u670831\u65E524:00'), _react2.default.createElement('p', null, _react2.default.createElement('span', null, '2'), '\u53C2\u4E0E\u5BF9\u8C61\uFF1A\u5E73\u53F0\u6CE8\u518C\u7528\u6237'), _react2.default.createElement('p', null, _react2.default.createElement('span', null, '3'), '\u73B0\u91D1\u5927\u793C\u5305\uFF1A\u793C\u5305\u5305\u542B\u73B0\u91D1\u548C1\u5F20\u501F\u6B3E\u514D\u606F\u5238\u548C\u4E00\u5F20\u62B5\u6263\u5238'), _react2.default.createElement('p', null, _react2.default.createElement('span', null, '4'), '\u9886\u53D6\u6761\u4EF6\uFF1A\u70B9\u51FB\u9886\u53D6\u73B0\u91D1\u5927\u793C\u5305\u540E\u8FDB\u884C\u7533\u8BF7\u501F\u6B3E\u65B9\u53EF\u9886\u53D6\uFF0C\u6BCF\u4EBA\u9650\u9886\u4E00\u6B21'), _react2.default.createElement('p', null, _react2.default.createElement('span', null, '5'), '\u5956\u54C1\u8BF7\u81F3\u201C\u6211\u7684\u201D\u67E5\u770B\uFF0C\u5238\u6709\u6548\u671F20\u5929'), _react2.default.createElement('p', null, _react2.default.createElement('span', null, '6'), '\u672C\u6D3B\u52A8\u6700\u7EC8\u89E3\u91CA\u6743\u5F52\u73B0\u91D1\u5361\u6240\u6709\uFF0C\u4E0EApple.lnc\u65E0\u5173'))), _react2.default.createElement(_modal2.default, { className: 'prize', visible: visible, onClose: this.close.bind(this), maskClosable: true, transparent: true }, _react2.default.createElement('ul', null, cash && _react2.default.createElement('li', null, _react2.default.createElement('div', { className: 'primary' }, _react2.default.createElement('p', null, _react2.default.createElement('span', null, cash.value), cash.unit)), _react2.default.createElement('div', { className: 'details' }, _react2.default.createElement('div', { className: 'details-inner' }, _react2.default.createElement('h5', null, cash.title), _react2.default.createElement('p', null, '\u8BF7\u81F3\u201D\u6211\u7684\u201D\u67E5\u770B\u9886\u53D6')))), coupons && coupons.length && coupons.map(function (coupon, index) {
+                return _react2.default.createElement('li', { key: index }, _react2.default.createElement('div', { className: 'primary' }, _react2.default.createElement('p', null, _react2.default.createElement('span', null, coupon.value), coupon.unit)), _react2.default.createElement('div', { className: 'details' }, _react2.default.createElement('div', { className: 'details-inner' }, _react2.default.createElement('h5', null, coupon.title), _react2.default.createElement('p', null, '\u6709\u6548\u671F:\u81EA', coupon.start, ' - ', coupon.end))));
+            })), _react2.default.createElement('div', { className: 'button', onClick: this.close.bind(this) }, '\u6715\u77E5\u9053\u4E86')), _react2.default.createElement(_modal2.default, { className: 'prompt', visible: prompt === 1, onClose: this.prompt.bind(this), maskClosable: true, transparent: true }, _react2.default.createElement('p', null, '\u4E3B\u4EBA\uFF0C\u8FD8\u6CA1\u6709\u767B\u5F55\u54E6~'), _react2.default.createElement('div', { className: 'button', onClick: this.login.bind(this) }, '\u7ACB\u5373\u767B\u5F55')), _react2.default.createElement(_modal2.default, { className: 'prompt', visible: prompt === 2, onClose: this.prompt.bind(this), maskClosable: true, transparent: true }, _react2.default.createElement('p', null, '\u4E3B\u4EBA\uFF0C\u4F60\u7684\u7EA2\u5305\u5DF2\u53D1\u653E,\u8BF7\u7533\u8BF7\u540E\u9886\u53D6~'), _react2.default.createElement('div', { className: 'button', onClick: this.apply.bind(this) }, '\u9A6C\u4E0A\u7533\u8BF7')));
+        }
+    }]);
+    return Welcome;
+}(_react.Component);
+
+exports.default = Welcome;
+;
+module.exports = exports['default'];

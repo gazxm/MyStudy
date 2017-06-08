@@ -1,0 +1,153 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _css = require('antd-mobile/lib/list/style/css');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _css2 = require('antd-mobile/lib/button/style/css');
+
+var _button = require('antd-mobile/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _css3 = require('antd-mobile/lib/icon/style/css');
+
+var _icon = require('antd-mobile/lib/icon');
+
+var _icon2 = _interopRequireDefault(_icon);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _css4 = require('antd-mobile/lib/checkbox/style/css');
+
+var _checkbox = require('antd-mobile/lib/checkbox');
+
+var _checkbox2 = _interopRequireDefault(_checkbox);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _rcForm = require('rc-form');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+require('scss/mobile/credit.component.scss');
+
+var _request = require('common/request');
+
+var _request2 = _interopRequireDefault(_request);
+
+var _utils = require('utils');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+/* eslint-disable */
+var title = '信用卡账单导入';
+var iconEmail = require('../../../../../assets/img/mobile/certification/icon-email.png');
+var iconCrad = require('../../../../../assets/img/mobile/certification/icon-card.png');
+
+var AgreeItem = _checkbox2.default.AgreeItem;
+
+var Import = function (_Component) {
+    (0, _inherits3.default)(Import, _Component);
+
+    function Import(props) {
+        (0, _classCallCheck3.default)(this, Import);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Import.__proto__ || (0, _getPrototypeOf2.default)(Import)).call(this, props));
+
+        _this.state = {
+            lock: 1,
+            loaded: 0,
+            loading: 0
+        };
+        return _this;
+    }
+
+    (0, _createClass3.default)(Import, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            document.title = title;
+            var _props$location$query = this.props.location.query,
+                success = _props$location$query.success,
+                fail = _props$location$query.fail;
+
+            this.setState({
+                success: success,
+                fail: fail,
+                loaded: 1
+            });
+        }
+    }, {
+        key: 'submit',
+        value: function submit() {}
+    }, {
+        key: 'render',
+        value: function render() {
+            var _state = this.state,
+                lock = _state.lock,
+                loaded = _state.loaded,
+                loading = _state.loading,
+                success = _state.success,
+                fail = _state.fail;
+
+            return _react2.default.createElement('div', { className: 'tips' }, success !== undefined ? _react2.default.createElement('div', { className: 'success' }, _react2.default.createElement('div', { className: 'result' }, _react2.default.createElement('div', { className: 'icon success' }, _react2.default.createElement(_icon2.default, { type: 'check' })), _react2.default.createElement('div', { className: 'details' }, _react2.default.createElement('p', null, '\u4FE1\u7528\u5361\u8D26\u5355\u5BFC\u5165\u6210\u529F'), _react2.default.createElement('span', null, '\u606D\u559C\u60A8\uFF0C\u4F60\u53EF\u4EE5\u524D\u5F80\u7533\u8BF7\u5206\u671F\u5361\u501F\u6B3E\u4E86\uFF01'))), _react2.default.createElement(_button2.default, {
+                type: 'primary'
+                // disabled={!lock || disabled || loading}
+                , loading: loading,
+                className: (0, _classnames2.default)({
+                    'button-submit': true,
+                    'button-round': true,
+                    'button-loading': !loaded
+                }),
+                onClick: _utils.goHome }, '\u7ACB\u5373\u7533\u8BF7'), _react2.default.createElement('div', { className: 'security' }, '\u94F6\u884C\u7EA7\u6570\u636E\u52A0\u5BC6\u9632\u62A4')) : '', fail !== undefined ? _react2.default.createElement('div', { className: 'fail' }, _react2.default.createElement('div', { className: 'result' }, _react2.default.createElement('div', { className: 'icon fail' }, _react2.default.createElement(_icon2.default, { type: 'cross' })), _react2.default.createElement('div', { className: 'details' }, _react2.default.createElement('p', null, '\u4FE1\u7528\u5361\u8D26\u5355\u5BFC\u5165\u5931\u8D25'), _react2.default.createElement('span', null, '\u60A8\u53EF\u4EE5\u901A\u8FC7\u7F51\u94F6\u5BFC\u5165\u6216\u8005\u91CD\u65B0\u901A\u8FC7\u90AE\u7BB1\u5BFC\u5165'))), _react2.default.createElement(_list2.default, null, _react2.default.createElement(_list2.default.Item, {
+                thumb: iconEmail,
+                arrow: 'horizontal',
+                onClick: function onClick() {
+                    return _utils.redirect.push('/mobile/certification/credit/import/email');
+                }
+            }, '\u90AE\u7BB1\u5BFC\u5165'), _react2.default.createElement(_list2.default.Item, {
+                thumb: iconCrad,
+                arrow: 'horizontal',
+                onClick: function onClick() {
+                    return _utils.redirect.push('/mobile/certification/credit/import/bank');
+                }
+            }, '\u7F51\u94F6\u5BFC\u5165')), _react2.default.createElement('div', { className: 'security' }, '\u94F6\u884C\u7EA7\u6570\u636E\u52A0\u5BC6\u9632\u62A4')) : '');
+        }
+    }]);
+    return Import;
+}(_react.Component);
+
+;
+
+exports.default = (0, _rcForm.createForm)()(Import);
+module.exports = exports['default'];

@@ -1,0 +1,343 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _css = require('antd-mobile/lib/button/style/css');
+
+var _button = require('antd-mobile/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _css2 = require('antd-mobile/lib/input-item/style/css');
+
+var _inputItem = require('antd-mobile/lib/input-item');
+
+var _inputItem2 = _interopRequireDefault(_inputItem);
+
+var _css3 = require('antd-mobile/lib/picker/style/css');
+
+var _picker = require('antd-mobile/lib/picker');
+
+var _picker2 = _interopRequireDefault(_picker);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _css4 = require('antd-mobile/lib/list/style/css');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _css5 = require('antd-mobile/lib/toast/style/css');
+
+var _toast = require('antd-mobile/lib/toast');
+
+var _toast2 = _interopRequireDefault(_toast);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _class, _temp; /* eslint-disable */
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _rcForm = require('rc-form');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+require('scss/mobile/contacts.component.scss');
+
+var _request = require('common/request');
+
+var _request2 = _interopRequireDefault(_request);
+
+var _utils = require('utils');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var title = '紧急联系人';
+
+var Contacts = (_temp = _class = function (_Component) {
+    (0, _inherits3.default)(Contacts, _Component);
+
+    function Contacts(props) {
+        (0, _classCallCheck3.default)(this, Contacts);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Contacts.__proto__ || (0, _getPrototypeOf2.default)(Contacts)).call(this, props));
+
+        _this.state = {
+            lock: true,
+            // 数据加载完毕
+            loaded: false,
+            // request loading
+            loading: false,
+            // 按钮文案
+            buttonText: _this.props.READY_TEXT
+        };
+        return _this;
+    }
+
+    (0, _createClass3.default)(Contacts, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            document.title = title;
+            var _props = this.props,
+                step = _props.step,
+                loaded = _props.loaded,
+                formatPickerData = _props.formatPickerData,
+                middleware = _props.middleware,
+                hideSteps = _props.hideSteps,
+                getButtonText = _props.getButtonText,
+                route = _props.route;
+            var buttonText = this.state.buttonText;
+            var router = this.context.router;
+
+            (0, _request2.default)('credit-card/get-contacts').then(function (response) {
+                var _response$data$item = response.data.item,
+                    is_can_change = _response$data$item.is_can_change,
+                    lineal_name = _response$data$item.lineal_name,
+                    lineal_mobile = _response$data$item.lineal_mobile,
+                    lineal_relation = _response$data$item.lineal_relation,
+                    lineals = _response$data$item.lineal_list,
+                    others = _response$data$item.other_list,
+                    other_name = _response$data$item.other_name,
+                    other_mobile = _response$data$item.other_mobile,
+                    other_relation = _response$data$item.other_relation,
+                    verify_loan_pass = _response$data$item.verify_loan_pass,
+                    disabled = _response$data$item.real_verify_status;
+
+                loaded();
+
+                lineals && lineals.map(formatPickerData.bind(_this2));
+                others && others.map(formatPickerData.bind(_this2));
+
+                // disabled = !disabled;
+                buttonText = getButtonText(route);
+                _this2.setState({
+                    buttonText: buttonText,
+                    disabled: disabled,
+                    lineal: lineal_relation ? [lineal_relation] : null,
+                    lineals: lineals,
+                    lineal_name: lineal_name,
+                    lineal_mobile: lineal_mobile,
+                    other: other_relation ? [other_relation] : null,
+                    others: others,
+                    other_name: other_name,
+                    other_mobile: other_mobile,
+                    loaded: 1
+                });
+            }).catch(middleware.bind(this));
+        }
+    }, {
+        key: 'submit',
+        value: function submit() {
+            var _this3 = this;
+
+            var _props2 = this.props,
+                COMPLETED_TEXT = _props2.COMPLETED_TEXT,
+                nextStepLink = _props2.nextStepLink,
+                route = _props2.route,
+                middleware = _props2.middleware;
+            var _props$form = this.props.form,
+                getFieldInstance = _props$form.getFieldInstance,
+                getFieldsValue = _props$form.getFieldsValue,
+                validateFields = _props$form.validateFields;
+
+            validateFields(function (errors, values) {
+                if (errors) {
+                    for (var i in errors) {
+                        var input = errors[i];
+                        input.errors && input.errors.map(function (error) {
+                            _toast2.default.offline(error.message, 1.5, function () {
+                                var element = getFieldInstance(error.field);
+                                if (element && element.refs && element.refs.input) {
+                                    var _input = element.refs.input;
+
+                                    setTimeout(_input.focus());
+                                }
+                            });
+                        });
+                        break;
+                    }
+                } else {
+                    var _state = _this3.state,
+                        lock = _state.lock,
+                        buttonText = _state.buttonText;
+
+                    var _getFieldsValue = getFieldsValue(),
+                        lineal = _getFieldsValue.lineal,
+                        lineal_name = _getFieldsValue.lineal_name,
+                        lineal_mobile = _getFieldsValue.lineal_mobile,
+                        other = _getFieldsValue.other,
+                        other_name = _getFieldsValue.other_name,
+                        other_mobile = _getFieldsValue.other_mobile;
+
+                    if (lock) {
+                        _this3.setState({ lock: 0, loaded: 0, loading: 1 });
+
+                        var start = Date.now();
+                        _request2.default.post('credit-card/save-contacts', {
+                            type: lineal[0],
+                            name: lineal_name,
+                            mobile: lineal_mobile,
+                            relation_spare: other[0],
+                            name_spare: other_name,
+                            mobile_spare: other_mobile
+                        }).then(function (response) {
+                            var end = Date.now();
+                            var timeout = 0;
+                            if (end - start < 1000) timeout = 1000;
+                            if (end - start > 1000) timeout = 0;
+                            var message = response.message;
+
+                            setTimeout(function () {
+                                _toast2.default.success(message, 1.5, function () {
+                                    buttonText = COMPLETED_TEXT;
+                                    setTimeout(nextStepLink(route));
+                                });
+                                _this3.setState({ lock: 1, loaded: 1, loading: 0, buttonText: buttonText });
+                            }, timeout);
+                        }).catch(middleware.bind(_this3));
+                    }
+                }
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _props3 = this.props,
+                getFieldProps = _props3.form.getFieldProps,
+                label = _props3.label;
+            var _state2 = this.state,
+                lock = _state2.lock,
+                loaded = _state2.loaded,
+                loading = _state2.loading,
+                disabled = _state2.disabled,
+                lineal = _state2.lineal,
+                lineals = _state2.lineals,
+                lineal_name = _state2.lineal_name,
+                lineal_mobile = _state2.lineal_mobile,
+                other = _state2.other,
+                others = _state2.others,
+                other_name = _state2.other_name,
+                other_mobile = _state2.other_mobile,
+                buttonText = _state2.buttonText;
+
+            var editable = !loading && loaded && lock;
+            return _react2.default.createElement('div', { className: 'contacts' }, _react2.default.createElement(_list2.default, { renderHeader: function renderHeader() {
+                    return '\u76F4\u7CFB\u4EB2\u5C5E\u8054\u7CFB\u4EBA';
+                } }, _react2.default.createElement(_picker2.default, (0, _extends3.default)({
+                cols: 1,
+                disabled: !editable,
+                data: lineals
+            }, getFieldProps('lineal', {
+                initialValue: lineal,
+                rules: [{
+                    required: true,
+                    message: '请选择直系亲属联系人关系'
+                }]
+            })), _react2.default.createElement(_list2.default.Item, { arrow: 'horizontal' }, label('关系'))), _react2.default.createElement(_inputItem2.default, (0, _extends3.default)({
+                editable: editable,
+                placeholder: '\u8BF7\u8F93\u5165\u59D3\u540D'
+            }, getFieldProps('lineal_name', {
+                initialValue: lineal_name,
+                rules: [{
+                    required: true,
+                    message: '直系亲属联系人姓名不能为空'
+                }]
+            })), label('姓名')), _react2.default.createElement(_inputItem2.default, (0, _extends3.default)({
+                type: 'number',
+                editable: editable,
+                placeholder: '\u8BF7\u8F93\u5165\u8054\u7CFB\u65B9\u5F0F'
+            }, getFieldProps('lineal_mobile', {
+                initialValue: lineal_mobile,
+                rules: [{
+                    required: true,
+                    message: '直系亲属联系人手机号码不能为空'
+                }, {
+                    len: 11,
+                    message: '请输入正确的直系亲属联系人手机号码'
+                }]
+            })), label('联系方式'))), _react2.default.createElement(_list2.default, { renderHeader: function renderHeader() {
+                    return '其他联系人';
+                } }, _react2.default.createElement(_picker2.default, (0, _extends3.default)({
+                cols: 1,
+                disabled: !editable,
+                data: others
+            }, getFieldProps('other', {
+                initialValue: other,
+                rules: [{
+                    required: true,
+                    message: '请选择其他联系人关系'
+                }]
+            })), _react2.default.createElement(_list2.default.Item, { arrow: 'horizontal' }, label('关系'))), _react2.default.createElement(_inputItem2.default, (0, _extends3.default)({
+                editable: editable,
+                placeholder: '\u8BF7\u8F93\u5165\u59D3\u540D'
+            }, getFieldProps('other_name', {
+                initialValue: other_name,
+                rules: [{
+                    required: true,
+                    message: '其他联系人姓名不能为空'
+                }]
+            })), label('姓名')), _react2.default.createElement(_inputItem2.default, (0, _extends3.default)({
+                type: 'number',
+                editable: editable,
+                placeholder: '\u8BF7\u8F93\u5165\u8054\u7CFB\u65B9\u5F0F'
+            }, getFieldProps('other_mobile', {
+                initialValue: other_mobile,
+                rules: [{
+                    required: true,
+                    message: '其他联系人手机号码不能为空'
+                }, {
+                    len: 11,
+                    message: '请输入正确的其他联系人手机号码'
+                }]
+            })), label('联系方式'))), _react2.default.createElement(_button2.default, {
+                type: 'primary'
+                // disabled={!lock || disabled || loading}
+                , loading: loading,
+                className: (0, _classnames2.default)({
+                    'button-submit': true,
+                    'button-round': true,
+                    'button-loading': !loaded
+                }),
+                onClick: this.submit.bind(this) }, buttonText), _react2.default.createElement('div', { className: 'security' }, '\u94F6\u884C\u7EA7\u6570\u636E\u52A0\u5BC6\u9632\u62A4'));
+        }
+    }]);
+    return Contacts;
+}(_react.Component), _class.contextTypes = {
+    router: _react2.default.PropTypes.object.isRequired
+}, _temp);
+;
+
+exports.default = (0, _rcForm.createForm)()(Contacts);
+module.exports = exports['default'];

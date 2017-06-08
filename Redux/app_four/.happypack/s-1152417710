@@ -1,0 +1,312 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _css = require('antd-mobile/lib/button/style/css');
+
+var _button = require('antd-mobile/lib/button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _getIterator2 = require('babel-runtime/core-js/get-iterator');
+
+var _getIterator3 = _interopRequireDefault(_getIterator2);
+
+var _css2 = require('antd-mobile/lib/picker/style/css');
+
+var _picker = require('antd-mobile/lib/picker');
+
+var _picker2 = _interopRequireDefault(_picker);
+
+var _css3 = require('antd-mobile/lib/input-item/style/css');
+
+var _inputItem = require('antd-mobile/lib/input-item');
+
+var _inputItem2 = _interopRequireDefault(_inputItem);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _css4 = require('antd-mobile/lib/modal/style/css');
+
+var _modal = require('antd-mobile/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _css5 = require('antd-mobile/lib/list/style/css');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _dec, _class;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _rcForm = require('rc-form');
+
+var _utils = require('utils');
+
+var _reactRedux = require('react-redux');
+
+var _securityFundActions = require('../../actions/securityFundActions');
+
+var security = _interopRequireWildcard(_securityFundActions);
+
+var _Toast = require('../../components/Toast');
+
+var _Toast2 = _interopRequireDefault(_Toast);
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+      }
+    }newObj.default = obj;return newObj;
+  }
+}
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var Item = _list2.default.Item;
+var alert = _modal2.default.alert;
+
+var SecurityCertification = (_dec = (0, _reactRedux.connect)(function (store) {
+  var verify = store.securityFund.verify;
+  return {
+    user: verify.user,
+    sorts: verify.sorts,
+    sort: verify.sort,
+    tabs: verify.tabs,
+    fields: verify.fields,
+    fetched: verify.fetched,
+    fetching: verify.fetching,
+    code: verify.code,
+    message: verify.message
+  };
+}), _dec(_class = function (_React$Component) {
+  (0, _inherits3.default)(SecurityCertification, _React$Component);
+
+  function SecurityCertification(props) {
+    (0, _classCallCheck3.default)(this, SecurityCertification);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (SecurityCertification.__proto__ || (0, _getPrototypeOf2.default)(SecurityCertification)).call(this, props));
+
+    _this.submit = function () {
+      _this.props.form.validateFields(function (error, value) {
+        if (!error) {
+          // fix bug password input
+          for (var _i = 0; _i < 20; _i++) {
+            if (value['password' + _i] !== undefined) {
+              value.password = value['password' + _i];
+              delete value['password' + _i];
+              continue;
+            }
+          }
+
+          var i = _this.props.sort.tabs.length === 1 ? 0 : value.tab[0];
+          value.sort = _this.props.sort.tabs[i].sort;
+          value.website = _this.props.sort.website;
+          value.title = _this.props.sort.name;
+          delete value.city;
+          delete value.tab;
+          _this.props.dispatch(security.verifySecurity(value));
+          _this.loadingText = '认证中，请耐心等待...';
+        }
+      });
+    };
+
+    _this.onChange = function (v) {
+      var code = v[1];
+      var params = new FormData();
+      params.append('city_code', code);
+
+      _this.props.form.resetFields(['tab']);
+      _this.props.form.resetFields(['sort']);
+      _this.props.dispatch(security.fetchSecurityForm(code));
+    };
+
+    _this.onSelected = function () {
+      var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var tabs = _this.props.tabs;
+
+      _this.props.dispatch(security.changeSecurityFields(tabs[i].field));
+    };
+
+    _this.loadingText = '加载中...';
+    return _this;
+  }
+
+  (0, _createClass3.default)(SecurityCertification, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      document.title = '社保认证';
+      _Toast2.default.hide();
+      this.props.dispatch(security.fetchSecurityUser());
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      var fetching = nextProps.fetching;
+
+      fetching ? _Toast2.default.loading(this.loadingText, 0) : _Toast2.default.hide();
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      var _props = this.props,
+          fetched = _props.fetched,
+          code = _props.code,
+          message = _props.message;
+
+      if (fetched) this.loadingText = '加载中...';
+      // 认证成功
+      if (fetched && code === 1) {
+        _Toast2.default.info(message, 2, function () {
+          _utils.redirect.push('/security');
+        });
+      }
+      // 认证失败
+      if (fetched && code === -1) {
+        alert('认证失败', message, [{ text: '确 定' }]);
+        this.props.dispatch(security.verifySecurityReset());
+        return;
+      }
+      // 没有登录
+      if (fetched && code === -3) {
+        alert('登录', '你还没有登录，请先登录', [{ text: '确 定', onPress: function onPress() {
+            return (0, _utils.login)();
+          } }]);
+        return;
+      }
+      // 显示错误信息
+      if (fetched && code !== 1 && code !== -3 && code !== 0) {
+        _Toast2.default.info(message, 3);
+        this.props.dispatch(security.verifySecurityReset());
+      }
+    }
+  }, {
+    key: 'onSelectedSort',
+    value: function onSelectedSort() {
+      var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var sorts = this.props.sorts;
+
+      this.props.form.resetFields(['tab']);
+      this.props.dispatch(security.changeSecuritySorts(sorts[i]));
+    }
+  }, {
+    key: 'createFields',
+    value: function createFields(fields) {
+      var _this2 = this;
+
+      this.list = [{ parameter_code: 'city' }, { parameter_code: 'tab' }, { parameter_code: 'sort' }];
+      if (!fields) return;
+      var getFieldProps = this.props.form.getFieldProps;
+
+      return fields.map(function (field, i) {
+        var name = field.parameter_code;
+        if (field.parameter_code === 'password') {
+          name = field.parameter_code + i;
+        }
+        _this2.list.push({ parameter_code: name });
+        return _react2.default.createElement(_inputItem2.default, (0, _extends3.default)({ type: field.parameter_type, key: i }, getFieldProps(name, { rules: [{ required: true, message: field.parameter_message }] }), { clear: true, placeholder: field.parameter_message }), field.parameter_name);
+      });
+    }
+  }, {
+    key: 'createPicker',
+    value: function createPicker(tabs) {
+      var getFieldProps = this.props.form.getFieldProps;
+
+      return tabs && _react2.default.createElement(_picker2.default, (0, _extends3.default)({ extra: '\u8BF7\u9009\u62E9', cols: 1, data: tabs }, getFieldProps('tab', { onChange: this.onSelected.bind(this), rules: [{ required: true, message: '请选择查询方式' }] }), { title: '\u8BF7\u9009\u62E9' }), _react2.default.createElement(Item, { arrow: 'horizontal' }, ' \u67E5\u8BE2\u65B9\u5F0F '));
+    }
+  }, {
+    key: 'createPickerSort',
+    value: function createPickerSort(sorts) {
+      var getFieldProps = this.props.form.getFieldProps;
+
+      return sorts && _react2.default.createElement(_picker2.default, (0, _extends3.default)({ extra: '\u8BF7\u9009\u62E9', cols: 1, data: sorts }, getFieldProps('sort', { onChange: this.onSelectedSort.bind(this), rules: [{ required: true, message: '请选择查询类型' }] }), { title: '\u8BF7\u9009\u62E9' }), _react2.default.createElement(Item, { arrow: 'horizontal' }, ' \u67E5\u8BE2\u7C7B\u578B '));
+    }
+  }, {
+    key: 'createError',
+    value: function createError(fields) {
+      // let list = [{parameter_code: 'city'}, {parameter_code: 'tab'}, {parameter_code: 'sort'}]
+      // if (fields) {
+      //   fields.map((field, i) => {
+      //     list.push(field)
+      //   })
+      // }
+      var getFieldError = this.props.form.getFieldError;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = (0, _getIterator3.default)(this.list), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var field = _step.value;
+
+          if (getFieldError(field.parameter_code)) {
+            return _react2.default.createElement('div', { className: 'error' }, getFieldError(field.parameter_code));
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var getFieldProps = this.props.form.getFieldProps;
+      var _props2 = this.props,
+          user = _props2.user,
+          fields = _props2.fields,
+          tabs = _props2.tabs,
+          sorts = _props2.sorts;
+
+      return _react2.default.createElement('div', { className: 'transition-group fund-security-certification' }, _react2.default.createElement(_list2.default, { className: 'custom-list' }, _react2.default.createElement(Item, { extra: user.name }, ' \u59D3\u540D '), _react2.default.createElement(Item, { extra: user.id_card && user.id_card.replace(/^(\d{3})\d+(\d{4})$/, '$1***********$2') }, ' \u8EAB\u4EFD\u8BC1\u53F7 '), _react2.default.createElement(_picker2.default, (0, _extends3.default)({ extra: '\u8BF7\u9009\u62E9', cols: 2, data: user.city }, getFieldProps('city', { onChange: this.onChange.bind(this), rules: [{ required: true, message: '请选择城市' }] }), { title: '\u9009\u62E9\u5730\u533A' }), _react2.default.createElement(Item, { arrow: 'horizontal' }, ' \u6240\u5728\u57CE\u5E02 ')), this.createPickerSort(sorts), this.createPicker(tabs), this.createFields(fields)), this.createError(fields), _react2.default.createElement('p', null, '\u5EFA\u8BAE\u60A8\u5148\u767B\u5F55\u793E\u4FDD\u67E5\u8BE2\u7F51\u7AD9\uFF0C\u786E\u8BA4\u793E\u4FDD\u767B\u5F55\u540D\u3001\u5BC6\u7801\u7B49\u6240\u9700\u767B\u5F55\u4FE1\u606F\u662F\u6B63\u786E\u7684\u3002'), _react2.default.createElement('div', { className: 'custom-button' }, _react2.default.createElement(_button2.default, { className: 'btn', disabled: false, type: 'primary', onClick: this.submit }, '\u63D0\u4EA4')));
+    }
+  }]);
+  return SecurityCertification;
+}(_react2.default.Component)) || _class);
+exports.default = (0, _rcForm.createForm)()(SecurityCertification);
+module.exports = exports['default'];

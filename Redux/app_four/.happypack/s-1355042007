@@ -1,0 +1,147 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _css = require('antd-mobile/lib/modal/style/css');
+
+var _modal = require('antd-mobile/lib/modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactFreeScrollbar = require('react-free-scrollbar');
+
+var _reactFreeScrollbar2 = _interopRequireDefault(_reactFreeScrollbar);
+
+var _utils = require('utils');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+require('scss/components/reboot.component.scss');
+
+require('scss/activity/interest-free.component.scss');
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var title = '免息狂欢日';
+var lock = true;
+var config = {
+    count: 592607,
+    phone: 6106,
+    exponent: 1961.06
+};
+
+var InterestFree = function (_Component) {
+    (0, _inherits3.default)(InterestFree, _Component);
+
+    function InterestFree(props) {
+        (0, _classCallCheck3.default)(this, InterestFree);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (InterestFree.__proto__ || (0, _getPrototypeOf2.default)(InterestFree)).call(this, props));
+
+        _this.state = {
+            loaded: 1,
+            visible: 0
+        };
+        return _this;
+    }
+
+    (0, _createClass3.default)(InterestFree, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            document.title = title;
+            (0, _utils.share)('khr');
+        }
+    }, {
+        key: 'open',
+        value: function open() {
+            this.setState({
+                visible: 1
+            });
+        }
+    }, {
+        key: 'close',
+        value: function close() {
+            this.setState({
+                visible: 0
+            });
+        }
+    }, {
+        key: 'signin',
+        value: function signin() {
+            if (_utils.platform.isApp) {
+                (0, _utils.hrefNative)(4);
+            } else {
+                window.location.href = '//h5.xianjincard.com/mobile';
+            }
+        }
+    }, {
+        key: 'submit',
+        value: function submit() {
+            var _this2 = this;
+
+            (0, _utils.get)('http://credit.xianjincard.com/act/flag-user').then(function (response) {
+                return response.data;
+            }).then(function (response) {
+                var code = response.code;
+
+                if (code === 0) {
+                    _modal2.default.alert('申请成功', undefined, [{
+                        text: '确定',
+                        onPress: function onPress() {
+                            _this2.signin();
+                        }
+                    }]);
+                } else if (code === -2) {
+                    (0, _utils.login)();
+                } else {
+                    _this2.signin();
+                }
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _state = this.state,
+                loaded = _state.loaded,
+                visible = _state.visible;
+
+            return _react2.default.createElement('div', { className: (0, _classnames2.default)({ wrapper: true, loaded: loaded }) }, _react2.default.createElement('div', { className: 'total' }, _react2.default.createElement('p', null, '\u83B7\u5F977\u5929\u514D\u606F\u5238\u4EBA\u6570\uFF1A'), _react2.default.createElement('p', null, _react2.default.createElement('span', null, config.count), '\u4EBA')), _react2.default.createElement('ul', { className: 'results' }, _react2.default.createElement('li', null, _react2.default.createElement('p', { className: 'tips' }, '(\u521B\u4E1A\u677F\u6307\u6570)'), _react2.default.createElement('p', { className: 'title' }, '3\u670821\u65E5\u6536\u76D8\u4EF7'), _react2.default.createElement('p', { className: 'result' }, config.exponent)), _react2.default.createElement('li', null, _react2.default.createElement('p', { className: 'title' }, '\u83B7\u5956\u624B\u673A\u5C3E\u53F7'), _react2.default.createElement('p', { className: 'result' }, config.phone))), _react2.default.createElement('div', { className: 'cards' }, _react2.default.createElement('div', { className: 'title' }, '14\u5929\u514D\u606F\u540D\u5355'), _react2.default.createElement('div', { className: 'table' }, _react2.default.createElement('ul', { className: 'thead' }, _react2.default.createElement('li', null, '\u83B7\u5956\u65F6\u95F4'), _react2.default.createElement('li', null, '\u83B7\u5956\u7528\u6237'), _react2.default.createElement('li', null, '\u624B\u673A\u53F7')), _react2.default.createElement('div', { className: (0, _classnames2.default)({ tbody: true, disabled: false }) }, _react2.default.createElement(_reactFreeScrollbar2.default, null, _react2.default.createElement('ul', null, _react2.default.createElement('li', null, '03.21 13:31'), _react2.default.createElement('li', null, '\u738B\u9A9C\u8FDC'), _react2.default.createElement('li', null, '153****6106')), _react2.default.createElement('ul', null, _react2.default.createElement('li', null, '03.21 11:01'), _react2.default.createElement('li', null, '\u5218\u6587'), _react2.default.createElement('li', null, '159****6106')), _react2.default.createElement('ul', null, _react2.default.createElement('li', null, '03.20 16:43'), _react2.default.createElement('li', null, '\u5F20\u4F73'), _react2.default.createElement('li', null, '135****6106')), _react2.default.createElement('ul', null, _react2.default.createElement('li', null, '03.20 17:01'), _react2.default.createElement('li', null, '\u674E\u6C38\u5B89'), _react2.default.createElement('li', null, '186****6106')), _react2.default.createElement('ul', null, _react2.default.createElement('li', null, '03.21 11:23'), _react2.default.createElement('li', null, '\u738B\u589E'), _react2.default.createElement('li', null, '135****6106')), _react2.default.createElement('ul', null, _react2.default.createElement('li', null, '03.20 17:45'), _react2.default.createElement('li', null, '\u4FAF\u65ED'), _react2.default.createElement('li', null, '132****6106')), _react2.default.createElement('ul', null, _react2.default.createElement('li', null, '03.20 20:16'), _react2.default.createElement('li', null, '\u9879\u950B'), _react2.default.createElement('li', null, '136****6106')), _react2.default.createElement('ul', null, _react2.default.createElement('li', null, '03.20 18:21'), _react2.default.createElement('li', null, '\u5218\u5B5F\u5E9A'), _react2.default.createElement('li', null, '186****6106')), _react2.default.createElement('ul', null, _react2.default.createElement('li', null, '03.21 12:40'), _react2.default.createElement('li', null, '\u9EC4\u5FD7\u80FD'), _react2.default.createElement('li', null, '158****6106')))))), _react2.default.createElement('div', { className: 'toolbar' }, _react2.default.createElement('div', { className: 'button', onClick: this.open.bind(this) }, _react2.default.createElement('div', null, _react2.default.createElement('p', null, '\u67E5\u770B'), _react2.default.createElement('p', null, '\u89C4\u5219'))), _react2.default.createElement('div', { className: 'button', onClick: this.submit.bind(this) }, '\u7ACB\u523B\u7533\u8BF7')), _react2.default.createElement(_modal2.default, { title: '\u6D3B\u52A8\u89C4\u5219', className: 'description', visible: visible, onClose: this.close.bind(this), maskClosable: true, transparent: true }, _react2.default.createElement('ul', null, _react2.default.createElement('li', null, '\u6D3B\u52A8\u65F6\u95F4\uFF1A2017\u5E743\u670820\u65E510:00~3\u670821\u65E515:00'), _react2.default.createElement('li', null, '\u53C2\u4E0E\u5BF9\u8C61\uFF1A\u5E73\u53F0\u6CE8\u518C\u7528\u6237'), _react2.default.createElement('li', null, '\u6D3B\u52A8\u671F\u95F4\u901A\u8FC7\u672C\u6D3B\u52A8\u9875\u7533\u8BF7\u6210\u529F\u7684\u7528\u6237\uFF0C\u5747\u9001\u514D\u606F\u52381\u5F20\uFF08\u514D\u606F7\u5929\uFF09\uFF1B'), _react2.default.createElement('li', null, '\u6D3B\u52A8\u671F\u95F4\u975E\u901A\u8FC7\u672C\u6D3B\u52A8\u9875\u9762\u7533\u8BF7\u6210\u529F\u7528\u6237\uFF0C\u624B\u673A\u5C3E\u53F7\u548C\u6D3B\u52A8\u7ED3\u675F\u5F53\u5929\u521B\u4E1A\u677F\u6536\u76D8\u6307\u6570\u672B\u56DB\u4F4D\u6570\u5B57\u76F8\u540C\uFF08\u542B\u5C0F\u6570\u70B9\u540E\u4E24\u4F4D\uFF09\uFF0C\u5747\u9001\u514D\u606F\u52381\u5F20\uFF08\u514D\u606F14\u5929\uFF09\uFF1B'), _react2.default.createElement('li', null, '\u5982\u4F55\u9886\u53D6\u5956\u52B1\uFF1A\u514D\u606F\u5238\u4F1A\u5728\u6D3B\u52A8\u7ED3\u675F\u540E\u6B21\u65E5\u4E0A\u534812\u70B9\u4E4B\u524D\u53D1\u653E\u81F3\u6211\u7684-\u4F18\u60E0\u5238\u4E2D\uFF1B'), _react2.default.createElement('li', null, '\u73B0\u91D1\u5361\u5B98\u65B9\u5C06\u4E8E\u6D3B\u52A8\u7ED3\u675F\u540E\uFF0C\u6D3B\u52A8\u9875\u9762\u516C\u5E03\u83B7\u5956\u540D\u5355\uFF0C\u8282\u5047\u65E5\u987A\u5EF6\uFF1B'), _react2.default.createElement('li', null, '\u514D\u606F\u5238\u6709\u6548\u671F\uFF1A\u81EA\u53D1\u653E\u4E4B\u65E5\u8D7720\u5929\u5185\u6709\u6548\uFF1B'), _react2.default.createElement('li', null, '\u672C\u6D3B\u52A8\u6700\u7EC8\u89E3\u91CA\u6743\u5F52\u73B0\u91D1\u5361\u5E73\u53F0\u6240\u6709\u3002'))));
+        }
+    }]);
+    return InterestFree;
+}(_react.Component);
+
+exports.default = InterestFree;
+;
+module.exports = exports['default'];
