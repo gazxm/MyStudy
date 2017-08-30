@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Promise</title>
+  <!-- http://www.w3cplus.com/javascript/promise.html -->
+  <script>
+    /*
+    // 初始化事务管理器 
+    var promise = new Promise(function(data){ 
+      console.log(data); 
+      return 1; 
+    }); 
+    // 添加事务 
+    promise.then(function(data){ 
+      console.log(data); return 2; 
+    }).then(function(data){ 
+      console.log(data); 
+      return 3; 
+    }).then(function(data){ 
+      console.log(data); 
+      console.log("end"); 
+    }); 
+    // 启动事务 
+    console.log(promise)
+    promise.resolve('start')
+    */
+    /*
+    function timeout(ms) {
+      return new Promise((resolve, reject) => {
+        setTimeout(resolve, ms, 'done');
+      })
+    }
+    timeout(1000).then((value) => {
+      console.log(value);   //  将延迟1s后打印
+    })
+    */
+
+    /*
+    var promise = new Promise(function(resolve, reject) {
+      // resolve('value'); //1
+      reject('error'); //2
+      // throw Error('exception'); //3
+      // return 'return' //4
+    });
+
+    promise.then(function(value) {
+      console.log('fulfilled', value)
+    }, function(error) {
+      console.log('rejected', error)
+    });
+
+    // 上面的代码中1-4处代码的调用分别输出：
+    // fulfilled value  
+    // rejected error  
+    // rejected Error: exception(…)  
+    // [没有输出]
+
+    // 测试状态变更后才绑定事件
+    setTimeout(function() {
+        promise.then(function(value) {
+          console.log('fulfilled1', value)
+        }, function(error) {
+          console.log('rejected1', error)  
+        })
+    }, 1000)
+    */
+
+    /*
+    var d = new Date();
+    var promise1 = new Promise(function(resolve, reject) {
+      setTimeout(resolve, 2000, 'resolve from promise');
+    });
+
+    var promise2 = new Promise(function(resolve, reject) {
+      setTimeout(resolve, 1000, promise1); // resolve(promise1)
+    });
+
+    promise2.then(
+      result => console.log('result:', result, new Date() - d),
+      error => console.log('error:', error)
+    )
+    //  打印结果：
+    //  result: resolve from promise 1 2002
+    /*  解释：[[Resolve]](promise, x)中
+          2.3.2.如果x是一个promise实例， 则以x的状态作为promise的状态
+          　 2.3.2.1.如果x的状态为pending， 那么promise的状态也为pending， 直到x的状态变化而变化。
+          　 2.3.2.2.如果x的状态为fulfilled， promise的状态也为fulfilled， 并且以x的不可变值作为promise的不可变值。
+          　 2.3.2.3.如果x的状态为rejected， promise的状态也为rejected， 并且以x的不可变原因作为promise的不可变原因。
+          2.3.4.如果x不是对象或函数，则将promise状态转换为fulfilled并且以x作为promise的不可变值。
+
+        简单来说呢，就是因为promise2中调用了resolve(promise1)，此时promise1的状态会传递给promise2，或者说promise1的状态决定了promise2的状态。所以当promise1进入fulfilled状态，promise2的状态也变为fulfilled，同时将promise1自己的不可变值作为promise2的不可变值，所以promise2的回调函数打印出了上述结果。promise1进入rejected状态的结果，同学们可以自己试一试。
+
+        而当我们resolve(value)的时候就遵循Promise/A+中的2.3.4条规范，将value传递给了fulfilled状态的回调函数。
+
+        另外，通过这里例子我们也可以发现。运行时间是2秒而不是3秒。也就是说Promise新建后就会立即执行。
+    */
+
+    /*
+    //  5、then方法返回的是一个新的Promise实例
+    var d = new Date();
+
+    var promise = new Promise(function(resolve, reject) {
+      setTimeout(resolve, 1000, 'resolve from promise');
+    });
+
+
+    var promise2 = promise.then(function(result) {
+      console.log(result);
+    });
+    
+    promise.tag = '1';
+    console.log(promise)
+    console.log(promise2)
+    // 打印结果：
+    // Promise {tag: "1", [[PromiseStatus]]: "pending", [[PromiseValue]]: undefined}
+    // Promise {[[PromiseStatus]]: "pending", [[PromiseValue]]: undefined}
+    // resolve from promise
+    */
+
+    //  5.1、回调方法返回值
+    /* 
+    var d = new Date();
+
+    var promise1 = new Promise(function(resolve, reject) {
+      // setTimeout(resolve, 1000, 'resolve from promise1');
+      setTimeout(reject, 1000, 'reject from promise1');
+    });
+
+    var promise2 = promise1.then(function(result) {
+      console.log('promise1.then(resolve):', result);
+      return result;
+    }, function(error) {
+      console.log('promise1.then(reject):', error);
+      return error;
+    });
+
+    promise2.then(
+      result => console.log('result:', result, new Date() - d),
+      error => console.log('error:', error, new Date() - d)
+    )
+    */
+    //  打印结果
+    // promise1.then(resolve): resolve from promise1
+    // result: resolve from promise1 1012
+
+    // promise1.then(reject): reject from promise1
+    // result: reject from promise1 1007
+
+    //  通过运行上面的例子，我们会发现promise的状态无论是fulfilled或者rejected，其绑定的.then方法返回的Promise实例（即promise2）都只会执行它的onFulfilled回调方法。
+
+    //  5.2、回调方法返回 promise实例
+    /*
+    var d = new Date();
+
+    var promise1 = new Promise(function(resolve, reject) {
+      // setTimeout(resolve, 1000, 'resolve from promise1');
+      setTimeout(reject, 1000, 'reject form promise1');
+    });
+
+    var promise2 = promise1.then(function(result) {
+      console.log('promise1.then(resolve):', result);
+      return new Promise(function(resolve, reject) {
+        setTimeout(resolve, 2000, 'from new promise');
+      });
+    }, function(error) {
+      console.log('promise1.then(reject):', error);
+      return new Promise(function(resolve, reject) {
+        setTimeout(reject, 2000, 'from new promise');
+      })
+    })
+    promise2.then(
+      result => console.log('result:', result, new Date() - d),
+      error => console.log('error:', error, new Date() - d)
+    )
+    */
+    //  打印结果1：
+    //  promise1.then(resolve): resolve from promise1
+    //  result: from new promise 3021
+
+    //  打印结果2：
+    //  promise1.then(reject): reject form promise1
+    //  error: from new promise 3010  
+    //  3秒的解释：这里首先执行promise1，然后在执行promise2，由于promise2是promise1.then返回的新的Promise实例，并没有新建一个Promise，所以不会立即执行
+
+    /*  解释：2.2.7. then方法必须返回一个promise实例
+          promise2 = promise1.then(onFulfilled, onRejected);
+　          2.2.7.1. 如果 onFulfilled 或 onRejected 函数返回值为x，那么执行Promise处理过程 [[Resolve]](promise2, x)。
+ 　         2.2.7.2. 如果 onFulfilled 或 onRejected 函数抛出异常e，那么promise2将执行 reject(e)。
+
+        查看其中2.2.7.1的规定，我们会发现在onFulfilled或者onRejected中，无论是return值或者return Promise实例，实际上都是去调用[[Resolve]](promise2, x)。
+
+        当我们在promise1的回调方法中返回x的时候，相当于调用promise2.resolve(x)。
+
+        所以结合本文第四节的内容，我们可以就知道 ：
+        当x为值的时候，promise2直接进入fulfilled状态，无论promise1的状态是fulfilled或者是rejected，并把x传给onFulfilled回调方法；
+        当x为promise实例的时候，x的状态决定了promise2的状态。
+    */
+
+    //  5.3、回调方法没有返回语句
+    //  如果promise1的回调方法中没有返回语句，那promise2的回调方法中会打印什么内容呢？
+    /*
+    var d = new Date();
+
+    var promise1 = new Promise(function(resolve, reject) {
+      // setTimeout(resolve, 1000, 'resolve from promise1');
+      console.log(1111)
+      resolve('111')
+    });
+
+    var promise2 = promise1.then(function(result) {
+      console.log('promise1.then(resolve):', result);
+    })
+
+    promise2.then(
+      result => console.log('result:', result, new Date() - d),
+      error => console.log('error:', error, new Date() - d)
+    )
+    */
+    //  打印结果
+    //  promise1.then(resolve): resolve from promise1
+    //  result: undefined 1009
+
+    //  1111
+    //  promise1.then(resolve): 111
+    //  result: undefined 3
+
+    //  当js函数中没有返回语句的时候，相当于是return undefined。也就是说相当调用了promise2.resolve(x)，而这里的x为undefined，所以我们在promise2的回调方法中打印出了undefined。
+    //  所以这里作者给的建议是：在回调方法中一定要有return语句，放弃在回调方法中使用return，相当于放弃获取在该回调方法中的所有操作结果。
+
+    //  7、Promise状态透传
+    var d = new Date();
+    // 一秒后进入rejected状态
+    var promise1 = new Promise(function(resolve, reject) {
+        setTimeout(reject, 1000, 'reject from promise1');
+    });
+    // 只绑定了onFulfilled回调
+    var promise2 = promise1.then(result => {
+        console.log('promise1.then(resolve):', result);
+    });
+    // 绑定了onFulfilled和onRejected。（这里为了演示，正常情况下，建议使用catch处理rejected状态）
+    promise2.then(
+        result => console.log('result:', result, new Date() - d),
+        error => console.log('error:', error, new Date() - d)
+    );
+
+    //  打印结果
+    //  error: reject from promise1 1001
+  </script>
+</head>
+<body>
+</body>
+</html>

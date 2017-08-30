@@ -1,0 +1,84 @@
+<script src="./vue.js"></script>
+<script src="./vue-router.js"></script>
+
+<div id="app">
+  <p>
+    <router-link to="/user/foo">/user/foo</router-link>
+    <router-link to="/user/foo/profile">/user/foo/profile</router-link>
+    <router-link to="/user/foo/posts">/user/foo/posts</router-link>
+    <router-link :to="{name: 'user', params: { id: 123 }}">命名路由</router-link>
+  </p>
+  <router-view></router-view>
+</div>
+
+<script>
+  //  用嵌套路由为例子
+  const User = {
+    template: `
+      <div class="user">
+        <h2>User {{ $route.params }}</h2>
+        <router-view></router-view>
+      </div>
+    `
+  }
+
+  const UserHome = { template: '<div>Home</div>' }
+  const UserProfile = { template: '<div>Profile</div>' }
+  const UserPosts = { template: '<div>Posts</div>' }
+
+  const router = new VueRouter({
+    routes: [
+      { path: '/user/:id', name:'user', component: User,
+        children: [
+          { path: '', component: UserHome },    //  提供一个空的子路由，访问/user/foo时
+          { path: 'profile', 
+            component: UserProfile,
+            //  路由配置上直接定义beforeEnter钩子
+            beforeEnter: (to, from, next) => {
+              console.log(to)
+              console.log(from)
+              next()
+            }
+          },
+          { path: 'posts', component: UserPosts }
+        ]
+      }
+    ]
+  })
+
+  //  全局钩子
+  // router.beforeEach((to, form, next) => {
+  //   console.log(to)
+  //   console.log(form)
+  //   next()
+  // })
+
+  /*
+    每个钩子方法接收三个参数：
+
+      to: Route: 即将要进入的目标 路由对象
+
+      from: Route: 当前导航正要离开的路由
+
+      next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。
+
+      next(): 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 confirmed （确认的）。
+
+      next(false): 中断当前的导航。如果浏览器的 URL 改变了（可能是用户手动或者浏览器后退按钮），那么 URL 地址会重置到 from 路由对应的地址。
+
+      next('/') 或者 next({ path: '/' }): 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。
+
+      确保要调用 next 方法，否则钩子就不会被 resolved。
+  */
+
+  // router.afterEach(router => {
+  //   console.log(router)
+  // })
+
+  const app = new Vue({
+    el: '#app',
+    router
+  })
+
+  //  router.push({name: 'user', params: {id: 1234}})  //  name代表的命名路由
+</script>

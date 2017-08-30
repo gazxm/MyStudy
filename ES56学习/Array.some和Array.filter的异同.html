@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array.some和Array.filter的异同</title>
+  <script>
+    let arr = [3, 6, 12, 13, 14, 15, 16];
+    console.log(arr.some(record => {
+      console.log(record)
+      return record === 12
+    }))
+
+    console.log(arr.filter(record => {
+      console.log(record)
+      return record === 12
+    }))
+
+    //  3, 6, 12, true  第一大块
+
+    //  3, 6, 12, 13, 14, 15, 16, [12]  第二大块
+
+    /*
+      解释：arr.some接收一个函数，会依次遍历数组的每一个值，传入这个函数中，如果函数返回了true，则停止遍历，并且返回true。
+      arr.filter接收一个函数，会依次遍历数组的每一个值，传入这个函数中进行操作，最后会挑选出符合条件的数，返回一个新的数组。不会停止遍历。
+    */
+  </script>
+</head>
+
+<body>  
+</body>
+
+</html>

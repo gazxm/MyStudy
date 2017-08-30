@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>setTimeout的一道小题目</title>
+</head>
+<script>
+  var value1 = 0, value2 = 0, value3 = 0;
+  for ( var i = 1; i <= 3; i++) {
+    var i2 = i;
+    (function() {
+      var i3 = i;
+      setTimeout(function() {
+        value1 += i;
+        value2 += i2;
+        value3 += i3;
+      }, 1);
+    })();
+  }
+  setTimeout(function() {
+    console.log(value1, value2, value3);  //    12, 9 , 6
+  }, 100);
+
+  //  解释：首先setTimeout是异步的，所以最后的时候i的值为4，i2的值为3，所以value1 = 4 + 4 + 4 = 12，value2 = 3 + 3 + 3 = 9，而i3是记录了i的所有进入for循环的值，即 1，2，3，所以value3 = 1 + 2 + 3 = 6;
+</script>
+<body>
+  
+</body>
+</html>

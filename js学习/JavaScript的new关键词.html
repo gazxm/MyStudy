@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript的new关键词</title>
+</head>
+
+<script>
+  /*
+    new关键词做了三件事：
+      1、创建一个空对象
+      2、将空对象的__proto__指向构造函数的prototype
+      3、使用空对象作为上下文调用构造函数
+  */
+  /*
+    根据上面描述的，new Person()做了：
+
+      1、创建一个空对象：var obj = {}
+      2、将空对象的__proto__指向构造函数的prototype：obj.__proto__ = Person().prototype
+      3、使用空对象作为上下文调用构造函数： Person.call(obj)
+
+  */
+  console.group('Person');
+  function Person() {
+    this.name = 'w3cplus';
+  }
+
+  var obj = new Person();
+
+  console.dir(obj);
+  console.groupEnd();
+
+  console.group('Person()函数有被执行');
+  function PersonTwo() {
+    this.name = 'w3cplus';
+    this.age = 7;
+    console.log('执行personTwo');
+  }
+
+  var name = new PersonTwo();
+  console.groupEnd();
+
+  console.group('通过new会帮我们创建一个空的对象');
+  function PersonThree() {
+    console.log(this);
+  }
+
+  var name1 = new PersonThree();
+  console.dir(name1);
+  console.groupEnd();
+  //  new PersonThree() 创建了一个空对象PersonThree {}。同时会默认把这个对象返回，如果PersonThree()函数中有return出其他对象，则新对象会覆盖默认对象
+
+  console.group('如果构造函数返回的是原始值，那么这个返回值会被忽略，如果返回的是对象，就会覆盖构造的实例')
+  function PersonFour() {
+    this.name = 'w3cplus';
+    this.age = 7;
+    return {'Return': '原本this的内容就不会返回'}
+  }
+
+  var name2 = new PersonFour();
+  console.dir(name2); //  {Return:"原本this的内容就不会返回"}
+
+  function PersonFive() {
+    this.name = 'w3cplus';
+    this.age = 8;
+    return 1;
+  }
+  var name3 = new PersonFive();
+  console.dir(name3);   //  {"name":"w3cplus","age":8}
+  console.groupEnd();
+
+  console.group('构造函数的实际应用');
+  function animal(type, name) {
+    this.type = type;
+    this.name = name;
+  }
+
+  let animal1 = new animal('狐狸', 'fox');
+  console.dir(animal1);
+
+  let animal2 = new animal('老虎', 'tiger');
+  console.dir(animal2);
+  console.groupEnd();
+
+  console.group('Constructor');
+  /*
+    在JavaScript中没有class，也就是说没有class里的构造函数。那么Object是怎么被创建的呢？
+    在JavaScript中每个对象都有一个constructor属性
+  */
+  function PersonC1() {
+    this.name = 'w3cplus';
+    this.age = 7;
+  }
+  var cname1 = new PersonC1();
+  console.dir(cname1);
+  console.log(cname1.constructor);  //  function PersonC1() {this.name = 'w3cplus';this.age = 7;}
+  console.groupEnd();
+</script>
+
+<body>  
+</body>
+
+</html>

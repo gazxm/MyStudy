@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>事件冒泡和事件捕获相关</title>
+  <script>
+
+    /*
+      标准 Event 属性:
+        bubbles 返回布尔值，指示事件是否是起泡事件类型。
+        cancelable  返回布尔值，指示事件是否可拥可取消的默认动作。
+        currentTarget 返回其事件监听器触发该事件的元素。
+        eventPhase  返回事件传播的当前阶段。
+        target  返回触发此事件的元素（事件的目标节点）。
+        timeStamp 返回事件生成的日期和时间。
+        type  返回当前 Event 对象表示的事件的名称。
+
+      标准 Event 方法
+        initEvent() 初始化新创建的 Event 对象的属性。
+        preventDefault()  通知浏览器不要执行与事件关联的默认动作。
+        stopPropagation() 不再派发事件。
+    */
+
+    window.onload = function() {  
+      document.getElementById("body").addEventListener("click",eventHandler);
+      document.getElementById('box1').addEventListener('click', function (event) {
+        //  方法2：event.target返回触发此事件的元素（事件的目标节点）。event.currentTarget返回其事件监听器触发该事件的元素。
+        //  console.log(event.target.id, event.currentTarget.id); //  当点击box2的时候打印：box2, box1
+        if (event.target.id === event.currentTarget.id) {
+          console.log('box1');
+        }
+      });
+      document.getElementById('box2').addEventListener('click', function (event) {
+        console.log('box2');
+      });
+      document.getElementById('span').addEventListener('click', function (event) {
+        console.log('span');
+        event.stopPropagation();  //阻止事件冒泡的方法1
+      });
+    }  
+    function eventHandler(event) {  
+      console.log("时间："+event.timeStamp+" 产生事件的节点：" + event.target.id +"  当前节点："+event.currentTarget.id);
+      //  阻止事件冒泡的方法3：事件委托，判断事件的id
+      /*
+      var target = event.target
+      switch (target.id) {
+        case 'span':
+          console.log('span');
+          break;
+        case 'box1':
+          console.log('box1');
+          break;
+        case 'box2':
+          console.log('box2');
+          break;
+        default:
+          console.log('body');
+          break;
+      }
+      */
+    }
+  </script>
+  <style type="text/css">  
+    .box1 {  
+      border: green 40px solid;  
+      width: 300px;  
+      height: 300px;  
+      margin: auto;  
+    }  
+      
+    .box2 {  
+      border: yellow 40px solid;  
+      width: 220px;  
+      height: 220px;  
+      margin: auto;  
+    }  
+      
+    span {  
+      position: relative;  
+      left: 50px;  
+      top: 50px;  
+      background-color: rgba(128, 128, 128, 0.22);  
+    }  
+  </style>  
+</head>
+
+<body id="body">  
+  body
+  <div id="box1" class="box1">  
+    box1
+    <div id="box2" class="box2">  
+      box2
+      <span id="span">This is a span.</span>  
+    </div>  
+  </div>  
+</body>  
+
+</html>

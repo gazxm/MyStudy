@@ -1,0 +1,77 @@
+<script src="./vue.js"></script>
+
+<div id='app1'>
+  <anchored-heading :level="5">Hello world!</anchored-heading>
+</div>
+
+<div id='app2'>
+  <anchored-heading :level="1"><h3>one!</h3></anchored-heading>
+  <anchored-heading :level="2">two!</anchored-heading>
+  <anchored-heading :level="3">three!</anchored-heading>
+  <anchored-heading :level="4">four!</anchored-heading>
+  <anchored-heading :level="5">five!</anchored-heading>
+  <anchored-heading :level="6">six!</anchored-heading>
+</div>
+
+<script>
+  var ah = {
+    render (createElement) {
+      console.log(this.$slots)
+      return createElement(
+        'h' + this.level,
+        this.$slots.default
+      )
+    },
+    props: {
+      level: {
+        type: Number,
+        required: true
+      }
+    }
+  }
+
+  var app1 = new Vue({
+    el: '#app1',
+    components: {
+      anchoredHeading: ah
+    }
+  })
+
+  var getChildrenTextContent = function (children) {
+    return children.map(function (node) {
+      console.log(node.children)
+      return node.children ? getChildrenTextContent(node.children) : node.text
+    }).join('')
+  }
+
+  var ah2 = {
+    render (createElement) {
+      // create kebabCase id
+      let headingId = getChildrenTextContent(this.$slots.default).toLowerCase().replace(/\W+/g, '-').replace(/(^\-|\-$)/g, '')
+      return createElement(
+        'h' + this.level,
+        [
+          createElement('a', {
+            attrs: {
+              name: headingId,
+              href: '#' + headingId
+            }
+          }, this.$slots.default)
+        ]
+      )
+    },
+    props: {
+      level: {
+        type: Number,
+        required: true
+      }
+    }
+  }
+
+  var app2 = new Vue({
+    el: '#app2',
+    components: {
+      anchoredHeading: ah2
+    }
+  })
+</script>

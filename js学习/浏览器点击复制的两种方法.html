@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>浏览器点击复制的两种方法</title>
+  <script>
+    window.onload = function() {
+      /*  第一种方法  */
+      document.querySelector('#copy').addEventListener('click', function(){
+        let input = document.createElement("input");  //  创建一个input
+        input.setAttribute("value", 'zxm');           //  给input赋值zxm
+        document.body.appendChild(input);             //  将input添加到dom节点
+        input.select();                               //  选中input内容
+        document.execCommand("copy");                 //  复制input内容
+        document.body.removeChild(input);             //  移除dom节点
+      });
+
+      /*第二种方法*/
+      document.querySelector('#copy-two').addEventListener('click', function(e){
+        document.addEventListener('copy', copy)
+        document.execCommand('copy');
+        document.removeEventListener('copy', copy);
+        e.stopPropagation();
+      }, false);
+
+      document.querySelector('#father').addEventListener('click', function() {
+        console.log(222);
+      })
+    }
+
+    function copy (e) {
+      e.clipboardData.clearData('text/plain');
+      e.clipboardData.setData('text/plain', 'zaddsafxm');
+      // e.clipboardData.setData('text/html', '<b>Hello,World!</b>')
+      console.log(e.clipboardData.getData('text/plain'));
+      e.preventDefault();
+    }
+    //  点了第二个按钮，再点击第一个无效
+  </script>
+</head>
+
+<body>
+  <div id='father'>
+    <button id='copy'>第一种方法</button>
+    <button id='copy-two'>第二种方法</button>
+  </div>
+</body>
+
+</html>

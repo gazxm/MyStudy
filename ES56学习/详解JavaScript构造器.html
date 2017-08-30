@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>详解JavaScript构造器</title>
+</head>
+
+<script>
+  function Book(name, year) {
+    console.log(this);
+    this.name = name;
+    this.year = year;
+  }
+
+  console.group('未使用new关键字');
+  Book('a', 1111);  //  指向window
+  
+  //  未使用new关键字 构造器中的this指向的是global对象(浏览器中默认为window)
+  var myBook = Book("js book", 2014);     //  指向window
+  console.log(myBook instanceof Book);    //  false
+  console.log(window.name, window.year);  //  js book, 2014
+
+  //  使用了new关键字
+  var myBook1 = new Book("js book", 2014);  //  指向Book{}
+  console.log(myBook1 instanceof Book);     //  true
+  console.log(myBook1.name, myBook1.year);  //  js book 2014
+  console.groupEnd();
+
+  console.group('适用范围更高的构造器')
+  //  适用范围更高的构造器
+  function NewBook(name, year) {
+    console.log(this);
+    if (!(this instanceof NewBook)) {
+      return new NewBook(name, year);
+    }
+    this.name = name;
+    this.year = year;
+  }
+
+  var a = new NewBook('zxm', 2017);
+  var b = NewBook('zxm', 2017);
+  console.log(a instanceof NewBook);    //  true
+  console.log(b instanceof NewBook);    //  true
+  console.groupEnd();
+</script>
+
+<body>  
+</body>
+
+</html>

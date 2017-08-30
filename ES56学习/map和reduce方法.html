@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>map方法</title>
+	<script>
+		//	map方法：由于map()方法定义在JavaScript的Array中，我们调用Array的map()方法，传入我们自己的函数，就得到了一个新的Array作为结果：
+	  var overInt = function (a) {
+	  	console.log(arguments);
+      return parseInt(a);
+		}
+
+		var pow = function(x) {
+			return x * x;
+		}
+
+		let arr = ['1', '2', '3'];
+		let arr2 = arr.map(parseInt);	//	[1, NaN, NaN]
+		//	由于parseInt会接收两个参数，则会将第二位的索引值也传入，即上面代码相当于执行了parseInt('1', 0),parseInt('2', 1),parseInt('3', 2) 则得到了 [1, NaN, NaN] 这样的结果
+		let arr3 = arr.map(overInt);	//	[1, 2, 3]
+		let arr4 = arr.map(Number);		//	[1, 2, 3]
+		let arr5 = arr.map(x => parseInt(x));	//	[1, 2, 3]
+		console.log(arr, arr2, arr3, arr4, arr5);
+		// 你可能觉的会是[1, 2, 3]
+		// 但实际的结果是 [1, NaN, NaN]
+
+		// 通常使用parseInt时,只需要传递一个参数.但实际上,parseInt可以有两个参数.第二个参数是进制数.可以通过语句"alert(parseInt.length)===2"来验证.
+		// map方法在调用callback函数时,会给它传递三个参数:当前正在遍历的元素, 元素索引, 原数组本身.
+		// 第三个参数parseInt会忽视, 但第二个参数不会,也就是说,parseInt把传过来的索引值当成进制数来使用.从而返回了NaN.
+
+		console.log(arr.map(pow));	//	1, 4, 9
+
+		//	reduce方法：再看reduce的用法。Array的reduce()把一个函数作用在这个Array的[x1, x2, x3...]上，这个函数必须接收两个参数		
+		let arrReduce = [1, 3, 5, 7, 9]
+		//	求和：
+		let a = arrReduce.reduce((x, y) => {
+			return x + y;
+		})
+		console.log(a);		//	25
+		//	要把[1, 3, 5, 7, 9]变换成整数13579
+		let m = arrReduce.reduce((x, y) => {
+			return x * 10 + y;
+		})
+		console.log(m);	// 13579
+
+		// 想办法把一个字符串13579先变成Array——[1, 3, 5, 7, 9]，再利用reduce()就可以写出一个把字符串转换为Number的函数
+		var str = '13579'
+		var string2int = function (s) {
+      return s.split('').map(x => +x).reduce((x, y) => x * 10 + y);
+		}
+		console.log(string2int(str));		//	13579
+
+		//把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：['adam', 'LISA', 'barT']，输出：['Adam', 'Lisa', 'Bart']。
+		var normalize = function (arr) {
+      return arr.map((s) => s[0].toLocaleUpperCase() + s.slice(1,s.length).toLocaleLowerCase());
+		}
+		console.log(normalize(['adam', 'LISA', 'barT']));		//	 ["Adam", "Lisa", "Bart"]
+
+	</script>
+</head>
+
+<body>
+</body>
+
+</html>

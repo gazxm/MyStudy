@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>事件委托</title>
+  <script src='../js/jquery.min.js'></script>
+  <script>
+    $(function () {
+      $("ul").on("mouseover",function(e){
+        console.log(e.target, e.currentTarget)
+        $(e.target).css("background-color","#ddd").siblings().css("background-color","white");
+      })
+      //  siblings() 获得匹配集合中每个元素的同胞，通过选择器进行筛选是可选的。
+
+      setTimeout(function () {
+        $("ul").append('<li>item7</li>')
+      }, 5000)
+    })
+  </script>
+</head>
+<body>
+  <ul>
+    <li>item1</li>
+    <li>item2</li>
+    <li>item3</li>
+    <li>item4</li>
+    <li>item5</li>
+    <li>item6</li>
+  </ul>
+</body>
+</html>

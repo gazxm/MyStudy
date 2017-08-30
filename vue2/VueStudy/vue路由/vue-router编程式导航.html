@@ -1,0 +1,61 @@
+<script src="./vue.js"></script>
+<script src="./vue-router.js"></script>
+
+<div id="app">
+  <p>
+    <router-link to="/user/foo">/user/foo</router-link>
+    <router-link to="/user/foo/profile">/user/foo/profile</router-link>
+    <router-link to="/user/foo/posts">/user/foo/posts</router-link>
+    <router-link :to="{name: 'user', params: { id: 123 }}">命名路由</router-link>
+  </p>
+  <router-view></router-view>
+</div>
+
+<script>
+  //  用嵌套路由为例子
+  const User = {
+    template: `
+      <div class="user">
+        <h2>User {{ $route.params }}</h2>
+        <router-view></router-view>
+      </div>
+    `
+  }
+
+  const UserHome = { template: '<div>Home</div>' }
+  const UserProfile = { template: '<div>Profile</div>' }
+  const UserPosts = { template: '<div>Posts</div>' }
+
+  const router = new VueRouter({
+    routes: [
+      { path: '/user/:id', name:'user', component: User,
+        children: [
+          { path: '', component: UserHome },    //  提供一个空的子路由，访问/user/foo时
+          { path: 'profile', component: UserProfile },
+          { path: 'posts', component: UserPosts }
+        ]
+      }
+    ]
+  })
+
+  const app = new Vue({
+    el: '#app',
+    router
+  })
+
+  //  router.push 和 <router-link :to=''>
+  //  router.push('/user/foo/profile')  //  字符串
+  //  router.push({path: '/user/foo'})       //  对象
+  router.push({name: 'user', params: {id: 1234}})  //  name代表的命名路由
+  //  router.push({path: '/user/foo', query: { plan: 'private' }})  带查询参数，变成 /user/foo?plan=private
+
+  /*  router.replace 和 <router-link :to='' replace>
+        用法跟 router.push 很像，唯一的不同就是，它不会向 history 添加新记录，而是跟它的方法名一样 —— 替换掉当前的 history 记录。
+  */
+
+  /*  router.go(n)
+        这个方法的参数是一个整数，意思是在 history 记录中向前或者后退多少步，类似 window.history.go(n)。
+      router.go(1): 前进一步
+      router.go(-1): 后退一步
+  */
+</script>

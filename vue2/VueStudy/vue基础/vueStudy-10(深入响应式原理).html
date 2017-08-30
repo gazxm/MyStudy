@@ -1,0 +1,24 @@
+<script src="./vue.js"></script>
+
+<div id='app1'>
+  <ul>
+    <li v-for="(key, value, index) in items">{{key}}{{value}}{{index}}</li>
+  </ul>
+</div>
+
+<script>
+  var app1 = new Vue({
+    el: '#app1',
+    data: {
+      items: {
+        a: '1',
+        b: '2',
+        c: '3'
+      }
+    }
+  })
+
+  setTimeout(() => {
+    app1.items = Object.assign({}, app1.items, {type: 'type', text: 'text'})
+  }, 1000)
+</script>

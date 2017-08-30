@@ -1,0 +1,44 @@
+<!-- 为什么没有什么卵用 -->
+<script src="./vue.js"></script>
+<script src="./vue-router.js"></script>
+
+<div id="app">
+  <h1>Hello App!</h1>
+  <p>
+    <router-link to="/foo">Go to Foo</router-link>
+    <router-link to="/bar">Go to Bar</router-link>
+  </p>
+  <transition name="fade" mode="out-in">
+    <router-view></router-view>
+  </transition>
+</div>
+
+<script>
+  const Foo = { 
+    template: `
+    <transition name="slide">
+      <div class="foo">foo</div>
+    </transition>
+  ` 
+  }
+  const Bar = {
+    template: `
+    <transition name="fade">
+      <div class="bar">bar</div>
+    </transition>
+  `
+  }
+
+  const routes = [
+    { path: '/foo', component: Foo },
+    { path: '/bar', component: Bar }
+  ]
+
+  const router = new VueRouter({
+    routes 
+  })
+
+  const app = new Vue({
+    router
+  }).$mount('#app')
+</script>

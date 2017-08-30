@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>阻止事件默认事件</title>
+  <script>
+    window.onload = function () {
+      document.getElementById('a').addEventListener('click', function (e) {
+        console.log(e);
+        console.log(e.currentTarget);
+        console.log(e.cancelable);  //  true
+        e.preventDefault(); //  点击不会跳转到百度
+      })
+    }
+  </script>
+</head>
+
+<body>
+  <a id='a' href='http://www.baidu.com' >baidu</a>  
+</body>
+</html>

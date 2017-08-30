@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>javascript中的forEach,for-in,for-of的异同</title>
+  <script>
+    var m = ['a', 'b', 'c', 'd']
+    var str = 'zxmqry'
+    var obj = {
+      'z' : 'q',
+      'x' : 'r',
+      'm' : 'y'
+    }
+    var obj2 = {
+      'z' : 'q',
+      'x' : 'r',
+      'm' : 'y',
+      [Symbol.iterator] : function () {
+        return {
+          next: () => {
+            return {
+              value: 1,
+              done: true
+            };
+          }
+        };
+      }
+    }
+    var map1 = new Map([
+      ['obj', obj],
+      ['m', m]
+    ])
+    console.log(map1)
+
+    var set = new Set()
+    set.add(m)
+    set.add(str)
+    set.add(obj)
+    console.log(set)
+    //  forEach循环: Array.prototype.forEach(); 只针对于数组
+    console.log('----forEach---')
+    m.forEach((v, i, arr) => console.log(v, i, arr))
+    //  打印结果：
+    /*
+      a 0 (4) ["a", "b", "c", "d"]
+      b 1 (4) ["a", "b", "c", "d"]
+      c 2 (4) ["a", "b", "c", "d"]
+      d 3 (4) ["a", "b", "c", "d"]
+    */
+
+    //  for-in：以任意顺序遍历一个对象的可枚举属性。对于每个不同的属性，语句都会被执行。for in是遍历键名
+    console.log('----for...in----')
+    console.log('----m---')
+    for (let i in m) {
+      console.log(i, m[i])  //  0  a; 1  b; 2  c; 3  d
+    }
+
+    console.log('----str---')
+    for (let i in str) {
+      console.log(i, str[i])  //  0  z; 1  x; 2  m; 3  q; 4  r; 5  y
+    }
+
+    console.log('----obj---')
+    for (let i in obj) {
+      console.log(i, obj[i])  //  z  q; x  r; m  y
+    }
+
+    console.log('----map---')
+    for (let i in map1) {
+      console.log(i)  //  没有任何打印结果
+    }
+
+    console.log('----set---')
+    for (let i in set) {
+      console.log(i)  //  没有任何打印结果
+    }
+
+    //  for-of: 遍历键值，遍历实现iterator接口的成员
+    console.log('----for...of----')
+    console.log('----m---')
+    for (let i of m) {
+      console.log(i)        //  a, b, c, d
+    }
+    
+    console.log('----str---')
+    for (let i of str) {
+      console.log(i)        //  z, x, m, q, r, y
+    }
+
+    console.log('----obj---')
+    try {
+      for (let i of obj) {  //  报错 因为obj(object对象)没有实现iteratior接口
+        console.log(i)    
+      }
+    } catch (e) {
+      console.log(e)    //  TypeError: undefined is not a function 
+    }
+
+    console.log('----obj2---')
+    for (let i of obj2) {
+      console.log(i)    //  由于里面实现了iteratior 所以不会报错
+    }
+
+    console.log('----map1---')
+    for (let i of map1) {
+      console.log(i)                  //  ["obj", Object];  ["m", Array(4)]
+      console.log(JSON.stringify(i))  //  ["obj",{"z":"q","x":"r","m":"y"}];  ["m",["a","b","c","d"]]
+    }
+
+    console.log('----set---')
+    for (let i of set) {
+      console.log(i)      //  (4) ["a", "b", "c", "d"]; zxmqry; Object {z: "q", x: "r", m: "y"}
+    }
+
+    /*
+      总结：
+        1、数组内置的forEach方法，问题在于，无法中途跳出forEach循环，break命令，continue命令和return命令都无法奏效
+        2、for...in循环可以遍历数组的键名
+            有几个缺点：
+              (1)、数组的键名是数字，但是for...in循环是以字符串作为键名'0', '1', '2'等
+              (2)、for...in循环不仅遍历数字键名，还会遍历手动添加的其他键
+          总之，for...in循环主要是为遍历对象而设计的，不适用于遍历数组
+        3、for...of循环
+            有几个优点：
+              (1)、有着同for...in一样的简洁语法，但是没有for...in那些缺点。
+              (2)、不同于forEach方法，它可以与break、continue和return配合使用。
+              (3)、提供了遍历所有数据结构的统一操作接口。
+    */
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

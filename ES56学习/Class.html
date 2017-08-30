@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Class</title>
+	<script type="text/javascript"></script>
+</head>
+
+<body>	
+</body>
+<script>
+	function Point(x, y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	Point.prototype.toString = function () {
+		return '(' + this.x + ',' + this.y + ')';
+	}
+
+	var p = new Point(1, 2);
+
+	console.log(p, p.toString());	//Point {x: 1, y: 2} "(1,2)"
+
+	class PointClass {
+		constructor(x, y) {
+			this.x = x;
+			this.y = y;
+		}
+
+		toString() {
+			return '(' + this.x + ',' + this.y + ')';
+		}
+	}
+
+	console.log(PointClass === PointClass.prototype.constructor);		//true
+
+	//类的所有实例共享一个原型对象
+	var p1 = new PointClass(2, 3);
+	var p2 = new PointClass(3, 2);
+
+	console.log(p1.__proto__ === p2.__proto__);		//true
+	//上面代码中，p1和p2都是Point的实例，它们的原型都是Point.prototype，所以__proto__属性是相等的。
+	//这也意味着，可以通过实例的__proto__属性为Class添加方法
+
+	p1.__proto__.printName = function() { console.log('Oops') };
+	p1.printName();		//	"Oops"		
+	p2.printName();		//	"Oops"
+
+	var p3 = new PointClass(4, 2);
+	p3.printName();		//	"Oops"
+
+	//不存在变量提升：Class不存在变量提升(hoist)
+	//new	Foo();		//	ReferenceError
+	//Class Foo {}
+
+	{
+		let Foo = class {};
+		class Bar extends Foo {}
+	}
+	//上面的代码不会报错，因为Bar继承Foo的时候，Foo已经有定义了。但是，如果存在class的提升，上面代码就会报错，因为class会被提升到代码头部，而let命令是不提升的，所以导致Bar继承Foo的时候，Foo还没有定义。
+
+	//Class表达式
+	const MyClass = class Me {
+		getClassName() {
+			console.log(Me.name);
+		}
+	}
+
+	let inst = new MyClass();
+	inst.getClassName();			//	Me
+	//console.log(Me.name);		//	ReferenceError: Me is not defined
+	//上面代码表示，Me只在Class内部有定义，如果类的内部没用到的话，可以省略Me，也就是可以写成下面的形式。
+	const MyClass1 = class { /* ... */ };
+
+	//采用Class表达式，可以写出立即执行的Class，person是一个立即执行的类的实例
+
+	let person = new class {
+	  constructor(name) {
+	    this.name = name;
+	  }
+
+	  sayName() {
+	    console.log(this.name);
+	  }
+	}('张三');
+
+	person.sayName(); // "张三"
+
+	//私有方法：方法一：在命名上加以区别
+	class Widget {
+		//公有方法
+		foo (baz) {
+			this._bar(baz);
+		}
+		//私有方法
+		_bar(baz) {
+			return this.snaf = baz;
+		}
+	}
+	var w = new Widget();
+	w.foo('a');
+	console.log(w.snaf);	//	"a"
+	//仍然可以调用
+	w._bar('aaa');
+	console.log(w.snaf);	//	"aaa"
+	//上面代码中，_bar方法前面的下划线，表示这是一个只限于内部使用的私有方法。但是，这种命名是不保险的，在类的外部，还是可以调用到这个方法。
+
+	//方法二：索性将私有方法移出模块，因为模块内部的所有方法都是对外可见的。
+	class Widget2 {
+		foo (baz) {
+			bar.call(this, baz);
+		}
+	}
+
+	function bar(baz) {
+		return this.snaf = baz
+	}
+
+	var w2 = new Widget2();
+	w2.foo('a');
+	console.log(w2.snaf);	//	"a"
+	//上面代码中，foo是公有方法，内部调用了bar.call(this, baz)。这使得bar实际上成为了当前模块的私有方法。w2.bar()会报错
+
+	//方法三：利用Symbol值的唯一性，将私有方法的名字命名为一个Symbol值
+	const zxmF = Symbol('zxmF');
+	const zxmN = Symbol('zxmN');
+
+	class Widget3 {
+		//	公有方法
+		foo(baz) {
+			this[zxmF](baz);
+		}
+
+		[zxmF](baz) {
+			return this[zxmN] = baz;
+		}
+	}
+	var w3 = new Widget3();
+	w3.foo('a');
+	console.log(w3[zxmN]);		//	'a'
+	w3[zxmF]('abc');
+	console.log(w3[zxmN]);		//	'abc'
+
+	//this指向：类的方法内部如果含有this，它默认指向类的实例。但是，必须非常小心，一旦单独使用该方法，很可能报错。
+
+	class Logger {
+		printName(name = 'there') {
+			this.print(`Hello ${name}`);
+		}
+
+		print(text) {
+			console.log(text);
+		}
+	}
+
+	const logger = new Logger();
+	const { printName } = logger;
+	logger.printName();				//Hello there
+	logger.printName('abc');	//Hello abc
+	//printName();	//Uncaught TypeError: Cannot read property 'print' of undefined
+	//上面代码中，printName方法中的this，默认指向Logger类的实例。但是，如果将这个方法提取出来单独使用，this会指向该方法运行时所在的环境，因为找不到print方法而导致报错。
+	
+	//解决方法：1、在构造方法中绑定this，这样就不会找不到print方法
+	class Logger1 {
+		constructor() {
+			this.printName1 = this.printName1.bind(this);
+		}
+
+		printName1(name = 'there') {
+			this.print(`Hello ${name}`);
+		}
+
+		print(text) {
+			console.log(text);
+		}
+	}
+
+	const logger1 = new Logger1();
+	const { printName1 } = logger1;
+	printName1();			//Hello there
+
+	//2、使用箭头函数
+	class Logger2 {
+		constructor() {
+			this.printName2 = (name = 'there') => {
+				this.print(`Hello ${name}`);
+			}
+		}
+
+		print(text) {
+			console.log(text);
+		}
+	}
+
+	const logger2 = new Logger2();
+	const { printName2 } = logger2;
+	printName2('mmp');		//Hello mmp
+
+	//name属性：由于本质上，ES6的类只是ES5的构造函数的一层包装，所以函数的许多特性都被Class继承，包括name属性。
+	class PointZxm {}
+	console.log(PointZxm.name);		//PointZxm
+
+	//Class继承
+	class PointExtend {
+		constructor(x, y) {
+			this.x = x;
+			this.y = y;
+		}
+
+		toString() {
+			return '(' + this.x + ',' + this.y + ')';
+		}
+	}
+
+	/* function Point(x, y) {
+		this.x = x;
+		this.y = y;
+	} */
+
+	class ColorPoint extends Point {
+		constructor(x, y, color) {
+			//this.color = color;		//	Uncaught ReferenceError: this is not defined
+			super(x, y);		//	调用父类的constructor(x, y)
+			this.color = color;
+		}
+
+		toString() {
+			return this.color + '	' + super.toString();	// 调用父类的toString()
+		}
+	}
+
+	var color_point = new ColorPoint('a', 'b', 'white');
+	console.log(color_point.toString());		//		white	(a,b)
+	console.log(color_point instanceof ColorPoint);	//	true
+	console.log(color_point instanceof Point);			//	true
+	//面代码中，constructor方法和toString方法之中，都出现了super关键字，它在这里表示父类的构造函数，用来新建父类的this对象。
+
+	//子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。
+
+	class cp extends Point {
+		constructor() {}
+	}
+
+	//let cp_class = new cp();	//	Uncaught ReferenceError: this is not defined
+	//另一个需要注意的地方是，在子类的构造函数中，只有调用super之后，才可以使用this关键字，否则会报错。这是因为子类实例的构建，是基于对父类实例加工，只有super方法才能返回父类实例。
+
+	/*类的prototype属性和__proto__属性：每一个对象都有__proto__属性，指向对应的构造函数的prototype属性。Class作为构造函数的语法糖，同时有prototype属性和__proto__属性，因此同时存在两条继承链。
+		（1）子类的__proto__属性，表示构造函数的继承，总是指向父类。
+		（2）子类prototype属性的__proto__属性，表示方法的继承，总是指向父类的prototype属性。
+	*/
+	class A {
+	}
+
+	class B extends A {
+	}
+
+	console.log(B.__proto__ === A);	//	true
+	console.log(B.prototype.__proto__ === A.prototype)	//	true
+	//这两条继承链，可以这样理解：作为一个对象，子类（B）的原型（__proto__属性）是父类（A）；作为一个构造函数，子类（B）的原型（prototype属性）是父类的实例。
+
+	//Object.getPrototypeOf()：Object.getPrototypeOf方法可以用来从子类上获取付类
+	Object.getPrototypeOf(ColorPoint) === Point	//	true
+
+	//super关键字：，既可以当作函数使用，也可以当作对象使用。在这两种情况下，它的用法完全不同。
+	//第一种情况：super作为函数调用时，代表父类的构造函数。ES6要求，子类的构造函数必须执行一次super函数
+	class A1 {}
+
+	class B1 extends A1 {
+		constructor() {
+			super();	//上面代码中，子类B的构造函数之中的super()，代表调用父类的构造函数。这是必须的，否则 JavaScript 引擎会报错。
+		}
+	}
+	//注意，super虽然代表了父类A的构造函数，但是返回的是子类B的实例，即super内部的this指的是B，因此super()在这里相当于A.prototype.constructor.call(this)。
+
+	class A2 {
+		constructor() {
+			console.log(new.target.name);		//	new.target指向当前正在执行的函数
+		}
+	}
+
+	class B2 extends A2 {
+		constructor() {
+			super();
+		}
+	}
+
+	new A2();	//	A2
+	new B2();	//	B2
+	//  可以看到，在super()执行时，它指向的是子类B的构造函数，而不是父类A的构造函数。也就是说，super()内部的this指向的是B。
+
+	//  注意：作为函数时，super()只能用在子类的构造函数之中，用在其他地方就会报错。
+
+	//第二种情况：super作为对象时，指向父类的原型对象
+	class A3 {
+		p() {
+			return 2;
+		}
+	}
+	class B3 extends A3 {
+		constructor() {
+			super();
+			console.log(super.p());	//2
+		}
+	}
+	let b3 = new B3();
+	//上面代码中，子类B当中的super.p()，就是将super当作一个对象使用。这时，super指向A.prototype，所以super.p()就相当于A.prototype.p()。
+	
+	//这里需要注意，由于super指向父类的原型对象，所以定义在父类实例上的方法或属性，是无法通过super调用的。
+	class A4 {
+		constructor() {
+			this.p = 2;
+		}
+	}
+	A4.prototype.x = 2;
+	class B4 extends A4 {
+		get m() {
+			return super.p;
+		}
+	}
+	let b4 = new B4();
+	console.log(b4.m);	//	undefined
+	console.log(b4.x);	//	2
+	//上面代码中，p是父类A实例的属性，super.p就引用不到它，x是定义在A.prototype上面的，所以x可以取到它的值
+	
+	//ES6规定，通过super调用父类的方法时，super会绑定子类的this
+	class A5 {
+		constructor() {
+			this.x = 1;
+		}
+		print() {
+			console.log(this.x);
+		}
+	}
+
+	class B5 extends A5 {
+		constructor() {
+			super();
+			this.x = 2;
+		}
+		m() {
+			super.print();
+		}
+	}
+	let b5 = new B5();
+	b5.m();	//	2
+	//上面代码中，super.print()虽然调用的是A.prototype.print()，但是A.prototype.print()会绑定子类B的this，导致输出的是2，而不是1。也就是说，实际上执行的是super.print.call(this)。
+
+	class A6 {
+		constructor() {
+			this.x = 1;
+		}
+	}
+
+	class B6 extends A6 {
+		constructor() {
+			super();
+			this.x = 2;
+			super.x = 3;
+			console.log(super.x);	//	undefined
+			console.log(this.x);	//	3
+		}
+	}
+
+	let b6 = new B6();
+	//上面代码中，super.x赋值为3，这时等同于对this.x赋值为3。而当读取super.x的时候，读的是A.prototype.x，所以返回undefined。
+	//注意：使用super的时候，必须显式指定是作为函数、还是作为对象使用，否则会报错。
+
+	//Class的取值函数(getter)和存值函数(setter)：与ES5一样，在Class内部可以使用get和set关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为。
+	class MyClass2 {
+		constructor() {}
+		get prop() {
+			return 'getter';
+		}
+		set prop(value) {
+			console.log('setter:' + value);
+		}
+	}
+
+	let inst2 = new MyClass2();
+	inst2.prop = 123;		//setter:123
+	console.log(inst2.prop);	//getter
+
+	//Class的Generator方法：如果某个方法之前加上星号(*)，就表示该方法是一个Generator函数
+	class foo1 {
+		constructor(...args) {
+			this.args = args;
+		}
+		* [Symbol.iterator]() {
+			for (let arg of this.args) {
+				yield arg;
+			}
+		}
+	}
+
+	for (let x of new foo1('hello', 'world')) {
+		console.log(x);
+	}
+	//	hello
+	//	world
+	//上面代码中，Foo类的Symbol.iterator方法前有一个星号，表示该方法是一个 Generator 函数。Symbol.iterator方法返回一个Foo类的默认遍历器，for...of循环会自动调用这个遍历器。
+
+	// new.target属性：new是从构造函数生成实例的命令。ES6为new命令引入了一个new.target属性（在构造函数中）返回new命令作用于的那个构造函数。如果构造函数不是通过new命令调用的，new.target会返回undefined，因此这个属性可以用来确定构造函数是怎么调用的。
+	function Person(name) {
+		if(new.target !== undefined) {
+			this.name = name;
+		} else {
+			throw new Error('必须使用new生成实例')；
+		}
+	}
+
+	//	另一种写法
+	function Person2(name) {
+		if (new.target === Person) {
+	    this.name = name;
+	  } else {
+	    throw new Error('必须使用new生成实例');
+	  }
+	}
+
+	var person1 = new Person('张三'); // 正确
+	//var notAPerson = Person2.call(person, '张三');  // 报错
+</script>
+
+</html>

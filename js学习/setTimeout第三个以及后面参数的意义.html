@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>setTimeout第三个以及后面参数的意义</title>
+  <script>
+    var date = new Date()
+
+    function time(ms) {
+      return new Promise((resolve, reject) => {
+        if (true) {
+          setTimeout(resolve, ms, 'done')
+        } else {
+          setTimeout(reject, ms, 'fail')
+        }
+      })
+    }
+
+    time(1000).then((value) => {
+      console.log(value)
+    }, (value) => {
+      console.log(value)
+    })
+
+    var m = ['1', '2', '3']
+
+    var a = function(str1, str2, str3) {
+      console.log(this);
+      console.log(str1, str2, str3, new Date() - date);  
+    }
+
+    a.call(m)
+    // (3) ["1", "2", "3"]
+    //  undefined undefined undefined 7
+
+    setTimeout(a, 1000, 'a', 'b', 'c'); 
+    //  Window {stop: function, open: function, alert: function, confirm: function, prompt: function…}
+    //  a b c 1007
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

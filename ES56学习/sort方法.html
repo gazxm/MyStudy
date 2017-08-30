@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sort方法</title>
+	<script>
+		// 通常规定，对于两个元素x和y，如果认为x < y，则返回-1，如果认为x == y，则返回0，如果认为x > y，则返回1
+
+		// 看上去正常的结果:
+		console.log(['Google', 'Apple', 'Microsoft'].sort()); // ['Apple', 'Google', 'Microsoft'];
+
+		// apple排在了最后:
+		console.log(['Google', 'apple', 'Microsoft'].sort()); // ['Google', 'Microsoft", 'apple']
+
+		// 无法理解的结果:
+		console.log([10, 20, 1, 2].sort()); // [1, 10, 2, 20]
+		//	这是因为Array的sort()方法默认把所有元素先转换为String再排序，结果'10'排在了'2'的前面，因为字符'1'比字符'2'的ASCII码小。
+
+		var arr = [10, 20, 1, 2];
+		arr.sort(function(x, y) {
+      if (x < y) {
+      	return -1;
+      }
+      if (x > y) {
+      	return 1;
+      }
+      return 0;
+		})
+		console.log(arr);	//	[1, 2, 10, 20]
+
+		var strArr = ['Google', 'apple', 'Microsoft'];
+		strArr.sort(function(x, y) {
+			x = x.toLocaleUpperCase();
+			y = y.toLocaleUpperCase();
+			console.log(x, y);
+			if (x < y) {
+				return -1;
+			}
+			if (x > y) {
+				return 1;
+			}
+			return 0;
+		});
+		console.log(strArr);	//	["apple", "Google", "Microsoft"]
+	</script>
+</head>
+
+<body>	
+</body>
+</html>

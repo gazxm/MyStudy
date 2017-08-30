@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>addEventListener和removeEventListener</title>
+  <script>
+  //  addEventListener 第三个参数 useCapture 默认为 false (表示事件冒泡)，true表示事件捕获
+    window.onload = function () {
+      var oDvi1 = document.getElementById('div1'),
+      oDvi2 = document.getElementById('div2'),
+      oDvi3 = document.getElementById('div3');
+
+      oDvi1.addEventListener('click', xx1, true);
+      oDvi2.addEventListener('click', xx2, false);
+      oDvi3.addEventListener('click', xx3, true);
+
+      function xx1 () { //蓝
+        console.log(123);
+      }
+
+      function xx2 () { //红
+        console.log(345);
+      }
+
+      function xx3 () {//黄
+        console.log(456);
+      }
+    }
+
+    /*  
+    target.removeEventListener(type, listener[, useCapture])
+    type : 一个字符串，表示需要移除的事件类型，如 "click"。
+    listener 需要移除的 EventListener 函数（先前使用 addEventListener 方法定义的）
+    removeEventListener 第三个参数 useCapture 指定需要移除的 EventListener 函数是否为事件捕获。如果无此参数，默认值为 false。如果同一个监听事件分别为“事件捕获”和“事件冒泡”注册了一次，一共两次，这两次事件需要分别移除。两者不会互相干扰。
+
+    */
+  </script>
+</head>
+
+<body>
+  <div id="div1" style="background: blue;width: 100px; height: 100px;">
+    <div id="div2" style="background: red;width: 70px; height: 70px;">
+      <div id="div3" style="background: yellow;width: 50px; height: 50px;"></div>
+    </div>
+  </div>
+</body>
+
+</html>

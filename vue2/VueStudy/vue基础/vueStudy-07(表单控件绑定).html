@@ -1,0 +1,118 @@
+<script src="./vue.js"></script>
+
+<div id='app1'>
+  <!-- 文本 -->
+  <input v-model="message" placeholder="edit me">
+  <p>Message is: {{ message }}</p>
+
+  <!-- 多行文本 -->
+  <span>Multiline message2 is:</span>
+  <p style="white-space: pre-line">{{ message2 }}</p>
+  <br>
+  <textarea v-model="message2" placeholder="add multiple lines"></textarea>
+
+  <!-- 复选框 -->
+  <input type="checkbox" id="checkbox" v-model="checked" style='display: block;'>
+  <label for="checkbox">{{ checked }}</label>
+
+  <!-- 多个复选框-数组 -->
+  <div style="display: block;margin-top: 30px;">
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+    <br>
+    <span>Checked names: {{ checkedNames }}</span>
+  </div>
+
+  <!-- 单选框 -->
+  <div style="display: block;margin-top: 30px;">
+    <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <span>Picked: {{ picked }}</span>
+  </div>
+
+  <!-- 选择列表 -->
+  <div style="display: block;margin-top: 30px;">
+    <select v-model="selected">
+      <option disabled value="A">请选择</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+  </div>
+
+  <!-- 多选列表-数组 -->
+  <div style="display: block;margin-top: 30px;">
+    <select v-model="selecteds" multiple style="width: 50px">
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+    <br>
+    <span>Selecteds: {{ selecteds }}</span>
+  </div>
+
+  <!-- 动态选项 -->
+  <div style="display: block;margin-top: 30px">
+    <select v-model="dSelected">
+      <option v-for="option in options" v-bind:value="option.value">
+        {{ option.text }}
+      </option>
+    </select>
+    <span>dSelected: {{ dSelected }}</span>
+  </div>
+</div>
+
+<div id='app2' style="margin-top: 30px; border-top: 1px solid #d2d2d2;">
+  <!-- 当选中时，`picked` 为字符串 "a" -->
+  <input type="radio" v-model="picked" value="a">
+  <!-- `toggle` 为 true 或 false -->
+  <input type="checkbox" v-model="toggle">
+  <!-- 当选中时，`selected` 为字符串 "abc" -->
+  <select v-model="selected">
+    <option value="abc">ABC</option>
+  </select>
+
+  <!-- 在 "change" 而不是 "input" 事件中更新 -->
+  <input v-model.lazy="msg" />
+  <span>msg: {{msg}}</span>
+</div>
+
+<script>
+  var app1 = new Vue({
+    el: '#app1',
+    data: {
+      message: '',
+      message2: '',
+      checked: false,
+      checkedNames: [],
+      picked: '',
+      selected: '',
+      selecteds: [],
+      dSelected: 'A',
+      options: [
+        { text: 'One', value: 'A' },
+        { text: 'Two', value: 'B' },
+        { text: 'Three', value: 'C' }
+      ]
+    }
+  })
+
+  var app2 = new Vue({
+    el: '#app2',
+    data: {
+      picked: '',
+      toggle: '',
+      selected: '',
+      msg: ''
+    }
+  })
+</script>

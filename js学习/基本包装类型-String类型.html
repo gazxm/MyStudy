@@ -44,7 +44,7 @@
 
 		console.log(stringValue.slice(0, 1));			//"h"     从第一个开始，到第一个为止(包括第一个)
 		console.log(stringValue.slice(0, 0));			//""		  从第一个开始，到第零个为止
-		console.log(stringValue.substring(0, 0));	//""			从第一个开始，往后读取零个
+		console.log(stringValue.substring(0, 0));	//""			从第一个开始，到第零个为止
 		console.log(stringValue.substr(3, 0));		//""			从第四个开始，往后读取零个
 
 		//若参数为负数的情况下：
@@ -75,14 +75,14 @@
 
 		var stringValue_2 = "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
 				positions = [],
-				pos = stringValue.indexOf("e");
+				pos = stringValue_2.indexOf("e");
 
 		while(pos > -1) {
 			positions.push(pos);
 			pos = stringValue_2.indexOf("e", pos + 1);	
 			//加1表示从上一次搜索位置的下一个位置开始
 		}
-		console.log(positions);		//[1, 3, 24, 32, 35, 52]
+		console.log(positions);		//[3, 24, 32, 35, 52]
 
 		console.log("---------4、trim()方法-------------");
 		/*ES5为所有字符串定义了trim()方法。这个方法会创建一个字符串的副本,删除前置及后缀的所有空格，然后返回结果。不会对原字符串产生影响。
@@ -128,7 +128,7 @@
 		var text_8 = "cat, bat, sat, fat";
 		var	pos_8 = text_8.replace("at", "ond");
 		var pos_9 = text_8.replace(/at/g, "ond");
-		console.log(pos_8, pos_9);//cond, bat, sat, fat  cond, bond, sond, fond
+		console.log(pos_8, pos_9);//cond, bat, sat, fat ; cond, bond, sond, fond
 		//	如果第二个参数是字符串，那么还可以使用一些特殊的字符序列，将正则表达式操作得到的值插入到结果字符串中
 
 		var text_9 = "cat, bat, sat, fat";

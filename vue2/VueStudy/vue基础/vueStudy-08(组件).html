@@ -1,0 +1,128 @@
+<script src="./vue.js"></script>
+
+<div id="example">
+  <my-component></my-component>
+</div>
+
+<div id='app1'>
+  <My></My>
+</div>
+
+<div id='app2'>
+  <simplecounter></simplecounter>
+  <simplecounter></simplecounter>
+  <simplecounter></simplecounter>
+  <sc2 style="display: block; margin-top: 20px;"></sc2>
+  <sc2 style="display: block; margin-top: 20px;"></sc2>
+  <sc2 style="display: block; margin-top: 20px;"></sc2>
+</div>
+
+<div id='app3'>
+  <bs-date-input
+    data-3d-date-picker="true"
+    class="date-picker-theme-dark"
+  ></bs-date-input>
+</div>
+
+<div id="counter-event-example">
+  <p>{{ total }}</p>
+  <button-counter @increment="incrementTotal"></button-counter>
+  <button-counter @increment="incrementTotal"></button-counter>
+</div>
+
+<script>
+  //  注意： 通过 Vue 构造器传入的各种选项大多数都可以在组件里用。data 是一个例外，它必须是函数。
+  //  注册
+  Vue.component('my-component', {
+    template: '<div>A custom component!</div>'
+  })
+  // 创建根实例
+  new Vue({
+    el: '#example'
+  })
+
+  var My = {
+    template: '<div>Child</div>'
+  }
+
+  var app1 = new Vue({
+    el: '#app1',
+    //  局部注册
+    components: {
+      My
+    }
+  })
+
+  var data = { counter: 0 }
+  var sc = {
+    template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+    data: function () {
+      return data
+    }
+  }
+
+  var sc2 = {
+    template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+    data: function () {
+      return {
+        counter: 0
+      }
+    }
+  }
+
+  var app2 = new Vue({
+    el: '#app2',
+    components: {
+      simplecounter: sc,
+      sc2
+    }
+  })
+
+
+  //  非Prop属性
+  var input = {
+    template: '<input type="date" class="form-control">'
+  }
+
+  var app3 = new Vue({
+    el: '#app3',
+    components: {
+      bsDateInput: input
+    }
+  })
+
+  /*  自定义事件
+        每个 Vue 实例都实现了事件接口 (Events interface)，即：
+          使用 $on(eventName) 监听事件
+          使用 $emit(eventName) 触发事件
+  */
+  var bc = {
+    template: '<button v-on:click="increment">{{ counter }}</button>',
+    data: function () {
+      return {
+        counter: 0
+      }
+    },
+    methods: {
+      increment: function () {
+        this.counter += 1
+        this.$emit('increment')
+      }
+    },
+  }
+
+  var app4 = new Vue({
+    el: '#counter-event-example',
+    components: {
+      buttonCounter: bc
+    },
+    data: {
+      total: 0
+    },
+    methods: {
+      incrementTotal: function () {
+        this.total += 1
+      }
+    }
+  })
+</script>

@@ -1,0 +1,44 @@
+<script src="./vue.js"></script>
+<script src="./vue-router.js"></script>
+
+<div id='app'>
+  <router-link to="/user/1111">user/1111</router-link>
+  <router-link to="/user/22222">user/22222</router-link>
+  <router-link to="/user/zxm/post/1234">/user/zxm/post/1234</router-link>
+  <router-link to="/user/zxm11/post/1">/user/zxm11/post/1</router-link>
+  <router-view></router-view>
+</div>
+
+<script>
+  //  匹配优先级：同一个路径可以匹配多个路由，此时，匹配的优先级就按照路由的定义顺序：谁先定义的，谁的优先级就最高。
+  const User = {
+    template: '<div>User {{ $route.params }}</div>',
+    /*  响应路由参数的变化
+        提醒一下，当使用路由参数时，例如从 /user/foo 导航到 user/bar，原来的组件实例会被复用。因为两个路由都渲染同个组件，比起销毁再创建，复用则显得更加高效。不过，这也意味着组件的生命周期钩子不会再被调用。
+
+        复用组件时，想对路由参数的变化作出响应的话，你可以简单地 watch（监测变化） $route 对象：
+    */
+    watch: {
+      '$route' (to, form) {
+        console.log(to, form)
+      }
+    }
+  }
+
+  const UserTwo = {
+    template: '<div>{{ $route.params }}</div>'
+  }
+
+  const router = new VueRouter({
+    routes: [
+      // 动态路径参数 以冒号开头
+      { path: '/user/:id', component: User },
+      { path: '/user/:id/post/:post_id', component: UserTwo}
+    ]
+  })
+
+  const app = new Vue({
+    el: '#app',
+    router
+  })
+</script>

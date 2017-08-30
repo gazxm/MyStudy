@@ -1,0 +1,75 @@
+<script src="./vue.js"></script>
+
+<div id="app1">
+  <button @click="counter += 1">增加 1</button>
+  <p>这个按钮被点击了 {{ counter }} 次。</p>
+</div>
+
+<div id="app2">
+  <!-- `greet` 是在下面定义的方法名 -->
+  <button @click="greet">Greet</button>
+</div>
+
+<div id="app3">
+  <button v-on:click="say('hi')">Say hi</button>
+  <button v-on:click="say('what')">Say what</button>
+</div>
+
+<div id="app4">
+  <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+    Submit
+  </button>
+</div>
+
+<script>
+  var app1 = new Vue({
+    el: '#app1',
+    data: {
+      counter: 0
+    }
+  })
+
+  var app2 = new Vue({
+    el: '#app2',
+    data: {
+      name: 'Vue.js'
+    },
+    // 在 `methods` 对象中定义方法
+    methods: {
+      greet: function (event) {
+        // `this` 在方法里指当前 Vue 实例
+        console.log('Hello ' + this.name + '!')
+        // `event` 是原生 DOM 事件
+        if (event) {
+          console.log(event.target.tagName)
+        }
+      }
+    }
+  })
+
+  var app3 = new Vue({
+    el: '#app3',
+    data: {
+      name: 'Vue.js'
+    },
+    methods: {
+      say: function (message) {
+        console.log(message)
+      }
+    }
+  })
+
+  var app4 = new Vue({
+    el: '#app4',
+    methods: {
+      warn: function (message, event) {
+        // 现在我们可以访问原生事件对象
+        if (event) {
+          console.log(event)
+          event.preventDefault()
+        }
+        console.log(message)
+      }
+    }
+  })
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>throw</title>
+  <script>
+    //  throw 语句用来抛出一个用户自定义的异常。当前函数的执行将被停止（throw之后的语句将不会执行），并且控制将被传递到调用堆栈中的第一个 catch 块。如果调用者函数中没有catch块，程序将会终止。
+    //  语法：throw expression; expression：要抛出的表达式。
+    //  throw "Error2";         // 抛出了一个值为字符串的异常
+    //  throw 42;               // 抛出了一个值为整数42的异常
+    //  throw true;             // 抛出了一个值为true的异常
+
+    function UserException(message) {
+      this.message = message;
+      this.name = "UserException";
+    }
+    function getMonthName(mo) {
+      mo = mo - 1; // 调整月份数字到数组索引 (1=Jan, 12=Dec)
+      var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+        "Aug", "Sep", "Oct", "Nov", "Dec"];
+      if (months[mo] !== undefined) {
+        return months[mo];
+      } else {
+        throw new UserException("InvalidMonthNo");
+      }
+    }
+
+    try {
+      // statements to try
+      var myMonth = 15; // 15 超出边界并引发异常
+      var monthName = getMonthName(myMonth);
+    } catch (e) {
+      var monthName = "unknown";
+      console.log(e.message, e.name); // 传递异常对象到错误处理
+    }
+    //  InvalidMonthNo UserException
+
+    //  重新抛出异常：你可以在捕捉异常后重新抛出异常。下面的例子捕捉了一个异常值为数字的异常，并在其值大于50后重新抛出异常。重新抛出的异常将会向上冒泡到闭包的函数调用直到最顶层被用户看到。
+    try {
+      throw 66; // 抛出一个数值异常
+    } catch (e) {
+      if (e <= 50) {
+        // 异常在 1-50 之间时，直接处理
+      } else {
+        // 异常无法处理，重新抛出
+        throw e;
+      }
+    }
+    //  Uncaught 66
+  </script>
+</head>
+<body>
+</body>
+</html>

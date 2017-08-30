@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>console相关</title>
+  <script>
+    //  1、有四种不同的方式输出一条消息到控制台
+    console.log(1);
+    console.info(2);  //  和log一样，输出信息
+    console.warn(3);  //  警告
+    console.error(4); //  报错
+
+    //  字符串替换   %s
+    console.log('string：%s', '我是一个字符串');
+
+    //  对象    %o或者%O
+    let a = {a: 1, b: 2, c: 3}
+    console.log('this is a object: %o', a);
+    console.log('this is a object: %O', a);
+
+    //  数字  %i或%d用于整数   %f用于浮点数
+    console.log('int: %d, float: %f', 1, 1.5);
+    //  可以使用%.1f格式化浮点数，只让浮点数显示小数点后一位数。你也可以使用%.nf显示n位浮点数（n指的是小数点后位数）。
+    console.log('float: %.5f', 2.82343434); 
+
+    //  css   %c
+    console.log("%c 前端开发 %c css88.com %c 愚人码头", "color:red","","color:orange;font-weight:bold");
+    console.log("%c有阴影的log", "text-shadow: 3px 1px 1px grey")
+    console.log('%c彩色文字啊 ', 'background-image:-webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );color:transparent;-webkit-background-clip: text;font-size:5em;');
+
+    //  其他可用的方法
+    //  assert()：接收两个参数，根据延续一个参数的真假值来显示第二个参数
+    let isFalse = false;
+    console.assert(isFalse, 'display');
+    let isTrue = true;
+    console.assert(isTrue, 'not');
+    //  如果断言是假的console.assert()第一个参数是false，第二个参数将会在控制台上输出。显示为一个错误的日志，并且会给出一个绝的错误消息和堆栈跟踪
+
+    //  Dir(): dir方法将把一个对象以一个列表的方式展示出来：
+    console.dir(document.body);
+
+    //  Tabel(): 可以把一个数组或对象按表格显示。 (没什么鬼用)
+
+    //  Group(): 形成一个组  在chrome下，看起来像是一个可折叠的对象
+    console.group('header');
+    console.log('1');
+    console.log('2');
+    console.log('3');
+    console.log('4');
+    console.log('5');
+    console.group('middle');
+    console.log('1');
+    console.log('2');
+    console.log('3');
+    console.log('4');
+    console.log('5');
+    console.log('6');
+    console.groupEnd();
+
+    //  Time(): 
+    console.time('one');
+    console.timeEnd('one'); //  one: 0.1181640625ms
+  </script>
+</head>
+
+<body>  
+</body>
+
+</html>

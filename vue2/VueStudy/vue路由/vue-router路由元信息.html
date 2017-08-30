@@ -1,0 +1,60 @@
+<script src="./vue.js"></script>
+<script src="./vue-router.js"></script>
+
+<div id="app">
+  <p>
+    <router-link to="/user/foo">/user/foo</router-link>
+    <router-link to="/user/foo/profile">/user/foo/profile</router-link>
+    <router-link to="/user/foo/posts">/user/foo/posts</router-link>
+  </p>
+  <router-view></router-view>
+</div>
+
+<script>
+  const User = {
+    template: `
+      <div class="user">
+        <h2>User {{ $route.params }}</h2>
+        <router-view></router-view>
+      </div>
+    `
+  }
+
+  const UserHome = { template: '<div>Home</div>' }
+  const UserProfile = { template: '<div>Profile</div>' }
+  const UserPosts = { template: '<div>Posts</div>' }
+
+  const router = new VueRouter({
+    routes: [
+      { path: '/user/:id', 
+        name:'user',
+        component: User,
+        children: [
+          { 
+            path: '', 
+            component: UserHome 
+          }, 
+          { 
+            path: 'profile', 
+            component: UserProfile,
+            meta: { requiresAuth: true }, //  数据元信息
+          },
+          { 
+            path: 'posts', 
+            component: UserPosts
+          }
+        ]
+      }
+    ]
+  })
+
+  router.beforeEach((to, from, next) => {
+    console.log(to.matched.some(record => record.meta.requiresAuth))
+    next()
+  })
+
+  var app = new Vue({
+    el: '#app',
+    router
+  })
+</script>
