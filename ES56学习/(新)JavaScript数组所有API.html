@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript数组所有API全解密</title>
+  <!-- http://www.w3cplus.com/javascript/javascript-array-api.html -->
+  <script type="text/javascript">
+    /*  1、Array构造器
+          Array构造器用于创建一个新的数组。通常，我们推荐使用对象字面量创建数组，这是一个好习惯，但是总有对象字面量乏力的时候，比如说，我想创建一个长度为8的空数组。请比较如下两种方式：
+    */
+    //  使用Array构造器
+    var a = Array(8); //  [undefined * 8]
+    //  使用对象字面量
+    var b = [];
+    b.length = 8;  //   [undefined * 8]
+    console.group('1、Array构造器');
+    console.log(a);
+    console.log(b);
+    console.groupEnd();
+    /*
+      如上，我使用了Array(8)而不是new Array(8)，这会有影响吗？实际上，并没有影响，这得益于Array构造器内部对this指针的判断。
+      Array构造器根据参数长度的不同，有如下两种不同的处理：
+
+      new Array(arg1, arg2,…)，参数长度为0或长度大于等于2时，传入的参数将按照顺序依次成为新数组的第0至N项（参数长度为0时，返回空数组）。
+      new Array(len)，当len不是数值时，处理同上，返回一个只包含len元素一项的数组；当len为数值时，根据如下规范，len最大不能超过32位无符号     整型，即需要小于2的32次方（len最大为Math.pow(2,32) -1或-1>>>0），否则将抛出RangeError。
+    */
+
+    /*  2、ES6新增的构造函数方法
+          Array.of()：Array.of()用于将参数依次转化为数组中的一项，然后返回这个新数组，而不管这个参数是数字还是其它。它基本上与Array构造器功能一致，唯一的区别就在单个数字参数的处理上。如下：
+    */
+    console.group('2、Array.of()');
+    console.log(Array.of(8));
+    console.log(Array(8));
+    console.log(Array.of(8, 5));
+    console.log(Array(8, 5));
+    console.log(Array.of('8'));
+    console.log(Array('8'));
+    console.groupEnd();
+
+    /*
+      因此，若是需要使用数组包裹元素，推荐优先使用Array.of()方法。
+
+      即使其他版本浏览器不支持也不必担心，由于Array.of()与Array构造器的这种高度相似性，实现一个polyfill十分简单。如下：
+    */
+    if (!Array.of) {
+      Array.of = function() {
+        return Array.prototype.slice.call(arguments);
+      }
+    }
+
+    /*  3、Array.from()的设计初衷是快速便捷的基于其他对象创建新数组，准确来说就是从一个类似数组的可迭代对象创建一个新的数组实例，说人话就是，只要一个对象有迭代器，Array.from()就能把它变成一个数组（当然，是返回新的数组，不改变原对象）。
+      语法： Array.from(arrayLike[, processingFn[, thisArg]])
+        拥有3个形参，第一个为类似数组的对象，必选。第二个为加工函数，新生成的数组会经过该函数的加工再返回。第三个为this作用域，表示加工函数执行时this的值。后两个参数都是可选的。
+    */
+    console.group('3、Array.from()')
+    var obj = {
+      0: 'a',
+      1: 'b',
+      2:'c',
+      length: 3
+    };
+    Array.from(obj, function(value, index) { 
+      console.log(value, index, this, arguments.length);
+      return value.repeat(3);
+    }, obj);
+    /* 
+      可以看到加工函数的this作用域被obj对象取代，也可以看到加工函数默认拥有两个形参，分别为迭代器当前元素的值和其索引。
+
+      注意，一旦使用加工函数，必须明确指定返回值，否则将隐式返回undefined，最终生成的数组也会变成一个只包含若干个undefined元素的空数组。
+
+      实际上，如果不需要指定this，加工函数完全可以是一个箭头函数。上述代码可以简化如下：
+
+      Array.from(obj, value => value.repeat(3));
+    */
+    // String
+    Array.from('abc'); // => ["a", "b", "c"] 
+    // Set 
+    Array.from(new Set(['abc', 'def'])); // => ["abc", "def"] 
+    // Map 
+    Array.from(new Map([[1, 'abc'], [2, 'def']])); // => [[1, 'abc'], [2, 'def']] 
+    // 天生的类数组对象arguments 
+    function fn() { 
+      return Array.from(arguments); 
+    } 
+    fn(1, 2, 3); // => [1, 2, 3]
+
+    /*
+      实际上还有一个重要的扩展场景必须提下。比如说生成一个从0到指定数字的新数组，Array.from()就可以轻易的做到。
+    */
+    console.log(Array.from({length: 10}, (v, i) => i)); // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    console.groupEnd();
+
+    /*
+      4、Array.isArray顾名思义，Array.isArray用来判断一个变量是否数组类型。JS的弱类型机制导致判断变量类型是初级前端开发者面试时的必考题，一般我都会将其作为考察候选人第一题，然后基于此展开。在ES5提供该方法之前，我们至少有如下5种方式去判断一个值是否数组：
+    */
+    console.group('4、Array.isArray()');
+    let FourA = [];
+    console.log(`FourA instanceof Array:${FourA instanceof Array}`);
+    console.log(`FourA.constructor === Array:${FourA.constructor === Array}`);
+    console.log(`Array.prototype.isPrototypeOf(FourA):${Array.prototype.isPrototypeOf(FourA)}`);
+    console.log(`Object.getPrototypeOf(FourA) === Array.prototype:${Object.getPrototypeOf(FourA) === Array.prototype}`);
+    console.log(`Object.prototype.toString.apply(FourA) === '[object Array]':${Object.prototype.toString.apply(FourA) === '[object Array]'}`)
+    /*
+      以上，除了object.prototype.toString外，其他方法都不能正确判断变量的类型。如下：
+    */
+    let FourB = {
+      __proto__: Array.prototype
+    }
+    console.log(`FourB instanceof Array:${FourB instanceof Array}`);
+    console.log(`FourB.constructor === Array:${FourB.constructor === Array}`);
+    console.log(`Array.prototype.isPrototypeOf(FourB):${Array.prototype.isPrototypeOf(FourB)}`);
+    console.log(`Object.getPrototypeOf(FourB) === Array.prototype:${Object.getPrototypeOf(FourB) === Array.prototype}`);
+    /*
+      以上，4种方法将全部返回true，为什么呢？我们只是手动指定了某个对象的__proto__属性为Array.prototype，便导致了该对象继承了Array对象，这种毫不负责任的继承方式，使得基于继承的判断方案瞬间土崩瓦解。
+    */
+
+    console.log(Object.prototype.toString.apply(FourB));  //  "[object Object]"
+    console.log(`Object.prototype.toString.apply(FourB) === '[object Array]':${Object.prototype.toString.apply(FourB) === '[object Array]'}`);
+    console.groupEnd();
+
+    /*
+      5、数组遍历
+    */  
+    console.group('5、数组遍历');
+    console.log();
+    console.groupEnd();
+
+    /*
+      6、原型
+        继承的常识告诉我们，JS中所有的数组方法均来自于Array.prototype，和其他构造函数一样，你可以通过扩展 Array 的 prototype 属性上的方法来给所有数组实例增加方法。
+
+        值得一说的是，Array.prototype本身就是一个数组。
+    */
+    console.group('6、原型');
+    console.log(`Array.isArray(Array.prototype):${Array.isArray(Array.prototype)}`);  //  true
+    console.log(`Array.prototype.length:${Array.prototype.length}`);    //  0
+
+    console.log(`[].__proto__.length:${[].__proto__.length}`);
+    console.log(`[].__proto__:${[].__proto__}`);
+    console.groupEnd();
+
+    /*
+      7:方法
+        数组原型提供的方法非常之多，主要分为三种，一种是会改变自身值的，一种是不会改变自身值的，另外一种是遍历方法。
+    */
+    console.group('7、方法');
+    console.log(`Object.getOwnPropertyNames(Array.prototype):${Object.getOwnPropertyNames(Array.prototype)}`)
+    console.groupEnd();
+
+    /*
+      8:改变自身的方法
+        基于ES6，改变自身值的方法一共有9个，分别为pop()、push()、reverse()、shift()、sort()、splice()、unshift()，以及两个ES6新增的方法copyWithin() 和 fill()。
+    */
+
+    console.group('8、改变自身的方法');
+
+    /*
+      8.1:pop()方法删除一个数组中的最后的一个元素，并且返回这个元素。如果是栈的话，这个过程就是栈顶弹出。
+    */
+    (function() {
+      console.group('8.1、pop()');
+      let array = ['cat', 'dog', 'cow', 'chicken', 'mouse'];
+      let item = array.pop();
+      console.log(`array.pop()后：${array}`);
+      console.log(`item:${item}`);
+
+      //  由于设计上的巧妙，pop()方法可以应用在类数组对象上，即 鸭式辨型。 如下：
+      let o = {
+        0: 'cat',
+        1: 'dog',
+        2: 'cow',
+        3: 'chicken',
+        4: 'mouse',
+        length: 5
+      }
+      let itemO = Array.prototype.pop.call(o);
+      console.log(`o.pop()后：${JSON.stringify(o)}`);
+      console.log(`itemO:${itemO}`);
+
+      //  但如果类数组对象不具有length属性，那么该对象将被创建length属性，length值为0。如下：
+      let oo = {
+        0: 'cat',
+        1: 'dog',
+        2: 'cow',
+        3: 'chicken',
+        4: 'mouse'
+      }
+      let item1 = Array.prototype.pop.call(oo);
+      console.log(`oo.pop()后：${JSON.stringify(oo)}`);
+      console.log(`item1:${item1}`);
+      console.groupEnd();
+    })()
+
+    console.groupEnd();
+
+    console.group('8、改变自身的方法');
+    /*
+      8.2:push()方法添加一个或者多个元素到数组末尾，并且返回数组新的长度。如果是栈的话，这个过程就是栈顶压入。
+    */
+    (function() {
+      console.group('8.2 push()');
+      let array = ['football', 'basketball', 'volleyball', 'Table tennis', 'badminton'];
+      let i1 = array.push('golfball');
+      console.log(array);
+      console.log(i1);
+
+      //  同pop()方法一样，push()方法也可以应用到类数组对象上，如果length不能被转成一个数值或者不存在length属性时，则插入的元素索引为0，且length属性不存在时，将会创建它。
+      let o = {
+        0: 'football',
+        1: 'basketball'
+      }
+      let i2 = Array.prototype.push.call(o, 'golfball');
+      console.log(o);
+      console.log(i2);
+
+      //  实际上，push()方法是根据length属性来决定从哪里开始插入给定的值。
+      let oo = {
+        0: 'football',
+        1: 'basketball',
+        length: 1
+      }
+      let i3 = Array.prototype.push.call(oo, 'golfball');
+      console.log(oo);
+      console.log(i3);
+
+      //  利用push()根据length属性插入元素这个特点，可以实现数组的合并，如下：
+      let arrone = ['football', 'basketball'];
+      let arrtwo = ['volleyball', 'golfball'];
+      let i4 = Array.prototype.push.apply(arrone,arrtwo);
+      console.log(arrone);
+      console.log(i4);
+      console.groupEnd();
+    })()
+    console.groupEnd();
+
+    console.group('8、改变自身的方法');
+    /*
+      8.3、reverse()方法颠倒数组中元素的位置，第一个会成为最后一个，最后一个会成为第一个，该方法返回对数组的引用。
+    */
+    (function() {
+      console.log('8.3 reverse()');
+      let array = [1, 2, 3, 4, 5];
+      let array2 = array.reverse();
+      console.log(array);   //  [5, 4, 3, 2, 1]
+      console.log(array2);   //  [5, 4, 3, 2, 1]
+      console.log(array2 === array);  //  true
+
+      //  同上，reverse() 也是鸭式辨型的受益者，颠倒元素的范围受length属性制约。如下:
+      let o = {
+        0: 'a',
+        1: 'b',
+        2: 'c',
+        length: 2
+      }
+      let o2 = Array.prototype.reverse.call(o);
+      console.log(o);   //  Object {0: "b", 1: "a", 2: "c", length: 2}
+      console.log(o2);  //  Object {0: "b", 1: "a", 2: "c", length: 2}
+      console.log(o === o2);  //  true
+      
+      let o3 = {
+        0: 'a',
+        1: 'b',
+        2: 'c',
+        length: 3
+      }
+      let o4 = Array.prototype.reverse.call(o3);
+      console.log(o3);  //  Object {0: "c", 1: "b", 2: "a", length: 3}
+      console.log(o4);  //  Object {0: "c", 1: "b", 2: "a", length: 3}
+      console.log(o3 === o4); //  true
+
+      //  如果 length 属性小于2 或者 length 属性不为数值，那么原类数组对象将没有变化。即使 length 属性不存在，该对象也不会去创建 length 属性。特别的是，当 length 属性较大时，类数组对象的『索引』会尽可能的向 length 看齐。如下:
+
+      let o5 = {
+        0: 'a',
+        1: 'b',
+        2: 'c',
+        length: 100
+      }
+      let o6 = Array.prototype.reverse.call(o5);
+      console.log(o5);  //  Object {97: "c", 98: "b", 99: "a", length: 100}
+      console.log(o6);  //  Object {97: "c", 98: "b", 99: "a", length: 100}
+      console.log(o5 === o6); //  true
+    })()
+    console.groupEnd();
+
+    console.group('8、改变自身的方法');
+    /*
+      8.4、shift()方法删除数组的第一个元素，并返回这个元素。如果是栈的话，这个过程就是栈底弹出。
+    */
+    (function() {
+      let array = [1, 2, 3, 4, 5];
+      let item = array.shift();
+      console.log(array);   //  [2, 3, 4, 5];
+      console.log(item);    //  1
+
+      //  同样受益于鸭式辨型，对于类数组对象，shift()仍然能够处理。如下：
+      let o = {
+        0: 'a',
+        1: 'b',
+        2: 'c',
+        length: 3
+      }
+      let item1 = Array.prototype.shift.call(o);
+      console.log(o);   //  Object {0: "b", 1: "c", length: 2}
+      console.log(item1);  //  a
+
+      //  如果类数组对象length属性不存在，将添加length属性，并初始化为0。如下：
+      let o1 = {
+        0: 'a',
+        1: 'b',
+        2: 'c'
+      }
+      let item2 = Array.prototype.shift.call(o1);
+      console.log(o1);    // => Object {0: "a", 1: "b", 2:"c" length: 0}
+      console.log(item2); //  => undefined
+    })()
+    console.groupEnd()
+
+    console.group('8、改变自身的方法');
+    /*
+      8.5、sort()方法对数组元素进行排序，并返回这个数组。sort()方法比较复杂。
+    */
+    (function() {
+      //  语法 arr.sort([comparefn])
+      //  comparefn是可选的，如果省略，数组元素将按照各自转换为字符串的Unicode(万国码)位点顺序排序，例如"Boy"将排到"apple"之前。当对数字排序的时候，25将会排到8之前，因为转换为字符串后，”25”将比”8”靠前。例如：
+      let array = ['apple', 'Boy', 'Cat', 'dog'];
+      let array2 = array.sort();
+      console.log(array);   //  ["Boy", "Cat", "apple", "dog"]
+      console.log(array2);  //  ["Boy", "Cat", "apple", "dog"]
+      console.log(array2 === array)   //  true
+
+      let numArray1 = [10, 1, 3, 20];
+      let numArray2 = numArray1.sort();
+      console.log(numArray2);   //  [1, 10, 20, 3]
+
+      /*
+        如果指明了comparefn，数组将按照调用该函数的返回值来排序。若 a 和 b 是两个将要比较的元素：
+
+        若 comparefn(a, b) < 0，那么a 将排到 b 前面；
+        若 comparefn(a, b) = 0，那么a 和 b 相对位置不变；
+        若 comparefn(a, b) > 0，那么a , b 将调换位置；
+      */
+      //  如果数组元素为数字，则排序函数comparefn格式如下所示：
+
+      function compare(a, b) {
+        return a - b;
+      }
+
+      //  如果数组元素为非ASCII字符的字符串(如包含类似 e、é、è、a、ä 或中文字符等非英文字符的字符串)，则需要使用String.localeCompare。下面这个函数将排到正确的顺序。
+
+      let arrayS1 = ['互','联','网','改','变','世','界'];
+      let arrayS2 = arrayS1.sort();
+
+      let arrayS3 = ['互','联','网','改','变','世','界'];
+      let arrayS4 = arrayS3.sort(Intl.Collator().compare);
+
+      arrayS1 = ['互','联','网','改','变','世','界'];
+      let arrayS5 = arrayS1.sort((a, b) => a.localeCompare(b));
+      console.log(arrayS2);   //  ["世", "互", "变", "改", "界", "网", "联"]
+
+      //  由ECMAScript国际化API提供的localeCompare和Intl.Collator。
+      console.log(arrayS4);   //  ["变", "改", "互", "界", "联", "世", "网"]
+      console.log(arrayS5);   //  ["变", "改", "互", "界", "联", "世", "网"]
+
+      //  同上，sort()一样受益于鸭式辨型，比如：
+      let o = {
+        0: '1',
+        1: '10',
+        2: '3',
+        3: '40',
+        4: '5',
+        5: '50',
+        6: '60',
+        length: 7
+      }
+      Array.prototype.sort.call(o, compare);
+      console.log(o); //  Object {0: "1", 1: "3", 2: "5", 3: "10", 4: "40", 5: "50", 6: "60", length: 7}
+
+      //  注意：使用sort()的鸭式辨型特性时，若类数组对象不具有length属性，它并不会进行排序，也不会为其添加length属性。
+
+      //  comparefn 如果需要对数组元素多次转换以实现排序，那么使用map()辅助排序将是个不错的选择。基本思想就是将数组中的每个元素实际比较的值取出来，排序后再将数组恢复。
+
+      //  需要被排序的数组
+      let sortArray = ['dog', 'Cat', 'Boy', 'apple'];
+
+      //  对需要排序的数字和位置的临时存储
+      let mapped = sortArray.map(function(el, i) {
+        return {index: i, value: el.toLowerCase() };
+      })
+
+      //  按照多个值排序数组
+      mapped.sort(function(a, b) {
+        return +(a.value > b.value) || +(a.value === b.value) - 1;
+      })
+
+      //  根据索引得到排序的结果
+      let result = mapped.map(function (el, i) {
+        return array[el, i];
+      });
+      console.log(result)
+    })()
+    console.groupEnd();
+
+    console.group('8、改变自身的方法');
+    /*
+      splice()方法用新元素替换旧元素的方式来修改数组。它是一个常用的方法，复杂的数组操作场景通常都会有它的身影，特别是需要维持原数组引用时，就地删除或者新增元素，splice()是最适合的。
+
+      语法： arr.splice(start,deleteCount[, item1[, item2[, …]]])
+        1、start 指定从哪一位开始修改内容。如果超过了数组长度，则从数组末尾开始添加内容；如果是负值，则其指定的索引位置等同于 length + start (length为数组的长度)，表示从数组末尾开始的第 -start 位。
+        2、deleteCount 指定要删除的元素个数，若等于0，则不删除。这种情况下，至少应该添加一位新元素，若大于start之后的元素总和，则start及之后的元素都将被删除。
+        3、itemN 指定新增的元素，如果缺省，则该方法只删除数组元素。
+        4、返回值 由原数组中被删除元素组成的数组，如果没有删除，则返回一个空数组。
+    */
+    (function() {
+      
+    })()
+    console.groupEnd();
+    
+  </script>
+</head>
+
+<body>  
+</body>
+
+</html>
