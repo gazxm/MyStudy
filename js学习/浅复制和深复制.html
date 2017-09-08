@@ -27,7 +27,7 @@
 		var c = c || {};
 		for(var i in p) {
 			if (typeof p[i] === 'object') {
-　　　	c[i] = (p[i].constructor === Array) ? [] : {};
+　　　	c[i] = (Object.prototype.toString.apply(p[i]) === '[object Array]') ? [] : {};
 　　　　deepCopy(p[i], c[i]);		// 深拷贝就是递归调用浅拷贝
 　　	} else {
 　　　　c[i] = p[i];
@@ -39,7 +39,7 @@
 	var deep = deepCopy(obj);
 
 	shadowObj.arr[1] = 5;
-	shadowObj.a = 5	
+	shadowObj.a = 5;
 	deep.arr[0] = 10;
 	deep.obj.m = 300;
 	

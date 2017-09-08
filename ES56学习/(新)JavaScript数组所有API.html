@@ -288,6 +288,7 @@
       8.4、shift()方法删除数组的第一个元素，并返回这个元素。如果是栈的话，这个过程就是栈底弹出。
     */
     (function() {
+      console.log('8.4 shift()');
       let array = [1, 2, 3, 4, 5];
       let item = array.shift();
       console.log(array);   //  [2, 3, 4, 5];
@@ -323,6 +324,7 @@
     (function() {
       //  语法 arr.sort([comparefn])
       //  comparefn是可选的，如果省略，数组元素将按照各自转换为字符串的Unicode(万国码)位点顺序排序，例如"Boy"将排到"apple"之前。当对数字排序的时候，25将会排到8之前，因为转换为字符串后，”25”将比”8”靠前。例如：
+      console.log('8.5 sort()');
       let array = ['apple', 'Boy', 'Cat', 'dog'];
       let array2 = array.sort();
       console.log(array);   //  ["Boy", "Cat", "apple", "dog"]
@@ -403,7 +405,7 @@
 
     console.group('8、改变自身的方法');
     /*
-      splice()方法用新元素替换旧元素的方式来修改数组。它是一个常用的方法，复杂的数组操作场景通常都会有它的身影，特别是需要维持原数组引用时，就地删除或者新增元素，splice()是最适合的。
+      8.6、splice()方法用新元素替换旧元素的方式来修改数组。它是一个常用的方法，复杂的数组操作场景通常都会有它的身影，特别是需要维持原数组引用时，就地删除或者新增元素，splice()是最适合的。
 
       语法： arr.splice(start,deleteCount[, item1[, item2[, …]]])
         1、start 指定从哪一位开始修改内容。如果超过了数组长度，则从数组末尾开始添加内容；如果是负值，则其指定的索引位置等同于 length + start (length为数组的长度)，表示从数组末尾开始的第 -start 位。
@@ -412,10 +414,445 @@
         4、返回值 由原数组中被删除元素组成的数组，如果没有删除，则返回一个空数组。
     */
     (function() {
+      console.log('8.6、splice()');
+      let array = ['apple', 'boy'];
+      let splices = array.splice(1, 1);
+      console.log(array);   //  ['apple']
+      console.log(splices); //  ['boy'] 从数组下标为1的元素开始删除,删除一个元素,由于itemN缺省,此时该方法只删除元素
       
+      let array2 = ['apple', 'boy'];
+      let splices2 = array2.splice(2, 1, 'cat');
+      console.log(array2);    //  ["apple", "boy", "cat"]  
+      console.log(splices2);  //  [], 可见由于start超过数组长度,此时从数组末尾开始添加元素,并且原数组不会发生删除行为
+
+      let array3 = ['apple', 'boy'];
+      let splices3 = array3.splice(-2, 1, 'cat');
+      console.log(array3);    //  ['cat', 'boy']
+      console.log(splices3);  //  ["apple"], 可见当start为负值时,是从数组末尾开始的第-start位开始删除,删除一个元素,并且从此处插入了一个元素
+
+      let array4 = ['apple', 'boy'];
+      let splices4 = array4.splice(-3, 1, 'cat');
+      console.log(array4);    //  ['cat', 'boy']
+      console.log(splices4);  //  ['apple'] 可见即使-start超出数组长度,数组默认从首位开始删除(和第三个一样)
+
+      let array5 = ['apple', 'boy'];
+      let splices5 = array5.splice(0, 3, 'cat');
+      console.log(array5);    //  ['cat']
+      console.log(splices5);  //  ['apple', 'boy'] 可见当deleteCount大于数组start之后的元素总和时,start及之后的元素都将被删除
+
+      //  同上，splice()一样受益于鸭式辨型，比如
+      let o = {
+        0: 'apple',
+        1: 'boy',
+        length: 2
+      }
+      let splices6 = Array.prototype.splice.call(o, 1, 1);
+      console.log(o);         //  Object {0: "apple", length: 1}
+      console.log(splices6);  //  ["boy"]
+      //  注意：如果类数组对象没有length属性，splice()将为该类数组对象添加length属性，并初始化为0。
+
+      //  如果需要删除数组中一个已存在的元素，可参考如下：
+      let array7 = ['a', 'b', 'c'];
+      let splices7 = array7.splice(array7.indexOf('b'), 1);
+      console.log(array7);    //  ["a", "c"]
+      console.log(splices7);  //  ["b"]
     })()
     console.groupEnd();
-    
+
+    console.group('8、改变自身的方法');
+    /*
+      unshift() 方法用于在数组开始处插入一些元素(就像是栈底插入)，并返回数组新的长度。
+    */
+    (function () {
+      console.log('8.7、unshift()');
+      let array = ['red', 'green', 'blue'];
+      let length = array.unshift('yellow');
+      console.log(array);   //  ['yellow', 'red', 'green', 'blue']
+      console.log(length);  //  4
+
+      //  如果给unshift() 方法传入一个数组呢？
+      let array2 = ['red', 'green', 'blue'];
+      let length2 = array.unshift(['yellow']);
+      console.log(array2);  //  [['yellow'], 'red', 'green', 'blue']
+      console.log(length);  //  4   可见数组也能成功插入
+
+      //  同上，unshift()一样受益于鸭式辨型，比如
+      let o = {
+        0: 'red',
+        1: 'green',
+        2: 'blue',
+        length: 3
+      }
+      let length3 = Array.prototype.unshift.call(o, 'gray');
+      console.log(o);       //  Object {0: "gray", 1: "red", 2: "green", 3: "blue", length: 4}
+      console.log(length);  //  4
+      
+      // 注意：如果类数组对象不指定length属性，则返回结果是这样的 Object {0: "gray", 1: "green", 2: "blue", length: 1}，shift()会认为数组长度为0，此时将从对象下标为0的位置开始插入，相应位置属性将被替换，此时初始化类数组对象的length属性为插入元素个数。
+      let o2 = {
+        0: 'red',
+        1: 'green',
+        2: 'blue'
+      }
+      let length4 = Array.prototype.unshift.call(o2, 'gray');
+      console.log(o2);      //  Object {0: "gray", 1: "green", 2: "blue", length: 1}
+      console.log(length4); //  1
+    })();
+    console.groupEnd();
+
+    console.group('8、改变自身的方法');
+    /*
+      copyWithin() 方法基于ECMAScript 2015（ES6）规范，用于数组内元素之间的替换，即替换元素和被替换元素均是数组内的元素。
+      语法：arr.copyWithin(target, start[, end = this.length])
+        taget 指定被替换元素的索引，start 指定替换元素起始的索引，end 可选，指的是替换元素结束位置的索引。如果start为负，则其指定的索引位置等同于length + start，length为数组的长度。end也是如此。
+    */
+    (function() {
+      console.log('8.8 copyWithin()');
+      let array = [1, 2, 3, 4, 5];      
+      let array2 = array.copyWithin(0, 3);
+      console.log(array === array2, array2);   // true [4, 5, 3, 4, 5]
+
+      array = [1, 2, 3, 4, 5];
+      console.log(array.copyWithin(0, 3, 4));  // [4, 2, 3, 4, 5]
+
+      array = [1, 2, 3, 4, 5];
+      console.log(array.copyWithin(0, -2, -1)); //  [4, 2, 3, 4, 5]   转换成copyWithin(0, 3{-2+5}, 4{-1+5})
+
+      //  同上，copyWithin()一样受益于鸭式辨型，例如：
+      let o = {
+        0: 1,
+        1: 2,
+        2: 3,
+        3: 4,
+        4: 5,
+        length: 5
+      }
+      let o2 = Array.prototype.copyWithin.call(o, 0, 3);
+      console.log(o === o2, o2);  //  true Object {0: 4, 1: 5, 2: 3, 3: 4, 4: 5, length: 5}
+    })()
+    console.groupEnd();
+
+    console.group('8、改变自身的方法');
+    /*
+      fill()方法基于ECMAScript 2015（ES6）规范，它同样用于数组元素替换，但与copyWithin()略有不同，它主要用于将数组指定区间内的元素替换为某个值。
+      语法：arr.fill(value, start[, end = this.length])
+      value 指定被替换的值，start 指定替换元素起始的索引，end 可选，指的是替换元素结束位置的索引。如果start为负，则其指定的索引位置等同于length + start，length为数组的长度。end也是如此。
+    */
+    (function() {
+      console.log('8.9、fill()');
+      let array = [1, 2, 3, 4, 5];
+      let array2 = array.fill(10, 0, 3);
+      console.log(array == array2, array2); //  true  [10, 10, 10, 4, 5]
+
+      //  同上，fill()一样受益于鸭式辨型，如下
+      let o = {
+        0: 1,
+        1: 2,
+        2: 3,
+        3: 4,
+        4: 5,
+        length: 5
+      }
+      let o2 = Array.prototype.fill.call(o, 10, 0, 2);
+      console.log(o === o2, o2);  //  true  Object {0: 10, 1: 10, 2: 3, 3: 4, 4: 5, length: 5}
+    })()
+    console.groupEnd();
+
+    console.group('9、不会改变自身的方法');
+    /*
+      9、不会改变自身的方法
+        基于ES7，不会改变自身的方法一共有9个，分别为concat()、join()、slice()、toString()、toLocateString()、indexOf()、lastIndexOf()、未标准的toSource()以及ES7新增的方法includes()。
+    */
+    (function() {
+      /*
+        9.1、concat()方法将传入的数组或者元素与原数组合并，组成一个新的数组并返回。
+      */
+      console.log('9.1、concat()');
+      let array = [1, 2, 3];
+      let array2 = array.concat(4, [5, 6], [7, 8, 9]);
+      console.log(array2);  //  [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      console.log(array);   //  [1, 2, 3]
+
+      //  若concat()方法中不传入参数，那么将基于原数组浅复制生成一个一模一样的新数组（指向新的地址空间）。
+      let array3 = [{a: 1}];
+      let array4 = array3.concat();
+      console.log(array4);                  //  [{a: 1}]
+      console.log(array4 === array3);       //  false
+      console.log(array3[0] === array4[0]); //  true  新旧数组第一个元素依旧共用一个同一个对象的引用
+    })()
+    console.groupEnd();
+
+    console.group('9、不会改变自身的方法');
+    /*
+      9.2、join()方法将数组中的所有元素连接成一个字符串。
+    */
+    (function() {
+      console.log('9.2、join()');
+      let array = ['We', 'are', 'Chinese'];
+      console.log(array.join());    //  We,are,Chinese
+      console.log(array.join('+')); //  We+are+Chinese
+      console.log(array.join(''));  //  WeareChinese
+    })()
+    console.groupEnd();
+
+    /*
+      9.3、slice()方法将数组中一部分元素浅复制存入新的数组对象，并且返回这个数组对象。
+      语法：arr.slice([start[, end]])
+      
+      参数 start 指定复制开始位置的索引，end如果有值则表示复制结束位置的索引（不包括此位置）。
+
+      如果 start 的值为负数，假如数组长度为 length，则表示从 length + start 的位置开始复制，此时参数 end 如果有值，只能是比 start 大的负数，否则将返回空数组。
+    */
+
+    //  slice()方法参数为空时，同concat()方法一样，都是浅复制生成一个新数组。
+    console.group('9、不会改变自身的方法');
+
+    (function() {
+      console.log('9.3、slice()');
+      let array = ['one', 'two', 'three', 'four', 'five'];
+      let array1 = array.slice();
+      let array2 = array.slice(2, 3);
+      console.log(array1);  //  ["one", "two", "three", "four", "five"]
+      console.log(array2);  //  ["three"]
+
+      //  浅复制 是指当对象的被复制时，只是复制了对象的引用，指向的依然是同一个对象。下面来说明slice()为什么是浅复制。
+      let array3 = [{color: 'yellow'}, 2, 3];
+      let array4 = array3.slice(0, 1);
+      console.log(array4);  //  [{color: 'yellow'}]
+
+      //  array3[0].color = 'blue';
+      //  console.log(array4);  //  [{color: 'blue'}]
+      //  由于slice()是浅复制，复制到的对象只是一个引用，改变原数组array的值，array2也随之改变。
+
+      //  同时，稍微利用下 slice() 方法第一个参数为负数时的特性，我们可以非常方便的拿到数组的最后一项元素，如下：
+      console.log([1, 2, 3, 4].slice(-1));  //  [4]
+    })()
+    console.groupEnd();
+
+    console.group('9、不会改变自身的方法');
+    /*
+      9.4、toString() 方法返回数组的字符串形式，该字符串由数组中的每个元素的 toString() 返回值经调用 join() 方法连接（由逗号隔开）组成。 
+    */
+    (function() {
+      console.log('9.4、toString()')
+      let array = ['Jan', 'Feb', 'Mar', 'Apr'];
+      let str = array.toString();
+      console.log(str); //  Jan,Feb,Mar,Apr
+
+      //  当数组直接和字符串作连接操作时，将会自动调用其toString() 方法。
+      let str1 = ['Jan', 'Feb', 'Mar', 'Apr'] + ',May';
+      console.log(str1);  //  Jan,Feb,Mar,Apr,May
+
+      //  根据ES5语义，toString() 方法是通用的，可被用于任何对象。如果对象有一个join() 方法，将会被调用，其返回值将被返回，没有则调用Object.prototype.toString()，为此，我们给o对象添加一个join()方法。如下：
+      let o = {
+        0: 'Jan',
+        1: 'Feb',
+        2: 'Mar',
+        length: 3,
+        join: function() {
+          return Array.prototype.join.call(this);
+        }
+      };
+      console.log(Array.prototype.toString.call(o));  //  Jan,Feb,Mar
+    })()
+    console.groupEnd();
+
+    console.group('9、不会改变自身的方法');
+    /*
+      9.5、toLocaleString()
+      类似toString()的变型，该字符串由数组中的每个元素的 toLocaleString() 返回值经调用 join() 方法连接（由逗号隔开）组成。
+      数组中的元素将调用各自的 toLocaleString() 方法：
+
+        Object：Object.prototype.toLocaleString()
+        Number：Number.prototype.toLocaleString()
+        Date：Date.prototype.toLocaleString()
+    */
+    (function() {
+      console.log('9.5、toLocaleString()');
+      let array = [{name: 'zz'}, 123, 'abc', new Date()];
+      let str = array.toLocaleString();
+      console.log(str);   //  [object Object],123,abc,2017/9/1 下午5:25:46
+    })()
+    console.groupEnd();
+
+    console.group('9、不会改变自身的方法');
+    /*
+      9.6、indexOf() 方法用于查找元素在数组中第一次出现时的索引，如果没有，则返回-1。
+      语法： arr.indexOf(element, fromIndex=0) element 为需要查找的元素。fromIndex 为开始查找的位置，缺省默认为0。如果超出数组长度，则返回-1。如果为负值，假设数组长度为length，则从数组的第 length + fromIndex项开始往数组末尾查找，如果length + fromIndex < 0 则整个数组都会被查找。
+    */
+    (function() {
+      console.log('9.6、indexOf()');
+      //  indexOf():使用严格相等(即使用===去匹配数组中的元素)
+      let array = ['abc', 'def', 'ghi', '123'];
+      console.log(array.indexOf('def'));      //  1
+      console.log(array.indexOf('def', -1));  //  -1  此时表示从最后一个元素往后查找,因此查找失败返回-1
+      console.log(array.indexOf('def', -4));  //  1   由于4大于数组长度,此时将查找整个数组,因此返回1
+      console.log(array.indexOf(123));        //  -1  由于是严格匹配,因此并不会匹配到字符串'123'
+
+      let o = {
+        0: 'abc',
+        1: 'def',
+        2: 'ghi',
+        length: 3
+      }
+      console.log(Array.prototype.indexOf.call(o, 'ghi', -4));  //  2
+      //  不支持ie9以下版本
+    })()
+    console.groupEnd();
+
+    console.group('9、不会改变自身的方法');
+    /*
+      lastIndexOf():方法用于查找元素在数组中最后一次出现时的索引，如果没有，则返回-1。并且它是indexOf()的逆向查找，即从数组最后一个往前查找。
+      语法： arr.lastIndexOf(element, fromIndex=length-1)
+      element 为需要查找的元素。fromIndex 为开始查找的位置，缺省默认为数组长度length - 1。如果超出数组长度，由于是逆向查找，则查找整个数组。如果为负值，则从数组的第 length + fromIndex项开始往数组开头查找，如果length + fromIndex < 0 则数组不会被查找。
+
+      同 indexOf() 一样，lastIndexOf() 也是严格匹配数组元素。
+    */
+    (function() {
+      console.log('9.7、lastIndexOf()');
+    })()
+    console.groupEnd();
+
+    console.group('9、不会改变自身的方法');
+    /*
+      includes()：方法基于ECMAScript 2016（ES7）规范，它用来判断当前数组是否包含某个指定的值，如果是，则返回 true，否则返回 false
+      语法： arr.includes(element, fromIndex=0)
+      element 为需要查找的元素。fromIndex 表示从该索引位置开始查找 element，缺省为0，它是正向查找，即从索引处往数组末尾查找。
+    */
+    (function() {
+      let array = [-0, 1, 2];
+      console.log(array.includes(+0));    //  true
+      console.log(array.includes(1));     //  true
+      console.log(array.includes(2, -4)); //  true
+      //  以上，includes()似乎忽略了 -0 与 +0 的区别，这不是问题，因为JavaScript一直以来都是不区分 -0 和 +0 的。
+
+      //  既然有了indexOf()方法，为什么又造一个includes()方法，arr.indexOf(x) > -1不就等于arr.includes(x)？看起来是的，几乎所有的时候它们都等同，唯一的区别就是includes()能够发现NaN，而indexOf()不能。
+      let array1 = [NaN];
+      console.log(array1.includes(NaN));      //  true
+      console.log(array1.indexOf(NaN) > -1);  //  false
+
+      let o = {
+        0: 'a',
+        1: 'b',
+        2: 'c',
+        length: 3
+      }
+      let bool = Array.prototype.includes.call(o, 'a');
+      console.log(bool);  //  true
+    })()
+    console.groupEnd();
+
+    console.group('10、遍历方法');
+    /*
+      基于ES6，不会改变自身的方法一共有12个，分别为forEach()、every()、some()、filter()、map()、reduce()、reduceRight() 以及ES6新增的方法entries()、find()、findIndex()、keys()、values()。
+    */
+    (function() {
+      console.log('10.1、forEach()')
+      /*
+        forEach() 方法指定数组的每项元素都执行一次传入的函数，返回值为undefined。
+        语法：arr.forEach(fn, thisArg)
+          fn 表示在数组每一项上执行的函数，接受三个参数：
+
+          value 当前正在被处理的元素的值
+          index 当前元素的数组索引
+          array 数组本身
+          thisArg 可选，用来当做fn函数内的this对象。
+
+        forEach() 将为数组中每一项执行一次 fn 函数，那些已删除，新增或者从未赋值的项将被跳过（但不包括值为 undefined 的项）。
+      */
+      let array = [1, 3, 5];
+      let obj = { name: 'cc' };
+      let sReturn = array.forEach(function(v, i, a) {
+        array[i] = v * v;
+        console.log(this.name); //   cc被打印了三次
+      }, obj);
+      console.log(array);       //  [1, 9, 25], 可见原数组改变了
+      console.log(sReturn);     //  undefined, 可见返回值为undefined
+
+      let o = {
+        0: 1,
+        1: 3,
+        2: 5,
+        length: 3
+      };
+      Array.prototype.forEach.call(o, function(v, i, obj) {
+        console.log(v, i, obj);
+        obj[i] = v * v;
+      }, o);
+      // => 1 0 Object {0: 1, 1: 3, 2: 5, length: 3}
+      // => 3 1 Object {0: 1, 1: 3, 2: 5, length: 3} 
+      // => 5 2 Object {0: 1, 1: 9, 2: 5, length: 3}
+      console.log(o); // => Object {0: 1, 1: 9, 2: 25, length: 3}
+      //  参考前面的文章 详解JS遍历 中 forEach()的讲解，我们知道，forEach()无法直接退出循环，只能使用return 来达到for循环中continue的效果，并且forEach()不能在低版本IE（6~8）中使用
+    })()
+    console.groupEnd();
+
+    console.group('10、遍历方法');
+    /*
+      every():方法使用传入的函数测试所有元素，只要其中有一个函数返回值为 false，那么该方法的结果为 false；如果全部返回 true，那么该方法的结果才为 true。因此 every() 方法存在如下规律：
+        1、若需检测数组中存在元素大于100 （即 one > 100），那么我们需要在传入的函数中构造 “false” 返回值 （即返回 item <= 100），同时整个方法结果为 false 才表示数组存在元素满足条件；（简单理解为：若是单项判断，可用 one false ===> false）
+        2、若需检测数组中是否所有元素都大于100 （即all > 100）那么我们需要在传入的函数中构造 “true” 返回值 （即返回 item > 100），同时整个方法结果为 true 才表示数组所有元素均满足条件。(简单理解为：若是全部判断，可用 all true ===> true）
+    */
+    (function() {
+      console.log('10.2、every()');
+      let array = [8, 10, 13, 18];
+      let a = array.every(function(v, i, o) {
+        console.log(v, i, o);
+        return v > 8;
+      })
+      console.log(a); //  false   因为有一个8，所以失败了
+
+      //  鸭式辨型
+      let o = {0: 10, 1: 8, 2: 25, length: 3};
+      let bool = Array.prototype.every.call(o, function(v, i, obj) {
+        return v >= 8
+      }, o)
+      console.log(bool); // true
+    })()
+    console.groupEnd();
+
+    console.group('10、遍历方法');
+    /*
+      some():方法刚好同 every() 方法相反，some() 测试数组元素时，只要有一个函数返回值为 true，则该方法返回 true，若全部返回 false，则该方法返回 false。some() 方法存在如下规律：
+      1：若需检测数组中存在元素大于100 (即 one > 100)，那么我们需要在传入的函数中构造 “true” 返回值 (即返回 item > 100)，同时整个方法结果为 true 才表示数组存在元素满足条件；（简单理解为：若是单项判断，可用 one true ===> true）
+      2: 若需检测数组中是否所有元素都大于100（即 all > 100），那么我们需要在传入的函数中构造 “false” 返回值 （即返回 item <= 100），同时整个方法结果为 false 才表示数组所有元素均满足条件。（简单理解为：若是全部判断，可用 all false ===> false）
+    */
+    (function() {
+      console.log('10.3、some()');
+      let array = [1, 3, 8, 18];
+      let a = array.every(function(v, i, o) {
+        console.log(v, i, o);
+        return v > 8;
+      })
+      console.log(a); //  true  有一个true 则为true
+
+      //  鸭式辨型和上述类似
+    })()
+    console.groupEnd();
+
+    console.group('10、遍历方法');
+    /*
+      filter(): 方法使用传入的函数测试所有元素，并返回所有通过测试的元素组成的新数组。它就好比一个过滤器，筛掉不符合条件的元素。
+    */
+    (function() {
+      console.log('10.4、filter()');
+      let array = [18, 9, 10, 35, 80];
+      let array2 = array.filter(function(v, i, obj) {
+        return v > 20;
+      })
+      console.log(array, array2); //  [18, 9, 10, 35, 80] (2) [35, 80]
+
+      //  同样受益于鸭式辨型
+    })()
+    console.groupEnd();
+
+    console.group('10、遍历方法');
+    /*
+      map():遍历数组，使用传入函数处理每个元素，并返回函数的返回值组成的新数组
+    */
+    (function() {
+
+    })()
+    console.groupEnd();
   </script>
 </head>
 
