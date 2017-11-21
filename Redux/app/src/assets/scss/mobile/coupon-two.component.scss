@@ -1,0 +1,127 @@
+@import '../common/base';
+
+.coupon {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: $bg;
+  .am-tabs-bar .am-tabs-tab{
+    color: #666;
+    font-size: 28px;
+  }
+  .am-tabs-ink-bar {
+    height: 2px;
+    background: $brand-primary;
+    width: 15%!important;
+    left: 9%;
+  }
+  .am-tabs-bar .am-tabs-tab-active {
+    color: $brand-primary;
+  }
+  .ticket {
+    margin: 30px auto 0;
+    width: 695px;
+    height: 205px;
+    position: relative;
+    &:last-child {
+      margin-bottom: 50px;
+    }
+    img {
+      width: 695px;
+      height: 205px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+      font-size: 0;
+      .left {
+        display: inline-block;
+        width: 190px;
+        height: 200px;
+        box-sizing: border-box;
+        padding-top: 35px;
+        vertical-align: top;
+        h1 {
+          color: #f26e61;
+          font-size: 32px;
+          text-align: center;
+          b {
+            font-weight: normal;
+            font-size: 64px;
+          }
+        }
+        h2 {
+          font-size: 24px;
+          color: #666;
+          text-align: center;
+        }
+      }
+      .middle {
+        width: 430px;
+        display: inline-block;
+        padding: 30px 0 0 25px;
+        box-sizing: border-box;
+        vertical-align: top;
+        h3 {
+          font-size: 28px;
+          color: #333;
+          line-height: 2em;
+        }
+        p {
+          font-size: 24px;
+          color: #999;
+          line-height: 1.4em;
+          margin-top: 5px;
+        }
+      }
+      .right {
+        font-size: 26px;
+        color: #ec7629;
+        width: 30px;
+        position: absolute;
+        right: 24px;
+        top: 30px;
+      }
+    }
+  }
+  .no-data {
+    img {
+      display: block;
+      width: 340px;
+      height: 250px;
+      margin: 150px auto 0;
+    }
+    h6 {
+      font-size: 32px;
+      color: #333;
+      text-align: center;
+      margin-top: 60px;
+    }
+  }
+}
+
+.in-use, .past {
+  .ticket {
+    .content {
+      .left {
+        h1, h2 {
+          color: #c7c7c7;
+        }
+      }
+      .middle {
+        h3, p {
+          color: #c7c7c7;
+        }
+      }
+      .right {
+        color: #c7c7c7;
+        top: 45px;
+      }
+    }
+  }
+}

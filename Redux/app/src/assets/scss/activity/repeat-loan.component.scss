@@ -1,0 +1,31 @@
+.loan {
+  width: 750px;
+  height: 1550px;
+  background: transparent url(../../img/activity/repeat-loan/loan-01.jpg) 0 0 no-repeat;
+  background-size: 750px 1427px;
+  .button {
+    width: 750px;
+    height: 123px;
+    padding-top: 12px;
+    background: #36aaff;
+    border: 8px solid #0b94f9;
+    text-align: center;
+    cursor: pointer;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    h3 {
+      font-size: 42px;
+      font-weight: bold;
+      line-height: 1.5em;
+      color: #fff;
+    }
+    h4 {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0a70bb;
+      line-height: 1em;
+    }
+  }
+}

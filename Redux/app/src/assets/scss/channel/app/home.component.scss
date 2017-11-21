@@ -1,0 +1,221 @@
+@import '../../common/base';
+
+.wrapper-channel-home{
+    background-color: #f2f2f2;
+    padding-bottom: 120px;
+    .am-slider-wrapper{
+        padding: 0 60px;
+    }
+    .am-slider-track{
+        background-color: $brand-primary;
+    }
+    .am-slider-handle{
+        border: 3px solid #e6e6e6;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        &:active{
+            background-color: #fff;
+            box-shadow: none;
+        }
+        &:after{
+            width: 14px;
+            height: 13px;
+            content: '';
+            background: url(../../../img/channel/app/common/icon-handle.png) center no-repeat;
+            background-size: contain;
+        }
+    }
+    .am-list{
+        + .am-list{
+            margin-top: 20px;
+        }
+        .am-list-content{
+            font-size: 30px;
+        }
+    }
+    .main{
+        padding-top: 20px;
+        .am-list-body{
+            padding: 45px 0 35px;
+            border-top: none;
+            &:after{
+                display: none;
+            }
+        }
+        .am-flexbox-item{
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+        .amount{
+            text-align: center;
+            .money{
+                font-size: 36px;
+            }
+            p{
+                color: #999;
+                font-size: 24px;
+            }
+        }
+        .term{
+            padding: 25px 60px 15px;
+            flex-wrap: wrap;
+            display: flex;
+            > div{
+                height: 75px;
+                flex-basis: 25%;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+            }
+            a{
+                width: 115px;
+                height: 50px;
+                color: $brand-primary;
+                border: 1Px solid $brand-primary;
+                border-radius: 10px;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                &.active{
+                    color: #fff;
+                    background-color: $brand-primary;
+                }
+            }
+        }
+        .detailed{
+            color: #666;
+            margin: 0 60px;
+            justify-content: space-between;
+            align-items: center;
+            display: flex;
+            > div{
+                align-items: center;
+                display: flex;
+            }
+            .icon-info{
+                width: 22px;
+                height: 22px;
+                background: url(../../../img/channel/app/common/icon-info.png) center no-repeat;
+                background-size: contain;
+                margin-top: 2px;
+                margin-left: 10px;
+                display: block;
+            }
+        }
+    }
+    .condition{
+        .am-list-header{
+            background-color: #fff;
+        }
+        .am-list-thumb{
+            i{
+                width: 38px;
+                height: 38px;
+                background: center no-repeat;
+                background-size: contain;
+                display: block;
+            }
+        }
+        .am-list-extra{
+            justify-content: flex-end;
+            align-items: center;
+            display: flex;
+            .status{
+                color: #999;
+                font-size: 20px;
+                border: 1Px solid #999;
+                border-radius: 4px;
+                background-color: #fff;
+                padding: 5px 10px;
+                &.active{
+                    color: $brand-primary;
+                    border-color: $brand-primary;
+                }
+                &.disabled{
+                    color: #000;
+                    border-color: #000;
+                }
+                &.processing{
+                    color: $brand-warning;
+                    border-color: $brand-warning;
+                }
+            }
+        }
+    }
+    .compensate{
+        color: $brand-warning;
+        font-size: 26px;
+        padding: 20px 0;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        &:before{
+            width: 23px;
+            height: 27px;
+            content: '';
+            background: url(../../../img/channel/app/common/icon-lightning.png) center no-repeat;
+            background-size: contain;
+            margin-right: 10px;
+            display: block;
+        }
+        .am-icon-right{
+            margin-top: 2px;
+        }
+    }
+    .onlineService{
+        color: $brand-primary;
+        font-size: 26px;
+        padding: 20px 0;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        &:before{
+            width: 28px;
+            height: 32px;
+            content: '';
+            background: url(../../../img/channel/app/common/icon-online-service.png) center no-repeat;
+            background-size: contain;
+            margin-right: 10px;
+            display: block;
+        }
+        .am-icon-right{
+            margin-top: 2px;
+        }
+    }
+    .toolbar{
+        height: 85px;
+        color: #fff;
+        font-size: 30px;
+        background-color: $brand-primary;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    .pre-credit{
+        background-color: rgba(#000, .75);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        .am-icon{
+            margin: 0 auto;
+            display: block;
+        }
+        p{
+            color: #999;
+            text-align: center;
+            margin-top: 35px;
+        }
+    }
+}

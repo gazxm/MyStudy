@@ -1,0 +1,44 @@
+.money{
+	background: url(../../img/activity/make-money/bg.jpg) 0 0 no-repeat;
+	width: 750px;
+	height: 2435px;
+	background-size: 750px  2435px;
+	position: relative;
+	.btn1, .btn2, .btn3{
+		color: #fff;
+		font-size: 26px;
+		font-weight: bold;
+		font-style: "微软雅黑";
+		position: absolute;
+	}
+	.btn1{
+		width: 212px;
+		height: 65px;
+		background-color:#e1a501;
+		right:197px;
+		top: 962px;
+		transform:rotateZ(3deg);
+		border:none;
+		box-shadow:0 7px 15px #e73939;
+	}
+	.btn2{
+		width: 212px;
+		height: 65px;
+		background-color:#c84a02;
+		right:197px;
+		top: 1599px;
+		transform:rotateZ(3deg);
+		border:none;
+		box-shadow:0 7px 15px #195ab4;
+		}
+	.btn3{
+		width: 212px;
+		height: 65px;
+		background-color:#348d3b;
+		right:197px;
+		top: 2217px;
+		transform:rotateZ(3deg);
+		border:none;
+		box-shadow:0 7px 15px #b37d0b;
+	}
+}

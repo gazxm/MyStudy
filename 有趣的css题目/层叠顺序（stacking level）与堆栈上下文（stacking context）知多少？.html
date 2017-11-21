@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>层叠顺序（stacking level）与堆栈上下文（stacking context）知多少？</title>
+</head>
+
+<style>
+  .container {
+    position:relative;
+    background:#ddd;
+    margin: 20px 0;
+  }
+  .container > div {
+    width:200px;
+    height:200px;
+  }
+  .container .float {
+    float:left;
+    background-color:deeppink;
+  }
+  .container .inline-block {
+    display:inline-block;
+    background-color:yellowgreen;
+    margin-left:-100px;
+  }
+
+  .container2 {
+    position: relative;
+    background: #ddd;
+    margin: 20px 0;
+  }
+  .container2 > div {
+    width:200px;
+    height:200px;
+    opacity: 0.9;
+  }
+  .container2 .float {
+    float:left;
+    background-color:deeppink;
+  }
+  .container2 .inline-block {
+    display:inline-block;
+    background-color:yellowgreen;
+    margin-left:-100px;
+  }
+</style>
+
+<body>
+  <!-- 可以看到无论顺序如何，始终都是display: inline-block的div叠在上方 -->
+  <div class='container'>
+    <div class='inline-block'>#divA display:inline-block</div>
+    <div class='float'>#divB float:left</div>
+  </div>
+
+  <div class='container'>
+    <div class='float'>#divB float:left</div>
+    <div class='inline-block'>#divA display:inline-block</div>
+  </div>
+
+  <!-- w3c官方说法：(见img中的图)
+        1、形成堆叠上下文环境的元素的背景与边框
+        2、拥有负 z-index 的子堆叠上下文元素 （负的越高越堆叠层级越低）
+        3、正常流式布局，非 inline-block，无 position 定位（static除外）的子元素
+        4、无 position 定位（static除外）的 float 浮动元素
+        5、正常流式布局， inline-block元素，无 position 定位（static除外）的子元素（包括 display:table 和 display:inline ）
+        6、拥有 z-index:0 的子堆叠上下文元素
+        7、拥有正 z-index: 的子堆叠上下文元素（正的越低越堆叠层级越低）
+
+        所以我们的两个div的比较是基于上面所列出来的4和5。5的stacking level更高，所以5一直在上面
+
+        注意：不过！不过！不过！重点来了，请注意，上面的比较是基于两个 div 都没有形成 堆叠上下文 这个为基础的。如果给两个 div ，增加一个 opacity:
+  -->
+
+  <!-- 可以看到float在inline-block上面 -->
+  <div class='container2'>
+    <div class='inline-block'>#divA display:inline-block</div>
+    <div class='float'>#divB float:left</div>
+  </div>
+
+  <!-- 可以看到inline-block在float上面 -->
+  <div class='container2'>
+    <div class='float'>#divB float:left</div>
+    <div class='inline-block'>#divA display:inline-block</div>
+  </div>
+
+  <!-- 这里的关键点：
+
+        会看到，inline-block 的 div 不再一定叠在 float 的 div 之上，而是和 HTML 代码中 DOM 的堆放顺序有关，后添加的 div 会 叠在先添加的 div 之上。
+
+        添加的 opacity:0.9 这个让两个 div 都生成了 stacking context（堆叠上下文） 的概念。此时，要对两者进行层叠排列，就需要 z-index ，z-index 越高的层叠层级越高。
+
+        堆叠上下文是HTML元素的三维概念，这些HTML元素在一条假想的相对于面向（电脑屏幕的）视窗或者网页的用户的 z 轴上延伸，HTML 元素依据其自身属性按照优先级顺序占用层叠上下文的空间。
+
+        那么，如何触发一个元素形成堆叠上下文：
+          1、根元素 (HTML),
+          2、z-index 值不为 “auto”的 绝对/相对定位，
+          3、一个 z-index 值不为 “auto”的 flex 项目 (flex item)，即：父元素 display: flex|inline-flex，
+          4、opacity 属性值小于 1 的元素（参考 the specification for opacity），
+          5、transform 属性值不为 “none”的元素，
+          6、mix-blend-mode 属性值不为 “normal”的元素，
+          7、filter值不为“none”的元素，
+          8、perspective值不为“none”的元素，
+          9、isolation 属性被设置为 “isolate”的元素，
+          10、position: fixed
+          11、在 will-change 中指定了任意 CSS 属性，即便你没有直接指定这些属性的值
+          12、-webkit-overflow-scrolling 属性被设置 “touch”的元素
+  -->
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>消失的边界线问题</title>
+</head>
+
+<style>
+  /* 方法1：使用伪类选择器，选择第 3n 个元素去掉边框 */
+  div {
+    width: 300px; 
+    margin: 50px auto;
+    overflow:hidden;
+    background: #eee;
+    padding:10px 0;
+  }
+
+  ul {
+    width: 300px;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    float:left;
+    width:99px;
+    line-height:30px;
+    text-align:center;
+    font-size:18px;
+    margin-bottom:10px;
+    list-style: none;
+  }
+
+  .ul-container li {
+    border-right:1px solid #999;
+  }
+
+  .ul-container li:nth-child(3n) {
+    border-right: none;
+  }
+
+  /* 方法2：当然，如果个数确定也不多，给需要去掉右边框的元素直接添加一个特定的 class 也就完事。或者，使用 table 虽然繁琐一点，不过也能实现。不过这样都不够优雅。 
+
+    这里有个小技巧，就是通过添加反向边框并且增加一个负的 margin 来实现。
+  */
+  .margin ul {
+    margin-left: -1px;
+  }
+
+  .margin li {
+    border-left:1px solid #999;
+  }
+</style>
+
+<body>
+  <!-- 方法1 -->
+  <div class="ul-container">
+    <ul>
+      <li>测试</li>
+      <li>消失</li>
+      <li>边界线</li>
+      <li>右侧</li>
+      <li>边界线</li>
+      <li>消失</li>
+      <li>测试</li>
+    </ul>
+  </div>
+
+  <!-- 方法2 -->
+  <div class='margin'>
+    <ul>
+      <li>测试</li>
+      <li>消失</li>
+      <li>边界线</li>
+      <li>右侧</li>
+      <li>边界线</li>
+      <li>消失</li>
+      <li>测试</li>
+    </ul>    
+  </div>
+</body>
+
+</html>

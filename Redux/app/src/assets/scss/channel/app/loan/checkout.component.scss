@@ -1,0 +1,120 @@
+@import '../../../common/base';
+
+.wrapper-channel-loan-checkout{
+    background-color: #f2f2f2;
+    padding: 20px 0 100px;
+    .am-list{
+        + .am-list{
+            margin-top: 20px;
+        }
+    }
+    .am-list-header{
+        color: #333;
+        font-size: 30px;
+        background-color: #fff;
+    }
+    .am-list-body,
+    .am-list-line{
+        &:after{
+            display: none !important;
+        }
+    }
+    .am-list-body{
+        padding: 15px 0;
+    }
+    .am-list-item{
+        min-height: initial;
+    }
+    .am-list-line{
+        min-height: initial;
+        .am-list-content,
+        .am-list-extra{
+            font-size: 26px;
+        }
+        .am-list-content{
+            color: #666;
+        }
+        .am-list-extra{
+            color: #999;
+        }
+    }
+    .detailed_list{
+        .am-list-extra{
+            flex-basis: initial;
+        }
+        .am-list-item:last-child{
+            .am-list-content{
+                color: #333;
+                font-size: 30px;
+            }
+            .am-list-extra{
+                color: $brand-warning;
+            }
+        }
+    }
+    .am-button{
+        border-radius: 0;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    .am-button-primary{
+        border-color: $brand-primary;
+        background-color: $brand-primary;
+    }
+    .repayment_plan{
+        .am-list-body{
+            padding: 35px;
+        }
+        table{
+            width: 100%;
+            border: 1px solid #f3f3f3;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        th,td{
+            text-align: center;
+            border: 1px solid #f3f3f3;
+            padding: 15px 0;
+        }
+        th{
+            color: $brand-primary;
+            background-color: #d8efff;
+        }
+    }
+    .agreement{
+        .am-checkbox-agree-label{
+            margin-top: -3px;
+            margin-left: 45px;
+        }
+        .am-checkbox-inner{
+            width: 32px;
+            height: 32px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            &:after{
+                width: 9px;
+                height: 18px;
+                border-color: $brand-primary;
+                top: 2px;
+                left: 10px;
+            }
+        }
+        .am-checkbox-checked{
+            .am-checkbox-inner{
+                border-color: $brand-primary;
+            }
+        }
+        a{
+            color: $brand-primary;
+            font-size: 26px;
+            display: inline-block;
+        }
+    }
+    .notice{
+        color: $brand-warning;
+        font-size: 26px;
+        padding: 20px 35px;
+    }
+}

@@ -1,0 +1,164 @@
+@import '../common/base';
+
+.wrapper-activity-imeme{
+	height: 1333px;
+	background: #ec4176 url(../../img/activity/imeme/background.png) top center no-repeat;
+	background-size: 100% auto;
+	.register{
+		width: 541px;
+		margin: 680px auto 0;
+		.am-list{
+			+ .am-button{
+				margin-top: 25px;
+				position: relative;
+				&:after{
+					width: 125px;
+					height: 31px;
+					content: '';
+					background: url(../../img/activity/imeme/text-register.png) center no-repeat;
+					background-size: contain;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transition: .3s ease-out;
+					transform: translate(-50%, -50%);
+				}
+				&.login{
+					&:after{
+						background-image: url(../../img/activity/imeme/text-next.png);
+					}
+				}
+				span{
+					color: transparent;
+				}
+			}
+		}
+		.am-list-body{
+			border-top: none;
+			background-color: transparent;
+			&:after{
+				display: none;
+			}
+		}
+		.am-list-item{
+			height: 90px;
+			border: 4px solid #000;
+			border-radius: 100px;
+			padding-right: 35px;
+			padding-left: 55px;
+			&:after{
+				display: none;
+			}
+			+ .am-list-item{
+				margin-top: 25px;
+			}
+		}
+		.am-input-control{
+			input{
+				font-size: 28px;
+				&::placeholder{
+					color: #999;
+					font-size: 28px;
+					position: relative;
+					top: -2px;
+				}
+			}
+		}
+		.am-button{
+			height: 90px;
+			line-height: 90px;
+			border: 4px solid #000;
+			border-radius: 100px;
+			background-color: #fdd35a;
+		}
+		.am-button-loading{
+			&:after{
+				opacity: 0;
+			}
+		}
+		.verify{
+			width: 350px;
+			overflow: visible;
+			.am-input-extra{
+				position: absolute;
+				top: -4px;
+				right: -195px;
+			}
+			.am-button{
+				width: 177px;
+				color: #333;
+				font-size: 24px;
+			}
+			.am-button-disabled{
+				color: #888;
+				font-size: 22px;
+				background-color: lighten(#fdd35a, 15);
+				pointer-events: none;
+			}
+		}
+		.am-icon-loading{
+			color: #000;
+		}
+	}
+}
+.wrapper-activity-imeme-instruction{
+	width: 750px;
+	background: url(../../img/activity/imeme/instruction/background.jpg) top center no-repeat;
+	background-size: 100% auto;
+	overflow: hidden;
+	padding-bottom: 10px;
+	.title{
+		width: 748px;
+		height: 725px;
+		background: url(../../img/activity/imeme/instruction/title.png) center no-repeat;
+		background-size: contain;
+		margin: 0 auto;
+	}
+	.button{
+		color: #fff;
+		font-size: 32px;
+		background-color: $brand-primary;
+		height: 90px;
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.picture{
+		background: center no-repeat;
+		background-size: contain;
+	}
+	.picture-1{
+		width: 654px;
+		height: 559px;
+		background-image: url(../../img/activity/imeme/instruction/1.png);
+		margin: 30px 0 0 35px;
+	}
+	.picture-2{
+		width: 606px;
+		height: 559px;
+		background-image: url(../../img/activity/imeme/instruction/2.png);
+		margin: -195px 0 0 110px;
+	}
+	.picture-3{
+		width: 580px;
+		height: 559px;
+		background-image: url(../../img/activity/imeme/instruction/3.png);
+		margin: 30px 0 0 50px;
+	}
+	.picture-4{
+		width: 711px;
+		height: 559px;
+		background-image: url(../../img/activity/imeme/instruction/4.png);
+		margin: -190px 0 0 25px;
+	}
+	.picture-5{
+		width: 365px;
+		height: 431px;
+		background-image: url(../../img/activity/imeme/instruction/5.png);
+		margin: 30px auto 0;
+	}
+}

@@ -1,0 +1,1000 @@
+$fontColors: (0: #24e3af, 1: #eb6100, 2: #0c69a7, 3: #d9536a);
+$iRotate: (1: 0, 2: 24, 3: 48, 4: 72, 5: 96, 6: 120, 7: 144, 8: 168, 9: 192, 10: 216, 11: 240, 12: 264, 13: 288, 14: 312, 15: 336);
+$transition: (1: 1, 2: 2, 3: 3);
+
+.powder {
+  width: 750px;
+  background: transparent url(../../img/activity/gold-powder/powder-04.jpg) 0 0 no-repeat;
+  background-size: 750px 693px;
+}
+
+.tv {
+  width: 750px;
+  height: 1041px;
+  background: transparent url(../../img/activity/gold-powder/powder-14.jpg) 0 0 no-repeat;
+  background-size: 750px 1041px;
+  position: relative;
+  padding: 1PX 0;
+  h1 {
+    font-size: 24px;
+    color: #7a03e4;
+    padding-left: 8px;
+    text-align: center;
+    line-height: 1.2em;
+    margin: 42px 0 0;
+  }
+  .pass {
+    width: 100px;
+    height: 100px;
+    background: transparent url(../../img/activity/gold-powder/powder-17.png) 0 0 no-repeat;
+    background-size: 100px 100px;
+    position: absolute;
+    cursor: pointer;
+    top: 5px; 
+    right: 15px;
+  }
+  .video-header {
+    width: 514px;
+    height: 336px;
+    margin: 47px 0 0 126px;
+    position: relative;
+    cursor: pointer;
+    background: transparent url(../../img/activity/gold-powder/powder-16.jpg) 0 0 no-repeat;
+    background-size: 514px 336px;
+    z-index: 3;
+    &:before, &:after {
+      content: '';
+      display: block;
+      position: absolute;
+    }
+    &:before {
+      content: '';
+      width: 50px;
+      height: 50px;
+      background: transparent url(../../img/activity/gold-powder/powder-18.png) 0 0 no-repeat;
+      background-size: 50px 50px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+    }
+    &:after {
+      width: 490px;
+      height: 260px;
+      background: rgba(0, 0, 0, 0.3);
+      top: 17px;
+      left: 12px;
+      z-index: 2;
+    }
+    img {
+      display: block;
+      width: 490px;
+      height: 300px;
+      margin-left: 12px;
+      padding-top: 17px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    h3 {
+      position: absolute;
+      background: rgba(0, 0, 0, .8);
+      line-height: 43px;
+      width: 490px;
+      color: #fff;
+      text-align: center;
+      font-size: 24px;
+      left: 12px;
+      bottom: 16px;
+    }
+  }
+  .up, .share {
+    display: block;
+    position: absolute;
+    color: #fff;
+    line-height: 42px;
+    padding-left: 53px;
+    padding-right: 10px;
+    font-size: 20px;
+    min-width: 40px;
+    border-radius: 25px;
+    cursor:pointer;
+    text-align: center;
+    transition: all 0.15s linear;
+    z-index: 2;
+  }
+  .up {
+    background: #ff7360 url(../../img/activity/gold-powder/powder-13.png) 33px 45% no-repeat;
+    background-size: 17px 17px;
+    top: 195px;
+    left: 610px;
+  }
+  .share {
+    background: #0196c3 url(../../img/activity/gold-powder/powder-15.png) 33px 45% no-repeat;
+    background-size: 17px 17px;
+    top: 250px;
+    left: 610px;
+  }
+  .gray {
+    background-color: #c9c9c9;
+  }
+  .video-content {
+    height: 390px;
+    margin-top: 18px;
+    padding-left: 107px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    .video-small {
+      display: inline-block;
+      margin-left: 20px;
+      margin-top: 17px;
+      width: 250px;
+      height: 168px;
+      border-radius: 5px;
+      position: relative;
+      cursor: pointer;
+      vertical-align: bottom;
+      overflow: hidden;
+      &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+      }
+      &:before {
+        width: 50px;
+        height: 50px;
+        background: transparent url(../../img/activity/gold-powder/powder-18.png) 0 0 no-repeat;
+        background-size: 50px 50px;
+        top: 42%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+      }
+      &:after {
+        width: 250px;
+        height: 135px;
+        background: rgba(0, 0, 0, .3);
+        top: 0;
+        left: 0;
+        z-index: 2;
+      }
+      img {
+        width: 250px;
+        height: 135px;
+        vertical-align: bottom;
+      }
+      h3 {
+        width: 250px;
+        line-height: 33px;
+        font-size: 24px;
+        color: #fff;
+        text-align: center;
+        background: #81d4f9;
+      }
+    }
+  }
+  .upload {
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    width: 335px;
+    line-height: 64px;
+    margin: 20px 0 0 220px;
+    text-align: center;
+    border-radius: 40px;
+  }
+}
+
+.choose {
+  width: 750px;
+  height: 1131px;
+  background: transparent url(../../img/activity/gold-powder/powder-09.jpg) 0 0 no-repeat;
+  background-size: 750px 1131px;
+  position: relative;
+  padding: 1PX 0;
+  .hui {
+    display: block;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 10px; 
+    right: 15px;
+    cursor: pointer;
+    background: transparent url(../../img/activity/gold-powder/powder-10.png) 0 0 no-repeat;
+    background-size: 120px 120px;
+  }
+  h1 {
+    font-size: 24px;
+    color: #fff;
+    line-height: 1.2em;
+    text-align: center;
+    margin: 42px 0 0;
+  }
+  h4 {
+    font-size: 28px;
+    text-align: center;
+    color: #5f02c3;
+    margin-top: 88px;
+  }
+  .shop-content {
+    width: 590px;
+    height: 710px;
+    margin: 0 auto;
+    padding: 0 20px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    .shop {
+      display: inline-block;
+      width: 240px;
+      margin: 25px 0 5px 25px;
+      img {
+        width: 240px;
+        height: 173px;
+        vertical-align: bottom;
+        cursor: pointer;
+      }
+      h2 {
+        font-size: 24px;
+        color: #fff;
+        background: #191919;
+        line-height: 40px;
+        text-align: center;
+      }
+      h3 {
+        font-size: 24px;
+        line-height: 60px;
+        padding-left: 27px;
+        color: #fd9f13;
+        background: transparent url(../../img/activity/gold-powder/powder-11.png) 0 50% no-repeat;
+        background-size: 22px 22px;
+        white-space: nowrap;
+        box-sizing: border-box;
+        b {
+          display: inline-block;
+          font-weight: normal;
+          padding-left: 8px;
+          color: #aaa;
+          position: relative;
+          &:after {
+            content: '';
+            display: block;
+            width: 73%;
+            height: 3px;
+            background: #aaa;
+            position: absolute;
+            top: 50%;
+            left: 18%;
+          }
+        }
+      }
+      a {
+        display: block;
+        width: 230px;
+        background: #7e1fe3;
+        line-height: 40px;
+        height: 40px;
+        border-radius: 30px;
+        border-bottom: 5px solid #5f02c3;
+        text-align: center;
+        color: #fff;
+        font-size: 24px;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+      .gray {
+        background: gray;
+        border-color: gray;
+      }
+    }
+  }
+}
+
+.shop-view {
+  width: 750px;
+  position: relative;
+  background: #f0eeee;
+  .head {
+    width: 750px;
+    height: 400px;
+  }
+  .hui {
+    display: block;
+    width: 120px;
+    height: 120px;
+    position: fixed;
+    top: 390px; 
+    right: 15px;
+    cursor: pointer;
+    background: transparent url(../../img/activity/gold-powder/powder-10.png) 0 0 no-repeat;
+    background-size: 120px 120px;
+  }
+  h2 {
+    width: 750px;
+    line-height: 60px;
+    color: #c9c9c9;
+    text-align: center;
+  }
+  .button {
+    width: 750px;
+    height: 90px;
+    position: fixed;
+    background: #fb3083;
+    cursor: pointer;
+    left: 0;
+    bottom: 0;
+    padding-top: 16px;
+    box-sizing: border-box;
+    h3 {
+      font-size: 28px;
+      color: #fff;
+      text-align: center;
+    }
+    h4 {
+      font-size: 24px;
+      color: #fff799;
+      text-align: center;
+      margin-top: 5px;
+    }
+  }
+  .gray {
+    background: gray;
+    h5 {
+      font-size: 28px;
+      line-height: 64px;
+      color: #fff;
+      text-align: center;
+    }
+  }
+  .content, .rule, .details {
+    width: 750px;
+    background: #fff;
+    box-sizing: border-box;
+  }
+  .content {
+    padding: 20px 35px;
+    h1 {
+      font-size: 30px;
+      line-height: 42px;
+      color: #000;
+    }
+    .list {
+      font-size: 26px;
+      height: 60px;
+      line-height: 60px;
+      color: #c9c9c9;
+      &:nth-child(2) {
+        margin-top: 20px;
+      }
+      .gold {
+        color: #999;
+        background: transparent url(../../img/activity/gold-powder/shop-02.jpg) 0 50% no-repeat;
+        background-size: 35px 35px;
+        padding-left: 40px;
+        b {
+          display: inline-block;
+          margin: 0 5px 0 0;
+          color: #fd9f13;
+          font-weight: normal;
+        }
+        span {
+          display: inline-block;
+          position: relative;
+          &:after {
+            content: '';
+            background: #999;
+            width: 84%;
+            height: 3px;
+            top: 50%;
+            left: 8%;
+            position: absolute;
+          }
+        }
+      }
+      .left {
+        float: left;
+      }
+      .right {
+        float: right;
+      }
+      .show {
+        color: #c9c9c9;
+      }
+    }
+  }
+  .rule {
+    padding: 20px 35px;
+    p {
+      font-size: 24px;
+      line-height: 48px;
+      color: #666;
+      text-align: justify;
+    }
+    .red {
+      color: #fb3083;
+    }
+  }
+  .details {
+    margin-bottom: 140px;
+    padding: 20px 35px;
+    h3 {
+      font-size: 28px;
+      color: #333;
+      line-height: 42px;
+      margin-bottom: 10px;
+    }
+    .param {
+      padding-left: 25px;
+      p {
+        font-size: 24px;
+        color: #666;
+        line-height: 42px;
+      }
+    }
+    img {
+      padding-left: 25px;
+      width: 630px;
+    }
+  }
+}
+
+.ihelp {
+  width: 750px;
+  height: 941px;
+  background: transparent url(../../img/activity/gold-powder/powder-07.jpg) 0 0 no-repeat;
+  background-size: 750px 941px;
+  position: relative;
+  padding: 1PX 0;
+  .rule {
+    display: block;
+    width: 90px;
+    height: 95px;
+    position: absolute;
+    top: 5px; 
+    right: 15px;
+    cursor: pointer;
+    background: transparent url(../../img/activity/gold-powder/powder-06.png) 0 0 no-repeat;
+    background-size: 90px 95px;
+  }
+  h1 {
+    font-size: 24px;
+    color: #fff;
+    line-height: 1.2em;
+    text-align: center;
+    margin: 42px 0 0 5px;
+  }
+  .pool {
+    width: 565px;
+    height: 533px;
+    margin: 82px 0 0 97px;
+    padding: 1PX 25px;
+    box-sizing: border-box;
+    h3 {
+      text-align: center;
+      font-size: 28px;
+      line-height: 42px;
+      color: #fff;
+      margin-bottom: 14px;
+      .span {
+        display: inline-block;
+        position: relative;
+        &:before, &:after {
+          content: '';
+          width: 18px;
+          height: 15px;
+          background: transparent url(../../img/activity/gold-powder/powder-12.png) 0 0 no-repeat;
+          background-size: 18px 15px;
+          position: absolute;
+          top: 50%;
+        }
+        &:before {
+          left: 0;
+          transform: translate(-140%, -50%);
+        }
+        &:after {
+          right: 0;
+          transform: translate(140%, -50%);
+        }
+      }
+    }
+    .list {
+      position: relative;
+    }
+    p {
+      font-size: 24px;
+      line-height: 42px;
+      margin: 20px 0;
+      padding-left: 30px;
+      width: 410px;
+      text-align: justify;
+      word-wrap: break-word;
+    }
+    span {
+      display: none;
+      color: #fff;
+      font-size: 22px;
+      width: 56px;
+      line-height: 1.2em;
+      background: #fb3083;
+      border-radius: 10px;
+      text-align: center;
+      position: absolute;
+      cursor: pointer;
+      right: 30px;
+      bottom: 2px;
+    }
+    .hidden {
+      p {
+        overflow : hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+      span {
+        display: block;
+      }
+    }
+    .open {
+      span {
+        display: block;
+      }
+    }
+    .color-0 {
+      color: #d9536a;
+      background: transparent url(../../img/activity/gold-powder/powder-03.png) 0 13px no-repeat;
+      background-size: 21px 18px; 
+    }
+    .color-1 {
+      color: #eb6100;
+      background: transparent url(../../img/activity/gold-powder/powder-01.png) 0 13px no-repeat;
+      background-size: 21px 18px; 
+    }
+    .color-2 {
+      color: #437cb0;
+      background: transparent url(../../img/activity/gold-powder/powder-02.png) 0 13px no-repeat;
+      background-size: 21px 18px; 
+    }
+    .am-list {
+      position: relative!important;
+      height: 465px;
+      padding-top: 1PX;
+      .am-list-body {
+        border-top: none;
+        background: transparent;
+        &:after {
+          content: none;
+        }
+      }
+    }
+  }
+  .speak, .my {
+    display: inline-block;
+    margin-top: 90px;
+    width: 242px;
+    line-height: 62px;
+    height: 72px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 25px;
+    color: #fff;
+  }
+  .speak {
+    margin-left: 126px;
+  }
+  .my {
+    margin-left: 27px;
+  }
+}
+
+.word {
+  width: 750px;
+  height: 641px;
+  background: transparent url(../../img/activity/gold-powder/powder-05.jpg) 0 0 no-repeat;
+  background-size: 750px 641px;
+  padding: 1PX 0;
+  position: relative;
+  h1 {
+    font-size: 24px;
+    color: #7a03e4;
+    line-height: 1.2em;
+    text-align: center;
+    margin: 38px 0 0 5px;
+  }
+  .barrage-content {
+    width: 483px;
+    height: 305px;
+    position: relative;
+    overflow: hidden;
+    margin: 68px 0 0 140px;
+    div {
+      font-size: 24px;
+      line-height: 46px;
+      position: absolute;
+      white-space: nowrap;
+      left: 750px;
+    }
+    .transition {
+      transition: left 5s linear;
+    }
+    @each $colorName, $color in $fontColors {
+      .color-#{$colorName} {
+        color: $color;
+        background: transparent url(../../img/activity/gold-powder/powder-0#{$colorName}.png) 10px 50% no-repeat;
+        background-size: 21px 18px;
+        padding-left: 40px;
+      }
+    }
+  }
+  .speak {
+    display: block;
+    width: 340px;
+    height: 70px;
+    line-height: 65px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    margin: 52px auto 0;
+  }
+}
+
+.popup {
+  .content {
+    width: 570px;
+    height: 570px;
+    background: #fb3083;
+    box-shadow: -5px -5px 5px #a41f56;
+    border-radius: 50%;
+    padding: 0;
+    box-sizing: border-box;
+    .close {
+      width: 28px;
+      height: 28px;
+      right: 35px;
+      &:before, &:after {
+        width: 30px;
+        height: 5px;
+        background: #fff;
+      }
+    }
+    .text {
+      width: 505px;
+      height: 505px;
+      margin: 33.5px auto 0;
+      background: #fff;
+      border-radius: 50%;
+      padding: 80px 0 0;
+      position: relative;
+      box-shadow: 0 0 10px 5px #aa1652, inset 0 0 10px 5px #dfb0c3;
+      box-sizing: border-box;
+      h3 {
+        font-size: 42px;
+        letter-spacing: 2px;
+        color: #fb3083;
+        text-align: center;
+        margin-top: 10px;
+      }
+      h4 {
+        text-align: center;
+        font-size: 24px;
+        color: #666;
+        margin-top: 10px;
+        b {
+          font-weight: normal;
+          color: #fb3083;
+          text-decoration: underline;
+        }
+      }
+      p {
+        font-size: 0;
+        line-height: 130px;
+        text-align: center;
+        margin-top: 25px;
+        height: 150px;
+        color: #fb3083;
+        span {
+          display: inline-block;
+          font-size: 28px;
+          line-height: 42px;
+          vertical-align: middle;
+        }
+      }
+      .p-wish {
+        width: 450px;
+        word-wrap: break-word;
+        margin: 70px auto 0;
+        font-size: 28px;
+        line-height: 42px;
+        overflow-y: scroll;
+      }
+      .wish {
+        width: 160px;
+        height: 160px;
+        position: absolute;
+        background: transparent url(../../img/activity/gold-powder/powder-08.png) 0 0 no-repeat;
+        background-size: 160px 160px;
+        right: 75px;
+        bottom: 60px;
+      }
+      textarea {
+        display: block;
+        width: 349px;
+        height: 174px;
+        padding: 20px;
+        margin: 30px auto 0;
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+        resize: none;
+        color: #c9c9c9;
+        box-sizing: border-box;
+      }
+      .click {
+        font-size: 30px;
+        font-weight: bold;
+        width: 287px;
+        height: 56px;
+        line-height: 60px;
+        background: #fb3083;
+        border-radius: 15px;
+        border-bottom: 5px solid #ac215a;
+        margin-top: 10px;
+      }
+      .one-click, .two-click {
+        display: inline-block;
+        font-size: 30px;
+        font-weight: bold;
+        width: 180px;
+        height: 56px;
+        line-height: 60px;
+        background: #fb3083;
+        border-radius: 15px;
+        border-bottom: 5px solid #ac215a;
+        margin: 0 0 0 60px;
+      }
+      .two-click {
+        margin-left: 30px;
+      }
+      i {
+        display: block;
+        position: absolute;
+        height: 14px;
+        width: 14px;
+        top: -26px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fde73c;
+        box-shadow: 0 0 5px #fcb051;
+        transform-origin: 5px 279px;
+        border-radius: 50%;
+        @each $iNum, $rotate in $iRotate {
+          &:nth-child(#{$iNum}) {
+            transform: translateX(-50%) rotate(#{$rotate}deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+.popup-rule {
+  .content {
+    padding: 0 24px 40px;
+    width: 655px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    .close {
+      width: 28px;
+      height: 28px;
+      top: 20px;
+      right: 20px;
+      &:before, &:after {
+        width: 30px;
+        height: 4px;
+        color: #666;
+      }
+    }
+    h3 {
+      font-size: 42px;
+      line-height: 100px;
+      color: #fb3083;
+      text-align: center;
+    }
+    .rule-content {
+      height: 600px;
+      overflow-y: scroll;
+    }
+    h4, p {
+      font-size: 26px;
+      line-height: 42px;
+      margin-top: 30px;
+      color: #666;
+    }
+    p {
+      font-size: 26px;
+      line-height: 42px;
+    }
+    .pass {
+      height: 570px;
+      padding: 0 30px;
+      overflow-y: scroll;
+      h6 {
+        font-size: 28px;
+        color: #333;
+        line-height: 1.5em;
+        margin: 20px 0;
+        a {
+          font-size: 28px;
+          display: inline-block;
+          color: #333;
+          margin: 0 0 0 10px;
+          width: 410px;
+          vertical-align: top;
+          line-height: 1.5em;
+          text-align: left;
+          text-decoration: underline;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.popup-receving {
+  .content {
+    width: 550px;
+    padding: 50px 55px 65px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    .close {
+      width: 25px;
+      height: 25px;
+      top: 25px;
+      right: 25px;
+      &:before, &:after {
+        width: 30px;
+        background: #666;
+        height: 5px;
+      }
+    }
+    h3 {
+      font-size: 38px;
+      color: #fb3083;
+      line-height: 1.5em;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .name, .phone, .address {
+      margin-top: 40px;
+      line-height: 55px;
+      span {
+        display: inline-block;
+        width: 120px;
+        font-size: 28px;
+        color: #666;
+      }
+      input {
+        width: 260px;
+        padding-left: 25px;
+        border: 1PX solid #c9c9c9;
+        line-height: 45px;
+        font-size: 26px;
+        border-radius: 5px;
+        color: #666;
+        vertical-align: middle;
+        margin-left: 25px;
+      }
+      ::-webkit-input-placeholder {
+        color: #c9c9c9;
+      }
+    }
+    .click {
+      font-size: 28px;
+      width: 260px;
+      background: #fb3083;
+      border-bottom: 7px solid #ac215a;
+      border-radius: 15px;
+      line-height: 57px;
+      margin-top: 60px;
+    }
+    h5 {
+      color: #666;
+      font-size: 24px;
+      line-height: 42px;
+      margin-top: 15px;
+      text-align: center;
+      b {
+        font-weight: normal;
+        color: #fb3083;
+      }
+    }
+  }
+}
+
+.popup-video {
+  .content {
+    padding: 0;
+    background: transparent;
+    .close {
+      width: 30px;
+      height: 30px;
+      top: -40px;
+      right: 20px;
+      &:before, &:after {
+        background: #fff;
+        height: 5px;
+        width: 25px;
+        top: 50%;
+      }
+      &:before {
+        transform: translateY(-50%) rotate(45deg);
+      }
+      &:after {
+        transform: translateY(-50%) rotate(-45deg);
+      }
+    }
+    video {
+      display: block;
+      width: 590px;
+      height: 350px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.am-tabs {
+  margin-top: 522px;
+  .am-tabs-bar {
+    width: 650px;
+    height: 170px;
+    margin-left: 65px;
+    .am-tabs-tab {
+      height: 130px;
+      background: transparent;
+    }
+    .am-tabs-ink-bar {
+      display: none!important;
+      background-color: transparent;
+    }
+  }
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.clearfix {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+.transition {
+  width: 750px;
+  height: 1334px;
+  padding: 1PX 0;
+  img {
+    display: block;
+    width: 280px;
+    height: 280px;
+    margin: 580px auto 0;
+  }
+  a {
+    display: block;
+    width: 335px;
+    height: 70px;
+    margin: 240px auto 0;
+    cursor: pointer;
+  }
+}
+
+@each $i, $t in $transition {
+  .transition-#{$i} {
+    background: transparent url(../../img/activity/gold-powder/transition-0#{$t}.jpg) 0 0 no-repeat;
+    background-size: 750px 1334px;
+  }
+}

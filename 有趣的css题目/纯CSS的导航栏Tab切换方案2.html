@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>纯CSS的导航栏Tab切换方案2</title>
+</head>
+
+<style>
+  /* 方法2：<input type="radio"> && <label for=""> 
+      方法1通过添加 <a> 标签添加页面锚点的方式接收点击事件。
+      这里还有一种方式能够接收到点击事件，就是拥有 checked 属性的表单元素， <input type="radio"> 或者<input type="checkbox"> 。
+
+      同样用到了兄弟选择符 ~
+  */
+  .container {
+    position: relative;
+    width: 400px;
+    margin: 50px auto;
+  }
+
+  input {
+    display: none;
+  }
+
+  .nav {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    width: 200px;
+    float: left;
+    text-align: center;
+    background: #ddd;
+    list-style: none;
+  }
+
+  li label {
+    display: block;
+    width: 200px;
+    line-height: 36px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .content {
+    position: relative;
+    overflow: hidden;
+    width: 400px;
+    height: 100px;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+
+  .content1,
+  .content2 {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav1:checked ~ .nav li  {
+    background: #ddd;
+    color: #000;
+  }
+
+  .nav1:checked ~ .nav li:first-child {
+    background: #ff7300;
+    color: #fff;
+  }
+
+  .nav2:checked ~ .nav li {
+    background: #ddd;
+    color: #000;
+  }
+
+  .nav2:checked ~ .nav li:last-child {
+    background: #ff7300;
+    color: #fff;
+  }
+
+  .nav1:checked ~ .content > div {
+    display: none;
+  }
+
+  .nav1:checked ~ .content > div:first-child {
+    display: block;
+  }
+
+  .nav2:checked ~ .content > div {
+    display: none;
+  }
+
+  .nav2:checked ~ .content > div:last-child {
+    display: block;
+  }
+
+  .active {
+    background: #ff7300;
+    color: #fff;
+  }
+
+  .default {
+    display: block;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <input class="nav1" id="li1" type="radio" name="nav">
+    <input class="nav2" id="li2" type="radio" name="nav">
+    <ul class='nav'>
+      <li class='active'><label for="li1">列表1</label></li>
+      <li><label for="li2">列表2</label></li>
+    </ul>
+    <div class="content">
+      <div class="content1 default">列表1内容: 123456</div>
+      <div class="content2">列表2内容: abcdefgkijkl</div>
+    </div>
+  </div>
+</body>
+
+</html>

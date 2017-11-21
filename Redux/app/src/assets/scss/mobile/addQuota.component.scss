@@ -1,0 +1,56 @@
+.add-quota {
+  position: relative;
+  .header {
+    background: #deeeff;
+    padding: 38px 30px 0;
+    width: 750px;
+    height: 840px;
+    box-sizing: border-box;
+    h3 {
+      font-size: 40px;
+      color: #333;
+      line-height: 60px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    p {
+      font-size: 30px;
+      line-height: 48px;
+      b {
+        font-weight: normal;
+        color: #4bb6fa;
+      }
+    }
+    .margin-top {
+      margin-top: 50px;
+    }
+  }
+  i {
+    display: block;
+  }
+  .wave {
+    width: 750px;
+    height: 524px;
+    background: transparent url(../../img/mobile/misc/wechat/1/wave.png) 0 0 no-repeat;
+    background-size: 750px 524px;
+    margin-top: -40px;
+  }
+  .code {
+    position: absolute;
+    width: 436px;
+    height: 434px;
+    background: transparent url(../../img/mobile/misc/wechat/1/qrcode.png) 0 0 no-repeat;
+    background-size: 436px 434px;
+    top: 530px;
+    left: 157px;
+  }
+  .logo {
+    position: absolute;
+    width: 158px;
+    height: 47px;
+    background: transparent url(../../img/mobile/misc/wechat/1/logo.png) 0 0 no-repeat;
+    background-size: 158px 47px;
+    top: 1020px;
+    left: 295px;
+  }
+}

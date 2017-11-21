@@ -1,0 +1,66 @@
+@import '../../common/base';
+
+.wrapper-channel-bank,
+.wrapper-channel-bank-modal{
+    background-color: #f2f2f2;
+    .am-input-label{
+        font-size: 30px;
+    }
+    .am-input-control input{
+        font-size: 28px;
+    }
+    .am-list-line{
+        .am-list-content{
+            font-size: 30px;
+        }
+        .am-list-extra{
+            font-size: 28px;
+        }
+    }
+    .am-button{
+        border-radius: 100px;
+        margin: 50px 35px;
+    }
+    .am-button-primary{
+        border-color: $brand-primary;
+        background-color: $brand-primary;
+    }
+}
+.wrapper-channel-bank-modal{
+    width: 550px !important;
+    .am-button{
+        border-radius: 100px;
+        margin: 35px;
+    }
+}
+.wrapper-channel-bank-state{
+    text-align: center;
+    .icon{
+        width: 100px;
+        height: 100px;
+        background: center no-repeat;
+        background-size: contain;
+        margin: 245px auto 0;
+    }
+    .icon-success{
+        background-image: url(../../../img/channel/app/common/icon-success.png);
+    }
+    .icon-fail{
+        background-image: url(../../../img/channel/app/common/icon-fail.png);
+    }
+    .title{
+        color: #333;
+        font-size: 30px;
+        margin-top: 95px;
+        padding: 0 45px;
+    }
+    .text{
+        color: #999;
+        font-size: 24px;
+        margin-top: 15px;
+        padding: 0 45px;
+    }
+    .am-button{
+        margin: 50px auto 0;
+    }
+}

@@ -1,0 +1,221 @@
+.agreement {
+	padding: 30px 28px;
+	background: #fff;
+	h1 {
+		font-size: 36px;
+		font-weight: bold;
+		color: #333;
+		text-align: center;
+		line-height: 2em;
+	}
+	h2 {
+		font-size: 24px;
+		text-align: right;
+		line-height: 1.8em;
+    font-weight: bold;
+	}
+  h3 {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 1.8em;
+  }
+  h4 {
+    font-size: 24px;
+    text-indent: 2em;
+    line-height: 1.8em;
+  }
+  h5 {
+    font-size: 24px;
+    margin-top: 50px;
+    line-height: 2em;
+  }
+  h6 {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 2em;
+    text-align: center;
+  }
+	p {
+		font-size: 24px;
+		text-indent: 2em;
+		line-height: 1.8em;
+		margin: 12px 0;
+    text-align: justify;
+	}
+  h3.indent {
+    text-indent: 2em;
+  }
+  h3.center {
+    text-align: center;
+  }
+  p.bold {
+    font-weight: bold;    
+  }
+  p.small {
+    font-size: 20px;
+  }
+  p.line {
+    border-top: 1PX solid #333;
+  }
+  .underline {
+    text-decoration: underline;
+  }
+  .margin {
+  	margin: 30px 0 12px;
+  }
+  .margin-top {
+    margin-top: 50px;
+  }
+  .small-top {
+    margin-top: 15px;
+  }
+  .right {
+  	text-align: right;
+  }
+  .no-indent {
+  	text-indent: 0;
+  }
+  .more-indent {
+    text-indent: 4em;
+  }
+  span.indent {
+    display: block;
+    text-indent: 7em;
+  }
+  table {
+  	width: 100%;
+  	margin-top: 20px;
+  	td, th {
+  	  border: 1PX solid #333;
+  	  height: 42px;
+  	}
+  	th {
+  		text-align: center;
+  	}
+  }
+  table.no-margin {
+    margin-top: 0;
+  }
+  .enclosure {
+  	h4 {
+  		font-size: 40px;
+  		color: #333;
+  		text-align: center;
+  		line-height: 2em;
+  	}
+  	.left {
+  		text-align: left;
+  	}
+  	p {
+  		font-size: 28px;
+  		line-height: 1.8em;
+  		text-indent: 0;
+  	}
+  	.small {
+  		font-size: 24px;
+  	}
+  }
+}
+
+.loan {
+  table {
+    tr {
+      td, th {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.platform-service {
+  table {
+    tr {
+      td, th {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.auth {
+	table {
+		tr {
+			>td {
+				&:first-child {
+					width: 40%;
+				}
+			}
+      td, th {
+        padding-left: 5px;
+      }
+		}
+	}
+}
+
+.crs {
+  .table-one {
+    margin: 30px 0;
+    tr {
+      >td {
+        text-align: center;
+        &:first-child {
+          min-width: 55px;
+        }
+      }
+    }
+  }
+  .table-two {
+    margin: 30px 0;
+    tr {
+      >td {
+        text-align: center;
+        &:first-child {
+          max-width: 100px;
+        }
+      }
+    }
+    table {
+      margin: 0;
+      border: none;
+    }
+    span.left {
+      margin-left: 24px;
+    }
+    span.more-left {
+      margin-left: 180px;
+    }
+    .td-two {
+      width: 80px;
+    }
+  }
+  h2 {
+    text-align: center;
+  }
+}
+
+.am-modal-body {
+  >div {
+    font-size: 28px;
+  }
+}
+
+.hr-loan {
+  h1.small {
+    font-size: 30px;
+    margin-top: 100px;
+  }
+}
+
+.ynxt {
+  table {
+    td {
+      padding-left: 10px;
+    }
+  }
+  table.center {
+    td {
+      text-align: center;
+      padding-left: 0;
+    }
+  }
+}

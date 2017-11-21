@@ -1,0 +1,16 @@
+@import '../../../common/base';
+.wrapper-mobile{
+    .information{
+        .am-list-item.am-list-item-middle .am-list-content{
+            min-width: 34px * 5 !important;
+        }
+        .upload{
+            .am-list-line .am-list-content{
+                min-width: 34px * 8 !important;
+            }
+        }
+        .am-list-item.am-input-item.street{
+            padding-left: 235px;
+        }
+    }
+}

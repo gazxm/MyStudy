@@ -1,0 +1,189 @@
+@import '../common/base';
+@import './layout.component';
+
+.wrapper-integral-traffic{
+	bottom: 0;
+	.phone{
+		min-height: 100px;
+		margin-top: 35px;
+		.am-input-label{
+			color: #999;
+			font-size: 24px;
+			position: absolute;
+			left: 30px;
+			bottom: 18px;
+			opacity: 0;
+			transition: .3s ease-out;
+		}
+		.am-input-control{
+			transition: .3s ease-out;
+			
+		}
+		.am-input-extra{
+			opacity: 0;
+			transition: .3s ease-out;
+		}
+		&.loading{
+			.am-input-extra{
+				opacity: 1;
+			}
+		}
+		&.active{
+			.am-input-label{
+				opacity: 1;
+			}
+			.am-input-control{
+				transform: translateY(-15px);
+				input{
+					font-size: 30px;
+					&::placeholder{
+						font-size: 30px;
+					}
+				}
+			}
+		}
+	}
+	.am-list{
+		.am-list-header{
+			text-align: center;
+		}
+		.am-list-line{
+			position: initial;
+		}
+		.am-list-content{
+			padding-top: 25px;
+			padding-bottom: 25px;
+		}
+		.am-list-thumb{
+			.icon{
+				width: 65px;
+				height: 65px;
+				color: #fff;
+				font-size: 22px;
+				text-align: center;
+				border-radius: 10px;
+				background-color: $brand-primary;
+				overflow: hidden;
+				justify-content: center;
+				align-items: center;
+				display: flex;
+				span{
+					&:after{
+						content: '全国';
+						display: block;
+					}
+				}
+			}
+		}
+		.title{
+			color: #ff9f40;
+			font-size: 30px;
+			&:before{
+			    width: 24px;
+			    height: 24px;
+			    content: '';
+			    background: url(../../img/integral/icon-money.png) center no-repeat;
+			    background-size: contain;
+			    margin-right: 8px;
+			    position: relative;
+			    display: inline-block;
+			}
+		}
+		.am-list-brief{
+			color: #999;
+			font-size: 24px;
+			margin-top: 5px;
+		}
+		.am-list-extra{
+			max-height: initial;
+		}
+		.am-button{
+			width: 120px;
+			height: 60px;
+			line-height: normal;
+			font-size: 24px;
+			color: #ff9f40;
+			border-color: #ff9f40;
+			padding :0;
+			transition: .3s ease-out;
+		}
+		.am-button-active{
+			color: #fff;
+			background-color: #ff9f40;
+		}
+		.am-button-disabled{
+			width: 140px;
+			color: #bcbcbc;
+			border-color: #c9c9c9;
+			background-color: #f2f2f2;
+		}
+	}
+	// .am-list-item{
+	// 	.title{
+	// 		&:before{
+	// 		    width: 24px;
+	// 		    height: 24px;
+	// 		    content: '';
+	// 		    background: url(../../img/integral/icon-money.png) center no-repeat;
+	// 		    background-size: contain;
+	// 		    margin-right: 5px;
+	// 		    position: relative;
+	// 		    display: inline-block;
+	// 		}
+	// 	}
+
+	// 	.am-list-extra{
+	// 		.am-button{
+	// 			width: 140px;
+	// 			height: 50px;
+	// 			line-height: normal;
+	// 			padding :0;
+	// 			border-color: #ff9f40;
+	// 			color: #ff9f40;
+	// 			font-size: 26px;
+	// 			&.disabled{
+	// 				color: #bcbcbc;
+	// 				border-color: #c9c9c9;
+	// 				background: #f2f2f2;
+	// 			}
+	// 		}
+	// 	}
+	// }
+	.empty{
+		height: 600px;
+	    color: #ddd;
+	    background: #fff;
+	    margin-top: 35px;
+	    justify-content: center;
+	    align-items: center;
+	    position:relative;
+	    display: flex;
+	    .picture{
+	    	width: 245px;
+	    	height: 245px;
+	    	content: '';
+	    	background: url(../../img/integral/rocket.png) center no-repeat;
+	    	background-size: contain;
+	    	margin: 0 auto;
+	    }
+	    .text{
+	    	line-height: 36px;
+	    	color: $brand-primary;
+	    	font-size: 24px;
+	    	text-align: center;
+	    	margin-top: 50px;
+	    }
+	}
+	dl{
+		color: #999;
+		font-size: 26px;
+		margin-top: 75px;
+		padding: 0 35px;
+		dt{
+			margin-bottom: 25px;
+		}
+		dd + dd{
+			margin-top: 12px;
+		}
+	}
+}

@@ -1,0 +1,722 @@
+$blue: #5fd0ff;
+$white: #fff;
+.clearfix {
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+}
+
+.body {
+	user-select: none;
+}
+
+@mixin btn{
+	display: block;
+	width: 420px;
+	height: 90px;
+	margin:0 auto;
+	color:$white;
+	font-size:32px;
+	line-height: 90px;
+	text-align: center;
+	background-color: rgb(17, 185, 255);
+	// box-shadow: inset 0px 10px 21px 0px rgba(160, 226, 254, 0.75);
+	border-radius: 80px;
+	border:none;
+}
+.blue-btn{
+	@include btn
+}
+.tanabata{
+	width: 750px;
+	min-height: 1334px;
+	background: #00020c url(../../img/activity/tanabata/bg2.jpg) no-repeat;
+	background-size: 750px 1334px;
+	position: relative;
+	-webkit-user-select: none;/*禁用手机浏览器的用户选择功能 */
+	-moz-user-select: none;
+	button{
+		border:none;
+	}
+	.tit{
+		width: 736px;
+		height: 309px;
+		background: url(../../img/activity/tanabata/tit.png) no-repeat;
+		background-size: 736px 309px;
+		position: absolute;
+		top:170px;
+		left:15px;
+	}
+	.tips{
+		font-size: 28px;
+		text-align: center;
+		line-height: 36px;
+		padding-top: 490px;
+		margin-bottom:20px;
+		color:$blue;
+	}
+	.finger{
+		display: block;
+		position: relative;
+		span{
+
+			display: block;
+			margin:0 auto;
+		}
+		.img1{
+			width: 318px;
+			height: 318px;
+			background: url(../../img/activity/tanabata/finger1.png) no-repeat;
+			background-size: 318px 318px;
+			margin-bottom:  37px;
+		}
+		.img2{
+			width: 318px;
+			height: 318px;
+			background: url(../../img/activity/tanabata/finger2.png) no-repeat;
+			background-size: 318px 318px;
+			margin-bottom:  37px;
+		}
+		.img3{
+			width: 654px;
+			height: 454px;
+			margin-top: 360px;
+			margin-bottom: 60px;
+			background: url(../../img/activity/tanabata/finger3.png) no-repeat;
+			background-size: 654px 454px;
+		}
+		.img4{
+			width: 654px;
+			height: 272px;
+			background: url(../../img/activity/tanabata/finger4.png) no-repeat;
+			background-size: 654px 272px;
+		}
+		.img5{
+			width: 318px;
+			height: 318px;
+			background: transparent url(../../img/activity/tanabata/finger5.png) 0 0 no-repeat;
+			background-size: 318px 318px;
+			margin-bottom: 37px;
+		}
+		.line{
+			position: absolute;
+			content: '';
+			width: 310px;
+			height: 6px;
+			left:29%;
+			top:120px;
+			background: url(../../img/activity/tanabata/move-line.png) no-repeat;
+			background-size:310px 6px;
+			animation: move-line 1s ease-in-out infinite;
+  		-webkit-animation: move-line 1s ease-in-out infinite;
+  		-moz-animation: move-line 1s ease-in-out infinite;
+		}
+	}
+
+	@keyframes move-line{
+	  0%,
+	  100%,
+	  20%,
+	  50%,
+	  80% {
+	  transition-timing-function: cubic-bezier(0.215,.61,.355,1); /*贝塞尔曲线 ： X1 Y1 X2 Y2*/
+	  transform: translate3d(0,70,0); /*设置只在Z轴上移动*/
+	  }
+	  40%,
+	  43%{
+	  transition-timing-function: cubic-bezier(0.755,0.50,0.855,0.060);
+	  transform: translate3d(0, -10px,0);
+	  }
+	  70%{
+	  transition-timing-function: cubic-bezier(0.755,0.050,0.855,0.060);
+	  transform: translate3d(0,15px,0);
+	  }
+	  90%{
+	  transform: translate3d(0,75px,0);
+	  }
+	}
+	.share-btn{
+		@include btn
+		&.none{
+			display: none;
+		}
+	}
+	.recipient{
+		.tips{
+			margin-bottom: 40px;
+		}
+		.share-btn{
+			margin-top: 90px;
+			margin-bottom: 90px;
+		}
+		.finger:after{
+			display: none;
+		}
+	}
+	.myZhishu{
+		.share-btn {
+			margin-top: 26px;
+		}
+		.finger:after{
+			display: none;
+		}
+	}
+	.show-rule{
+		font-size: 26px;
+		text-align: center;
+		padding:0 0 32px;
+		margin-top: 27px;
+		display: block;
+		color: $blue;
+		text-decoration: underline;
+	}
+	.meta{
+		font-size: 24px;
+		text-align: center;
+		line-height: 45px;
+		color: $blue;
+		b{
+			color: red;
+		}
+		&.mart{
+			margin-top: 60px;
+		}
+	}
+
+}
+.follow{
+	width: 750px;
+	height: 266px;
+	background: url(../../img/activity/tanabata/follow-bg.jpg) no-repeat;
+	background-size: 750px 1226px;
+	padding-top: 960px;
+	button{
+		@include btn
+		box-shadow: none;
+		margin-top: 20px;
+	}
+}
+.popup-guid {
+	.overlay {
+		position: fixed;
+		background: rgba(0, 0, 0, 0.6);
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 101;
+	}
+	.content {
+		width: 369px;
+		height: 304px;
+		background: url(../../img/activity/tanabata/guid-bg.png) no-repeat;
+		background-size: 369px 304px;
+		position: fixed;
+		top: 5%;
+	  left: auto;
+	  right: 5%;
+	  z-index: 102
+	}
+}
+.hide {
+	display: none;
+}
+.popup-rule .content{
+	width: 600px;
+	height: 487px;
+	background: url(../../img/activity/tanabata/rule-bg.png) no-repeat;
+	background-size: 600px 507px;
+	text-align: center;
+	padding-top: 20px;
+	h3{
+		color: #0034aa;
+		font-size: 28px;
+		margin-bottom: 48px;
+	}
+	p{
+		font-size: 26px;
+		color: #5ed0ff;
+		margin-bottom: 15px;
+		line-height: 43px;
+		&:last-child{
+			margin-bottom: 0;
+			font-size: 22px;
+			color:#6eabfc;
+		}
+	}
+	.close {
+      width: 44px;
+      height: 44px;
+      top: 18px;
+      right: 18px;
+      &:before, &:after {
+        width: 44px;
+        height: 5px;
+        background-color: #4680fb;
+      }
+    }
+}
+.popup-card .content{
+	width: 600px;
+	height: 630px;
+	background: url(../../img/activity/tanabata/card-bg.png) no-repeat;
+	background-size: 600px 640px;
+	text-align: center;
+	padding-top: 10px;
+	overflow: hidden;
+	h3{
+		font-size: 32px;
+		color:#5fd0ff;
+		margin-bottom: 40px;
+		font-weight: bold;
+		b{
+			font-size: 66px;
+			color:#e1c144;
+		}
+	}
+	ul{
+		padding-left: 24px;
+		height: 265px;
+		width: 610px;
+		overflow: hidden;
+		text-align: left;
+		li{
+			display: inline-block;
+			width: 120px;
+			height: 119px;
+			background-image: url(../../img/activity/tanabata/card-none.png);
+			margin-right:23px;
+			margin-bottom:12px;
+			&.card-0{
+				background-image: url(../../img/activity/tanabata/card-0.png);
+			}
+			&.card-1{
+				background-image: url(../../img/activity/tanabata/card-1.png);
+			}
+			&.card-2{
+				background-image: url(../../img/activity/tanabata/card-2.png);
+			}
+			&.card-3{
+				background-image: url(../../img/activity/tanabata/card-3.png);
+			}
+			&.card-4{
+				background-image: url(../../img/activity/tanabata/card-4.png);
+			}
+			&.card-5{
+				background-image: url(../../img/activity/tanabata/card-5.png);
+			}
+			&.card-6{
+				background-image: url(../../img/activity/tanabata/card-6.png);
+			}
+			&.card-7{
+				background-image: url(../../img/activity/tanabata/card-7.png);
+			}
+			&.card-weixin{
+				background-image: url(../../img/activity/tanabata/card-8.png);
+			}
+			background-size: 120px 119px;
+		}
+	}
+	button{
+		@include btn;
+		margin-top: 30px;
+		margin-bottom: 25px;
+	}
+	p{
+		font-size: 24px;
+		color: #fff;
+		line-height:32px;
+		b{
+			color: red;
+		}
+	}
+	.close{
+		display: none;
+	}
+}
+.tanabata.login {
+	min-height:890px;
+	padding-top: 470px;
+	.tit{
+		top:150px;
+	}
+	.form{
+		width: 484px;
+		min-height: 440px;
+		margin:0 auto;
+		background: rgba(3,13,66,0.6);
+		border-radius: 14px;
+		text-align: center;
+		padding:35px 28px 50px;
+		position: relative;
+		z-index: 3;
+		h3{
+			color:#15baff;
+			font-size: 32px;
+		}
+		input{
+			width: 450px;
+			height: 40px;
+			border-radius: 80px;
+			background: none;
+			padding:20px;
+			border:2px solid #0e9ae2;
+			font-size: 24px;
+			line-height: 40px;
+			color:#15baff;
+			 &::-webkit-input-placeholder{
+				color: #456cfa;
+			}
+			&.code{
+				width: 240px;
+			}
+		}
+		.special{
+		 	clear: both;
+		 	input{
+		 		float: left;
+		 	}
+		 	a{
+		 		@include btn;
+		 		width: 185px;
+		 		float: right;
+		 		font-size: 24px;
+		 	}
+		}
+	 	.reg{
+	 		@include btn;
+	 		width: 480px;
+	 		margin-top: 20px;
+	 	}
+		p{
+		 	margin-top:29px;
+		}
+		.other{
+		 	text-align: left;
+		 	color:#15baff;
+		 	input {
+				display: inline-block;
+				width: 26px;
+				height: 26px;
+				background: #fff;
+				margin: 0;
+				margin-right: 15px;
+				vertical-align: top;
+			}
+		 	&:last-child{
+		 		text-align: center;
+		 		a{
+			 		color: #fff;
+			 		text-decoration: underline;
+			 	}
+		 	}
+		}
+	}
+}
+.view-all{
+	padding-top: 500px;
+	min-height:734px;
+	.tit{
+		top:140px;
+	}
+	.list{
+		width: 690px;
+	 	max-height: 663px;
+	 	margin:0 auto;
+	 	background: rgba(3,13,66,0.6);
+	 	color: #fff;
+	 	border-radius: 14px;
+	 	overflow-y:auto;
+	}
+	p {
+		color: #fff;
+		font-size: 28px;
+		text-align: center;
+		line-height: 1.8em;
+	}
+	a {
+		@include btn;
+		margin-top: 120px;
+	}
+	table{
+		width: 100%;
+	 	td,th{
+	 		width: 33%;
+	 		height:83px;
+	 		text-align: center;
+	 		border-right: 1px solid #0d3285;
+	 		line-height: 83px;
+	 		&:last-child{
+	 			border-bottom: 0
+	 		}
+	 	}
+	 	tr,thead{
+	 		border-bottom: 1px solid #0d3285;
+	 		&:last-child{
+	 			border-bottom: 0
+	 		}
+	 	}
+	 	img{
+	 		display: inline-block;
+	 		width: 63px;
+	 		height: 63px;
+	 		border-radius: 100%;
+	 		vertical-align: middle;
+	 	}
+	 	.nodata{
+	 		color:$blue;
+	 	}
+	}
+}
+.popup-card.fri .content{
+	height: 725px;
+	background-size: 600px 735px;
+	h4{
+		font-size: 26px;
+		color: #fff;
+		line-height: 45px;
+		margin-bottom: 16px;
+		b{
+			font-size: 42px;
+			color: #ffe88f;
+		}
+		i{
+			font-size: 32px;
+			color: #ffe88f;
+			font-style: normal;
+		}
+	}
+	h4+span{
+		color: #fff;
+		font-size: 26px;
+		width: 514px;
+		border-top: 1PX solid #11b9ff;
+		display: block;
+		margin:0 auto;
+		padding:16px 0;
+		text-align: center;
+	}
+}
+.close {
+  width: 25px;
+  height: 25px;
+  top: 25px;
+  right: 25px;
+  &:before, &:after {
+    width: 30px;
+    background: #666;
+    height: 5px;
+  }
+}
+.launch{
+	position: relative;
+	z-index:2;
+}
+#stars {
+    margin: 0 auto;
+    max-width: 1600px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+.star {
+    display: block;
+    width: 1px;
+    background: transparent;
+    position: relative;
+    opacity: 0;
+    /*过渡动画*/
+    
+    animation: star-fall 3s linear infinite;
+    -webkit-animation: star-fall 3s linear infinite;
+    -moz-animation: star-fall 3s linear infinite;
+}
+.star:after {
+    content: '';
+    display: block;
+    border: 0px solid #fff;
+    border-width: 0px 90px 2px 90px;
+    border-color: transparent transparent transparent rgba(255, 255, 255, .5);
+    box-shadow: 0 0 1px 0 rgba(255, 255, 255, .1);
+    /*变形*/
+    
+    transform: rotate(-45deg) translate3d(1px, 3px, 0);
+    -webkit-transform: rotate(-45deg) translate3d(1px, 3px, 0);
+    -moz-transform: rotate(-45deg) translate3d(1px, 3px, 0);
+    transform-origin: 0% 100%;
+    -webkit-transform-origin: 0% 100%;
+    -moz-transform-origin: 0% 100%;
+}
+@keyframes star-fall {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translate3d(0, 0, 0);
+        -webkit-transform: scale(0.5) translate3d(0, 0, 0);
+        -moz-transform: scale(0.5) translate3d(0, 0, 0);
+    }
+    50% {
+        opacity: 1;
+        transform: translate3d(-200px, 200px, 0);
+        -webkit-transform: translate3d(-200px, 200px, 0);
+        -moz-transform: translate3d(-200px, 200px, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.2) translate3d(-300px, 300px, 0);
+        -webkit-transform: scale(1.2) translate3d(-300px, 300px, 0);
+        -moz-transform: scale(1.2) translate3d(-300px, 300px, 0);
+    }
+}
+
+.effect{
+	.move-flower{
+		position: absolute;
+		top:950px;
+		left:0;
+		.flower{
+			display: block;
+			width:84px;
+			height: 61px;
+			// background-image: url(../../img/activity/tanabata/flower.png);
+			background-size: 84px 61px;
+		}
+		.shine{
+			display: block;
+			position: absolute;
+			left:70px;
+			top:80px;
+			width: 89px;
+			height: 67px;
+			background-image: url(../../img/activity/tanabata/shine.png);
+			background-size: 89px 67px;
+			animation: shine-up 10s linear infinite;
+    	-webkit-animation: shine-up 10s linear infinite;
+    	-moz-animation: shine-up 10s linear infinite;
+		}
+	}
+	.dodge{
+		display: block;
+		position: absolute;
+		left:70px;
+		top:200px;
+		width: 447px;
+		height: 288px;
+		background-image: url(../../img/activity/tanabata/dodge.png);
+		background-size: 447px 288px;
+		animation: dodgeing 1s linear infinite;
+  	-webkit-animation: dodgeing 1s linear infinite;
+  	-moz-animation: dodgeing 1s linear infinite;
+  	&.dodge2{
+  		top:420px;
+  		left:70px;
+  	}
+	}
+}
+
+.popup {
+	.content {
+		width: 563px;
+		height: 520px;
+		background: transparent url(../../img/activity/tanabata/popup-error.jpg) 0 0 no-repeat;
+		background-size: 563px 520px;
+		box-sizing: border-box;
+		padding: 170px 0 0;
+		border-radius: 10px;
+		span.close {
+			width: 50px;
+			height: 50px;
+			background: #99bdeb;
+			border-radius: 50%;
+			top: 10px;
+			right: 10px;
+			&:before,&:after {
+				content: '';
+				width: 27px;
+				height: 3px;
+				background: #0054c4;
+				left: 11px;
+			}
+		}
+		p {
+			color: #fff;
+			line-height: 1.6em;
+			font-size: 28px;
+			text-align: center;
+		}
+		a {
+			background: #11b9ff;
+			width: 420px;
+			line-height: 80px;
+			font-size: 32px;
+			border-radius: 40px;
+			position: absolute;
+			bottom: 60px;
+			left: 71.5px;
+		}
+	}
+}
+
+.popup-red {
+	.content {
+		width: 750px;
+		background: transparent url(../../img/activity/tanabata/popup-red.png) 0 0 no-repeat;
+		background-size: 750px 728px;
+		&:after {
+			content: '';
+			width: 2px;
+			height: 130px;
+			display: block;
+			position: absolute;
+			bottom: -75px;
+			left: 372px;
+			background: #838383;
+		}
+		a {
+			color: #df4334;
+			background: #ffe400;
+			width: 360px;
+			line-height: 80px;
+			font-weight: bold;
+			font-size: 30px;
+			border-radius: 40px;
+			margin: 500px auto 0;
+		}
+		span.close {
+			width: 65px;
+			height: 65px;
+			top: 760px;
+			left: 335px;
+			&:before,&:after {
+				background: #838383;
+				width: 75px;
+				height: 8px;
+				left: 0;
+			}
+		}
+	}
+}
+
+@keyframes shine-up {
+    0% {
+        opacity: 1;
+        transform: scale(1) translate3d(0, 0, 0);
+    }
+    100% {
+    	top:-150px;
+      opacity: 0;
+      transform: scale(0.7) translate3d(0, 0, 0);
+    }
+}
+@keyframes dodgeing {
+    0% {
+        opacity: 1;
+    }
+    100% {
+      opacity: 0.3;
+    }
+}

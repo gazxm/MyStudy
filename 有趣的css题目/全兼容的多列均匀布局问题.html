@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>全兼容的多列均匀布局问题</title>
+</head>
+
+<style>
+  /*
+    方法1：display: flex;
+
+    CSS3 弹性盒子(Flexible Box 或 Flexbox)，是一种布局方式，当页面需要适应不同的屏幕大小以及设备类型时，它依然能确保元素拥有更恰当的排布行为。当然 flex 布局应用于移动端不错，PC 端需要全兼容的话，兼容性不够，此处略过不谈。
+  */
+  .flex {
+    display: flex;
+    width: 400px;
+    line-height: 20px;
+    margin-top: 30px;
+    justify-content: space-between;
+    align-items: center;
+    background: #ddd;
+  }
+</style>
+
+<style>
+  /*
+    方法2：借助伪元素及 text-align:justify
+  */
+  .container {
+    margin-top: 30px;
+    background: #ddd;
+    width: 400px;
+    padding: 1em 0;
+  }
+  .justify {
+    text-align: justify;
+    text-align-last:justify
+  }
+  i {
+    display: inline-block;
+    width: 24px;
+    line-height: 24px;
+    text-align: center; /* 没有效果 */
+    text-indent: 9px;
+    border-radius: 50%;
+    font-style: normal;
+    background: #333;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .justify-after {
+    text-align: justify;
+  }
+
+  .justify-after i {
+    text-indent: 0;
+    /*
+      这个时候text-align起效
+    */
+  }
+
+  .justify-after::after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 1px;
+  }
+
+  /*
+    通过给伪元素 :after 设置 inline-block 设置宽度 100% ，配合容器的 text-align: justify 就可以轻松实现多列均匀布局了。再多配合几句 hack 代码，可以实现兼容到 IE6+ ，最重要的是代码不长，很好理解。
+
+    那么为什么使用了 :after 伪元素之后就可以实现对齐了呢？
+
+    原因在于 justify 只有在存在第二行的情况下，第一行才两端对齐，所以在这里，我们需要制造一个假的第二行，而 :after 伪元素正好再适合不过。
+  */
+</style>
+
+<body>
+  <!-- 方法1： -->
+  <div class='flex'>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+  </div>
+
+  <div class='flex'>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+  </div>
+
+  <div class='flex'>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+  </div>
+
+  <div class='flex'>
+    <p>1</p>
+    <p>2</p>
+  </div>
+
+  <!-- 方法2： -->
+  <div class='container'>
+    <div class='justify'>
+      <i>1</i>
+      <i>2</i>
+      <i>3</i>
+      <i>4</i>
+      <i>5</i>
+    </div>
+  </div>
+
+  <div class='container'>
+    <div class='justify-after'>
+      <i>1</i>
+      <i>2</i>
+      <i>3</i>
+      <i>4</i>
+      <i>5</i>
+    </div>
+  </div>
+</body>
+
+</html>

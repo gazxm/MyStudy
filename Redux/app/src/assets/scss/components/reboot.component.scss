@@ -1,0 +1,57 @@
+html{
+    -ms-overflow-style: scrollbar;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(#000, 0);
+}
+body{
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+    background-color: transparent;
+}
+a{
+    &:hover,
+    &:focus{
+        text-decoration: none;
+    }
+}
+.am-modal{
+    width: 560px !important;
+}
+.am-toast .am-icon-loading{
+    margin-bottom: 0 !important;
+}
+.am-modal.am-modal-transparent.am-modal-android .am-modal-content{
+    .am-modal-body,
+    .am-modal-header .am-modal-title{
+        text-align: center;
+    }
+}
+.wrapper{
+    width: 750px;
+    font-size: 30px;
+    background: #f2f2f2 center no-repeat;
+    background-size: contain;
+    margin-left: -375px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 50%;
+    display: block;
+    opacity: 0;
+    // transition: opacity .5s ease-in-out;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    &.loaded{
+        opacity: 1;
+    }
+    *,
+    *::before,
+    *::after{
+        box-sizing: inherit;
+    }
+    a{
+        &:hover{
+            text-decoration: none !important;
+        }
+    }
+}

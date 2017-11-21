@@ -1,0 +1,396 @@
+@keyframes zz1{
+	0% {
+		transform: translate3d(0, 0, 0) rotate(0deg);
+	}
+	25% {
+		transform: translate3d(0, 0, 0) rotate(10deg);
+	}
+	50% {
+		transform: translate3d(0, 0, 0) rotate(0deg);
+	}
+	75% {
+		transform: translate3d(0, 0, 0) rotate(-10deg);
+	}
+	100% {
+		transform: translate3d(0, 0, 0) rotate(0deg);
+	}
+}
+
+@keyframes yz1{
+	0% {
+		transform: translate3d(0, 0, 0) rotate(0deg);
+	}
+	25% {
+		transform: translate3d(0, 0, 0) rotate(20deg);
+	}
+	50% {
+		transform: translate3d(0, 0, 0) rotate(0deg);
+	}
+	75% {
+		transform: translate3d(0, 0, 0) rotate(-20deg);
+	}
+	100% {
+		transform: translate3d(0, 0, 0) rotate(0deg);
+	}
+}
+.dragon{
+	background: url(../../img/activity/dragon/bg1.jpg) 0 0 no-repeat;
+	width: 750px;
+	height: 2054px;
+	background-size: 750px  2054px;
+	position: relative;
+	.head{
+		position: relative;
+		top:0;
+		height: 172px;
+		.zz1, .zz2, .zz3, .zz4{
+			display: inline-block;
+			position: absolute;
+			transform: translateY(-300%);
+			transform-origin: 50% 0;
+		}
+		.anim1 {
+			transform: translateY(0%);
+		}
+		.anim2 {
+			animation: zz1 5s linear 1;
+		}
+		.zz1{
+			width: 73px;
+			height: 161px;
+			background: url(../../img/activity/dragon/zz_01.png) 0 0 no-repeat;
+			background-size:73px 161px;
+			left:87px;
+			transition: all 1.2s ease-out;
+		}
+		.zz2{
+			width:41px;
+			height: 78px;
+			background: url(../../img/activity/dragon/zz_02.png) 0 0 no-repeat;
+			background-size:41px 78px;
+			right:116px;
+			transition: all 1.6s ease-out;
+		}
+		.zz3{
+			width:32px;
+			height: 71px;
+			background: url(../../img/activity/dragon/zz_03.png) 0 0 no-repeat;
+			background-size:32px 71px;
+			right:77px;
+			transition: all 2s ease-out;
+		}
+		.zz4{
+			width:48px;
+			height: 176px;
+			background: url(../../img/activity/dragon/zz_04.png) 0 0 no-repeat;
+			background-size:48px 176px;
+			right:36px;
+			transition: all 2.4s ease-out;
+		}
+	}
+	.content{
+			position: relative;
+			top:186;
+			height: 1042px;
+		   .yz1, .yz2, .yz3, .yz4{
+			display: inline-block;
+			position: absolute;
+			transform-origin: 50% 0;
+			
+			}
+			.anim1 {
+			transform: translateX(0%);
+		}
+			.anim2 {
+			animation: yz1 3s 1s linear infinite;
+		}
+		   .yz1{
+		   		width:27px;
+				height: 20px;
+				background: url(../../img/activity/dragon/yz_01.png) 0 0 no-repeat;
+				background-size:27px 20px;
+				left:105px;
+				top:12px;
+				// transform: translateX(-500%);
+				transition: all 1.6s ease-out;
+				// animation: yz1 2s 2s forwards;
+				}
+		   .yz2{
+		   		width:43px;
+				height: 23px;
+				background: url(../../img/activity/dragon/yz_02.png) 0 0 no-repeat;
+				background-size:43px 23px;
+				left:398px;
+				top:194px;
+				transition: all 1.6s ease-out;
+		   }
+		   .yz3{
+		   		width:40px;
+				height: 26px;
+				background: url(../../img/activity/dragon/yz_03.png) 0 0 no-repeat;
+				background-size:40px 26px;
+				left:302px;
+				top:613px;
+				transition: all 1.6s ease-out;
+		   }
+		   .yz4{
+		   		width:60px;
+				height: 33px;
+				background: url(../../img/activity/dragon/yz_04.png) 0 0 no-repeat;
+				background-size:60px 33px;
+				left:479px;
+				top:1014px;
+				transition: all 1.6s ease-out;
+		   }
+	}
+	.btn{
+		position:absolute;
+		top:1851px;
+		margin:0px 126px;
+		text-align: center;
+		.btn1{
+			width: 516px;
+			height: 86px;
+			background: url(../../img/activity/dragon/button_01.png) 0 0 no-repeat;
+			background-size:516px 86px;
+			border:none;
+			}
+		p{
+			color: #ff6161;
+			font-size: 25px;
+			margin-top: 25px;
+
+        }
+	}
+	.btn2{
+		background: url(../../img/activity/dragon/dragon_2.png) 0 0 no-repeat;
+		width: 154px;
+		height: 205px;
+		background-size:154px 205px;
+		border:none;
+		position: fixed;
+		top:220px;
+		right: 10px;
+	}
+}
+
+.popup1{
+	.content{
+		background: url(../../img/activity/dragon/rule_01.png) 0 0 no-repeat;
+	    width: 569px;
+	    height: 896px;
+	    background-size:569px 896px;
+		padding: 0;
+	   .img1{
+	 		position:absolute;
+	 		width: 154px;
+		  	height: 169px;
+			left:43px;
+	 		top:-12%;
+    	}
+       .img2{
+	 		position:absolute;
+	 		width: 125px;
+		  	height: 178px;
+	 		right:20px;
+	 		top:0;
+    	}
+    	.img3{
+    		position:absolute;
+	 		width: 18px;
+		  	height: 50px;
+	 		right:-36px;
+	 		top:0;
+    	}
+    	.img4{
+    		position:absolute;
+	 		width: 18px;
+		  	height: 50px;
+	 		left:-34px;
+	 		
+    	}
+    	h3{
+    		font-size: 30px;
+    		text-align: center;
+            margin-top: 60px;
+            margin-bottom:28px;
+    	}
+
+    	p{
+    		font-size: 22px;
+    		line-height: 30px;
+			margin:0px 30px;
+    	}
+    	.p1{
+           
+           margin-bottom: 25px;
+    	}
+    	a{
+    		width: 408px;
+    		height: 67px;
+    		display: block;
+    		border-radius:23px;
+    		background-color:#ff6161;
+    		position: absolute;
+    		bottom:5%;
+    		left: 15%;
+
+    	}
+    	span{
+    		color: #961212;
+			font-weight: bold;
+    	}
+	}
+	.close{
+		display: none;
+	}
+	a:hover {
+		text-decoration: none;
+	}	 
+}
+.popup2, .popup3, .popup4,.popup5{
+	.content{
+		background: url(../../img/activity/dragon/bj.png) 0 0 no-repeat;
+	    width: 419px;
+	    height: 389px;
+	    background-size:419px 389px;
+	    padding: 0;
+	    a{
+	    	width: 350px;
+    		height: 68px;
+    		display: block;
+    		border-radius:23px;
+    		font-size: 30px;
+    		background-color:#ff6161;
+    		position: absolute;
+    		bottom:49px;
+    		left:40px;
+    		
+	    }
+	   p{
+	    	position: absolute;
+	    	top:154px;
+	    	left:25%;
+	    	font-size: 30px;
+	    }
+	    
+	    .s2{
+	    	background: url(../../img/activity/dragon/tc_02.png) 0 0 no-repeat;
+	    	width: 125px;
+	    	height: 178px;
+	    	background-size:125px 178px;
+	    	position: absolute;
+	    	top:0px;
+	    	right: 35px;
+	    }
+	    .s3, .s4{
+	    	background: url(../../img/activity/dragon/tc_03.png) 0 0 no-repeat;
+	    	width: 18px;
+	    	height: 50px;
+	    	background-size:18px 50px;
+	    }
+	    .s3{
+	    	position: absolute;
+	    	top:-20%;
+	    	left: 12px;
+	    	transform: rotateZ(30deg)
+	    }
+	    .s4{
+	    	position: absolute;
+	    	top: 35px;
+	    	right: -50px;
+	    }
+	    .s5{
+	    	background: url(../../img/activity/dragon/dw_05.png) 0 0 no-repeat;
+	    	width: 62px;
+	    	height: 52px;
+	    	background-size:62px 52px;
+	    	position: absolute;
+	    	bottom:-20%;
+	    	left: -5px;
+	    }
+	    .s6{
+	    	background: url(../../img/activity/dragon/tc_04.png) 0 0 no-repeat;
+	    	width: 23px;
+	    	height: 16px;
+	    	background-size:23px 16px;
+	    	position: absolute;
+	    	bottom:-20%;
+	    	left: -18%;
+	    }
+	    .s7{
+	    	background: url(../../img/activity/dragon/dw_02.png) 0 0 no-repeat;
+	    	width: 29px;
+	    	height: 28px;
+	    	background-size:29px 28px;
+	    	position: absolute;
+	    	top: 20px;
+	    	left: -18%;
+	    }
+	}
+ 	.close{
+		display: none;
+	}
+	a:hover {
+		text-decoration: none;
+	}	 
+}
+.popup2{
+	.s1{
+	    	background: url(../../img/activity/dragon/tc_05.png) 0 0 no-repeat;
+	    	width: 80px;
+	    	height: 93px;
+	    	background-size:80px 93px;
+	    	position: absolute;
+	    	top:18px;
+	    	left: 34px;
+	    }
+}
+.popup3{
+	.s1{
+	    	background: url(../../img/activity/dragon/love_01.png) 0 0 no-repeat;
+	    	width: 89px;
+	    	height: 69px;
+	    	background-size:89px 69px;
+	    	position: absolute;
+	    	top:18px;
+	    	left: 34px;
+	    }
+	   
+}
+.popup4{
+	.s1{
+	    	background: url(../../img/activity/dragon/love_02.png) 0 0 no-repeat;
+	    	width: 76px;
+	    	height: 83px;
+	    	background-size:76px 83px;
+	    	position: absolute;
+	    	top:18px;
+	    	left: 34px;
+	    }
+	   
+}
+.popup5{
+	.content{
+		background: url(../../img/activity/dragon/bj.png) 0 0 no-repeat;
+	    width: 419px;
+	    height: 389px;
+	    background-size:419px 389px;
+	    padding: 0;
+	.s1{
+	    	background: url(../../img/activity/dragon/tc_05.png) 0 0 no-repeat;
+	    	width: 80px;
+	    	height: 93px;
+	    	background-size:80px 93px;
+	    	position: absolute;
+	    	top:18px;
+	    	left: 34px;
+	    }
+	   p{
+	   	 position: absolute;
+	    	top:160px;
+	    	left:16%;
+	    	font-size: 30px;
+	   }
+}
+}

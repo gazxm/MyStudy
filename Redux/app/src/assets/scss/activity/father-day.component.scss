@@ -1,0 +1,128 @@
+@keyframes fadeInOut {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+.banner1 {
+    animation:fadeInOut 3s ease-in-out 1 forwards;
+  }
+.banner2 {
+    animation:fadeInOut 5s ease-in-out 1 forwards;
+   }
+.banner3 {
+    animation:fadeInOut 7s ease-in-out 1 forwards;
+    }
+.banner4 {
+   animation:fadeInOut 9s ease-in-out 1 forwards;
+   }
+.btn {
+   animation:fadeInOut 11s ease-in-out 1 forwards;
+    }
+
+.father{
+	background: url(../../img/activity/father-day/01bg.jpg) 0 0 no-repeat;
+	width: 750px;
+	height: 2780px;
+	background-size: 750px  2780px;
+	position: relative;
+	.banner1, .banner2, .banner3, .banner4 {
+		  opacity: 0;
+	}
+	.banner1{
+		background: url(../../img/activity/father-day/one_03.png) 0 0 no-repeat;
+		width: 717px;
+		height: 475px;
+		background-size: 717px  475px;
+		margin-top:286px;
+		margin-left:18px;
+	}
+	.banner2{
+		background: url(../../img/activity/father-day/two_03.png) 0 0 no-repeat;
+		width: 688px;
+		height: 440px;
+		background-size: 688px  440px;
+		margin-top:-18px;
+		margin-left:40px;
+	}
+	.banner3{
+		background: url(../../img/activity/father-day/three_03.png) 0 0 no-repeat;
+		width: 694px;
+		height: 506px;
+		background-size: 694px  506px;
+		margin-top:-18px;
+		margin-left:30px;
+	}
+	.banner4{
+		background: url(../../img/activity/father-day/four_03.png) 0 0 no-repeat;
+		width: 694px;
+		height: 640px;
+		background-size: 694px  640px;
+		margin-top:-2px;
+		margin-left:30px;
+	}
+	.btn{
+		position: absolute;
+		bottom:515px;
+    left:95px;
+		width: 562px;
+		height: 90px;
+		background-color:#d95b40;
+		color:#fff;
+		font-size: 32px;
+		border-radius:10px;
+		border:none;
+		box-shadow:0 8px 15px #d95b40;
+		opacity: 0;
+	  }
+}
+.popup{
+	.content{
+		background: url(../../img/activity/father-day/login.png) 0 0 no-repeat;
+		width: 497px;
+		height: 439px;
+		background-size:497px 439px;
+		text-align: center;
+		padding: 0;
+		a{
+			font-size: 32px;
+			color: #fff;
+			width: 389px;
+			height: 90px;
+			line-height: 90px;
+			background: #9ec4be;
+			position: absolute;
+			bottom:50px;
+			left:55px;
+			.hd{
+			 background: url(../../img/activity/father-day/hd.png) 0 0 no-repeat;
+			 display: inline-block;
+			 width: 50px;
+			 height: 50px;
+			 background-size:50px 50px;
+			 position: absolute;
+			 top:-25px;
+			 right:-25px;
+	     }
+  	}
+ }
+	p {
+		font-size: 28px;
+		color: #151514;
+		margin-top: 170px;
+	}
+	.close:before, .close:after {
+		content: "";
+		position: absolute;
+		left: 0.00367rem;
+		top: 70%;
+		width: 0.86667rem;
+		height: 5px;
+		background: #918363; 
+	}
+	a:hover {
+		text-decoration: none;
+	}
+}

@@ -1,0 +1,134 @@
+@import '../../common/base';
+
+.wrapper-channel-operator{
+    background-color: #f2f2f2;
+    .tips{
+        line-height: 32px;
+        color: #999;
+        font-size: 26px;
+        padding: 30px 25px 0;
+        p + p{
+            margin-top: 10px;
+        }
+    }
+    .am-input-control input{
+        font-size: 28px;
+    }
+    .am-list-line{
+        .am-list-content{
+            font-size: 30px;
+        }
+        .am-list-extra{
+            font-size: 28px;
+        }
+    }
+    .am-button{
+        border-radius: 100px;
+        margin: 50px 35px;
+    }
+    .am-button-primary{
+        border-color: $brand-primary;
+        background-color: $brand-primary;
+    }
+    .am-input-extra{
+        max-height: inherit;
+    }
+    .am-checkbox-agree{
+        .am-checkbox-inner{
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: 6px;
+            background-color: #d9dbdb;
+            margin-top: -14px;
+            top: 50%;
+            &:after{
+                width: 8px;
+                height: 16px;
+                right: 8px;
+            }
+        }
+        .am-checkbox-agree-label{
+            margin-top: 0;
+            margin-left: 42px;
+            font-size: 28px;
+        }
+        .am-checkbox.am-checkbox-checked .am-checkbox-inner{
+            background-color: $brand-primary;
+            transition: .3s ease-out;
+            &:after{
+                border-color: #fff;
+                transition: .3s ease-out;
+            }
+        }
+    }
+    .status{
+        padding: 125px 0 35px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        p{
+            font-size: 28px;
+        }
+    }
+    .waiting{
+        color: #ff8003;
+        text-align: center;
+        .am-icon{
+            color: #999;
+            margin-top: 65px;
+        }
+    }
+    .skip{
+        font-size: 24px;
+        margin-top: 85px;
+        text-align: center;
+        pointer-events: none;
+        transition: .25s ease-out;
+        opacity: 0;
+        span{
+            color: #666;
+            border-bottom: 1px solid #666;
+        }
+        &.active{
+            pointer-events: all;
+            opacity: 1;
+        }
+    }
+    .success{
+        color: #64de1a;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        .icon-success{
+            width: 75px;
+            height: 75px;
+            background: url(../../../img/channel/app/operator/icon-success.png) center no-repeat;
+            background-size: contain;
+            margin-right: 35px;
+        }
+    }
+    .verify{
+        color: $brand-primary;
+        border: none;
+        font-size: 28px;
+        position: relative;
+        &.am-button-active,
+        &.am-button-disabled{
+            background-color: transparent;
+        }
+        &.am-button-disabled{
+            color: #bbb;
+        }
+        .am-icon-loading{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -20px;
+            margin-left: -20px;
+        }
+    }
+    .forget{
+        color: $brand-primary;
+    }
+}

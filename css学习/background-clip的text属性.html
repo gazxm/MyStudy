@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>background-clip的text属性</title>
+	<style type="text/css">
+		@keyframes loop {
+			0% {
+				background-position: -800px 0;
+			}
+			100% {
+				background-position: -0 0;
+			}
+		}
+
+		.ktv {
+			width: 800px;
+			line-height: 78px;
+			font-size: 32px;
+			font-weight: bold;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-color: red;
+			background-image: url(../img/artwork.jpg);
+			background-repeat: no-repeat;
+			background-position: -800px 0;
+			animation: loop 10s linear infinite;
+		}
+
+		.text {
+			font-size: 24px;
+			width: 600px;
+			height: 400px;
+			line-height: 400px;
+			background: transparent url(../img/artwork.jpg) 0 0 no-repeat;
+			background-size: cover;
+			text-transform: uppercase;
+			/* 以下两个属性配合可以实现图片填充文本 */
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="text">
+		background-clip的text属性
+	</div>
+
+	<!-- 利用镂空实现ktv字幕效果 -->
+	<!-- 方法1： -->
+	<div class="ktv">
+		一盏离愁 孤单伫立在窗口
+	</div>
+</body>
+
+</html>

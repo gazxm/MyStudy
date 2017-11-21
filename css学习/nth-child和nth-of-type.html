@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>nth-child和nth-of-type的区别</title>
+	<style type="text/css">
+		section {
+			margin-top: 30px;
+		}
+		p:nth-child(2) {
+			color: red;
+		}
+		p:nth-of-type(3) {
+			color: blue;
+		}
+		span:only-of-type {
+			color: green;
+		}
+		b:only-child {
+			color: #ddd;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 
+		p:nth-child(2) 和 p:nth-of-type(2)
+		对于：nth-child选择器，意味着选择一个元素如果：
+				1、这是一个段落元素
+				2、这是父标签的第二个孩子元素
+		对于：nth-of-type选择器，意味着选择一个元素如果：
+				1、选择父标签的第二个段落子元素
+		nth-of-type比nth-child的限制条件少一些
+	 -->
+	<section>
+		<div>我是一个普通的div标签</div>
+		<p>我是第一个p标签</p>	<!-- 红色 -->
+		<p>我是第二个p标签</p>
+		<p>我是第三个p标签</p>	<!-- 蓝色 -->
+		<span>我是一个span标签</span>	<!-- 绿色 -->
+  </section>
+
+  <section>
+  	<div>
+  		我是一个div标签
+  		<b>我是一个b标签</b>	<!-- 灰色 -->
+  	</div>
+  </section>
+
+  <section>
+  	<div>
+  		我是一个div标签
+  		<b>我是第一个b标签</b>	<!-- 没有效果 -->
+  		<b>我是第二个b标签</b>
+  	</div>
+  </section>
+</body>
+
+</html>

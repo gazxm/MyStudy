@@ -1,0 +1,428 @@
+@keyframes stepStart {
+	0% {
+		background-position: 0 0;
+	}
+  100% {
+    background-position: -1280px 0;
+  }
+}
+
+.turntable {
+	width: 750px;
+	background: #5f85ec url(../../img/activity/turntable-two/turn-two-01.jpg) 0 0 no-repeat;
+	background-size: 750px 1390px;
+	&:before {
+		content: '';
+		background: url(../../img/activity/turntable-two/turn-two-12.png);
+	}
+	.scroll-div {
+		width: 580px;
+		margin: 460px auto 0;
+		height: 42px;
+		background: transparent;
+		border-radius: 10px;
+		padding-top: 1PX;
+		position: relative;
+	}
+	.scroll-bar {
+		width: 550px;
+		height: 42px;
+		margin: 0 auto;
+		position: relative;
+		background: transparent;
+		overflow: hidden;
+		.scroll {
+			width: 550px;
+			text-align: center;
+			position: absolute;
+			padding-left: 15px;
+		}
+		li {
+			list-style: none;
+			line-height: 45px;
+			font-size: 24px;
+			color: #333;
+			b {
+				display: inline-block;
+				font-weight: bold;
+				font-size: 24px;
+				color: #ff1240;
+				margin: 0 10px;
+			}
+		}
+	}
+	.rotate {
+		height: 725px;
+		padding-top: 1PX;
+		.rotate-content {
+			width: 640px;
+			height: 700px;
+			margin: 35px 0 0 56px;
+			background: transparent url(../../img/activity/turntable-two/turn-two-11.png) 0 0 no-repeat;
+			background-size: 1280px 700px;
+			animation: stepStart .2s steps(2) both infinite alternate;
+			padding-top: 1PX;
+		}
+		ul {
+			width: 558px;
+			height: 560px;
+			margin: 42px auto 0;
+			li {
+        width: 170px;
+        height: 170px;
+        float: left;
+        position: relative;
+        margin-left: 13px;
+        margin-top: 12px;
+        span {
+        	display: block;
+        	width: 170px;
+       		height: 158px;
+        	font-size: 20px;
+        	color: #333;
+        	background: #d9e7fd;
+        	box-sizing: border-box;
+        	text-align: center;
+        	border-radius: 20px;
+        	position: relative;
+	        padding-top: 1PX;
+        	z-index: 2;
+        	i {
+        		display: block;
+        	}
+        }
+        &:after {
+        	content: '';
+        	display: block;
+        	width: 170px;
+        	height: 170px;
+        	background: #c2e5ff;
+        	border-radius: 20px;
+        	position: absolute;
+        	top: 0;
+        	left: 0;
+        	z-index: 1;
+        }
+			}
+			.reward {
+				display: inline-block;
+				width: 178px;
+				height: 186px;
+				float: left;
+				margin-top: 2px;
+				margin-left: 10px;
+				background: transparent url(../../img/activity/turntable-two/turn-two-10.png) 0 0 no-repeat;
+				background-size: 178px 186px;
+			}
+			li:nth-of-type(1), li:nth-of-type(3), li:nth-of-type(7) {
+				span {
+					i {
+						width: 120px;
+						height: 80px;
+						margin: 30px auto 10px;
+						background: transparent url(../../img/activity/turntable-two/turn-two-02.png) 0 0 no-repeat;
+				  	background-size: 120px 80px;
+					}
+				}
+			}
+			li:nth-of-type(2) {
+				span {
+					i {
+						width: 90px;
+						height: 100px;
+						margin: 10px auto 10px;
+						background: transparent url(../../img/activity/turntable-two/turn-two-03.png) 0 0 no-repeat;
+				  	background-size: 90px 100px;
+					}
+				}
+			}
+			li:nth-of-type(3) {
+				span {
+					i {
+						background: transparent url(../../img/activity/turntable-two/turn-two-04.png) 0 0 no-repeat;
+						background-size: 120px 80px;
+					}
+				}
+			}
+			li:nth-of-type(4) {
+				span {
+					i {
+						width: 130px;
+						height: 80px;
+						margin: 30px auto 10px;
+						background: transparent url(../../img/activity/turntable-two/turn-two-05.png) 0 0 no-repeat;
+				  	background-size: 130px 80px;
+					}
+				}
+			}
+			li:nth-of-type(5) {
+				margin-left: 5px;
+				span {
+					i {
+						width: 120px;
+						height: 75px;
+						margin: 35px auto 10px;
+						background: transparent url(../../img/activity/turntable-two/turn-two-06.png) 0 0 no-repeat;
+				  	background-size: 120px 80px;
+					}
+				}
+			}
+			li:nth-of-type(6), li:nth-of-type(7), li:nth-of-type(8) {
+				margin-top: 7px;
+			}
+			li:nth-of-type(6) {
+				clear: both;
+				span {
+					i {
+						width: 70px;
+						height: 80px;
+						margin: 30px auto 10px;
+						background: transparent url(../../img/activity/turntable-two/turn-two-07.png) 0 0 no-repeat;
+				  	background-size: 70px 80px;
+					}
+				}
+			}
+			li:nth-of-type(7) {
+				span {
+					i {
+						background: transparent url(../../img/activity/turntable-two/turn-two-08.png) 0 0 no-repeat;
+						background-size: 120px 80px;
+					}
+				}
+			}
+			li:nth-of-type(8) {
+				span {
+					i {
+						width: 95px;
+						height: 95px;
+						margin: 15px auto 10px;
+						background: transparent url(../../img/activity/turntable-two/turn-two-09.png) 0 0 no-repeat;
+						background-size: 95px 95px;
+					}
+				}
+			}
+			.active {
+				span {
+					background: #32a5fe;
+					color: #fff;
+				}
+				&:after {
+					background: #1690ee;
+				}
+			}
+		}
+	}
+	.chance {
+		margin-top: -42px;
+		font-size: 22px;
+		text-align: center;
+		color: #fff;
+		line-height: 36px;
+		b {
+			display: inline-block;
+			font-size: 34px;
+			color: #ffff48;
+			margin: 0 8px;
+		}
+	}
+	.my-reward {
+		display: block;
+		margin: 55px auto 0;
+		font-size: 28px;
+		line-height: 38px;
+		width: 175px;
+		text-align: center;
+		position: relative;
+    background-image: linear-gradient(90deg, #5ae8f0, #e4e370);
+		-webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    &:after {
+    	content: '';
+    	height: 1PX;
+    	width: 100%;
+    	background: linear-gradient(90deg, #5ae8f0, #e4e370);;
+    	position: absolute;
+    	left: 0;
+    	bottom: 0;
+    }
+	}
+	.exchange {
+		display: block;
+		width: 500px;
+		line-height: 100px;
+		text-align: center;
+		background: #4afdff;
+		color: #4458ee;
+		font-size: 36px;
+		font-weight: bold;
+		margin: 35px auto 0;
+		border-radius: 50px;
+	}
+	.rule {
+		width: 690px;
+		margin: 45px auto 30px;
+		background: #5352ee;
+		border-radius: 20px;
+		padding: 30px 30px 65px 80px;
+		box-sizing: border-box;
+		position: relative;
+		h3 {
+			font-size: 26px;
+			line-height: 48px;
+			color: #ffff32;
+			text-align: center;
+			padding-right: 40px;
+			margin-bottom: 20px;
+			position: relative;
+			i {
+        display: block;
+        width: 220px;
+        height: 2PX;
+        background: #ffff32;
+        position: absolute;
+        top: 50%;
+        &:before, &:after {
+        	content: '';
+        	display: block;
+        	width: 6PX;
+        	height: 6PX;
+        	background: #ffff32;
+        	border-radius: 50%;
+        	position: absolute;
+        	top: -2PX;
+        }
+        &:before {
+        	left: 0;
+        }
+        &:after {
+        	right: 0;
+        }
+			}
+			.left {
+				left: -30px;
+			}
+			.right {
+				right: 10px;
+			}
+		}
+		p {
+			font-size: 24px;
+			color: #fff;
+			line-height: 56px;
+			position: relative;
+			span {
+				color: #ffff32;
+			}
+			.tel {
+				color: #4afdff;
+			}
+		}
+		b {
+			width: 24px;
+      height: 24px;
+      color: #2c2241;
+      background-color: #faca00;
+      position: absolute;
+      top: 16px;
+      left: -40px;
+      color: #fff;
+      font-size: 24px;
+      font-weight: normal;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:after{
+        content: '';
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 8px solid #faca00;
+        position: absolute;
+        top: 0;
+        right: -6px;
+      }
+		}
+	}
+}
+
+.popup {
+	.content {
+		width: 521px;
+		background: transparent url(../../img/activity/turntable-two/turn-two-12.png) 0 0 no-repeat;
+		background-size: cover;
+		border-radius: 10px;
+		.close {
+			width: 40px;
+			height: 40px;
+			background: #4a42ea;
+			border-radius: 50%;
+			top: 10px;
+			right: 5px;
+			&:before, &:after {
+				height: 2PX;
+				width: 30px;
+				left: 5px;
+				background: #4ca4f4;
+			}
+		}
+		h3 {
+			font-size: 30px;
+			line-height: 2em;
+			text-align: center;
+			color: #fff;
+		}
+		p {
+			font-size: 30px;
+			line-height: 2em;
+			text-align: center;
+			color: white;
+		}
+		a {
+			line-height: 100px;
+			width: 400px;
+			background: #4afeff;
+			color: #4458ee;
+			font-size: 30px;
+			border-radius: 50px;
+		}
+		.reward {
+			width: 500px;
+			min-height: 80px;
+			max-height: 280px;
+			margin: 30px auto 0;
+			overflow-y: scroll;
+			li {
+				list-style-type: none;
+				text-align: center;
+				font-size: 30px;
+				line-height: 64px;
+				color: #fff;
+				b {
+					color: #4afeff;
+					font-weight: normal;
+				}
+			}
+		}
+	}
+}
+
+.popup-reward {
+	.content {
+		padding: 30px 0 15px;
+	}
+}
+
+a {
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.clearfix {
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+}

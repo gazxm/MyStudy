@@ -1,0 +1,33 @@
+@import '../common/base';
+
+.wrapper-mobile-cardVerify {
+	bottom: 0;
+	top: 20px;
+	.title {
+		justify-content: center;
+		align-items: center;
+	}
+	.subDesc {
+		font-size: 24px;
+		color: orange;
+		margin-left: 40px;
+		margin-top:20px;
+	}
+	.commit {
+		margin:40px 40px;
+		line-height: normal;
+		font-size: 30px;
+		button {
+			color: #fff;
+			background: #4ab6fa;
+			border-radius: 30px;
+		}
+	}
+}
+.am-modal-captcha{
+    width: 600px !important;
+    .am-modal-close{
+        right: 20px;
+        left: auto;
+    }
+}

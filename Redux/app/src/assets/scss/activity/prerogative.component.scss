@@ -1,0 +1,396 @@
+@import '../common/base';
+.prerogative{
+	background-image: url(../../img/activity/prerogative/bg.png);
+	background-repeat: no-repeat;
+	background-color: #000218;
+	width: 750px;
+	background-size: 100% auto;
+	.bgsize	{
+		width: 750px;
+		background-repeat: no-repeat;
+		background-position:0 0;
+		background-size: cover;
+	}
+	.btn{
+		display: inline-block;
+		width: 220px;
+		height: 80px;
+		font-size: 32px;
+		color: #fff;
+		line-height: 80px;
+		text-align: center;
+		border-radius: 10px;
+		border:none;
+	}
+	.floor1{
+		height: 360px;
+		// background-image: url(../../img/activity/prerogative/bg1.png);
+		@extend .bgsize;
+		position: relative;
+		.light{
+			display: block;
+			position: absolute;
+			width: 715px;
+			height: 363px;
+			background : url(../../img/activity/prerogative/light.png) no-repeat;
+			background-size:cover;
+			top:0;
+			left:10px;
+		}
+		.move{
+			display: block;
+			width: 629px;
+			height: 300px;
+			overflow: hidden;
+			background-image: url(../../img/activity/prerogative/move.png);
+			background-size: cover;
+			position: absolute;
+			top:65px;
+			left:65px;
+			animation:moveLight 800ms infinite;
+		}
+	}
+	.floor2{
+		height: 245px;
+		padding-top:25px;
+		margin-top: -2px;
+		// background-image: url(../../img/activity/prerogative/bg2.png);
+		@extend .bgsize;
+		span{
+			display: block;
+			width: 145px;
+			height: 216px;
+			margin-top: -2px;
+			background-image: url(../../img/activity/prerogative/prerogative.png);
+			background-size: cover;
+			animation:changeColor 500ms 1;
+		}
+		div{
+			width: 145px;
+			height: 216px;
+			margin: 0 auto;
+			overflow: hidden;
+			position: relative;
+			transition-duration: .5s;
+		}
+	}
+	.floor3{
+		width: 647px;
+		padding-top: 30px;
+		padding-bottom: 20px;
+		margin:50px auto 0;
+		background-color: #fff;
+		border-bottom-right-radius: 30px;
+		border-bottom-left-radius: 30px;
+		.group{
+			padding:25px 20px;
+			height: 145px;
+		}
+		h2{
+			width: 238px;
+			height: 49px;
+			margin:0 auto;
+			background-image: url(../../img/activity/prerogative/newer-tit.png);
+			background-size: cover;
+		}
+		.newer-icon{
+			display: inline-block;
+			width: 150px;
+			height: 150px;
+			background-size: cover;
+		}
+		.txt{
+			display: inline-block;
+			width: 200px;
+			height: 170px;
+			vertical-align: top;
+			font-size: 26px;
+			color: #999;
+			padding-left: 18px;
+			padding-right: 18px;
+			overflow: hidden;
+			white-space: normal;
+			text-overflow:
+			 -o-ellipsis-lastline;
+			h3{
+				font-size: 32px;
+				color: #ff5f32;
+				margin-top: 10px;
+				margin-bottom: 15px;
+			}
+		}
+		.group:nth-of-type(1) h3{
+		 	color: #ff5f32;
+		}
+		.group:nth-of-type(2) h3{
+		 	color: #ff618e;
+		}
+		.group:nth-of-type(3) h3{
+		 	color: #81a5ff;
+		}
+		p{
+			text-align: center;
+			color:#8d3dff;
+			font-weight: bold;
+			line-height: 40px;
+		}
+		button{
+			@extend .btn;
+			margin-top: 35px;
+			vertical-align: top;
+			background-size: cover;
+		}
+	}
+	.floor4{
+		height: 100px;
+		h2{
+			width: 662px;
+			height: 49px;
+			margin:20px auto 0;
+			background-image: url(../../img/activity/prerogative/tit2.png);
+			background-size: cover;
+		}
+		p{
+			text-align: center;
+			color:#cec0a3;
+			font-weight: bold;
+			line-height: 40px;
+		}
+
+	}
+	.floor5{
+		padding-left:30px;
+		img{
+			width: 329px;
+			height: 215px;
+			border:none;
+			background: none;
+			display: inline-block;
+			margin-top: 20px;
+			&:nth-child(odd){
+				margin-left: 0;
+			}
+			&:nth-child(even){
+				margin-left: 32px;
+			}
+		}
+	}
+	.floor6{
+		width: 662px;
+		height: 49px;
+		margin:50px auto 30px;
+		background-image: url(../../img/activity/prerogative/tit3.png);
+		background-size: cover;
+	}
+	.floor7{
+		img{
+			display: block;
+			width: 690px;
+			height: 240px;
+			margin: 25px auto;
+			// background-image: url(../../img/activity/prerogative/pic.png);
+			background-size: cover;
+		}
+	}
+	.floor8{
+		height: 260px;
+		background-color:#000218;
+		.banner-item{
+			width: 690px;
+			margin:0 auto;
+			height: 260px;
+			img{
+				width: 100%;
+			}
+		}
+		.am-carousel-wrap{
+			margin-top: -80px;
+		}
+	}
+}
+.popup-pre{
+	.content {
+		border-radius: 15px;
+	}
+	.close{
+		top:20px;
+	}
+	p{
+		text-align: center;
+		line-height: 50px;
+		font-size: 30px;
+	}
+	a{
+		background-color: #9539f3;
+		border-radius: 15px;
+	}
+}
+.wrapper-activity-privilege{
+	background-color: #fff;
+	padding: 30px;
+	bottom: 0;
+	.card{
+		height: 320px;
+		color: #fff;
+		border-radius: 10px;
+		white-space: nowrap;
+		background-color: #bbb;
+		padding: 0 40px;
+		justify-content: space-between;
+		align-items: center;
+		display: flex;
+		.title{
+			font-size: 48px;
+			+ p{
+				font-size: 72px;
+				margin-top: 18px;
+			}
+		}
+		.icon{
+			width: 200px;
+			height: 200px;
+			border-radius: 100%;
+			background: rgba(#fff, .2) center no-repeat;
+		}
+	}
+	.description{
+		margin-top: 50px;
+		.title{
+			color: #333;
+			font-size: 48px;
+		}
+		p{
+			line-height: 44px;
+			color: #666;
+			font-size: 32px;
+			margin-top: 40px;
+			span{
+				color: $brand-primary;
+				&[orange]{
+					color: #ff8003;
+				}
+			}
+		}
+		.button{
+			height: 80px;
+			color: #fff;
+			border-radius: 100px;
+			background-color: $brand-primary;
+			margin: 60px 20px 0;
+			transition: .25s ease-out;
+			justify-content: center;
+			align-items: center;
+			display: flex;
+			&:active{
+				background-color: lighten($brand-primary, 5);
+			}
+		}
+	}
+	ul{
+		color: #ff8003;
+		font-size: 28px;
+		list-style-type: disc;
+		margin: 35px 30px;
+	}
+	.second-half{
+		.card{
+			background: linear-gradient(120deg, #fe6a63 0%, #ff4a41 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-second-half.png);
+			background-size: 102px 105px;
+		}
+	}
+	.ninth-half{
+		.card{
+			background: linear-gradient(120deg, #7b8aeb 0%, #6a4bed 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-ninth-half.png);
+			background-size: 99px 109px;
+		}
+	}
+	.gold-card{
+		.card{
+			background: linear-gradient(120deg, #b363fe 0%, #bb28ff 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-gold-card.png);
+			background-size: 96px 112px;
+		}
+	}
+	.interest-free{
+		.card{
+			background: linear-gradient(120deg, #6ba8fc 0%, #4593ff 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-interest-free.png);
+			background-size: 110px 102px;
+		}
+	}
+	.fifth-half{
+		.card{
+			background: linear-gradient(120deg, #ffbb2d 0%, #fca03e 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-fifth-half.png);
+			background-size: 110px 102px;
+		}
+	}
+	.service-charge{
+		.card{
+			background: linear-gradient(120deg, #fe6a63 0%, #ff4a41 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-second-half.png);
+			background-size: 102px 105px;
+		}
+	}
+	.lift-tenPercent{
+		.card{
+			background: linear-gradient(120deg, #ffbb2d 0%, #fca03e 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-lift-ten-percent.png);
+			background-size: 111px 109px;
+		}
+	}
+}
+@keyframes moveLight{
+	0%{
+		background-image: url(../../img/activity/prerogative/move.png);
+	}
+	100%{
+		background-image: url(../../img/activity/prerogative/move2.png);
+	}
+}
+
+@keyframes changeColor{
+	0%{
+		filter:saturate(100%);
+	}
+	30%{
+		filter:saturate(300%);
+	}
+	60%{
+		filter:saturate(300%);
+	}
+	100%{
+		filter:saturate(100%);
+	}
+}
+@keyframes fadeIn {
+  from {
+  	opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}

@@ -1,0 +1,74 @@
+@import '../../common/base';
+.wrapper-repayment-alipay{
+	padding-top: 275px;
+	bottom: 0;
+	.logo{
+		width: 95px;
+		height: 150px;
+		background: url(../../../img/mobile/repayment/alipay.png) center no-repeat;
+		background-size: contain;
+		margin: 0 auto;
+	}
+	.loading{
+		margin-top: 25px;
+		.tips{
+			color: $brand-primary;
+			font-size: 28px;
+			text-align: center;
+		}
+		.loader{
+			width: 95px;
+			height: 95px;
+			border: 1px solid #666;
+			border-radius: 100%;
+			justify-content: center;
+			align-items: center;
+			display: flex;
+			margin: 35px auto;
+		}
+		.am-icon-loading{
+			color: #666;
+			font-size: 95px;
+			margin: 35px auto;
+			display: block;
+		}
+	}
+	.awaken{
+		margin: 65px 50px 0;
+		.tips{
+			color: #666;
+			font-size: 26px;
+			p + p{
+				margin-top: 10px;
+			}
+		}
+		.handle{
+			margin-top: 85px;
+		}
+		.am-button{
+			height: 75px;
+			line-height: 75px;
+			font-size: 30px;
+			+ .am-button{
+				margin-top: 35px;
+			}
+		}
+		.am-button-primary{
+			border-color: $brand-primary;
+			background-color: $brand-primary;
+			&.am-button-active{
+				border-color: darken($brand-primary, 10);
+				background-color: darken($brand-primary, 10);
+			}
+		}
+		.am-button-ghost{
+			color: $brand-primary;
+			border-color: $brand-primary;
+			&.am-button-active{
+				color: #fff;
+				border-color: $brand-primary;
+				background-color: $brand-primary;
+			}
+		}
+	}
+}

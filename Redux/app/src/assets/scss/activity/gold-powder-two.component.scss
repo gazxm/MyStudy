@@ -1,0 +1,1074 @@
+$fontColors: (0: #24e3af, 1: #eb6100, 2: #0c69a7, 3: #d9536a);
+$iRotate: (1: 0, 2: 24, 3: 48, 4: 72, 5: 96, 6: 120, 7: 144, 8: 168, 9: 192, 10: 216, 11: 240, 12: 264, 13: 288, 14: 312, 15: 336);
+$transition: (1: 1, 2: 2, 3: 3);
+
+.powder {
+  width: 750px;
+  background: #f3cc99 url(../../img/activity/gold-powder-two/powder-04.jpg) 0 0 no-repeat;
+  background-size: 750px 530px;
+}
+.choose {
+  width: 750px;
+  height: 1070px;
+  background: transparent url(../../img/activity/gold-powder-two/powder-09.jpg) 0 0 no-repeat;
+  background-size: 750px 1070px;
+  position: relative;
+  padding: 1PX 0;
+  .broadCast{
+    width:500px;
+    height: 28px;
+    overflow: hidden;
+    line-height: 28px;
+    padding-left: 10px;
+    padding-top:2px;
+    background: #fd9e06;
+    font-size: 20px;
+    color: #fff;
+    border-radius:20px;
+    margin-left:37px;
+    position: relative;
+    &:before{
+      position: absolute;
+      left:13px;
+      top:5px;
+      content:'';
+      display: inline-block;
+      width: 19px;
+      height: 19px;
+      margin-right: 10px;
+      background: transparent url(../../img/activity/gold-powder-two/horn.png) 0 0 no-repeat;
+      background-size: 19px 19px;
+    }
+    span{
+      padding-left: 30px;
+      letter-spacing: 3px;
+    }
+    &.hide{
+      display: none;
+    }
+    &.show{
+      display: block;
+    }
+  }
+  .hui {
+    display: block;
+    width: 113px;
+    height: 126px;
+    position: absolute;
+    top: -25px; 
+    right: 5px;
+    cursor: pointer;
+    background: transparent url(../../img/activity/gold-powder-two/powder-10.png) 0 0 no-repeat;
+    background-size: 113px 126px;
+  }
+  .link{
+    font-size: 29px;
+    color: #fff;
+    display: block;
+    margin-left:305px;
+    margin-top: 70px;
+  }
+  h1 {
+    font-size: 24px;
+    color: #fff;
+    line-height: 1.2em;
+    text-align: center;
+    margin: 42px 0 0;
+  }
+  h4 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    text-align: center;
+    color: #fc9f06;
+  }
+  .shop-content {
+    width: 600px;
+    height:880px;
+    padding-top: 120px;
+    margin-left:90px;
+    margin-top:20px;
+    box-sizing: border-box;
+    .shop-list{
+      padding-top:11px;
+      margin-top:11px;
+      height: 650px;
+      overflow-y: scroll;
+    }
+    .shop {
+      display: inline-block;
+      width: 240px;
+      margin:0 25px 26px;
+      img {
+        width: 240px;
+        height: 173px;
+        vertical-align: bottom;
+        cursor: pointer;
+        border:1PX solid #191919;
+      }
+      h2 {
+        width: 240px;
+        font-size: 20px;
+        color: #fff;
+        background: #191919;
+        line-height: 35px;
+        text-align: center;
+        border:1PX solid #191919;
+      }
+      h3 {
+        font-size: 24px;
+        line-height: 50px;
+        color: #fd9f13;
+        white-space: nowrap;
+        box-sizing: border-box;
+        text-align: center;
+        &:before{
+          content:'';
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+          background: transparent url(../../img/activity/gold-powder-two/powder-11.png) 0 50% no-repeat;
+          background-size: 22px 22px;
+          position: relative;
+          top:3px;
+         }
+        b {
+          display: inline-block;
+          font-weight: normal;
+          padding-left: 8px;
+          color: #aaa;
+          position: relative;
+          &:after {
+            content: '';
+            display: block;
+            width: 73%;
+            height: 3px;
+            background: #aaa;
+            position: absolute;
+            top: 50%;
+            left: 18%;
+          }
+        }
+      }
+      a {
+        display: block;
+        width: 230px;
+        background: #fc9f06;
+        line-height: 40px;
+        height: 40px;
+        border-radius: 30px;
+        border-bottom: 3px solid #9f6506;
+        text-align: center;
+        color: #fff;
+        font-size: 24px;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+      .gray {
+        background: gray;
+        border-color: gray;
+      }
+    }
+  }
+}
+
+.shop-view {
+  width: 750px;
+  position: relative;
+  background: #f0eeee;
+  .head {
+    width: 750px;
+    height: 400px;
+  }
+  .hui {
+    display: block;
+    width: 113px;
+    height: 126px;
+    position: fixed;
+    top: 390px;
+    right: 15px;
+    cursor: pointer;
+    background: transparent url(../../img/activity/gold-powder-two/powder-10.png) 0 0 no-repeat;
+    background-size: 113px 126px;
+  }
+  h2 {
+    width: 750px;
+    line-height: 60px;
+    color: #c9c9c9;
+    text-align: center;
+  }
+  .button {
+    width: 750px;
+    height: 93px;
+    position: fixed;
+    background: #fb3083;
+    cursor: pointer;
+    left: 0;
+    bottom: 0;
+    padding-top: 15px;
+    box-sizing: border-box;
+    h3 {
+      font-size: 28px;
+      color: #fff;
+      text-align: center;
+    }
+    h4 {
+      font-size: 24px;
+      color: #fff799;
+      text-align: center;
+      margin-top: 2px;
+    }
+  }
+  .gray {
+    background: gray;
+    h5 {
+      font-size: 28px;
+      line-height: 64px;
+      color: #fff;
+      text-align: center;
+    }
+  }
+  .content, .rule, .details {
+    width: 750px;
+    background: #fff;
+    box-sizing: border-box;
+  }
+
+  .content {
+    padding: 20px 35px;
+    h1 {
+      font-size: 30px;
+      line-height: 42px;
+      color: #000;
+    }
+    .list {
+      font-size: 26px;
+      height: 60px;
+      line-height: 60px;
+      color: #c9c9c9;
+      &:nth-child(2) {
+        margin-top: 20px;
+      }
+      .gold {
+        color: #999;
+        background: transparent url(../../img/activity/gold-powder-two/shop-02.jpg) 0 50% no-repeat;
+        background-size: 35px 35px;
+        padding-left: 40px;
+        b {
+          display: inline-block;
+          margin: 0 5px 0 0;
+          color: #fd9f13;
+          font-weight: normal;
+        }
+        span {
+          display: inline-block;
+          position: relative;
+          &:after {
+            content: '';
+            background: #999;
+            width: 84%;
+            height: 3px;
+            top: 50%;
+            left: 8%;
+            position: absolute;
+          }
+        }
+      }
+      .left {
+        float: left;
+      }
+      .right {
+        float: right;
+      }
+      .show {
+        color: #c9c9c9;
+      }
+    }
+  }
+  .rule {
+    padding: 20px 35px;
+    p {
+      font-size: 24px;
+      line-height: 48px;
+      color: #666;
+      text-align: justify;
+    }
+    .red {
+      color: #fb3083;
+    }
+  }
+  .details {
+    margin-bottom: 140px;
+    padding: 20px 35px;
+    h3 {
+      font-size: 28px;
+      color: #333;
+      line-height: 42px;
+      margin-bottom: 10px;
+    }
+    .param {
+      padding-left: 25px;
+      p {
+        font-size: 24px;
+        color: #666;
+        line-height: 42px;
+      }
+    }
+    img {
+      padding-left: 25px;
+      width: 630px;
+    }
+  }
+}
+
+.ihelp {
+  width: 750px;
+  height: 804px;
+  background: transparent url(../../img/activity/gold-powder-two/powder-07.jpg) 0 0 no-repeat;
+  background-size: 750px 804px;
+  position: relative;
+      z-index: 2;
+  padding: 1PX 0;
+  .rule {
+    display: block;
+    width: 112px;
+    height: 126px;
+    position: absolute;
+    top: -35px; 
+    right: 15px;
+    cursor: pointer;
+    background: transparent url(../../img/activity/gold-powder-two/powder-06.png) 0 0 no-repeat;
+    background-size: 112px 126px;
+  }
+
+  h3 {
+    font-size: 20px;
+    color: #7c3a00;
+    line-height: 1.2em;
+    text-align: center;
+    margin: 125px 0 0 5px;
+  }
+  .pool {
+    width: 565px;
+    height: 610px;
+    margin: 22px 0 0 97px;
+    padding: 1PX 25px;
+    box-sizing: border-box;
+    .list {
+      position: relative;
+    }
+    p {
+      font-size: 24px;
+      line-height: 42px;
+      margin: 20px 0;
+      padding-left: 30px;
+      width: 410px;
+      text-align: justify;
+      word-wrap: break-word;
+    }
+    span {
+      display: none;
+      color: #fff;
+      font-size: 22px;
+      width: 56px;
+      line-height: 1.2em;
+      background: #fb3083;
+      border-radius: 10px;
+      text-align: center;
+      position: absolute;
+      cursor: pointer;
+      right: 30px;
+      bottom: 2px;
+    }
+    .hidden {
+      p {
+        overflow : hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+      span {
+        display: block;
+      }
+    }
+    .open {
+      span {
+        display: block;
+      }
+    }
+    .color-0 {
+      color: #d9536a;
+      background: transparent url(../../img/activity/gold-powder-two/powder-03.png) 0 13px no-repeat;
+      background-size: 21px 18px; 
+    }
+    .color-1 {
+      color: #eb6100;
+      background: transparent url(../../img/activity/gold-powder-two/powder-01.png) 0 13px no-repeat;
+      background-size: 21px 18px; 
+    }
+    .color-2 {
+      color: #437cb0;
+      background: transparent url(../../img/activity/gold-powder-two/powder-02.png) 0 13px no-repeat;
+      background-size: 21px 18px; 
+    }
+    .am-list {
+      position: relative!important;
+      height: 410px;
+      padding-top: 5px;
+      .am-list-body {
+        border-top: none;
+        background: transparent;
+        &:after {
+          content: none;
+        }
+      }
+    }
+  }
+  .speak, .my {
+    display: inline-block;
+    margin-top: 10px;
+    width: 242px;
+    line-height: 62px;
+    height: 72px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 25px;
+    color: #fff;
+  }
+  .speak {
+    margin-left: 126px;
+  }
+  .my {
+    margin-left: 27px;
+  }
+}
+.dream{
+  width: 750px;
+  height: 969px;
+  background: transparent url(../../img/activity/gold-powder-two/powder-05.jpg) 0 0 no-repeat;
+  background-size: 750px 969px;
+  padding: 1PX 0;
+  position: relative;
+  .list-wrapper{
+    height: 615px;
+    width: 620px;
+    margin:125px auto 0;
+    overflow-y:auto;
+  }
+  .txt{
+    width: 614px;
+    background: #dcac6c;
+    font-size: 22px;
+    line-height: 35px;
+    color: #fff;
+    padding:16px;
+    margin:50px auto 0;
+  }
+  ul{
+    width: 594px;
+    margin:0 auto;
+    li{
+      height: 150px;
+      padding:0 0 20px 20px;
+      margin-top: 24px;
+      border-radius: 10px;
+      font-size: 0;
+      button{
+        &:after{
+          content: '';
+          display: inline-block;
+          width:13px;
+          height: 18px;
+          margin-left: 10px;
+          background: transparent url(../../img/activity/gold-powder-two/arrow.png) 0 0 no-repeat;
+          background-size: 13px 18px;
+          position: relative;
+          top:2px;
+        }
+        font-size: 24px;
+        width: 268px;
+        height: 46px;
+        border-radius: 8px;
+        text-align: center;
+        line-height: 46px;
+        border:none;
+        color: #fff;
+        margin-top: 10px;
+      }
+      &:nth-child(odd){
+        background: #d1ebf4;
+        button{
+          background-color: #4bb6fa;
+          border-bottom:1pX solid #0c68a3;
+        }
+      }
+      &:nth-child(even){
+        background: #fce8c0;
+        button{
+          background-color: #fa9c5d;
+          border-bottom:1pX solid #ff6600;
+        }
+      }
+      img{
+        display: inline-block;
+        width: 125px;
+        height: 125px;
+        margin-top: 20px;
+        margin-right: 20px;
+        border-radius:100%;
+        background-color: #ccc;
+      }
+      .group{
+        display: inline-block;
+        width:335px;
+        margin-top: 20px;
+        font-size: 20px;
+        vertical-align: top;
+        p{
+          height: 70px;
+          overflow: hidden;
+          color:#000;
+          line-height: 35px;
+          span{
+            color:#999;
+          }
+        }
+      }
+    }
+    .thumbs-up{
+      &:before{
+        background: transparent url(../../img/activity/gold-powder-two/thumbs-02.png) 0 0 no-repeat;
+      }
+    }
+    .thumbs{
+      &:before{
+        background: transparent url(../../img/activity/gold-powder-two/thumbs-01.png) 0 0 no-repeat;
+      }
+    }
+    .thumbs,.thumbs-up{
+      display: inline-block;
+      font-size: 16px;
+      color: #888;
+      vertical-align: top;
+      padding-top: 13px;
+      width:80px;
+      text-align: right;
+      margin-right:3px;
+      &:before{
+        vertical-align: top;
+        content: '';
+        display: inline-block;
+        width:16px;
+        height: 14px;
+        margin-right: 5px;
+        position: relative;
+        top:4px;
+        background-size: 16px 14px;
+      }
+    }
+  }
+}
+.dream-detail{
+  .top{
+    width: 750px;
+    height:260px;
+    background: transparent url(../../img/activity/gold-powder-two/dream-detail-bg1.jpg) 0 0 no-repeat;
+    background-size: 750px 260px;
+    h2{
+      text-align:center;
+      font-size: 25px;
+      color: #700008;
+      text-shadow: 0.454px 0.891px 0px rgba(255, 230, 63, 0.004);
+      padding-top: 170px;
+      height:40px;
+      line-height: 40px;
+      span{
+        display: inline-block;
+        max-width: 90px;
+        height:40px;
+        line-height: 40px;
+        vertical-align: bottom;
+        white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      }
+    }
+  }
+  .main{
+    width:750px;
+    min-height:1074px;
+    margin-top: -30px;
+    background: #f6d1a5 url(../../img/activity/gold-powder-two/dream-detail-bg2.jpg) 0 0 no-repeat;
+    background-size: 750px 1074px;
+  }
+  .con{
+    width: 654px;
+    background: url(../../img/activity/gold-powder-two/bg-re.png) 0 0 repeat-y;
+    margin:0 auto;
+    background-size: 654px auto;
+    img{
+      display: inline-block;
+      &:nth-of-type(1),&:nth-of-type(2){
+        width: 275px;
+        height: 347px;
+        margin-left: 50px;
+      }
+      &:nth-of-type(2){
+        margin-left:15px;
+      }
+    }
+    .video-img{
+        width: 564px;
+        height: 355px;
+        margin-top: 20px;
+        margin-left: 50px;
+        position: relative;
+        &:before, &:after {
+          content: '';
+          display: block;
+          position: absolute;
+        }
+        &:before {
+          content: '';
+          width: 50px;
+          height: 50px;
+          background: transparent url(../../img/activity/gold-powder-two/powder-18.png) 0 0 no-repeat;
+          background-size: 50px 50px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 3;
+        }
+        &:after {
+          width: 564px;
+          height: 355px;
+          background: rgba(0, 0, 0, 0.3);
+          top: 0;
+          left:0;
+          z-index: 2;
+        }
+        img{
+          width: 100%;
+          height: 100%;
+          margin-left: 0;
+        }
+    }
+    p{
+      width: 564px;
+      min-height: 90px;
+      font-size: 22px;
+      color: #000;
+      line-height: 35px;
+      padding-top: 20px;
+      margin-left: 50px;
+    }
+  }
+
+  .top-bg{
+    display: block;
+    width: 654px;
+    height:40px;
+    background: transparent url(../../img/activity/gold-powder-two/dream-detail-bg4.png) 0 0 no-repeat;
+    background-size: 654px 40px;
+    margin:0 auto;
+  }
+  .bottom-bg{
+    display: block;
+    width: 654px;
+    height:28px;
+    background: transparent url(../../img/activity/gold-powder-two/dream-detail-bg3.png) 0 0 no-repeat;
+    background-size: 654px 28px;
+    margin:0 auto;
+  }
+}
+.popup-video {
+  .content {
+    padding: 0;
+    background: transparent;
+    .close {
+      width: 30px;
+      height: 30px;
+      top: -40px;
+      right: 20px;
+      &:before, &:after {
+        background: #fff;
+        height: 5px;
+        width: 25px;
+        top: 50%;
+      }
+      &:before {
+        transform: translateY(-50%) rotate(45deg);
+      }
+      &:after {
+        transform: translateY(-50%) rotate(-45deg);
+      }
+    }
+    video {
+      display: block;
+      width: 590px;
+      height: 350px;
+      margin: 0 auto;
+    }
+  }
+}
+.popup {
+  .content {
+    width: 598px;
+    height: 598px;
+    background: #f7dc71;
+    border-radius: 50%;
+    padding: 0;
+    top:45%;
+    box-sizing: border-box;
+    &:before{
+      content: '';
+      width: 558px;
+      height: 266px;
+      background: transparent url(../../img/activity/gold-powder-two/popup-bg.png) 0 0 no-repeat;
+      background-size: 558px 266px;
+      position: absolute;
+      left:-24px;
+      bottom:0;
+    }
+    .close {
+      width: 28px;
+      height: 28px;
+      top:0;
+      right: 35px;
+      margin-left:-14px;
+      &:before, &:after {
+        width: 30px;
+        height: 5px;
+        background: #fff;
+      }
+    }
+    .text {
+      width: 505px;
+      height: 505px;
+      margin: 33.5px auto 0;
+      border-radius: 50%;
+      padding: 80px 0 0;
+      position: relative;
+      box-sizing: border-box;
+      h3 {
+        font-size: 42px;
+        letter-spacing: 2px;
+        color: #fb3083;
+        text-align: center;
+        margin-top: 10px;
+      }
+      h4 {
+        text-align: center;
+        font-size: 24px;
+        color: #666;
+        margin-top: 10px;
+        b {
+          font-weight: normal;
+          color: #313131;
+          text-decoration: underline;
+        }
+      }
+      p {
+        font-size: 0;
+        line-height: 130px;
+        text-align: center;
+        margin-top: 25px;
+        height: 200px;
+        color: #313131;
+        span {
+          display: inline-block;
+          font-size: 28px;
+          line-height: 42px;
+          vertical-align: middle;
+        }
+      }
+      .p-wish {
+        width: 450px;
+        word-wrap: break-word;
+        margin: 70px auto 0;
+        font-size: 28px;
+        line-height: 42px;
+        overflow-y: scroll;
+      }
+      .wish {
+        width: 160px;
+        height: 160px;
+        position: absolute;
+        background: transparent url(../../img/activity/gold-powder-two/powder-08.png) 0 0 no-repeat;
+        background-size: 160px 160px;
+        right: 75px;
+        bottom: 60px;
+      }
+      textarea {
+        display: block;
+        width: 349px;
+        height: 174px;
+        padding: 20px;
+        margin: 30px auto 0;
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+        resize: none;
+        color: #c9c9c9;
+        box-sizing: border-box;
+      }
+      .click {
+        font-size: 30px;
+        font-weight: bold;
+        width: 287px;
+        height: 56px;
+        line-height: 60px;
+        background: #fb3083;
+        border-radius: 15px;
+        border-bottom: 5px solid #ac215a;
+        margin-top:10px;
+      }
+      textarea + .click{
+        margin-top:40px;
+      }
+      .one-click, .two-click {
+        display: inline-block;
+        font-size: 30px;
+        font-weight: bold;
+        width: 180px;
+        height: 56px;
+        line-height: 60px;
+        background: #fb3083;
+        border-radius: 15px;
+        border-bottom: 5px solid #ac215a;
+        margin: 0 0 0 60px;
+      }
+      .two-click {
+        margin-left: 30px;
+      }
+      i {
+        display: block;
+        position: absolute;
+        height: 14px;
+        width: 14px;
+        top: -26px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fde73c;
+        box-shadow: 0 0 5px #fcb051;
+        transform-origin: 5px 279px;
+        border-radius: 50%;
+        @each $iNum, $rotate in $iRotate {
+          &:nth-child(#{$iNum}) {
+            transform: translateX(-50%) rotate(#{$rotate}deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+.popup-rule {
+  .content {
+    padding: 0 24px 40px;
+    width: 655px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    .close {
+      width: 28px;
+      height: 28px;
+      top: 20px;
+      right: 20px;
+      &:before, &:after {
+        width: 30px;
+        height: 4px;
+        color: #666;
+      }
+    }
+    h3 {
+      font-size: 42px;
+      line-height: 100px;
+      color: #fb3083;
+      text-align: center;
+    }
+    .rule-content {
+      height: 600px;
+      overflow-y: scroll;
+    }
+    h4, p {
+      font-size: 26px;
+      line-height: 42px;
+      margin-top: 30px;
+      color: #666;
+    }
+    p {
+      font-size: 26px;
+      line-height: 42px;
+    }
+    .pass {
+      height: 570px;
+      padding: 0 30px;
+      overflow-y: scroll;
+      h6 {
+        font-size: 28px;
+        color: #333;
+        line-height: 1.5em;
+        margin: 20px 0;
+        a {
+          font-size: 28px;
+          display: inline-block;
+          color: #333;
+          margin: 0 0 0 10px;
+          width: 410px;
+          vertical-align: top;
+          line-height: 1.5em;
+          text-align: left;
+          text-decoration: underline;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.popup-receving {
+  .content {
+    width: 550px;
+    padding: 50px 55px 65px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    .close {
+      width: 25px;
+      height: 25px;
+      top: 25px;
+      right: 25px;
+      &:before, &:after {
+        width: 30px;
+        background: #666;
+        height: 5px;
+      }
+    }
+    h3 {
+      font-size: 38px;
+      color: #fb3083;
+      line-height: 1.5em;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .name, .phone, .address {
+      margin-top: 40px;
+      line-height: 55px;
+      span {
+        display: inline-block;
+        width: 120px;
+        font-size: 28px;
+        color: #666;
+      }
+      input {
+        width: 260px;
+        padding-left: 25px;
+        border: 1PX solid #c9c9c9;
+        line-height: 45px;
+        font-size: 26px;
+        border-radius: 5px;
+        color: #666;
+        vertical-align: middle;
+        margin-left: 25px;
+      }
+      ::-webkit-input-placeholder {
+        color: #c9c9c9;
+      }
+    }
+    .click {
+      font-size: 28px;
+      width: 260px;
+      background: #fb3083;
+      border-bottom: 7px solid #ac215a;
+      border-radius: 15px;
+      line-height: 57px;
+      margin-top: 60px;
+    }
+    h5 {
+      color: #666;
+      font-size: 24px;
+      line-height: 42px;
+      margin-top: 15px;
+      text-align: center;
+      b {
+        font-weight: normal;
+        color: #fb3083;
+      }
+    }
+  }
+}
+.am-modal-title{
+  font-size: 28px;
+  line-height: 34px;
+}
+.am-modal-button{
+  font-size: 32px;
+}
+.am-modal-button-group-h .am-modal-button{
+  color: #f22e84;
+}
+.am-modal-button-group-h .am-modal-button:first-child{
+  color: #888;
+}
+.tablist{
+  z-index: 1;
+}
+.am-tabs-content{
+  background: #f3cc99;
+}
+.am-tabs {
+  .am-tabs-bar {
+  margin-top: 358px;
+    width: 650px;
+    height: 170px;
+    margin-left: 65px;
+    .am-tabs-tab {
+      height: 130px;
+      background: transparent;
+      border-bottom:none;
+    }
+    .am-tabs-ink-bar {
+      display: none!important;
+      background-color: transparent;
+    }
+  }
+}
+.am-tabs-content .am-tabs-tabpane {
+    overflow: inherit;
+}
+a:hover {
+  text-decoration: none;
+}
+
+.clearfix {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+.transition {
+  width: 750px;
+  height: 1334px;
+  padding: 1PX 0;
+  img {
+    display: block;
+    width: 280px;
+    height: 280px;
+    margin: 580px auto 0;
+  }
+  a {
+    display: block;
+    width: 335px;
+    height: 70px;
+    margin: 240px auto 0;
+    cursor: pointer;
+  }
+}
+
+@each $i, $t in $transition {
+  .transition-#{$i} {
+    background: transparent url(../../img/activity/gold-powder-two/transition-0#{$t}.jpg) 0 0 no-repeat;
+    background-size: 750px 1334px;
+  }
+}

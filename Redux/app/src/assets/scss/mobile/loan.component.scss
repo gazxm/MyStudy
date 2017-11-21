@@ -1,0 +1,209 @@
+@import '../common/base';
+.loan-confirm{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: $bg;
+  .select-item{
+    margin-top: 50px;
+    .am-list-extra, .am-list-content{
+      font-size: 28px;
+      color: $h1;
+      i {
+        display: inline-block;
+        font-style: normal;
+        color: $warning;
+        padding-left: 20px;
+      }
+    }
+    .active .am-list-extra{
+      color: $warning;
+    }
+  }
+  p.info{
+    padding: 30px;
+    color: $h1;
+    b {
+      color: $warning;
+      font-weight: normal;
+    }
+  }
+  .button {
+    padding: 30px 30px 0;
+  }
+  .am-checkbox-agree {
+    padding-right: 30px;
+  }
+  .am-checkbox-agree .am-checkbox-agree-label{
+    font-size: 26px;
+    color: $h1;
+    margin-left: 40px;
+  }
+  .am-checkbox-agree .am-checkbox-inner{
+    width: 30px;
+    height: 30px;
+    border-radius: 0;
+    top: 28px;
+    &:after{
+      right: 5px;
+      top:-3px;
+    }
+  }
+  .am-checkbox.am-checkbox-checked .am-checkbox-inner{
+    background: transparent;
+  }
+  div.bg-logo{
+    background: url(../../img/mobile/misc/bottom-logo.png) 0 0 no-repeat;
+    background-size: 180px 54px;
+    width: 180px;
+    height: 54px;
+    margin: 10px auto;
+  }
+}
+.am-button-primary{ background: $main; border: none;}
+.loan-list{
+  .am-list-body div.am-list-item:not(:last-child){
+    border-bottom: 1PX solid #ddd;
+  }
+  .am-list-body div:not(:last-child) .am-list-line:after{
+    display: none;
+  }
+  .am-list-item .am-list-line .am-list-extra {
+    flex-basis: 75%;
+    text-align: left;
+    font-size: 28px;
+    color: $h1;
+  }
+  .am-list-item .am-list-line .am-list-content{
+    font-size: 28px;
+    color: $h1;
+  }
+}
+
+.ticket {
+  margin: 30px auto 0;
+  width: 695px;
+  height: 205px;
+  position: relative;
+  &:last-child {
+    margin-bottom: 50px;
+  }
+  img {
+    width: 695px;
+    height: 205px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .ticket-content {
+    position: relative;
+    z-index: 1;
+    font-size: 0;
+    .left {
+      display: inline-block;
+      width: 190px;
+      height: 200px;
+      box-sizing: border-box;
+      padding-top: 35px;
+      vertical-align: top;
+      h1 {
+        color: #f26e61;
+        font-size: 32px;
+        text-align: center;
+        b {
+          font-weight: normal;
+          font-size: 64px;
+        }
+      }
+      h2 {
+        font-size: 24px;
+        color: #666;
+        text-align: center;
+      }
+    }
+    .middle {
+      width: 430px;
+      display: inline-block;
+      padding: 30px 0 0 25px;
+      box-sizing: border-box;
+      vertical-align: top;
+      h3 {
+        font-size: 28px;
+        color: #333;
+        line-height: 2em;
+      }
+      p {
+        font-size: 24px;
+        color: #999;
+        line-height: 1.4em;
+        margin-top: 5px;
+      }
+    }
+    small {
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      border: 1PX solid $line;
+      display: block;
+      position: absolute;
+      right: 18px;
+      top: 80px;
+    }
+    small.active {
+      background: $main;
+      &:after {
+        content: '';
+        display: block;
+        width: 25px;
+        height: 15px;
+        border: 3px solid #fff;
+        border-top: none;
+        border-right: none;
+        transform: rotateZ(-50deg);
+        position: relative;
+        left: 5px;
+        top: 8px;
+      }
+    }
+  }
+}
+
+
+.loan-popup {
+  h1{
+    font-size: 32px;
+    line-height: 3em;
+    color: $h1;
+    text-align: center;
+    position: relative;
+    i {
+      position: absolute;
+      right:30px;
+      font-size: 48px;
+      line-height: 2em;
+    }
+  }
+  .content{
+    background: $bg;
+  }
+  .warp{
+    height: 450px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .button {
+    padding: 30px;
+    button{
+      font-size: 28px;
+      color: $h1;
+    }
+  }
+  .am-icon-md {
+    color: #999;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+}

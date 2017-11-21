@@ -1,0 +1,83 @@
+@import '../../../common/base';
+
+.wrapper-channel-repayment-list{
+    background-color: #f2f2f2;
+    .am-list-body{
+        border-top: none;
+        background-color: transparent;
+        &:after{
+            display: none;
+        }
+    }
+    .am-card{
+        padding-bottom: 10px;
+        margin: 25px;
+    }
+    .am-card-header{
+        &,
+        .am-card-header-extra{
+            font-size: 28px;
+            span.active{
+                color: #ff9933;
+            }
+        }
+        .am-card-header-content{
+            align-items: center;
+            display: flex;
+        }
+        img{
+            width: 32px;
+            height: 32px;
+        }
+    }
+    .am-card-body{
+        border-top: none;
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+        > div{
+            width: 33.33%;
+        }
+        p{
+            height: 36px;
+            line-height: 36px;
+            + p{
+                color: #999;
+                font-size: 24px;
+                margin-top: 20px;
+            }
+        }
+    }
+    .empty{
+        color: #666;
+        font-size: 28px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        .icon{
+            width: 310px;
+            height: 220px;
+            background: url(../../../../img/channel/app/common/icon-order.png) center no-repeat;
+            background-size: contain;
+            display: block;
+        }
+        p{
+            margin-top: 75px;
+        }
+    }
+    .am-button-primary{
+        border-color: $brand-primary;
+        background-color: $brand-primary;
+        margin-top: 50px;
+    }
+    .am-button-ghost{
+        color: $brand-primary;
+        border-color: $brand-primary;
+        // background-color: $brand-primary;
+    }
+    .am-button-active{
+        color: #fff;
+        background-color: $brand-primary;
+    }
+}

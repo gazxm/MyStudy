@@ -1,0 +1,132 @@
+@import '../common/base';
+.wrapper-activity-privilege{
+	background-color: #fff;
+	padding: 30px;
+	bottom: 0;
+	.card{
+		height: 320px;
+		color: #fff;
+		border-radius: 10px;
+		white-space: nowrap;
+		background-color: #bbb;
+		padding: 0 40px;
+		justify-content: space-between;
+		align-items: center;
+		display: flex;
+		.title{
+			font-size: 48px;
+			+ p{
+				font-size: 72px;
+				margin-top: 18px;
+			}
+		}
+		.icon{
+			width: 200px;
+			height: 200px;
+			border-radius: 100%;
+			background: rgba(#fff, .2) center no-repeat;
+		}
+	}
+	.description{
+		margin-top: 50px;
+		.title{
+			color: #333;
+			font-size: 48px;
+		}
+		p{
+			line-height: 44px;
+			color: #666;
+			font-size: 32px;
+			margin-top: 40px;
+			span{
+				color: $brand-primary;
+				&[orange]{
+					color: #ff8003;
+				}
+			}
+		}
+		.button{
+			height: 80px;
+			color: #fff;
+			border-radius: 100px;
+			background-color: $brand-primary;
+			margin: 60px 20px 0;
+			transition: .25s ease-out;
+			justify-content: center;
+			align-items: center;
+			display: flex;
+			&:active{
+				background-color: lighten($brand-primary, 5);
+			}
+		}
+	}
+	ul{
+		color: #ff8003;
+		font-size: 28px;
+		list-style-type: disc;
+		margin: 35px 30px;
+	}
+	.second-half{
+		.card{
+			background: linear-gradient(120deg, #fe6a63 0%, #ff4a41 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-second-half.png);
+			background-size: 102px 105px;
+		}
+	}
+	.ninth-half{
+		.card{
+			background: linear-gradient(120deg, #7b8aeb 0%, #6a4bed 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-ninth-half.png);
+			background-size: 99px 109px;
+		}
+	}
+	.gold-card{
+		.card{
+			background: linear-gradient(120deg, #b363fe 0%, #bb28ff 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-gold-card.png);
+			background-size: 96px 112px;
+		}
+	}
+	.interest-free{
+		.card{
+			background: linear-gradient(120deg, #6ba8fc 0%, #4593ff 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-interest-free.png);
+			background-size: 110px 102px;
+		}
+	}
+	.fifth-half{
+		.card{
+			background: linear-gradient(120deg, #ffbb2d 0%, #fca03e 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-fifth-half.png);
+			background-size: 110px 102px;
+		}
+	}
+	.service-charge{
+		.card{
+			background: linear-gradient(120deg, #fe6a63 0%, #ff4a41 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-second-half.png);
+			background-size: 102px 105px;
+		}
+	}
+	.lift-tenPercent{
+		.card{
+			background: linear-gradient(120deg, #ffbb2d 0%, #fca03e 100%);
+		}
+		.icon{
+			background-image: url(../../img/activity/privilege/icon-lift-ten-percent.png);
+			background-size: 111px 109px;
+		}
+	}
+}

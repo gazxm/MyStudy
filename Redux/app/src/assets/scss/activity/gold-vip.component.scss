@@ -1,0 +1,231 @@
+.vip {
+	background: #0236e4 url(../../img/activity/gold-vip/bg.jpg) 0 0 no-repeat;
+	width: 750px;
+	background-size: 750px  1974px;
+	padding-bottom: 20px;
+	position: relative;
+	.date {
+		color: #fff;
+		font-size: 24px;
+		position: absolute;
+		top: 235px;
+		right: -65px;
+		transform: rotateZ(90deg);
+	}
+	.rule {
+		width: 112px;
+		margin-top: 837px;
+		margin-left: 320px;
+		color: #fdc43a;
+		font-size: 28px;
+		border-bottom: 4px solid #fdc43a;
+	}
+	.btn {
+		width: 520px;
+		height: 122px;
+		margin-top: 26px;
+		margin-left: 114px;
+		border-radius: 60px;
+		background-image: -webkit-linear-gradient(top, #fea619, #f1631f);
+		border: none;
+		color: #fff;
+		font-size: 32px;
+		font-style: '微软雅黑';
+		font-weight: bold;
+	}
+	.list-1 {
+		width: 692px;
+		margin: 73px auto 0;
+		position: relative;
+		overflow: hidden;
+		border-radius: 15px;
+		table {
+			width: 100%;
+			position: relative;
+			border-collapse: collapse;
+			background: #fff;
+			border: none;
+			tr {
+				width: 100%;
+			}
+			td {
+				width: 60%;
+				font-size: 26px;
+				color: #333333;
+				line-height: 90px;
+				text-align: center;
+				background: #fff;
+			}
+			.no-date {
+				font-size: 32px;
+				color: #fdc43a;
+				line-height: 90px;
+			}
+			tbody {
+				td {
+					&:nth-child(2) {
+						border-left: 2PX solid #e2e2e2;
+					}
+				}
+			}
+			thead {
+				td {
+					background: #3183ff;
+					color: #fff;
+					font-size: 28px;
+					&:nth-child(2) {
+						border-left: 2PX solid #0f56f7;
+					}
+				}
+			}
+		}
+	}
+	.list-2 {
+		width: 690px;
+		margin: 62px auto 0;
+		position: relative;
+		overflow: hidden;
+		table {
+			width: 100%;
+			position: relative;
+			border-collapse: collapse;
+			tr {
+				width: 100%;
+			}
+			td {
+				width: 27%;
+				color: #333333;
+				font-size: 28px;
+				line-height: 76px;
+				text-align: center;
+				border: 2PX solid #e2e2e2;
+				background: #fff;
+			}
+			.no-date {
+				font-size: 32px;
+				color: #fdc43a;
+				line-height: 85px;
+			}
+			thead {
+				td {
+					color: #0941f3;
+					font-size: 28px;
+					font-style: '微软雅黑';
+				}
+			}
+		}
+	}
+}
+.am-tabs {
+	border-radius: 15px;
+	.am-tabs-bar {
+		.am-tabs-tab {
+			background-color: #65a2ff;
+			color: #fff;
+			font-size: 26px;
+			border-bottom: none;
+		}
+		.am-tabs-tab-active {
+			background-color: #fdc43a;
+		}
+	}
+}
+.popup-rule {
+	.content {
+		background-color: #146af0;
+		border-radius: 15px;
+		padding-top: 40px;
+		p {
+			color: #fff;
+			font-size: 26px;
+			display: inline-block;
+			line-height: 42px;
+			margin-left: 30px;
+			position: relative;
+			i {
+				background-color: #fffc1b;
+				border-radius: 50%;
+				width: 16px;
+				height: 16px;
+				display: inline-block;
+				position: absolute;
+				top: 12px;
+				left: -20px;
+			}
+		}
+		.close {
+			background-color: #146af0;
+			width: 52px;
+			height: 52px;
+			border-radius: 50%;
+			top: -10%;
+			right: 16px;
+			&:before, &:after {
+				content: "";
+				position: absolute;
+				left: 8px;
+				top: 47%;
+				width: 35px;
+				height: 2PX;
+				background: #0b0f21;
+			}
+		}
+		.line {
+			width: 2PX;
+			height: 42px;
+			background: #146af0;
+			position: absolute;
+			top: -4.5%;
+			right: 42px;
+		}
+	}
+}
+.popup {
+	.content {
+		background-color: #146af0;
+		border-radius: 15px;
+		text-align: center;
+		width: 540px;
+		&:before {
+			content: '';
+			width: 4PX;
+			height: 70px;
+			background: #146af0;
+			position: absolute;
+			top: -15%;
+			right: 40px;
+		}
+		p {
+			font-size: 28px;
+			color: #fff;
+			margin: 30px 0 60px;
+			line-height: 42px;
+		}
+		a {
+			width: 418px;
+			height: 80px;
+			border-radius: 10px;
+			background-color: #fdc43a;
+			margin-bottom: 30px;
+			color: #fff;
+			font-size: 32px;
+		}
+		.close {
+			background-color: #146af0;
+			width: 52px;
+			height: 52px;
+			border-radius: 50%;
+			top: -23%;
+			right: 16px;
+			&:before, &:after {
+				content: "";
+				position: absolute;
+				left: 8px;
+				top: 47%;
+				width: 35px;
+				height: 2PX;
+				background: #0b0f21;
+			}
+		}
+	}
+}

@@ -1,0 +1,32 @@
+@import '../../common/base';
+
+.wrapper-channel-information{
+    background-color: #f2f2f2;
+    padding-bottom: 120px;
+    .am-input-label{
+        font-size: 30px;
+    }
+    .am-input-control input{
+        font-size: 28px;
+        text-align: right;
+    }
+    .am-list-line{
+        .am-list-content{
+            font-size: 30px;
+        }
+        .am-list-extra{
+            font-size: 28px;
+        }
+    }
+    .am-button{
+        border-radius: 0;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    .am-button-primary{
+        border-color: $brand-primary;
+        background-color: $brand-primary;
+    }
+}

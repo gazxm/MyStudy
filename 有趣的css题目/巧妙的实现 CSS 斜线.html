@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>巧妙的实现 CSS 斜线</title>
+</head>
+
+<style>
+  /*
+    方法1：CSS3 旋转缩放
+  */
+  div {
+    position: relative;
+    margin: 30px auto;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #333;  
+    line-height: 120px;
+    text-indent: 5px;
+    box-sizing: border-box;
+    background: #fff;
+  }
+
+  .scale::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    border-bottom: 1px solid deeppink;
+    transform: rotateZ(45deg) scale(1.414);
+    transform-origin: bottom center;
+  }
+
+  /*
+    方法2：线性渐变
+      这种方法使用了背景的线性渐变实现，渐变背景很重要的一点是，虽然名字唤作渐变，但是也是可以画出实色而非渐变色。
+      我们选定线性渐变的方向为 45deg，依次将渐变色值设为：transparent -> deeppink -> deeppink ->transparent。
+  */
+  .linear {
+    background: linear-gradient(45deg, transparent 49.5%, deeppink 49.5%, deeppink 50.5%, transparent 50.5%);
+  }
+
+  /*
+    方法3：伪元素 + 三角形
+      接下来两种方法就有点为了斜线而斜线的感觉
+  */
+  @keyframes slash{
+    0%{
+      transform: translate(-50px);
+    }
+    30%{
+      transform: translate(0px);
+    }
+    100%{
+      transform: translate(0px);
+    }
+  }
+  @keyframes slashTwo{
+    0%{
+      transform: translate(-100px);
+    }
+    30%{
+      transform: translate(-100px);
+    }
+    60%{
+      transform: translate(0px);
+    }
+    100%{
+      transform: translate(0px);
+    }
+  }
+
+  .triangle::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border: 49px solid transparent;
+    border-left: 49px solid deeppink;
+    border-bottom: 49px solid deeppink;
+    animation: slash 6s infinite ease;
+    z-index: 2;
+  }
+
+  .triangle::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width:0;
+    height:0;
+    border:48px solid transparent;
+    border-left:48px solid #eee;
+    border-bottom:48px solid #eee;
+    animation: slashTwo 6s infinite ease;
+    z-index: 3;
+  }
+
+  /*
+    方法4：clip-path 是啥？可以算是 CSS3 的新增属性，或者准确来说是 SVG 的 <path> 的 CSS 版本。
+            使用 clip-path，我们可以定义任意想要的剪裁路径。
+          兼容性太差了。面向未来编程。
+  */
+  .clip-path {
+    background-color: deeppink;
+  }
+
+  @keyframes move{
+    40%{
+      transform:translateX(0px);
+    }
+    100%{
+      transform:translateX(0px);
+    }
+  }
+
+  .clip-path::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-clip-path: polygon(0 0, 0 100px, 100px 100px, 0 0);
+    background: #fff;
+    border: 1px solid #333;
+    transform: translateX(-120px);
+    animation: move 5s infinite linear;
+  }
+
+  .clip-path::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-clip-path: polygon(100px 99px, 100px 0, 1px 0, 100px 99px);
+    background: #fff;
+    border: 1px solid #333;
+    transform: translateX(120px);
+    animation: move 5s infinite linear;
+  }
+</style>
+
+<body>
+  <div class='scale'></div>
+  <div class='linear'></div>
+  <div class='triangle'></div>
+  <div class='clip-path'></div>
+</body>
+
+</html>

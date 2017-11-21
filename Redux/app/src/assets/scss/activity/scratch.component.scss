@@ -1,0 +1,482 @@
+.copy {
+	user-select: initial;
+}
+
+.scratch {
+	width: 750px;
+	background: #e5293e url(../../img/activity/scratch-card/scratch-01.jpg) 0 0 no-repeat;
+	background-size: 750px 700px;
+	position: relative;
+	.rule {
+		position: fixed;
+		top: 10px;
+		right: 15px;
+		font-size: 26px;
+		color: #fff25a;
+		padding-bottom: 3px;
+		border-bottom: 1PX solid currentColor;
+		cursor: pointer;
+	}
+	.content {
+		width: 695px;
+		height: 695px;
+		background: repeating-linear-gradient(-45deg, #f2ecdc, #f2ecdc 15px, #f8f2e2 0, #f8f2e2 30px);;
+		margin: 615px auto 24px;
+		position: relative;
+		&:before {
+			content: '';
+			display: block;
+			width: 210px;
+			height: 216px;
+			background: transparent url(../../img/activity/scratch-card/scratch-07.png) 0 0 no-repeat;
+			background-size: contain;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			z-index: 1;
+		}
+		.join-total {
+			height: 86px;
+			line-height: 86px;
+			background: transparent;
+			font-size: 0;
+			padding-left: 72px;
+			color: #ef1a28;
+			position: relative;
+			&:after {
+				content: '';
+				width: 69px;
+				height: 71px;
+				background: transparent url(../../img/activity/scratch-card/scratch-05.png) 0 0 no-repeat;
+				background-size: contain;
+				position: absolute;
+				top: -10px;
+				right: -27px;
+			}
+			span {
+				display: inline-block;
+				float: left;
+				font-size: 36px;
+				line-height: 43px;
+				vertical-align: middle;
+				font-weight: bold;
+			}
+			ul {
+				float: left;
+				margin-left: 30px;
+				li {
+					display: inline-block;
+					width: 46px;
+					line-height: 86px;
+					text-align: center;
+					background: transparent url(../../img/activity/scratch-card/scratch-02.png) 50% 45% no-repeat;
+					background-size: 46px 42px;
+					font-size: 22px;
+					margin-left: 4px;
+				}
+				&:after {
+					content: '人';
+					display: inline-block;
+					font-size: 24px;
+					margin-left: 10px;
+				}
+			}
+		}
+		h3 {
+			clear: both;
+			width: 550px;
+			line-height: 51px;
+			background: #ecd3b5 url(../../img/activity/scratch-card/scratch-03.png) 100px 50% no-repeat;
+			background-size: 27px 26px;
+			font-size: 26px;
+			color: #522d00;
+			padding-left: 140px;
+			margin: 10px auto 0;
+			box-sizing: border-box;
+			border-radius: 10px;
+			position: relative;
+			b {
+				display: inline-block;
+				margin: 0 10px;
+				color: #e73021;
+			}
+			&:after {
+				content: '';
+				width: 30px;
+				height: 31px;
+				background: transparent url(../../img/activity/scratch-card/scratch-05.png) 0 0 no-repeat;
+				background-size: cover;
+				filter: blur(2px);
+				position: absolute;
+				z-index: 1;
+				bottom: -10px;
+			  right: -95px;
+			}
+		}
+		.canvas-content {
+			width: 634px;
+			height: 288px;
+			background: transparent url(../../img/activity/scratch-card/scratch-06.png) 0 0 no-repeat;
+			background-size: contain;
+			padding-top: 1PX;
+			margin: 40px auto 0;
+			position: relative;
+			.overlay {
+        width: 610px;
+        height: 219px;
+        position: absolute;
+        top: 36px;
+        left: 12px;
+        z-index: 8;
+			}
+			i {
+				display: block;
+				position: absolute;
+				width: 39px;
+				height: 34px;
+				background: transparent url(../../img/activity/scratch-card/scratch-12.png) 0 0 no-repeat;
+				background-size: 39px 34px;
+				top: 45px;
+				right: 20px;
+				z-index: 5;
+			}
+			.canvas {
+				position: relative;
+				width: 610px;
+				height: 219px;
+				margin: 36px auto 0;
+				overflow: hidden;
+			}
+		}
+		a {
+			display: block;
+			cursor: pointer;
+			text-align: center;
+		}
+		.exchange {
+			font-size: 32px;
+			color: #f21d26;
+			line-height: 72px;
+			width: 520px;
+			background: #fff35b;
+			border: 10px solid #f1e21f;
+			font-weight: bold;
+			border-radius: 20px;
+			margin: 50px auto 0;
+			position: relative;
+			z-index: 2;
+			&:after {
+				content: '';
+				width: 30px;
+				height: 31px;
+				background: transparent url(../../img/activity/scratch-card/scratch-05.png) 0 0 no-repeat;
+				background-size: cover;
+				filter: blur(2px);
+				position: absolute;
+				z-index: 1;
+				top: -40px;
+			  right: -100px;
+			}
+		}
+		.reward {
+			font-size: 26px;
+			width: 115px;
+      color: #333;
+      margin: 30px auto 0px;
+      padding-bottom: 3px;
+      border-bottom: 1PX solid currentColor;
+		}
+	}
+}
+
+.popup-rule {
+	.content {
+		padding: 0 30px 20px;
+		background: #f8593b;
+		width: 500px;
+		.close {
+			top: 5px;
+			right: 5px;
+			&:before, &:after {
+				height: 4PX;
+				background: #fff;
+			}
+		}
+		h3 {
+			font-size: 32px;
+			color: #fff15a;
+			text-align: center;
+			line-height: 2em;
+		}
+		p {
+			font-size: 24px;
+			line-height: 1.5em;
+			color: #fff;
+		}
+		h4 {
+			font-size: 20px;
+			color: #fff;
+			margin-top: 40px;
+			text-align: center;
+			line-height: 1.3em;
+		}
+	}
+}
+
+.popup-reward {
+	.content {
+		width: 540px;
+		padding: 80px 0 45px;
+		.close {
+			top: 15px;
+			right: 15px;
+			&:before, &:after {
+				height: 4PX;
+				background: #999;
+			}
+		}
+		&:before, &:after {
+      content: '';
+      display: block;
+      position: absolute;
+		}
+		&:before {
+			width: 200px;
+			height: 100px;
+			background: #fff;
+			top: 0;
+			left: 50%;
+			transform: translate(-50%, -98%);
+			border-top-left-radius: 100px;
+			border-top-right-radius: 100px;
+		}
+		&:after {
+			width: 209px;
+			height: 182px;
+			background: transparent url(../../img/activity/scratch-card/scratch-08.png) 0 0 no-repeat;
+			background-size: contain;
+			top: 0;
+			left: 50%;
+			transform: translate(-50%, -65%);
+		}
+		h3 {
+			font-size: 28px;
+			color: #333;
+			line-height: 1em;
+			text-align: center;
+		}
+		.reward {
+			font-size: 28px;
+			font-weight: bold;
+			color: #333;
+			text-align: center;
+			line-height: 40px;
+			margin-top: 40px;
+			padding: 0 40px;
+		}
+		.code {
+			margin-top: 45px;
+			text-align: center;
+			padding-left: 72px;
+			p {
+				font-size: 24px;
+				color: #333;
+				line-height: 1em;
+				float: left;
+				line-height: 40px;
+				b {
+					display: inline-block;
+					margin-left: 10px;
+					font-size: 26px;
+					font-weight: normal;
+					color: #4bb6fa;
+				}
+			}
+			.copy {
+				width: 90px;
+				line-height: 40px;
+				background: #fdd732;
+				font-size: 24px;
+				color: #333;
+				margin: 0;
+				float: right;
+				margin-right: 30px;
+				border-radius: 6px;
+			}
+		}
+		a {
+			width: 400px;
+			line-height: 80px;
+			background: #f8593b;
+			font-size: 28px;
+		}
+	}
+}
+
+.popup-my {
+	.content {
+		width: 608px;
+		padding: 0;
+		.close {
+			top: 10px;
+			right: 10px;
+			&:before, &:after {
+				height: 4PX;
+				background: #fff;
+			}
+		}
+		i {
+			display: block;
+			width: 608px;
+			height: 273px;
+			background: transparent url(../../img/activity/scratch-card/scratch-09.jpg) 0 0 no-repeat;
+			background-size: contain;
+		}
+		.reward-content {
+			height: 460px;
+			overflow-y: scroll;
+			background: #fff;
+			padding: 0 20px 10px;
+			li {
+				height: 150px;
+				border-bottom: 2PX solid #eaeaea;
+				box-sizing: border-box;
+				.left {
+					float: left;
+					width: 380px;
+				}
+				h3 {
+					font-size: 30px;
+					color: #333;
+					width: 210px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          line-height: 68px;
+				}
+				h4 {
+					font-size: 20px;
+					color: #999;
+					line-height: 1.5em;
+				}
+				p {
+					line-height: 1.5em;
+					span {
+						font-size: 20px;
+						color: #999;
+						float: left;
+						b {
+							color: #00aaef;
+							font-weight: normal;
+						}
+					}
+				}
+				.copy {
+					font-size: 22px;
+					width: 80px;
+					line-height: 30px;
+					background: #00aaef;
+					float: right;
+					margin-top: 0;
+					margin-right: 12px;
+				}
+				.right {
+					width: 180px;
+					line-height: 68px;
+					float: right;
+					font-size: 28px;
+					background: #f8593b;
+					margin-top: 35px;
+				}
+			}
+			.no-reward {
+				border-bottom: none;
+				p {
+					line-height: 150px;
+					font-size: 32px;
+					color: #333;
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+
+.popup-show {
+	.content {
+		width: 510px;
+		padding: 38px 0 40px;
+		border-radius: 20px;
+		&:before {
+      content: '';
+      display: block;
+      position: absolute;
+		}
+		&:before {
+      width: 510px;
+      height: 139px;
+      background: transparent url(../../img/activity/scratch-card/scratch-11.png) 0 0 no-repeat;
+      background-size: 510px 139px;
+      left: 0;
+      top: -102px;
+		}
+		.close {
+			width: 40px;
+			height: 40px;
+			background: #fff;
+			border-radius: 50%;
+			top: -55px;
+			right: 0;
+			&:before, &:after {
+				background: rgba(0, 0, 0, .6);
+				width: 30px;
+				left: 6px;
+			}
+		}
+		p {
+			height: 170px;
+			line-height: 170px;
+			text-align: center;
+			font-size: 0;
+			span {
+				display: inline-block;
+				font-size: 28px;
+				color: #333;
+				vertical-align: middle;
+				line-height: 1.6em;
+			}
+		}
+		a {
+			line-height: 80px;
+			width: 400px;
+			background: #f8593b;
+			font-size: 32px;
+			border-radius: 10px;
+			margin-top: 0;
+		}
+		.a-div {
+			width: 360px;
+			margin: 0 auto;
+		}
+		a.ok, a.wait {
+			width: 160px;
+			font-size: 28px;
+			float: left;
+		}
+		a.wait {
+			float: right;
+		}
+	}
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.clearfix {
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+}

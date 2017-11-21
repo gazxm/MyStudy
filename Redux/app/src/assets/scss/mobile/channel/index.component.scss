@@ -1,0 +1,179 @@
+@import '../../common/base';
+
+.wrapper-channel-order{
+	bottom: 0;
+	.main{
+		color: #999;
+		font-size: 32px;
+		background-color: #fff;
+		text-align: center;
+		padding: 50px 0;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		.money{
+			color: #ff8003;
+			font-size: 63px;
+			margin-top: 25px;
+		}
+		.detailed{
+			color: #666;
+			font-size: 28px;
+			margin-top: 25px;
+		}
+	}
+	.am-list{
+		margin-top: 25px;
+	}
+	.am-list-line{
+		.am-list-content,
+		.am-list-extra{
+			color: #333;
+			font-size: 28px;
+		}
+	}
+	.tips{
+		color: #666;
+		font-size: 24px;
+		margin: 20px 35px;
+		span{
+			color: #ff8003;
+		}
+	}
+	.footer{
+		margin: 65px 35px 0;
+	}
+	.am-button-primary{
+		border-color: $brand-primary;
+		background-color: $brand-primary;
+		transition: .3s ease-out;
+		&:active{
+			border-color: darken($brand-primary, 5);
+			background-color: darken($brand-primary, 5);
+		}
+	}
+	.am-checkbox-agree{
+		margin-left: 0;
+	    .am-checkbox-agree-label{
+	        color: #999;
+	        font-size: 24px;
+	        margin-left: 40px;
+	    }
+	    .am-checkbox{
+	        .am-checkbox-inner{
+	            width: 24px;
+	            height: 24px;
+	            border-radius: 4px;
+	            border: 1px solid #999;
+	            top: 29px;
+	        }
+	    }
+	    .am-checkbox-checked{
+	        .am-checkbox-inner{
+	            border: 1px solid $brand-primary;
+	            background-color: transparent;
+	            &:after{
+	            	width: 8px;
+	            	height: 16px;
+	            	border-width: 1px none;
+	                border-color: $brand-primary;
+	                top: 2px;
+	                right: 6px;
+	            }
+	        }
+	    }
+	}
+}
+.wrapper-channel-details{
+	&:after{
+		height: 125px;
+		content: '';
+		display: block;
+	}
+	.title{
+		color: #999;
+		font-size: 28px;
+		padding: 15px 35px;
+	}
+	.am-steps{
+		background-color: #fff;
+		padding: 35px;
+	}
+	.am-list{
+		margin-top: 35px;
+	}
+	.am-list-item{
+		min-height: auto;
+	}
+	.am-list-line{
+		min-height: 85px;
+		.am-list-content{
+			width: 180px;
+			font-size: 28px;
+			flex: initial;
+		}
+		.am-list-extra{
+			font-size: 28px;
+			text-align: left;
+			flex-basis: initial;
+		}
+	}
+	.toolbar{
+		height: 90px;
+		background-color: #fff;
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		padding: 0 35px;
+		justify-content: space-between;
+		align-items: center;
+		display: flex;
+		&.download{
+			justify-content: center;
+		}
+		.money{
+			font-size: 28px;
+			span{
+				color: $brand-primary;
+			}
+		}
+		.repayment{
+			a{
+				height: 55px;
+				color: #fff;
+				font-size: 26px;
+				border-radius: 100px;
+				background-color: $brand-primary;
+				padding: 0 35px;
+				justify-content: center;
+				align-items: center;
+				display: flex;
+			}
+		}
+	}
+	.agreement{
+		.am-list-extra{
+			white-space: normal;
+			div{
+				display: inline-block;
+			}
+			a{
+				line-height: 42px;
+				color: $brand-primary;
+				font-size: 26px;
+			}
+		}
+	}
+	.progressing{
+		font-size: 26px;
+		background-color: #fff;
+		padding: 0 35px 50px;
+
+	}
+	.contact-tel{
+		color: #999;
+		font-size: 26px;
+		padding: 35px;
+	}
+}

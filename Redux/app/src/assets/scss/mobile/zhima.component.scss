@@ -1,0 +1,58 @@
+@import '../common/base';
+.wrapper-certification-zhima{
+	color: #999;
+	text-align: center;
+	bottom: 0;
+	&.success{
+		background-color: #fff;
+	}
+	&:not(.success){
+		justify-content: center;
+		align-items: center;
+		display: flex;
+	}
+	p + p{
+		margin-top: 15px;
+	}
+	.logo{
+		width: 175px;
+		height: 175px;
+		background: url(../../img/mobile/certification/logo-zhima.png) center no-repeat;
+		background-size: contain;
+		margin: 100px auto;
+	}
+	.tips{
+		font-size: 24px;
+	}
+	.button{
+		height: 85px;
+		line-height: 85px;
+		color: #999;
+		border-radius: 10px;
+		background-color: #f0f0f0;
+		margin: 50px 35px;
+	}
+	.security{
+	    color: #37bb5d;
+	    font-size: 26px;
+	    margin-top: 30px;
+	    justify-content: center;
+	    align-items: center;
+	    display: flex;
+	    &:before{
+	        width: 30px;
+	        height: 30px;
+	        content: '';
+	        background: url(../../img/mobile/certification/icon-security.png) center no-repeat;
+	        background-size: contain;
+	        margin-right: 10px;
+	        display: inline-block;
+	    }
+	}
+	.failed{
+		.button{
+			color: #fff;
+			background-color: $brand-primary;
+		}
+	}
+}

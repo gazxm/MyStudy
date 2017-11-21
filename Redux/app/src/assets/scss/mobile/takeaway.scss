@@ -1,0 +1,57 @@
+@import '../common/base';
+
+.wrapper-mobile-takeaway{
+	height: 100%;
+	.logo{
+		width: 300px;
+		height: 126px;
+		background: center no-repeat;
+		background-size: contain;
+		margin:100px auto;
+	}
+	.logo-1{
+		background-image: url(../../img/mobile/certification/elc.png);
+	}
+	.logo-2{
+		background-image: url(../../img/mobile/certification/baidu.png);
+	}
+	.logo-3{
+		background-image: url(../../img/mobile/certification/meituan.png);
+	}
+	.verify{
+		width: 150px;
+		height: 60px;
+		line-height: normal;
+		text-align: center;
+		font-size: 22px;
+		border-radius: 0px;
+		max-height: initial;
+		align-items: center;
+		justify-content: center;
+		display: flex;
+	}
+	.commit{
+		margin:100px 40px;
+		line-height: normal;
+		font-size: 30px;
+		border-radius: 90px;
+		button {
+			color: #fff;
+			background: #4ab6fa;
+			border-radius: 60px;
+		}
+	}
+	.finish{
+	height: 100%;
+	font-size:50px;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	color:#666;
+	}
+
+	.am-list-item .am-input-extra {
+		max-height: initial;
+	}
+}
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>background-attachment</title>
+  <script type="text/javascript"></script>
+  <style type="text/css">
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment */
+  /* background-attachment:	规定背景图像是否固定或者随着页面的其余部分滚动。 fixed/local/scroll */
+  /* background-attachment: fixed/local/scroll; 
+				fixed: 固定; scroll：滚动; local: 暂不明;
+        补充：local: 背景图像相对于元素内容固定，也就是说当元素随元素滚动时背景图像也会跟着滚动，因为背景图像总是要跟着内容。（CSS3）【IE9+】
+		*/
+  /*兼容性: 
+				
+			特征				chrome	FireFox（Gecko）			Internet Explorer		Opera	safari
+			基本支持		1.0	   	1.0（1.7或更早）							4						3.5			1.0
+			多重背景		1.0	    3.6（1.9.2）									9						10.5		1.3
+			local				4				25（25）
+		*/
+    body {
+      margin: 0;
+    }
+    .background-attachment-fixed {
+      width: 300px;
+      height: 200px;
+      background: #999 url(../img/iphone_bili.jpg) 0 0 no-repeat;
+      background-size: 10% 10%;  
+      background-attachment: fixed;
+      /* 由于设置了attachment: fixed; 则background-size是针对于整个浏览器的可视窗口(去除滚动条) */
+    }
+    .background-attachment-local {
+      width: 300px;
+      height: 200px;
+      background: transparent url(../img/iphone_bili.jpg) 0 0 no-repeat;
+      background-size: 10% 10%;
+      background-attachment: fixed;
+      overflow: scroll;
+      /*这个就是针对于DIV了，并不是针对于浏览器的可视窗口*/
+    }
+  </style>
+  <!-- 
+    iOS系统和某些移动端background-attachment:fixed不兼容性，没有任何效果，但可以hack一下就可以了，代码如下:
+
+    ps：想在哪个标签加背景，可以在它class后:before.
+
+    body:before {
+      content: ' ';
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: url(path/to/image) center 0 no-repeat;
+      background-size: cover;
+    }
+  -->
+</head>
+
+<body>
+  <div class="background-attachment-fixed">
+  </div>
+  <div class="background-attachment-local">
+      There were doors all round the hall, but they were all locked; and when
+      Alice had been all the way down one side and up the other, trying every
+      door, she walked sadly down the middle, wondering how she was ever to
+      get out again.
+      There were doors all round the hall, but they were all locked; and when
+      Alice had been all the way down one side and up the other, trying every
+      door, she walked sadly down the middle, wondering how she was ever to
+      get out again.
+  </div>
+</body>
+
+</html>

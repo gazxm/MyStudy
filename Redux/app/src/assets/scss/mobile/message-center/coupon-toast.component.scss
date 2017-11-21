@@ -1,0 +1,115 @@
+@import '../../common/base';
+
+.am-list-body {
+  background: transparent!important;
+  &:after {
+    content: none!important;
+  }
+}
+
+.coupon-toast {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: $bg;
+  .list {
+    .time {
+      background: #d1d1d5;
+      width: 250px;
+      line-height: 40px;
+      margin: 24px auto;
+      border-radius: 5px;
+      h1 {
+        text-align: center;
+        font-size: 24px;
+        color: #fff;
+      }
+    }
+    .content {
+      background: #fff;
+      width: 690px;
+      margin: 0 auto 60px;
+      border-radius: 5px;
+      padding: 15px 20px;
+      box-sizing: border-box;
+      h2 {
+        font-size: 30px;
+        font-weight: bold;
+        color: #333;
+        line-height: 1.6em;
+      }
+      h3 {
+        font-size: 24px;
+        line-height: 51px;
+        padding-left: 75px;
+        color: #666;
+        width: 630px;
+        box-sizing: border-box;
+        position: relative;
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: 22px;
+          height: 22px;
+          border-top: 2px solid $brand-primary;
+          border-right: 2px solid $brand-primary;
+          transform: rotate(45deg) translateY(-50%);
+          top: 50%;
+          right: -10px;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+  .dedu {
+    .content {
+      h3 {
+        background: transparent url(../../../img/mobile/message-center/center-06.jpg) 0 50% no-repeat;
+        background-size: 51px 51px;   
+      }
+    }
+  }
+  .amount {
+    .content {
+      h3 {
+        background: transparent url(../../../img/mobile/message-center/center-07.jpg) 0 50% no-repeat;
+        background-size: 51px 51px; 
+      }
+    }
+  }
+  .back {
+    .content {
+      h3 {
+        background: transparent url(../../../img/mobile/message-center/center-08.jpg) 0 50% no-repeat;
+        background-size: 51px 51px; 
+      }
+    }
+  }
+  .rene {
+    .content {
+      h3 {
+        background: transparent url(../../../img/mobile/message-center/center-11.jpg) 0 50% no-repeat;
+        background-size: 51px 51px;
+      }
+    }
+  }
+}
+
+.no-data {
+  background: #fff;
+  img {
+    display: block;
+    width: 390px;
+    height: 260px;
+    margin: 240px auto 0;
+  }
+  h5 {
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+    margin-top: 90px;
+  }
+}

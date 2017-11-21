@@ -1,0 +1,75 @@
+@mixin backgroundImg($color: transparent, $url: '', $left: 0, $top: 0, $size: contain) {
+  background: $color url('../../../img/mobile/message-center/#{$url}') $left $top no-repeat;
+  background-size: unquote($size);
+}
+
+@mixin iconImg($u) {
+  @include backgroundImg($url: $u, $left: 30px, $top: 50%, $size: '80px 80px');
+}
+
+.am-list-body {
+  border-top: none!important;
+  &:after {
+    content: none!important;
+  }
+}
+
+.message-center {
+  .list {
+    height: 136px;
+    padding-left: 140px;
+    position: relative;
+    .am-list-item {
+      padding-left: 0;
+      min-height: auto;
+      height: 135px;
+    }
+    .am-list-line {
+      border-bottom: 1PX solid #e5e5e5;
+    }
+    .am-badge {
+      position: absolute;
+      top: 27px;
+      left: 90px;
+      z-index: 1;
+      .am-badge-dot {
+        background: #f74c31;
+      }
+    }
+    h1 {
+      font-size: 32px;
+      color: #333;
+      line-height: 1.5em;
+    }
+    h2, h3 {
+      font-size: 24px;
+      color: #999;
+      line-height: 1.5em
+    }
+    h2 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      white-space: normal;
+    }
+    h3 {
+      position: absolute;
+      top: 26px;
+      right: 28px;
+    }
+  }
+  .system {
+    @include iconImg($u: 'center-01.jpg');
+  }
+  .loan {
+    @include iconImg($u: 'center-02.jpg');
+  }
+  .bro {
+    @include iconImg($u: 'center-03.jpg');
+  }
+  .toast {
+    @include iconImg($u: 'center-04.jpg');
+  }
+}

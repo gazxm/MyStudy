@@ -1,0 +1,194 @@
+@import '../../common/base';
+
+.wrapper-repayment-part{
+	bottom: 0;
+	.notice{
+		height: auto;
+		color: #ffab27;
+		// color: #666;
+		line-height: 36px;
+		font-size: 26px;
+		background-color: #fff7ea;
+		// background-color: transparent;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		.am-notice-bar-content{
+			white-space: normal;
+		}
+		span{
+			color: #ffab27;
+			&:after{
+				font-family: Simhei;
+				content: '>>';
+				margin-left: 5px;
+			}
+		}
+	}
+	.am-list-item{
+		.am-list-line{
+			.am-list-content{
+				font-size: 32px;
+			}
+			.am-list-extra{
+				flex-basis: initial;
+				.money{
+					color: #ff8003;
+				}
+			}
+		}
+	}
+	.am-stepper-input{
+		pointer-events: none;
+	}
+	.am-button-primary{
+	    border-color: $brand-primary;
+	    background-color: $brand-primary;
+	    position: relative;
+	    &.am-button-active{
+	        border-color: darken($brand-primary, 5);
+	        background-color: darken($brand-primary, 5);
+	    }
+	    &.am-button-disabled{
+	        color: #fff;
+	        border-color: lighten($brand-primary, 10);
+	        background-color: lighten($brand-primary, 10);
+	        pointer-events: none;
+	    }
+	    span{
+	        transition: color .35s ease-in-out;
+	    }
+	    .am-icon-loading{
+	        opacity: 0;
+	        transition: opacity .5s ease-in-out .15s;
+	        position: absolute;
+	        top: 50%;
+	        left: 50%;
+	        + span{
+	            margin-left: 0;
+	        }
+	    }
+	}
+	.am-button-loading{
+	    span{
+	        color: transparent;
+	    }
+	    .am-icon-loading{
+	        opacity: 1;
+	        transition: opacity .3s ease-in-out .15s;
+	        margin-top: -20px;
+            margin-left: -20px;
+	    }
+	}
+	.button-loading{
+	    border-color: lighten($brand-primary, 20);
+	    background-color: lighten($brand-primary, 20);
+	    pointer-events: none;
+	}
+	.button-disabled{
+	    border-color: #ddd;
+	    background-color: #ddd;
+	    pointer-events: none;
+	}
+	.footer{
+		margin: 55px 35px 0;
+	}
+	.tips,
+	.tips-repayment{
+		color: #666;
+		font-size: 24px;
+		margin: 20px 35px;
+		span{
+			color: $brand-primary;
+		}
+	}
+	.tips-repayment{
+		span{
+			color: #ff8003;
+		}
+	}
+	.instruction{
+		color: #999;
+		font-size: 26px;
+		text-align: center;
+		margin-top: 35px;
+		span{
+			border-bottom: 1px solid #999;
+		}
+	}
+}
+.repayment-part-modal-instruction{
+	width: 635px !important;
+	.am-modal-close{
+		top: 20px;
+		right: 20px;
+		left: auto;
+	}
+	.am-modal-close-x{
+		font-size: 64px;
+	}
+	.am-modal-body{
+		line-height: 46px;
+		font-size: 26px;
+		text-align: left;
+		padding-right: 35px !important;
+		padding-left: 35px !important;
+		dl{
+			+ dl{
+				margin-top: 35px;
+			}
+		}
+		dd{
+			color: #666;
+			text-indent: 1.5em;
+		}
+	}
+}
+.repayment-part-popup-choose-bank{
+	.am-list-header{
+		position: relative;
+		padding-top: 25px;
+		padding-bottom: 25px;
+	}
+	.title{
+		color: #333;
+		font-size: 32px;
+		text-align: center;
+	}
+	.close{
+		width: 32px;
+		height: 32px;
+		color: #888;
+		font-size: 32px;
+		position: absolute;
+		top: 50%;
+		left: 35px;
+		transform: translateY(-50%);
+	}
+	.addBank{
+		.am-list-thumb{
+			color: #999;
+		}
+	}
+	.am-list-line{
+		.am-list-content{
+			color: #333;
+			font-size: 32px;
+		}
+	}
+	.am-list-body{
+		height: 360px;
+		overflow: auto;
+	}
+	.disabled{
+		pointer-events: none;
+		.am-list-content{
+			color: #999;
+			font-size: 26px;
+		}
+		.am-list-brief{
+			color: #999;
+			font-size: 24px;
+			margin-top: 5px;
+		}
+	}
+}

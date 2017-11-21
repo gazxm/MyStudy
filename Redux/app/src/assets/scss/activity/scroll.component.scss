@@ -1,0 +1,10 @@
+.horizontal {
+  white-space: nowrap;
+  li {
+    display: inline-block;
+    margin-left: 35px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

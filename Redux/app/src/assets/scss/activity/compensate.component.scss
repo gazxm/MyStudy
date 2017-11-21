@@ -1,0 +1,327 @@
+.wrapper-activity-compensate{
+    background-color: #ffc830;
+    padding-bottom: 173px;
+    &:before{
+        height: 400px;
+        content: '';
+        background: url(../../img/activity/compensate/banner.png) center top no-repeat;
+        background-size: contain;
+        margin-bottom: 35px;
+        display: block;
+    }
+}
+
+.participate-rules{
+    width: 105px;
+    height: 105px;
+    background: url(../../img/activity/compensate/participate-rules-button.png) center no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 525px;
+    right: 10px;
+    z-index: 1;
+    &:before{
+        width: 79px;
+        height: 130px;
+        content: '';
+        background: url(../../img/activity/compensate/participate-rules-balloon.png) center no-repeat;
+        background-size: contain;
+        transform: translateX(-50%);
+        position: absolute;
+        top: -112px;
+        left: 49%;
+    }
+}
+
+%center{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.am-carousel.drawresults{
+    width: 566px !important;
+    height: 33px;
+    border: 1px solid #cdcdcd;
+    border-radius: 15px;
+    box-shadow: inset 0 2px 6px rgba(#000, .29);
+    background-color: #fff;
+    padding: 23px 0 17px;
+    @extend %center;
+    &:before{
+        width: 25px;
+        height: 25px;
+        content: '';
+        background: url(../../img/activity/compensate/notice.png) center no-repeat;
+        background-size: cover;
+        margin-top: -12.5px;
+        position: absolute;
+        top: 50%;
+        left: 35px;
+    }
+}
+.drawitems{
+    color: #3a3a3a;
+    font-size: 26px;
+    padding-left: 35px;
+    align-self: flex-start;
+    justify-content: center;
+    display: flex;
+    span{
+        color: #ce0018;
+        margin: 0 10px;
+    }
+}
+
+.panel{
+    margin-top: 60px;
+}
+.panel-title{
+    width: 410px;
+    height: 70px;
+    color: #ffc830;
+    font-size: 28px;
+    border-radius: 100px;
+    background-color: #5e2b00;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    @extend %center;
+    .icon{
+        background: center no-repeat;
+        background-size: contain;
+        margin-right: 15px;
+        display: block;
+    }
+    .icon-prize{
+        width: 43px;
+        height: 43px;
+        background-image: url(../../img/activity/compensate/icon-prize.png);
+    }
+    .icon-money{
+        width: 45px;
+        height: 45px;
+        background-image: url(../../img/activity/compensate/icon-money.png);
+    }
+}
+.panel-inner{
+    width: 695px;
+    border-radius: 10px;
+    background-color: #feb42f;
+    margin-top: 20px;
+    padding: 45px 0 50px;
+    @extend %center;
+}
+.steps{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.step{
+    position: relative;
+    &.normal,
+    &:last-child{
+        .step-icon{
+            &:after{
+                display: none;
+            }
+        }
+    }
+    &-icon{
+        width: 120px;
+        height: 120px;
+        border-radius: 100%;
+        background: #fff center no-repeat;
+        position: relative;
+        @extend %center;
+        &-phone{
+            background-image: url(../../img/activity/compensate/steps/phone.png);
+            background-size: 50px 78px;
+        }
+        &-money{
+            background-image: url(../../img/activity/compensate/steps/money.png);
+            background-size: 69px 78px;
+        }
+        &-information{
+            background-image: url(../../img/activity/compensate/steps/information.png);
+            background-size: 66px 76px;
+        }
+        &-compensate{
+            background-image: url(../../img/activity/compensate/steps/compensate.png);
+            background-size: 68px 78px;
+        }
+        &-apply{
+            background-image: url(../../img/activity/compensate/steps/apply.png);
+            background-size: 73px 73px;
+        }
+        &-success{
+            background-image: url(../../img/activity/compensate/steps/success.png);
+            background-size: 66px 43px;
+        }
+        &:after{
+            width: 31px;
+            height: 31px;
+            content: '';
+            background: url(../../img/activity/compensate/steps/arrow.png) center no-repeat;
+            background-size: contain;
+            transform: translateY(-50%);
+            position: absolute;
+            top: 50%;
+            right: -42px;
+        }
+    }
+    &-title{
+        line-height: 34px;
+        color: #5e2b00;
+        font-size: 24px;
+        text-align: center;
+        margin-top: 20px;
+        p{
+            margin: 0;
+        }
+        .text-danger,
+        &.text-danger{
+            color: #c41220;
+            font-weight: 700;
+        }
+    }
+    &-arrow{
+        width: 175px;
+        height: 32px;
+        background: url(../../img/activity/compensate/steps/arrows.png) center no-repeat;
+        background-size: contain;
+        margin-top: 5px;
+        + .step-title{
+            transform: translateY(-15px);
+        }
+    }
+}
+.step-normal{
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    left: -10px;
+}
+
+.quick-loan{
+    height: 133px;
+    background-color: rgba(#251100, .77);
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.details{
+    margin-top: 85px;
+    .description{
+        line-height: 40px;
+        color: #5e2b00;
+        font-size: 26px;
+        font-weight: 700;
+        transform: translateX(-20px);
+        p{
+            white-space: nowrap;
+            margin: 0;
+        }
+        .text-danger{
+            color: #e11425;
+        }
+    }
+}
+.red-packet{
+    width: 250px;
+    height: 157px;
+    background: url(../../img/activity/compensate/red-packet.png) center no-repeat;
+    background-size: contain;
+    margin-left: 60px;
+    position: relative;
+    .amount{
+        color: #fcf84e;
+        font-size: 75px;
+        font-weight: 700;
+        font-family: Arial;
+        transform: translateX(-50%);
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        span{
+            font-size: 32px;
+        }
+    }
+}
+
+.quick-loan-button{
+    width: 424px;
+    height: 87px;
+    background: url(../../img/activity/compensate/quick-loan-button.png) center no-repeat;
+    background-size: contain;
+}
+
+.modal-primary{
+    width: 610px !important;
+    .am-modal-header{
+    }
+    .am-modal-title{
+        color: #5e2b00;
+        font-size: 30px;
+    }
+    .am-modal-content{
+        background-color: #ffc830;
+    }
+    .am-modal-close{
+        color: #fff;
+        font-weight: 600;
+        text-shadow: 0 1px 0 rgba(#fff, 1);
+        top: 16px;
+        right: 12px;
+        left: auto;
+    }
+}
+.modal-primary-content{
+    line-height: 48px;
+    font-size: 26px;
+    text-align: left;
+    border-radius: 12px;
+    background-color: #fff;
+    padding: 40px 30px 35px;
+    // ul{
+    //     list-style: none;
+    //     margin: 0;
+    //     padding-left: 0;
+    // }
+    // li + li{
+    //     margin-top: 15px;
+    // }
+    h5{
+        font-size: 28px;
+        margin: 0;
+    }
+    ul{
+        list-style: none;
+        margin: 0;
+        padding-left: 0;
+        + ul{
+            margin-top: 20px;
+        }
+    }
+    li{
+        font-size: 26px;
+    }
+    .icon{
+        width: 32px;
+        margin: 0 5px;
+        position: relative;
+        top: 2px;
+    }
+    .right-to-interpret{
+        line-height: 38px;
+        font-size: 18px;
+        margin: 30px 0 0;
+    }
+}
+.modal-primary-content-inner{
+    max-height: 675px;
+    overflow-x: auto;
+}

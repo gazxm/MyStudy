@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>巧妙地制作背景色渐变动画</title>
+</head>
+
+<style>
+  div {
+    position: relative;
+    width: 300px;
+    height: 100px;
+    margin: 20px auto;
+  }
+
+  .gradientChange {
+    background: linear-gradient(90deg, #ffc700 0%, #e91e1e 100%);
+    animation: gradientChange 3s infinite;
+  }
+
+  @keyframes gradientChange {
+    100% {
+      background: linear-gradient(90deg, #e91e1e 0%, #6f27b0 100%);
+    }
+  }
+
+  .colorChange {
+    background: #ffc700;
+    animation: colorChange 3s infinite alternate;
+  }
+
+  @keyframes colorChange {
+    100% {
+      background: #e91e1e;
+    }
+  }
+
+  /*
+    可以看到渐变色无法直接渐变，但是背景色可以渐变，
+    总结一下，线性渐变（径向渐变）是不支持 animation 的，单色的 background 是支持的。
+
+    对于 background 相关的，文档里写的是支持 background 但是没有细说不支持 background: linear-gradient()/radial-gradient() 。猜测原因，可能是由于渐变中加入 animation 的变化对过于消耗性能。
+  */
+</style>
+
+<body>
+  <div class='gradientChange'></div>
+  <div class='colorChange'></div>
+</body>
+
+</html>

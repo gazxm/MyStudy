@@ -1,0 +1,80 @@
+.gold {
+	width: 750px;
+	height: 2800px;
+	background: #f0eee2 url(../../img/activity/gold-bulletin/gold-01.jpg) 0 0 no-repeat;
+	background-size: 750px 2800px;
+	position: relative;
+	.button {
+		position: fixed;
+		left: 0;
+		bottom: 35px;
+		.a-loan, .a-gold {
+      display: inline-block;
+      width: 330px;
+      line-height: 70px;
+      height: 78px;
+      font-size: 28px;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      span {
+				display: block;	
+				width: 330px;
+				height: 70px;
+				border-radius: 10px;
+			}
+		}
+		.a-loan {
+			background: #f4903d;
+			color: #ec6815;
+			margin-left: 43px;
+      span {
+        background: #ffe656;
+      }
+		}
+		.a-gold {
+			background: #e9b442;
+			color: #e68e10;
+			margin-left: 25px;
+			span {
+        background: #ffe6a4;
+      }
+		}
+	}
+}
+
+.popup {
+	.content {
+		width: 460px;
+		border-radius: 25px;
+		p {
+			font-size: 24px;
+			line-height: 1.5em;
+			color: #535353;
+			text-align: center;
+		}
+		.close {
+			top: 15px;
+			right: 15px;
+			width: 40px;
+			height: 40px;
+			&:before, &:after {
+				width: 35px;
+				height: 3PX;
+			}
+		}
+		a {
+			width: 360px;
+			background: #00ac7b;
+			font-size: 24px;
+			line-height: 65px;
+			border-radius: 20px;
+		}
+	}
+}
+
+a:hover {
+	text-decoration: none;
+}

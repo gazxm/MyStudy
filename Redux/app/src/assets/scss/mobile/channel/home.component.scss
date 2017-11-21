@@ -1,0 +1,90 @@
+@import '../../common/base';
+
+.wrapper-channel{
+	bottom: 0;
+	.am-notice-bar{
+		color: #ff8003;
+		background-color: #fff;
+	}
+	.am-notice-bar-content{
+		align-items: center;
+		display: flex;
+		&:before{
+			width: 28px;
+			height: 28px;
+			content: '';
+			background: url(../../../img/mobile/channel/icon-info.png) center no-repeat;
+			background-size: contain;
+			margin-right: 10px;
+		}
+	}
+	.am-grid{
+		position: relative;
+		&:before,
+		&:after{
+			content: '';
+		    position: absolute;
+		    right: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 1PX;
+		    background-color: #ddd;
+		    display: block;
+		}
+		&:before{
+			top: 0;
+		}
+		&:after{
+			bottom: 0;
+		}
+	}
+	.am-grid-item{
+		height: 235px;
+		text-align: center;
+		padding-top: 35px;
+		justify-content: center;
+		display: flex;
+		box-sizing: padding-box;
+		.icon{
+			width: 51px;
+			height: 51px;
+			background: center no-repeat;
+			background-size: contain;
+			margin: 0 auto;
+		}
+		.title{
+			color: #666;
+			font-size: 26px;
+			margin-top: 20px;
+		}
+	}
+	.am-badge{
+		margin-top: 20px;
+		&.success .am-badge-text{
+			background-color: #5ec222;
+		}
+		&.verify .am-badge-text{
+			background-color: $brand-primary;
+		}
+		&.fail .am-badge-text{
+			background-color: #999;
+		}
+	}
+	.am-badge-text{
+		font-size: 22px;
+		height: 30px;
+		padding: 0 20px;
+	}
+	.footer{
+		margin: 65px 40px 0;
+	}
+	.am-button-primary{
+		border-color: $brand-primary;
+		background-color: $brand-primary;
+		transition: .3s ease-out;
+		&:active{
+			border-color: darken($brand-primary, 5);
+			background-color: darken($brand-primary, 5);
+		}
+	}
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>background和background-color的区别</title>
+</head>
+
+<style>
+  div {
+    width: 300px;
+    height: 300px;
+    margin: 30px auto;
+  }
+  .background {
+    background-image: url(../img/dog.jpg);
+    background: #999;
+  }
+  .background-color {
+    background-image: url(../img/dog.jpg);
+    background-color: #999;
+  }
+  /*
+    前者是简写，它可以确保你得到的是#999纯色背景；但如果你用的是单个属性(background-color)，那这个元素的背景最终有可能会显示为一个粉色的渐变背景，一张狗的图片或者其他任何东西，因为同事有一条background-image在起作用
+  */
+</style>
+
+<body>
+  <div class='background'></div>  <!-- 可以看到背景色是纯灰色 -->
+  <div class='background-color'></div>  <!-- 背景是狗的图片 -->
+</body>
+
+</html>

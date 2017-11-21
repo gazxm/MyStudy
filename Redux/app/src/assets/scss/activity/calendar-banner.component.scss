@@ -1,0 +1,50 @@
+.wrapper-activity-calendar-banner{
+	width: 750px;
+	bottom: 0;
+	overflow: hidden;
+	.banner{
+		height: 195px;
+		color: #fff;
+		background: #bbb center no-repeat;
+		background-size: 100% 100%;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		border: 20px  #f2f2f2;
+		border-style: solid none;
+		&.front{
+			.date,
+			.title{
+				display: none;
+			}
+		}
+		.date{
+			height: 72px;
+			align-items: center;
+			display: flex;
+			position: absolute;
+			top: 25px;
+			left: 10px;
+		}
+		.day{
+			font-size: 64px;
+			font-weight: 600;
+			font-family: Arial;
+		}
+		.year-month{
+			font-size: 22px;
+			white-space: nowrap;
+			margin-left: 10px;
+			// p + p{
+			// 	margin-top: 3px;
+			// }
+		}
+		.title{
+			color: #fff;
+			font-size: 32px;
+			white-space: nowrap;
+			margin-top: 35px;
+			padding: 0 145px;
+		}
+	}
+}

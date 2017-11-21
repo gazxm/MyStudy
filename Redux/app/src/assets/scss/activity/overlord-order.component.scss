@@ -1,0 +1,625 @@
+@import '../common/base';
+.overlord {
+	width: 750px;
+	height: 2250px;
+	background: transparent url(../../img/activity/overlord-order/overlord-01.jpg) 0 0 no-repeat;
+	background-size: 750px 2550px;
+	.card-content {
+		.card {
+			width: 218px;
+			height: 439px;
+			background: transparent url(../../img/activity/overlord-order/overlord-02.png) 0 0 no-repeat;
+			background-size: contain;
+			position: absolute;
+      cursor: pointer;
+      transition: all 1.2s ease-in-out;
+			&:nth-child(1) {
+				left: 90px;
+				top: 543px;
+			}
+			&:nth-child(2) {
+				left: 300px;
+				top: 457px;
+			}
+			&:nth-child(3) {
+				left: 516px;
+        top: 543px;
+			}
+      h4 {
+        font-size: 34px;
+        color: #540f0e;
+        font-weight: bold;
+        width: 50px;
+        position: absolute;
+        left: 41%;
+        top: 43%;
+        transform: translate(-50%, -50%);
+        transition: all 1.2s linear;
+        opacity: 1;
+        text-shadow: 5px 5px 0 #fee19d, -5px -5px 0 #fee19d, 0 5px 0 #fee19d, 0 -5px #fee19d;
+        b {
+          color: #ec0400;
+          display: block;
+        }
+      }
+      h5 {
+        font-size: 24px;
+        color: #ffea89;
+        font-weight: bold;
+        position: absolute;
+        left: 36%;
+        top: 88%;
+        transform: translate(-50%, -50%); 
+        transition: all 1.2s ease-in-out;
+      }
+      h6, p {
+        font-weight: bold;
+        position: absolute;
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        transition: all 1.2s ease-in-out;
+      }
+      h6 {
+        font-size: 36px;
+        color: #ec0400;
+        left: 38%;
+        top: 28%;
+      }
+      p {
+        width: 164px;
+        color: #540f0e;
+        font-size: 28px;
+        left: 41%;
+        top: 46%;
+      }
+		}
+    .active {
+      width: 348px;
+      height: 700px;
+      left: 270px!important;
+      top: 375px!important;
+      h4 {
+        opacity: 0;
+      }
+      h5 {
+        font-size: 36px;
+      }
+      h6 {
+        opacity: 1;
+      }
+      p {
+        opacity: 1;
+      }
+    }
+    .active-index {
+      z-index: 5;
+    }
+	}
+  .button {
+    display: block;
+    margin: 1060px auto 0;
+    width: 450px;
+    line-height: 105px;
+    border-radius: 25px;
+    font-size: 34px;
+    font-weight: bold;
+    text-align: center;
+    color: #531a1b;
+    cursor: pointer;
+    background: linear-gradient(180deg, #fff2b6, #ffd40c);
+    box-shadow: 0 2px 1px 1px #bd878d;
+  }
+  .rule {
+    padding: 35px 30px;
+    width: 640px;
+    border: 2PX solid #804b28;
+    background: rgba(0, 0, 0, .2);
+    margin: 60px auto 0;
+    border-radius: 25px;
+    h2 {
+      width: 400px;
+      height: 90px;
+      line-height: 90px;
+      background: transparent url(../../img/activity/overlord-order/overlord-03.png) 0 0 no-repeat;
+      background-size: 400px 90px;
+      margin: 0 auto 60px;
+      font-size: 30px;
+      font-weight: bold;
+      text-align: center;
+      color: #531a1b;
+      position: relative;
+      &:after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 13px solid transparent;
+        border-right: 13px solid transparent;
+        border-top: 15px solid #ffe25b;
+        position: absolute;
+        top: 120px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    h3 {
+      font-size: 24px;
+      color: #ffdf4b;
+      line-height: 2em;
+      font-weight: bold;
+    }
+    p {
+      font-size: 24px;
+      color: #e5a764;
+      line-height: 1.5em;
+      margin: 15px 0;
+      b {
+        font-weight: normal;
+        color: #ffdf4b;
+      }
+    }
+  }
+}
+
+.pay-content {
+  width: 750px;
+  height: 1334px;
+  background: #f2f2f2;
+  .header {
+    margin: 22px 0;
+    height: 286px;
+    background: #fff;
+    padding-top: 75px;
+    h2 {
+      font-size: 68px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 1.8em;
+      color: #ff783f;
+      span {
+        display: inline-block;
+        margin-left: 10px;
+      }
+    }
+    h3 {
+      font-size: 30px;
+      line-height: 48px;
+      text-align: center;
+      color: #333;
+    }
+  }
+  .content {
+    background: #fff;
+    p {
+      line-height: 120px;
+      border-bottom: 1PX solid #f2f2f2;
+      font-size: 32px;
+      color: #333;
+      padding-left: 110px;
+      padding-right: 33px;
+      &:first-child {
+        background: transparent url(../../img/activity/overlord-order/pay-01.jpg) 29px 50% no-repeat;
+        background-size: 52px 37px;
+      }
+      &:nth-child(2) {
+        background: transparent url(../../img/activity/overlord-order/pay-02.jpg) 32px 50% no-repeat;
+        background-size: 46px 56px;
+      }
+      &:last-child {
+        background: transparent url(../../img/activity/overlord-order/pay-03.jpg) 28px 50% no-repeat;
+        background-size: 51px 50px;
+      }
+      .right {
+        float: right;
+      }
+    }
+  }
+  .agreement-content {
+    padding-top: 20px;
+    p.other {
+      display: inline-block;
+      width: 170px;
+      padding-left: 5px;
+      margin: 30px auto;
+      color: #fff;
+      font-size: 28px;
+      &:first-child {
+        padding-left: 35px;
+      }
+      &:nth-child(2) {
+        width: 150px;
+      }
+      &:last-child {
+        width: 190px;
+      }
+      input {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        background: #fff;
+        margin: 0;
+        margin-right: 15px;
+        vertical-align: top;
+      }
+      a {
+        color: #4ab6fa;
+      }
+      input[type='checkbox']:checked+label i {
+        display: block;
+      }
+      label {
+        display: inline-block;
+        float: left;
+        color: #fff;
+        padding-left: 32px;
+        position: relative;
+        font-size: 24px;
+        vertical-align: middle;
+        &:before {
+          content: '';
+          display: block;
+          width: 26px;
+          height: 26px;
+          background: transparent;
+          position: absolute;
+          border: 3px solid #666;
+          left: 0;
+          top: 2px;
+          box-sizing: border-box;
+          border-radius: 3px;
+        }
+        i {
+          display: none;
+          width: 26px;
+          height: 26px;
+          position: absolute;
+          left: 0;
+          top: 2px;
+          background: url(../../img/activity/overlord-order/pay-04.jpg) 0 0 no-repeat;
+          background-size: 26px 26px;
+        }
+      }
+    }
+  }
+  .a-pay {
+    display: block;
+    width: 690px;
+    line-height: 92px;
+    text-align: center;
+    font-size: 36px;
+    color: #fff;
+    background: #4ab6fa;
+    margin: 100px auto 0;
+    border-radius: 40px;
+  }
+}
+
+.service {
+  padding:20px;
+  font-size: 26px;
+  line-height: 38px;
+  text-indent: 2em;
+  p {
+    color:#555;
+  }
+  h2 {
+    font-size: 34px;
+    text-align: center;
+    padding:10px 0 20px;
+  }
+  h3 {
+    font-size: 28px;
+    padding-top:10px;
+  }
+  h4 {
+    font-size: 28px;
+    padding-top:10px;
+  }
+  b,h2,h3,h4,.bold {
+    font-weight: bold;
+  }
+  em {
+    display: block;
+    padding:10px 7px;
+    border-radius: 5px;
+    text-indent: 0em;
+    font-size: 26px;
+    list-style: 40px;
+    background-color: #e2e2e2;
+    border:1PX solid #ccc;
+    margin-top: 10px;
+  }
+  .red {
+    color: red;
+  }
+  .line {
+    text-decoration:underline;
+  }
+  table {
+    border-top: 1PX solid #666;
+    border-right: 1PX solid #666;
+    text-indent: 0em;
+    font-size: 24px;
+    margin:10px 0;
+    tr {
+      td:nth-of-type(1),td:nth-of-type(3) {
+        text-align: center;
+      }
+    }
+    td {
+      border-bottom: 1PX solid #666;
+      border-left: 1PX solid #666;
+      padding:5px;
+      .line {
+        display: inline-block;
+        width: 70px;
+        border-bottom: 1PX solid #555;
+      }
+    }
+  }
+}
+
+.agreement {
+  padding: 30px 28px;
+  background: #fff;
+  h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    line-height: 2em;
+  }
+  h2 {
+    font-size: 24px;
+    text-align: right;
+    line-height: 1.8em;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 1.8em;
+  }
+  h4 {
+    font-size: 24px;
+    text-indent: 2em;
+    line-height: 1.8em;
+  }
+  h5 {
+    font-size: 24px;
+    margin-top: 50px;
+    line-height: 2em;
+  }
+  h6 {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 2em;
+    text-align: center;
+  }
+  p {
+    font-size: 24px;
+    text-indent: 2em;
+    line-height: 1.8em;
+    margin: 12px 0;
+    text-align: justify;
+  }
+  p.bold {
+    font-weight: bold;    
+  }
+  p.small {
+    font-size: 20px;
+  }
+  p.line {
+    border-top: 1PX solid #333;
+  }
+  .margin {
+    margin: 30px 0 12px;
+  }
+  .margin-top {
+    margin-top: 50px;
+  }
+  .small-top {
+    margin-top: 15px;
+  }
+  .right {
+    text-align: right;
+  }
+  .no-indent {
+    text-indent: 0;
+  }
+  .more-indent {
+    text-indent: 4em;
+  }
+  span.indent {
+    display: block;
+    text-indent: 7em;
+  }
+  table {
+    width: 100%;
+    margin-top: 20px;
+    td, th {
+      border: 1PX solid #333;
+      height: 42px;
+    }
+    th {
+      text-align: center;
+    }
+  }
+  .enclosure {
+    h4 {
+      font-size: 40px;
+      color: #333;
+      text-align: center;
+      line-height: 2em;
+    }
+    .left {
+      text-align: left;
+    }
+    p {
+      font-size: 28px;
+      line-height: 1.8em;
+      text-indent: 0;
+    }
+    .small {
+      font-size: 24px;
+    }
+  }
+}
+
+.auth {
+  table {
+    tr {
+      >td {
+        &:first-child {
+          width: 40%;
+        }
+      }
+      td, th {
+        padding-left: 5px;
+      }
+    }
+  }
+}
+
+.platform {
+  table {
+    tr {
+      td, th {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.loan {
+  table {
+    tr {
+      td, th {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.result {
+  width: 750px;
+  background: #f2f2f2 center no-repeat;
+  height: 1334px;
+  .wrapper-mobile-transfer{
+    bottom: 0;
+    .main{
+      background-color: #fff;
+      text-align: center;
+      padding: 35px 0;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+    }
+    .countdown{
+      justify-content: center;
+      align-items: center;
+      display: flex;
+    }
+    .loading{
+      width: 175px;
+      height: 175px;
+      margin: 25px 0 0;
+      position: relative;
+      display: inline-block;
+    }
+    .loader{
+      width: 175px;
+      height: 175px;
+      border-radius: 100%;
+      border: 6px solid #ccc;
+      position: relative;
+      &:after{
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        bottom: -6px;
+        left: -6px;
+        content: '';
+        border-radius: 100%;
+        border: 6px solid transparent;
+        border-top-color: $brand-primary;
+        animation: spinner-anime 1s linear infinite;
+        @keyframes spinner-anime{
+          to{
+            -webkit-transform: rotate(1turn);
+            transform: rotate(1turn);
+          }
+        }
+      }
+    }
+    .countdown{
+      position: absolute;
+      font-size: 26px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .tips{
+      color: #fd9979;
+      font-size: 26px;
+      padding: 25px 0 0 35px;
+    }
+  }
+}
+
+.popup {
+  .content {
+    width: 630px;
+    border-radius: 5px;
+    padding: 100px 0 50px 0;
+    p {
+      font-size: 28px;
+      line-height: 1.5em;
+      text-align: center;
+    }
+    .close {
+      width: 35px;
+      height: 35px;
+      top: 8px;
+      right: 8px;
+      &:before, &:after {
+        width: 35px;
+        height: 3px;
+      }
+    }
+    a {
+      background: #4ab6fa;
+      border-radius: 40px;
+      margin-top: 60px;
+    }
+  }
+}
+
+.overlord-overlay {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+.am-modal-title {
+  color: #333;
+  font-size: 32px;
+  text-align: justify;
+  line-height: 1.4em;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.clearfix {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}

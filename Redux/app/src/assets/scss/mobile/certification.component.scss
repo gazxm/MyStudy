@@ -1,0 +1,166 @@
+@import '../common/base';
+@import './reboot.component.scss';
+
+.wrapper-mobile{
+    .authentication{
+        .verifys{
+            margin-top: 25px;
+        }
+        .header{
+            background-color: #4ab6fa;
+            background: linear-gradient(to top, lighten(#4ab6fa, 5) 0%,  #4ab6fa 100%);
+            position: relative;
+            .credit{
+                width: 480px;
+                height: 245px;
+                margin-bottom: 60px;
+                // background-color: lighten(red, 30);
+                canvas{
+                    width: 100%;
+                    height: 100%;
+                    margin-bottom: 20px;
+                }
+            }
+            .credit-line{
+                width: 238px;
+                height: 238px;
+                color: #fff;
+                text-align: center;
+                margin: 0 auto 25px;
+                position: relative;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                p{
+                    font-size: 50px;
+                    font-weight: 700;
+                }
+                span{
+                    color: #fff77a;
+                    font-size: 32px;
+                }
+                &:before{
+                    content: '';
+                    background: url(../../img/mobile/certification/credit-line.png) center no-repeat;
+                    background-size: contain;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    transform-origin: center;
+                    animation: spinny 10s linear infinite;
+                    @keyframes spinny{
+                        0%{
+                            transform: rorate(0deg);
+                        }
+                        50%{
+                            transform: rotate(90deg);
+                        }
+                        75%{
+                            transform: rotate(270deg);
+                        }
+                        100%{
+                            transform: rotate(360deg);
+                        }
+                    }
+                }
+            }
+            .instruction{
+                color: #fff;
+                font-size: 26px;
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                z-index: 1;
+                &:after{
+                    content: '';
+                    position: absolute;
+                    top: -15px;
+                    right: -15px;
+                    bottom: -15px;
+                    left: -15px;
+                }
+            }
+            .tips{
+                color: #156ba1;
+                font-size: 26px;
+                white-space: nowrap;
+            }
+        }
+        .slider-slide{
+            height: 425px !important;
+            justify-content: center;
+            align-items: center;
+            display: flex !important;
+        }
+        .am-carousel-wrap{
+            margin-bottom: 20px;
+        }
+        .am-carousel-wrap-dot span{
+            background-color: #9ed8fd;
+        }
+        .am-carousel-wrap-dot-active span{
+            background-color: #fff;
+        }
+        .am-grid-item{
+            transition: .3s ease-out;
+            overflow: hidden;
+            &:after{
+                background-color: #e6e6e6 !important;
+            }
+            &:active{
+                background-color: #f6f6f6 !important;
+            }
+        }
+        .am-grid-icon{
+            width: 50px;
+            height: 50px !important;
+            background: center no-repeat;
+            background-size: contain;
+        }
+        .am-grid-text{
+            color: #999 !important;
+        }
+        .am-grid-item-contain.active{
+            .am-grid-text{
+                color: #666 !important;
+            }
+            .corner-mark{
+                background-color: $brand-primary;
+            }
+        }
+        .corner-mark{
+            width: 100px;
+            height: 60px;
+            color: #fff;
+            font-size: 22px;
+            background-color: #ddd;
+            padding-bottom: 2px;
+            position: absolute;
+            top: 3px;
+            right: -3px;
+            transform: rotate(45deg);
+            transform-origin: right bottom;
+            justify-content: center;
+            align-items: flex-end;
+            display: flex;
+        }
+        .title{
+            height: 90px;
+            font-size: 32px;
+            border-bottom: 1PX solid #e6e6e6;
+            background-color: #fff;
+            white-space: nowrap;
+            padding-left: 30px;
+            align-items: center;
+            display: flex;
+            font{
+                font-size: 22px;
+                margin-left: 15px;
+                position: relative;
+                top: 2px;
+            }
+        }
+    }
+}

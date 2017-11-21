@@ -1,0 +1,352 @@
+$bg: #f9f9f9;
+$blue: #4ab6fa;
+$orange: #ff801a;
+
+@keyframes r {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.eval {
+	p {
+		font-size: 26px;
+		line-height: 70px;
+		padding-left: 70px;
+		color: #ffb540;
+		background: #fff7ea url(../../img/activity/inte-eval/eval-01.jpg) 30px 50% no-repeat;
+		background-size: 30px 30px;
+	}
+	i {
+		display: block;
+		margin: 80px auto 55px;
+		width: 402px;
+		height: 309px;
+		background: transparent url(../../img/activity/inte-eval/eval-02.jpg) 0 0 no-repeat;
+		background-size: contain;
+	}
+	h2, h3, a, h4 {
+		text-align: center;
+	}
+	h2 {
+		font-size: 36px;
+		line-height: 60px;
+		color: #333;
+	}
+	h3 {
+		font-size: 26px;
+		line-height: 60px;
+		color: #666;
+	}
+	a {
+		display: block;
+		width: 690px;
+		line-height: 88px;
+		margin: 55px auto 0;
+		color: #fff;
+		font-size: 34px;
+		letter-spacing: 2px;
+		background: $blue;
+		cursor: pointer;
+		border-radius: 45px;
+	}
+	a:hover {
+		text-decoration: none;
+	}
+	h4 {
+		font-size: 26px;
+		line-height: 80px;
+		color: #999;
+	}
+}
+
+h2.head {
+	background: $bg;
+	color: #999;
+	font-size: 26px;
+	line-height: 70px;
+	padding-left: 30px;
+	b {
+		display: inline-block;
+		color: #ffb540;
+		font-weight: normal;
+		margin-left: 4px;
+	}
+}
+
+.eval-one {
+	h3 {
+		color: #000;
+		font-size: 36px;
+		line-height: 116px;
+		padding-left: 30px;
+	}
+	.am-list-body {
+		border-top: none;
+	}
+	.am-list-item, .am-radio {
+		min-height: 180px;
+	}
+	.am-list-item {
+		img {
+			width: 120px;
+			height: 120px;
+		}
+		p {
+			display: inline-block;
+			width: 465px;
+			white-space: normal;
+			vertical-align: middle;
+			padding-left: 32px;
+			font-size: 32px;
+			color: #333;
+		}
+	}
+	.am-radio-inner {
+		top: 67px!important;
+		width: 44px;
+		height: 44px;
+		border: 1PX solid #00b6ff;
+		border-radius: 5px;
+	}
+	.am-radio.am-radio-checked .am-radio-inner {
+		background: $blue;
+		&:after {
+			border-color: #fff;
+			top: 3px;
+			right: 13px;
+			height: 24px;
+		}
+	}
+	a {
+		display: block;
+		font-size: 36px;
+		color: #fff;
+		background: $blue;
+		width: 690px;
+		line-height: 88px;
+		text-align: center;
+		border-radius: 40px;
+		cursor: pointer;
+		margin: 60px auto;
+	}
+	a:hover {
+		text-decoration: none;
+	}
+}
+
+.eval-two {
+	.job {
+		.content {
+			padding: 20px 30px;
+			li {
+				display: inline-block;
+				width: 345px;
+				text-align: center;
+				margin-top: 40px;
+				cursor: pointer;
+				img {
+					display: block;
+					width: 134px;
+					height: 134px;
+					margin: 0 auto 4px;
+				}
+				h3 {
+					font-size: 32px;
+					line-height: 80px;
+					color: #333;
+				}
+				h4 {
+					font-size: 22px;
+					color: $orange;
+				}
+			}
+			.single {
+				display: block;
+				margin: 40px auto 0;
+			}
+			.complete {
+				position: relative;
+				&:after {
+					content: '';
+					display: block;
+	        position: absolute;
+	        width: 46px;
+	        height: 46px;
+	        background: transparent url(../../img/activity/inte-eval/eval-03.png) 0 0 no-repeat;
+	        background-size: contain;
+	        top: 95px;
+	        right: 95px;
+				}
+			}
+		}
+	}
+}
+
+.result {
+	background: #f2f2f2;
+	h1 {
+		padding-top: 50px;
+		font-size: 40px;
+		line-height: 110px;
+		color: #333;
+		text-align: center;
+		background: #fff;
+	}
+	.loan {
+		font-size: 28px;
+		line-height: 66px;
+		padding-bottom: 20px;
+		color: #666;
+		text-align: center;
+		background: #fff;
+		b {
+			font-weight: normal;
+			color: $blue;
+		}
+	}
+	.quota {
+		line-height: 318px;
+		background: #f3fafe;
+		border-bottom: 1PX solid #e6e6e6;
+		font-size: 0;
+		text-align: center;
+		position: relative;
+		overflow: hidden;
+		img {
+			width: 238px;
+			height: 239px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      animation: r 2.4s cubic-bezier(.8, .2, .2, .8) infinite;
+		}
+		span {
+			display: inline-block;
+			line-height: 60px;
+			font-size: 32px;
+			color: #666;
+			vertical-align: middle;
+			position: relative;
+			z-index: 2;
+			b {
+				font-size: 50px;
+				color: $blue;
+			}
+		}
+	}
+	.mention {
+		font-size: 28px;
+		color: #999;
+		text-align: center;
+		background: #f3fafe;
+		line-height: 50px;
+		border-bottom: 1PX solid #e6e6e6;
+	}
+	.gold {
+		height: 152px;
+		background: #fff url(../../img/activity/inte-eval/eval-04.jpg) 28px 50% no-repeat;
+		background-size: 39px 48px;
+		p {
+			float: left;
+  		line-height: 152px;
+  		font-size: 0;
+  		margin-left: 90px;
+  		span {
+  			display: inline-block;
+  			font-size: 28px;
+  			line-height: 46px;
+  			vertical-align: middle;
+  			color: #666;
+  		}
+		}
+		a {
+			float: right;
+			display: block;
+			color: $orange;
+			font-size: 28px;
+			right: 55px;
+			line-height: 152px;
+			cursor: pointer;
+			position: relative;
+			&:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-top: 1PX solid currentColor;
+        border-right: 1PX solid currentColor;
+        transform: rotate(45deg) translateY(-50%);
+        top: 50%;
+        right: -20px;
+			}
+		}
+	}
+	.test {
+    display: block;
+    line-height: 90px;
+    width: 690px;
+    background: $blue;
+    color: #fff;
+    font-size: 36px;
+    margin: 60px auto 450px;
+    text-align: center;
+    border-radius: 35px;
+	}
+	a:hover {
+    text-decoration: none;
+	}
+}
+
+.popup {
+	.content {
+		width: 635px;
+		border-radius: 5px;
+		.close {
+			width: 40px;
+			height: 40px;
+			top: 12px;
+			right: 15px;
+			&:before, &:after {
+				width: 40px;
+			}
+		}
+		p {
+			font-size: 28px;
+			line-height: 42px;
+			color: #666;
+			text-align: center;
+		}
+		a {
+			background: $blue;
+			width: 318px;
+			line-height: 73px;
+			border-radius: 15px;
+			margin-top: 50px;
+			cursor: pointer;
+		}
+		a:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+.am-toast-text-icon {
+	padding-bottom: 20px;
+	div {
+		margin-top: 20px;
+	}
+}
+
+.clearfix {
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+}
+

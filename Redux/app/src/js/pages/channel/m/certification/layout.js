@@ -1,0 +1,192 @@
+/* eslint-disable */
+import qs from 'qs';
+import React, {Component} from 'react';
+import {Steps, Modal, Toast} from 'antd-mobile';
+import classnames from 'classnames';
+import request from 'common/request';
+import {login, redirect, platform} from 'utils';
+
+import basics from './basics';
+
+const READY_TEXT = '正在准备数据';
+const COMPLETED_TEXT = '保存';
+
+let Step = Steps.Step;
+
+export default class CertificationLayout extends Component{
+    state = {
+        steps: [],
+        visible: 1,
+        current: 0,
+        loaded: 0
+    }
+    constructor(props){
+        super(props);
+        request.interceptors.response.use(response => {
+            let {code, message} = response;
+            if(code == -2){
+                login();
+                // let modal = document.querySelector('.am-modal');
+                // if(!modal){
+                //     Modal.alert('提 示', message, [{
+                //         text: '确 定',
+                //         onPress(){
+                //             login();
+                //         }
+                //     }])
+                // }
+                return Promise.reject(response);
+            }else if([0, -2].indexOf(code) == -1){
+                return Promise.reject(response);
+            }
+            return Promise.resolve(response);
+        }, error => {
+            return Promise.reject(error);
+        });
+
+    }
+    componentDidMount(){
+        this.loadSteps.bind(this)();
+    }
+    middleware(response){
+        let {code, message} = response;
+        Toast.hide();
+        if([0, -2].indexOf(code) == -1){
+            Toast.fail(message);
+        }
+        setTimeout(() => {
+            this.setState({lock: 1, loaded: 1, loading: 0});
+        });
+    }
+    step(current = 0){
+        this.setState({
+            current
+        });
+    }
+    loadSteps(){
+        let {bankLast} = this.props.location.query;
+        request('credit-card/get-verification-step').then(response => {
+            let {item: {list: steps, pass_index: current, pass_verify, is_show_progress}} = response.data;
+            let bank = steps.find(data => data.tag == 3)
+            let operator = steps.find(data => data.tag == 4)
+            steps.map(step => {
+                basics.map(basic => {
+                    if(step.tag_id == basic.id){
+                        step.name = basic.name;
+                        step.link = basic.link;
+                    }
+                });
+            });
+            // 交换位置
+            {
+                let bank;
+                let operator;
+                steps.map(step => {
+                    let {tag} = step;
+                    tag == 3 && (bank = step);
+                    tag == 4 && (operator = step);
+                });
+                steps[2] = operator;
+                steps[3] = bank;
+            }
+            this.setState({
+                steps,
+                current,
+                visible: true,
+                loaded: true
+            });
+        }).catch(this.middleware.bind(this));
+    }
+    showSteps(){
+        this.setState({visible: 1})
+    }
+    hideSteps(){
+        this.setState({visible: 0})
+    }
+    label(name){
+        if(name && name.length > 1){
+            name = name.split('').map(value => {
+                return `<span>${value}</span>`;
+            }).join('');
+        }
+        return <p className='label' dangerouslySetInnerHTML={{__html: name}}/>;
+    }
+    nextStepLink(route){
+        let {path} = route;
+        let {steps} = this.state;
+        let url;
+        for(let i = 0;i < steps.length;i++){
+            let {name, link} = steps[i];
+            let next = steps[i + 1];
+            if(name == path && next){
+                url = next.link;
+                break;
+            }
+        }
+        let {callbackUrl} = this.props.location.query;
+        let query = qs.stringify(this.props.location.query);
+        let search = query ? `?${query}` : undefined;
+        if(url){
+            this.loadSteps.bind(this)();
+            redirect.replace({
+                pathname: url,
+                search
+            });
+        }else if(callbackUrl){
+            window.location.href = callbackUrl;
+        }else{
+            redirect.push({
+                pathname: '/mobile/loan/1/14/1000',
+                search
+            });
+        }
+    }
+    getButtonText(route){
+        let text = COMPLETED_TEXT;
+        // let {path} = route;
+        // let {steps} = this.state;
+
+        // for(let i = 0;i < steps.length;i++){
+        //     let {name, link, button_text} = steps[i];
+        //     if(name == path){
+        //         text = button_text;
+        //         break;
+        //     }
+        // }
+        return text;
+    }
+    formatPickerData(data){
+        data.label = data.name || data.bank_name;
+        data.value = data.type || data.work_type || data.degrees || data.live_time_type || data.marriage || data.bank_id;
+    }
+    render(){
+        let {steps, visible, current, loaded} = this.state;
+        return (
+            <div className={classnames({'wrapper wrapper-mobile wrapper-mobile-certification': true, loaded})}>
+                {visible ? 
+                    <Steps className='am-steps-certification' current={current} direction='horizontal'>
+                        {steps.map((step, index) => step.tag != 3 ? (
+                            <Step key={index} title={step.title} className={classnames({
+                                info: step.tag == 1,
+                                contact: step.tag == 2,
+                                phone: step.tag == 4,
+                            })}/>
+                        ) : false)}
+                    </Steps>
+                : false}
+                {loaded ? React.cloneElement(this.props.children, {
+                    READY_TEXT,
+                    COMPLETED_TEXT,
+                    step: this.step.bind(this),
+                    label: this.label,
+                    formatPickerData: this.formatPickerData,
+                    middleware: this.middleware,
+                    nextStepLink: this.nextStepLink.bind(this),
+                    showSteps: this.showSteps.bind(this),
+                    hideSteps: this.hideSteps.bind(this),
+                    getButtonText: this.getButtonText.bind(this)
+                }) : ''}
+            </div>
+        );
+    }
+};

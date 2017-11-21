@@ -1,0 +1,29 @@
+.wrapper-misc-notfound{
+    background-color: #fff;
+    bottom: 0;
+    .picture{
+        width: 453px;
+        height: 206px;
+        background: url(../../img/misc/notfound/picture.png) center no-repeat;
+        background-size: contain;
+        margin: 255px auto 50px;
+    }
+    .picture-1{
+        width: 467px;
+        height: 262px;
+        background: url(../../img/misc/notfound/picture-1.png) center no-repeat;
+        background-size: contain;
+        margin: 255px auto 50px;
+    }
+    .picture-2{
+        width: 362px;
+        height: 284px;
+        background: url(../../img/misc/notfound/picture-2.png) center no-repeat;
+        background-size: contain;
+        margin: 255px auto 50px;
+    }
+    p{
+        font-size: 32px;
+        text-align: center;
+    }
+}

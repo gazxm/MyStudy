@@ -1,0 +1,106 @@
+@import '../common/base';
+.repayment-result{
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 60px 30px;
+  i {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    background: url(../../img/mobile/repayment/icon-processing.png) 0 0 no-repeat;
+    background-size: 150px 150px;
+    &.fail{
+      background-image: url(../../img/mobile/repayment/icon-fail.png)
+    }
+    &.success{
+      background-image: url(../../img/mobile/repayment/icon-success.png)
+    }
+  }
+  h1{
+    text-align: center;
+    font-size: 48px;
+    color: $h1;
+    line-height: 3em;
+  }
+  p {
+    font-size: 26px;
+    line-height: 1.6em;
+    color: $h3;
+    a {
+      color: $main;
+      text-decoration: underline;
+    }
+  }
+  .btn {
+    display: block;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 32px;
+    color: #fff;
+    background: $main;
+    border-radius: 30px;
+    margin: 30px 0;
+    &.ghost{
+      color: $main;
+      border: 1Px solid $main;
+      background-color: transparent;
+    }
+  }
+}
+.repayment-result-modal-upAmount{
+  width: 500px !important;
+  .tips{
+    width: 320px;
+    line-height: 36px;
+    margin: 0 auto;
+  }
+  .upAmountTipsHandle{
+    color: $brand-primary;
+    margin-top: 25px;
+    span{
+      border-bottom: 1Px solid $brand-primary;
+    }
+  }
+  .handle{
+    margin-top: 25px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    > div{
+      width: 175px;
+      height: 60px;
+      border-radius: 10px;
+      background-color: $brand-primary;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      + div{
+        margin-left: 25px;
+      }
+    }
+    .cancel{
+      background-color: #e7e7e7;
+    }
+  }
+}
+.repayment-result-modal-upAmountTips{
+  width: 500px !important;
+  .am-modal-close{
+    top: 10px;
+    left: auto;
+    right: 15px;
+  }
+  .tips{
+    text-align: justify;
+    padding: 25px 10px 15px;
+    span{
+      color: $brand-primary;
+    }
+  }
+}

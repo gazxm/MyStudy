@@ -1,0 +1,20 @@
+.popup {
+  .content {
+    border-radius: 15px;
+    padding: 80px 0;
+    .close {
+      width: 40px;
+      height: 40px;
+      top: 15px;
+      right: 15px;
+      &:before, &:after {
+        width: 35px;
+      }
+    }
+    p {
+      font-size: 28px;
+      line-height: 42px;
+      text-align: center;
+    }
+  }
+}

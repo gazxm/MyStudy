@@ -1,0 +1,236 @@
+.Xinshou {
+	background: url(../../img/activity/novice/bg.jpg) 0 0 no-repeat;
+	width: 750px;
+	height: 3030px;
+	background-size: 750px 3030px;
+	position: relative;
+	.head {
+		position: absolute;
+		top: 504px;
+		left: 147px;
+		text-align: center;
+		color: #fff;
+		font-size: 25.79px;
+	}
+	.content {
+		position: absolute;
+		top: 2056px;
+		left: 5%;
+		right: 5%;
+		background-color: #ffd26f;
+		border-radius: 30px;
+		padding: 0px 37px;
+		p {
+			line-height: 43px;
+			margin-top: 20px;
+			color: #9d4e00;
+			font-size: 24px;
+		}
+		.p1 {
+			margin-bottom: 45px;
+		}
+	}
+	.foot {
+		position: fixed;
+		bottom: 0px;
+		left: 0px;
+		background-color: #302305;
+		background-color: rgba(0, 0, 0, 0.7);
+		height: 123px;
+		width: 750px;
+		text-align: center;
+		line-height: 123px;
+		button {
+			width: 520px;
+			height: 92px;
+			background-color: #6b11dc;
+			border: none;
+			border-radius: 30px;
+			color: #f5cd19;
+			font-size: 36px;
+			font-weight: bold;
+			box-shadow: 0 12px 15px #470b92;
+		}
+	}
+}
+
+.novice {
+	p {
+		font-size: 32px;
+		color: #333;
+		margin-top: 450px;
+		text-align: center;
+	}
+}
+
+.popup {
+	.content {
+		width: 506px;
+		height: 308px;
+		background-color: #fff;
+		border-radius: 25px;
+		padding: 0;
+		left: 50%;
+		top: 602px;
+	}
+	p {
+		font-size: 28px;
+		color: #000000;
+		text-align: center;
+		margin-top: 88px;
+		font-family: "微软雅黑";
+	}
+	a {
+		position: absolute;
+		background: #8e00e9;
+		font-size: 36px;
+		color: #fff;
+		width: 388px;
+		line-height: 90px;
+		border-radius: 25px;
+		cursor: pointer;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	.close {
+		height: 50px;
+		width: 50px;
+		border: 5px solid #fff;
+		border-radius: 50%;
+		background-color: #8e00e9;
+		top: -7%;
+		right: -5%;
+		&:before, &:after {
+			height: 2px;
+			width: 35px;
+			height: 3PX;
+			background: #fff;
+			left: 7px;
+		}
+	}
+	a:hover {
+		text-decoration: none;
+	}
+}
+
+.xinshouTwo {
+	background: url(../../img/activity/novice/bg-2.jpg) 0 0 no-repeat;
+	width: 750px;
+	height: 2200px;
+	background-size: 750px 2200px;
+	position: relative;
+	.scroll-div {
+		width: 616px;
+		margin: 683px auto 0;
+		height: 68px;
+		background: transparent;
+		padding-top: 1PX;
+		position: relative;
+	}
+	.scroll-bar {
+		width: 616px;
+		height: 68px;
+		margin: 0 auto;
+		position: relative;
+		overflow: hidden;
+		.scroll {
+			width: 616px;
+			text-align: center;
+			position: absolute;
+		}
+		li {
+			list-style: none;
+			line-height: 68px;
+			font-size: 28px;
+			color: #fff;
+			b {
+				display: inline-block;
+				font-weight: normal;
+				font-size: 24px;
+				color: #ffcc00;
+				margin: 0 10px;
+			}
+		}
+	}
+	h3 {
+		font-size: 28px;
+		text-align: center;
+		color: #5d5d5d;
+		text-decoration: underline;
+		cursor: pointer;
+		margin-top: 1160px;
+	}
+	.foot {
+		position: fixed;
+		bottom: 0px;
+		left: 0px;
+		background-color: #302305;
+		background-color: rgba(0, 0, 0, 0.7);
+		height: 123px;
+		width: 750px;
+		text-align: center;
+		line-height: 123px;
+		button {
+			width: 520px;
+			height: 92px;
+			background-color: #6b11dc;
+			border: none;
+			border-radius: 30px;
+			color: #f5cd19;
+			font-size: 36px;
+			font-weight: bold;
+			box-shadow: 0 12px 15px #470b92;
+		}
+	}
+}
+
+.popup-rule {
+	.content {
+		background: #dd4b6a;
+		width: 615px;
+		padding: 40px;
+		box-sizing: border-box;
+		top: 62%;
+		&:before {
+			content: '';
+      display: block;
+      width: 615px;
+      height: 331px;
+      position: absolute;
+      background: transparent url(../../img/activity/novice/xinshou-rule.png) 0 0 no-repeat;
+      background-size: 615px 331px;
+      top: -330px;
+      left: 0;
+		}
+		.close {
+			width: 53px;
+			height: 53px;
+			border: 5px solid #fff;
+			border-radius: 50%;
+			top: -330px;
+			right: -15px;
+			&:before, &:after {
+				height: 5px;
+				background: #fff;
+				width: 40px;
+				left: 7px;
+			}
+		}
+		.rule-content {
+			height: 500px;
+			overflow-y: scroll;
+		}
+		h3 {
+			font-size: 32px;
+			color: #fff;
+			text-align: center;
+			line-height: 80px;
+			font-weight: bold;
+		}
+		p {
+			font-size: 26px;
+			color: #fff;
+			line-height: 42px;
+		}
+	}
+}

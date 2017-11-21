@@ -1,0 +1,266 @@
+.wrapper-activity-calendar-today{
+    margin-left: 0;
+    padding-top: 35px;
+    position: initial;
+	background-color: #fff;
+	// + .wrapper-activity-calendar-today{
+	// 	pointer-events: none;
+	// }
+	.main{
+		border: 1px solid rgba(#040000, .09);
+		box-shadow: 0 6px 29px rgba(#040000, .1);
+		background: center no-repeat;
+		background-size: 100% 100%;
+		position: relative;
+		margin: 0 40px 35px;
+		padding: 85px 10px;
+		.date{
+			white-space: nowrap;
+			text-align: center;
+			margin: 0 auto;
+		}
+		.year-month{
+			color: #666;
+			font-size: 28px;
+		}
+		.lunar{
+			color: #999;
+			font-size: 22px;
+			margin-top: 10px;
+		}
+		.day{
+			color: #363131;
+			font-size: 230px;
+		}
+		.arrow{
+			width: 147px;
+			height: 15px;
+			background: url(../../img/activity/calendar/today/arrow.nolimit.png) center no-repeat;
+			background-size: contain;
+			margin: 0 auto;
+		}
+		.week{
+			color: #444;
+			font-size: 28px;
+			margin-top: 15px;
+			position: relative;
+			
+		}
+		.subject{
+			min-height: 119.6px;
+			line-height: 60px;
+			color: #d63d3d;
+			font-size: 38px;
+			text-align: center;
+			margin: 50px 90px 20px;
+			position: relative;
+			&:before,
+			&:after{
+				width: 98px;
+				height: 98px;
+				color: #f3d1d1;
+				font-size: 98px;
+				// font-family: Simhei;
+				position: absolute;
+			}
+			&:before{
+				content: '“';
+				left: -98px;
+
+			}
+			&:after{
+				content: '”';
+				right: -98px;
+				bottom: -98px;
+			}
+		}
+		.tips{
+			margin-top: 80px;
+			padding: 0 45px;
+			justify-content: space-between;
+			align-content: center;
+			display: flex;
+			> div{
+				line-height: 65px;
+				font-size: 28px;
+				justify-content: center;
+				align-content: center;
+				display: flex;
+				&:before{
+					width: 65px;
+					height: 65px;
+					content: '';
+					background: center no-repeat;
+					background-size: contain;
+					margin-right: 20px;
+					display: block;
+				}
+				+ div{
+					margin-left: 20px;
+				}
+			}
+			.suitable{
+				&:before{
+					background-image: url(../../img/activity/calendar/today/suitable.nolimit.png);
+				}
+			}
+			.taboo{
+				&:before{
+					background-image: url(../../img/activity/calendar/today/taboo.nolimit.png);
+				}
+			}
+		}
+	}
+	.front_image{
+		background: center no-repeat;
+		background-size: 100% 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 100;
+		display: block;
+	}
+	.themes{
+		border: 2PX solid #bbbaba;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		bottom: 10px;
+		left: 10px;
+		pointer-events: none;
+		.element{
+			background: center no-repeat;
+			background-size: contain;
+			position: absolute;
+		}
+		.knot-left{
+			width: 73px;
+			height: 73px;
+			background-image: url(../../img/activity/calendar/today/knot-left.nolimit.png);
+			top: -2px;
+			left: -2px;
+		}
+		.knot-right{
+			width: 73px;
+			height: 73px;
+			background-image: url(../../img/activity/calendar/today/knot-right.nolimit.png);
+			top: -2px;
+			right: -2px;
+		}
+		.cloud-left{
+			width: 112px;
+			height: 26px;
+			background-image: url(../../img/activity/calendar/today/cloud-left.nolimit.png);
+			top: 145px;
+			left: 65px;
+		}
+		.cloud-right{
+			width: 142px;
+			height: 34px;
+			background-image: url(../../img/activity/calendar/today/cloud-right.nolimit.png);
+			top: 280px;
+			right: 35px;
+		}
+	}
+	.footer{
+		height: 300px;
+		position: relative;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		.download{
+			text-align: center;
+			margin-top: 35px;
+			justify-content: center;
+			align-items: center;
+			display: flex;
+			> div + div{
+				margin-left: 35px;
+			}
+			p{
+				color: #666;
+				font-size: 22px;
+				margin-top: 20px;
+			}
+		}
+		.picture{
+			width: 115px;
+			height: 115px;
+			background: center no-repeat;
+			background-size: contain;
+			display: inline-block;
+			&.logo{
+				background-image: url(../../img/activity/calendar/today/logo.nolimit.png);
+			}
+			&.qrcode{
+				background-image: url(../../img/activity/calendar/today/qrcode.nolimit.png);
+			}
+			img{
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+		}
+		.share{
+			height: 300px;
+			margin-top: 25px;
+			background-color: #fff;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			.title{
+				color: #474747;
+				font-size: 24px;
+				text-align: center;
+				position: relative;
+				&:before{
+					width: 625px;
+					height: 1Px;
+					content: '';
+					background-color: #585858;
+					margin-left: -(625px / 2);
+					position: absolute;
+					top: 12px;
+					left: 50%;
+					z-index: 1;
+				}
+				span{
+					background-color: #fff;
+					padding: 0 50px;
+					position: relative;
+					z-index: 2;
+					display: inline-block;
+				}
+			}
+			.content{
+				padding-top: 65px;
+				justify-content: center;
+				align-items: center;
+				display: flex;
+				> div{
+					background: center no-repeat;
+					background-size: contain;
+					margin: 0 55px;
+				}
+				.wechat{
+					width: 65px;
+					height: 52px;
+					background-image: url(../../img/activity/calendar/today/icon-wechat.nolimit.png);
+				}
+				.friends{
+					width: 55px;
+					height: 55px;
+					background-image: url(../../img/activity/calendar/today/icon-friends.nolimit.png);
+				}
+				.weibo{
+					width: 66px;
+					height: 53px;
+					background-image: url(../../img/activity/calendar/today/icon-weibo.nolimit.png);
+				}
+			}
+		}
+	}
+}

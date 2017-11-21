@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>条纹边框的实现方法（单标签）</title>
+</head>
+
+<style>
+  div {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 20px 0 0 20px;
+  }
+
+  .one {
+    background: #9c27b0;
+    border-radius:50%;
+    border: 20px dashed #2196f3;
+  }
+
+  .one::after {
+    content: '';
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #fff;
+  }
+
+  .two {
+    background: #fff;
+    border-radius: 50%;
+    background-clip: padding-box;
+    border: 20px dashed #cccc99;
+  }
+  .two::before {
+    content: '';
+    border-radius: 50%;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    bottom: -20px;
+    right: -20px;
+    background: #996699;
+    z-index: -1;
+  }
+
+  .linear-three {
+    border-radius: 50%;
+    background-image: radial-gradient(#fff 90px, transparent 90px);
+    background-repeat:no-repeat;
+    border:20px dashed #2196f3;
+  }
+
+  .linear-three::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: deeppink;
+    z-index: -1;
+    border-radius: 50%;
+  }
+
+  .in-shadow {
+    border:20px dashed #2196f3;
+    background: yellowgreen;
+    box-shadow: inset 180px 0 0 0 #fff;
+  }
+</style>
+
+<body>
+  <div class='one'></div>
+  <div class='two'></div>
+  <div class='linear-three'></div>
+  <div class='in-shadow'></div>
+</body>
+
+</html>

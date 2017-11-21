@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>左边竖条的实现方法</title>
+</head>
+
+<style>
+  div {
+    position: relative;
+    width: 200px;
+    height: 60px;
+    background: #ddd;
+    margin: 20px 0 0 20px;
+    box-sizing: border-box;
+  }
+
+  .border {
+    border-left: 5px solid deeppink;
+  }
+
+  .after::after {
+    content: '';
+    width: 5px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: deeppink;
+  }
+
+  /*  这个会占用205px  */
+  .out-shadow {
+    box-shadow: -5px 0 0 0 deeppink;
+  }
+
+  .in-shadow {
+    box-shadow: inset 5px 0 0 0 deeppink;
+  }
+
+  /*  这个会占用205px  */
+  .drop-shadow {
+    filter: drop-shadow(-5px 0 0 deeppink);
+  }
+
+  .linearGradient {
+    background-image:linear-gradient(90deg, deeppink 0px, deeppink 5px, transparent 5px);
+  }
+
+  .scroll {
+    background: deeppink;
+    overflow-y: scroll;
+  }
+
+  .scroll::-webkit-scrollbar {
+    width: 195px;
+    background: #ddd;
+  }
+
+</style>
+
+<body>
+  <div class='border'></div>
+  <div class='after'></div>
+  <div class='out-shadow'></div>
+  <div class='in-shadow'></div>
+  <div class='drop-shadow'></div>
+  <div class='linearGradient'></div>
+  <div class='scroll'></div>
+</body>
+
+</html>

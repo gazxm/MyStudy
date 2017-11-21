@@ -1,0 +1,56 @@
+.wrapper-mobile{
+    .certificate{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        padding: 50px 0;
+        .upload{
+            background: center no-repeat;
+            background-size: contain;
+        }
+        p{
+            line-height: 42px;
+            color: #444;
+            font-size: 28px;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .id_card{
+            width: 624px;
+            justify-content: space-between;
+            align-items: center;
+            display: flex;
+            margin: 0 auto;
+            .upload{
+                width: 300px;
+                height: 189px;
+            }
+            .frond .upload{
+                background-image: url(../../../../img/channel/m/certification/id_card_frond.png);
+            }
+            .back .upload{
+                background-image: url(../../../../img/channel/m/certification/id_card_back.png);
+            }
+        }
+        .selfie{
+            width: 624px;
+            margin: 65px auto 0;
+            .upload{
+                width: 624px;
+                height: 395px;
+                background-image: url(../../../../img/channel/m/certification/selfie.png);
+                margin: 0 auto;
+            }
+        }
+    }
+    .rc-upload{
+        width: 100%;
+        height: 100%;
+        transition: .3s ease-out;
+        &:active{
+            background-color: rgba(#000, .35);
+        }
+    }
+}
