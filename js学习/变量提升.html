@@ -6,21 +6,33 @@
 	<script type="text/javascript"></script>
 </head>
 
-<body>	
-</body>
+<body></body>
 <script>
-	var v1 = 'Hello World';
+	console.log(v1);	//	变量声明提升
+	var v1 = 'varvarvar';
 	console.log(v1);
 
-	var v2 = 'Hello World';
-	(function() {
-		console.log(v2);
-	})()
+	console.log(toSquare(3));  // 9
+	function toSquare(n){
+	  return n * n;
+	}
 
-	var v3 = 'Hello World';
-	(function() {
-		
-	})()
+	//	ES6中的let,const不会变量提升
+	try {
+		console.log(v2);
+	} catch (err) {
+		console.log(err); //  ReferenceError: v2 is not defined
+	}
+	let v2 = 'letletlet';
+	console.log(v2);   //  letletlet
+
+  try {
+    console.log(v3);
+  } catch (err) {
+    console.log(err);   //  ReferenceError: v3 is not defined
+  }
+  const v3 = 'constconstconst';
+  console.log(v3);    //  constconstconst
 </script>
 
 </html>

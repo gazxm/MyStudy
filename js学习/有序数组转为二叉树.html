@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang='en'>
+	<head>
+		<meta charset="UTF-8">
+		<title>有序数组转为二叉树</title>
+		<script>
+			(function() {
+				var arr = [4, 5, 6, 7];
+				arr.sort((v1, v2) => {
+					return v1 - v2;
+				});
+				console.log(arr);
+				function Node () {
+					this.root = null;
+					this.leftChild = null;
+					this.rightChild = null;
+				}
+				var arrToTree = (node, a = []) => {
+					let length = Math.floor(a.length / 2);
+					let leftNode = new Node();
+					let rightNode = new Node();
+					let leftArr = a.slice(0, length);
+					let rightArr = a.slice(length + 1, a.length)
+					node.root = a[length] ? a[length] : null;
+					node.leftChild = leftArr.length > 1 ? arrToTree(leftNode, leftArr) : (leftArr[0] || null);
+					node.rightChild = rightArr.length > 1 ? arrToTree(leftNode, rightArr) : (rightArr[0] || null);
+					return node;
+				};
+				var tree = new Node();
+				arrToTree(tree, arr);
+				console.log(tree, JSON.stringify(tree));
+			})()
+		</script>
+	</head>
+	<body></body>
+</html>

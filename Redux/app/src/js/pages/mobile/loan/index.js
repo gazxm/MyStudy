@@ -68,7 +68,7 @@ export default class Loan extends React.Component {
     }
   }
   fetchData () {
-    get('http://credit.xianjincard.com/credit-app/multi-index').then((result) => {
+    get('../../../../json/index.json').then((result) => {
       if (result.data.code !== 0) {
         Toast.info(result.data.message, 2)
         return

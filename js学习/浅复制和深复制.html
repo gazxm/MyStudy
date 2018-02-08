@@ -27,11 +27,11 @@
 		var c = c || {};
 		for(var i in p) {
 			if (typeof p[i] === 'object') {
-　　　	c[i] = (Object.prototype.toString.apply(p[i]) === '[object Array]') ? [] : {};
-　　　　deepCopy(p[i], c[i]);		// 深拷贝就是递归调用浅拷贝
-　　	} else {
-　　　　c[i] = p[i];
-　　　}
+　　　	  c[i] = (Object.prototype.toString.apply(p[i]) === '[object Array]') ? [] : {};
+　　　　 deepCopy(p[i], c[i]);		// 深拷贝就是递归调用浅拷贝
+　　	  } else {
+　　　　 c[i] = p[i];
+　　　 }
 　　}
 　　return c;
 	}
@@ -40,6 +40,7 @@
 
 	shadowObj.arr[1] = 5;
 	shadowObj.a = 5;
+	obj.obj.b = 10; // 补充
 	deep.arr[0] = 10;
 	deep.obj.m = 300;
 	

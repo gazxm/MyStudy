@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js可能用的到的全部排序算法</title>
+	<script>
+		// 1、冒泡排序
+		const arr = [23, 13, 4, 5, 95, 65, 34, 81, 24, 55];
+		(function() {
+			const swap = function(i, j, array) {
+				let temp = array[j];
+				array[j] = array[i];
+				array[i] = temp;
+			}
+			const bubbleSortOne = function(array) {
+				for (let i = 0; i < array.length; i++) {
+					for (let j = 0; j < array.length; j++) {
+						array[i] < array[j] && swap(i, j, array);
+					}
+					console.log(array);
+				}
+				return array;
+			}
+			const bubbleSortTwo = function(array) {
+				for (let i = 0; i < array.length; i++) {
+					let isSwap = false;
+					for (let j = 0; j < array.length - i - 1; j++) {
+						array[j] > array[j + 1] && (isSwap = true) && swap(j, j+1, array);
+					}
+					if (!isSwap) {
+						break;
+					}
+				}
+				return array;
+			}
+			console.log(bubbleSortOne(arr));
+			console.log(bubbleSortTwo(arr));
+		})();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

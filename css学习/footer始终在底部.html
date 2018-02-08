@@ -1,0 +1,89 @@
+<!-- <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>footer始终处在底部</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing:border-box;
+    }
+    html,body { height: 100%;}
+    header { 
+        height: 60px; 
+        margin-bottom: -60px; 
+        background: #1381cc; 
+        color: #FFF; 
+        position: relative;
+    }
+    section { 
+        background: #fff; 
+        min-height: 100%; 
+        padding: 60px 0 60px;}
+    footer { 
+        height:60px; 
+        margin-top: -60px; 
+        background: #0c4367; 
+        color: #FFF;
+    }
+    
+</style>
+<body>
+    <header></header>
+    <section class="content">
+        <div style="height:1000px;"></div>
+    </section>
+    <footer class="footer"></footer>
+</body>
+</html> -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>footer始终处在底部</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body { height: 100%;background: #f2f2f2;}
+    .wrap{
+        min-height: 100%; 
+    }
+    .min{
+        padding-bottom: 60px;
+        background: #fff;
+    }
+    header { 
+        height: 60px; 
+        background: #1381cc; 
+        color: #FFF; 
+        
+    }
+    section { 
+        background: #fff; 
+    }
+    footer { 
+        height:60px; 
+        margin-top: -60px; 
+        background: #0c4367; 
+        color: #FFF;
+    }
+    
+</style>
+<body>
+    <div class="wrap">
+        <div class="min">
+            <header></header>
+            <section class="content">
+                <div style="height:1000px;"></div>
+            </section>
+        </div>
+    </div>
+    <footer class="footer"></footer>
+</body>
+</html>

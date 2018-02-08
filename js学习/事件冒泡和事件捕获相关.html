@@ -31,11 +31,13 @@
         }
       });
       document.getElementById('box2').addEventListener('click', function (event) {
+        console.log('box2:' + event.eventPhase)
         console.log('box2');
       });
       document.getElementById('span').addEventListener('click', function (event) {
+        console.log('span:' + event.eventPhase)
         console.log('span');
-        event.stopPropagation();  //阻止事件冒泡的方法1
+        // event.stopPropagation();  //阻止事件冒泡的方法1
       });
     }  
     function eventHandler(event) {  

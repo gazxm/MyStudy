@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>使用负的 nth-child 选择项目</title>
+	<style>
+		ul li {
+			color: red;
+		}
+		ul li:nth-child(-n+5) {
+			color: blue;
+		}	/* 选中前五个 */
+		.arrow-up {
+			width:0px;
+		  height:0px;
+		  border-left:5px solid transparent;  /* left arrow slant */
+		  border-right:5px solid transparent; /* right arrow slant */
+		  border-bottom:5px solid #2f2f2f; /* bottom, add background color here */
+		  font-size:0px;
+		  line-height:0px;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+	</ul>
+	<div class='arrow-up'></div>
+</body>
+</html>

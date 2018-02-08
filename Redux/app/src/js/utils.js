@@ -14,7 +14,8 @@ let Uri = (function () {
 
   var domain = {
     // credit: location.protocol + '//test-credit.xianjincard.com/',
-    credit: 'http://192.168.39.214/kdkj/credit/web/',
+    // credit: 'http://192.168.39.214/kdkj/credit/web/',
+    credit: location.protocol + '//credit.xianjincard.com/',
     api: 'http://192.168.39.214/kdkj/frontend/web/',
     h5: 'http://192.168.39.214/kdkj/h5/mobile/web/',
     h: '//' + location.hostname + ':8000/',
@@ -251,9 +252,12 @@ export function login (source = null, inviteCode = null, url) {
   url: http://api.xianjincard.com/accumulation-fund/check-login
   params: {a:1, b:2}
 */
-export function get (url, params = null) {
+export function get (url, params = null, resolve = false) {
   if (params !== null) {
     url = url + '?' + qs.stringify(params)
+  }
+  if (!resolve) {
+    return axios.get(url)
   }
   return axios.get(resolveUrl(url))
 }

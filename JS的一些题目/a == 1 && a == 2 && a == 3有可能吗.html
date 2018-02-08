@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>a == 1 && a == 2 && a == 3有可能吗？</title>
+	<script>
+		// 1、利用对象的隐式转换会先调用valueOf,toString的原理
+		(function() {
+			let a = {
+				i: 1,
+				valueOf: () => {
+					return a.i++;
+				}
+			}
+
+			console.log(a == 1 && a == 2 && a == 3);
+		})();
+
+		// 2、利用数组的隐式转换会先调用数组的.join方法
+		(function() {
+			let a = [1, 2, 3];
+			a.join = a.shift;
+			console.log(a == 1 && a == 2 && a == 3);
+		})();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

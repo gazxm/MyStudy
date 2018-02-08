@@ -819,7 +819,7 @@
     (function() {
       console.log('10.3、some()');
       let array = [1, 3, 8, 18];
-      let a = array.every(function(v, i, o) {
+      let a = array.some(function(v, i, o) {
         console.log(v, i, o);
         return v > 8;
       })
@@ -852,7 +852,7 @@
         参数介绍同 forEach() 方法的参数介绍。
     */
     (function() {
-      console.log('10.5、filter()');
+      console.log('10.5、map()');
     }())
     console.groupEnd();
 
@@ -888,7 +888,7 @@
         //  4 3 2 (4) [1, 2, 3, 4]
         //  7 4 3 (4) [1, 2, 3, 4]
         return previousValue + value;
-      }, 1);
+      }, [1, 2, 3, 4]);
       console.log(m); //  11
 
       let m2 = array.reduce(function(previousValue, value, index, array) {

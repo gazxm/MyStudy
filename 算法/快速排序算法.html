@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>快速排序算法</title>
+	<script>
+		(function() {
+			function quickSort(ary){  
+		    var len = ary.length;  
+		    if(len < 2){  
+		        return ary;  
+		    }  
+		    var baseIndex = Math.floor(len / 2),  
+		        base = ary[baseIndex];  
+		    var smallerAry = [],  
+		        biggerAry = [];  
+		    for(var i = len - 1, cur;i > -1; i--){
+		        if(i === baseIndex){  
+		            continue;  
+		        }  
+		        cur = ary[i];  
+		        cur < base ? (smallerAry[smallerAry.length] = cur) : (biggerAry[biggerAry.length] = cur);  
+		    }  
+		    smallerAry[smallerAry.length] = base;
+		    return quickSort(smallerAry).concat(quickSort(biggerAry));  
+			}
+			console.log('result: ' + quickSort([12, 3, 9, 4]))
+		})();
+	</script>
+
+	<script>
+		(function() {
+			let arr = [4, 15, 9, 3, 6];
+			let quickSort = function(array) {
+				if (array.length < 2) return array
+				let base = array[0],
+						smallerAry = [],
+						biggerAry = [];
+				for (let i = array.length - 1; i > 0 ; i--) {
+					array[i] < base ? (smallerAry.push(array[i])) : (biggerAry.push(array[i]));
+				}
+				smallerAry.push(base);
+				return quickSort(smallerAry).concat(quickSort(biggerAry));
+			}
+			console.log(quickSort(arr))
+		})();
+	</script>
+</head>
+
+<body>
+</body>
+</html>

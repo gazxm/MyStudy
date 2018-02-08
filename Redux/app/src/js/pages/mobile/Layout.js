@@ -19,6 +19,8 @@ export default class Layout extends React.Component {
   }
   render () {
     const { location } = this.props
+    console.log(this.props)
+    console.log(location)
     const isMatch = location.pathname.match(/^\/mobile\/(loan|certification|find|me)$/)
     return (
       <div class="mobile-style">
